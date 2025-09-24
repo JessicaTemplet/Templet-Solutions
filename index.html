@@ -6,7 +6,7 @@
     <title>Templet Solutions - AI SEO & Digital Marketing Authority</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* New: Custom properties from your logo's color palette */
+        /* Custom properties from your logo's color palette */
         :root {
             --ts-navy: #1F3E68;
             --ts-medium-blue: #488ACB;
@@ -50,14 +50,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
+            position: relative; /* For mobile menu positioning */
         }
 
+        /* Logo */
         .logo-img {
-            height: 40px; /* Adjust height as needed */
-            width: auto;
+            max-width: 250px; /* Larger max width for desktop */
+            height: auto;
             display: block;
+            margin: 0 auto; /* Center the logo on desktop */
         }
 
+        /* Navigation Links */
         .nav-links {
             display: flex;
             list-style: none;
@@ -75,25 +79,8 @@
         .nav-links a:hover {
             color: var(--ts-navy);
         }
-
-        .cta-button {
-            background: var(--ts-navy);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(31, 62, 104, 0.3);
-        }
         
-        /* New Dropdown Menu Styles */
+        /* Dropdown Menu Styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -108,7 +95,7 @@
             z-index: 1;
             padding: 12px 16px;
             border-radius: 8px;
-            margin-top: 15px; /* Spacing from the menu item */
+            margin-top: 15px;
         }
         
         .dropdown-content a {
@@ -129,11 +116,75 @@
             background-color: #f8fafc;
         }
         
-        /* Show the dropdown menu on hover */
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1001;
+        }
         
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--ts-text);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100%;
+            background-color: var(--ts-bg);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            padding-top: 80px;
+            flex-direction: column;
+            align-items: center;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+            transform: translateX(0);
+        }
+
+        .mobile-nav a, .mobile-nav li {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            color: var(--ts-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .mobile-nav a:hover, .mobile-nav li:hover {
+            background-color: #f8fafc;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
         /* Hero Section */
         .hero {
             background: var(--ts-navy);
@@ -395,9 +446,29 @@
         }
 
         /* Responsive Design */
+        @media (min-width: 769px) {
+            .mobile-nav {
+                display: none !important; /* Hide mobile menu on desktop */
+            }
+        }
+
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .logo-img {
+                max-width: 150px;
+                margin: 0;
+            }
+
+            nav {
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .nav-links, .cta-button {
+                display: none; /* Hide desktop nav links and cta button */
+            }
+            
+            .menu-toggle {
+                display: flex; /* Show the hamburger menu */
             }
 
             .hero h1 {
@@ -445,6 +516,7 @@
             <a href="#">
                 <img src="logo.png" alt="Templet Solutions Logo" class="logo-img">
             </a>
+            
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li class="dropdown">
@@ -455,8 +527,23 @@
                     </div>
                 </li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-button">Get Started</a></li>
             </ul>
-            <a href="#contact" class="cta-button">Get Started</a>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul class="mobile-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="cta-button">Get Started</a></li>
+                </ul>
+            </nav>
         </nav>
     </header>
 
@@ -577,70 +664,4 @@
         </div>
     </footer>
 
-    <script>
-        // Function to load content from a file and inject it into an element
-        async function loadContent(url, elementId) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const content = await response.text();
-                const container = document.getElementById(elementId);
-                if (container) {
-                    container.innerHTML = content;
-                    // Optional: Scroll to the content after it's loaded
-                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    console.error(`Element with ID '${elementId}' not found.`);
-                }
-            } catch (error) {
-                console.error('Failed to load content:', error);
-            }
-        }
-    
-        // Load content on link click
-        document.querySelectorAll('.load-content').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const url = this.dataset.url;
-                loadContent(url, 'main-content-placeholder');
-            });
-        });
-    
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Simple form handling
-        document.querySelector('.lead-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            if (email) {
-                alert('Thank you! Your free SEO guide will be sent to ' + email);
-                this.reset();
-            }
-        });
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-on-scroll');
-                }
- 
+    <
