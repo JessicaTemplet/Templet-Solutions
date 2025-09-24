@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TempletSolutions - AI SEO & Digital Marketing Authority</title>
+    <title>Templet Solutions - AI SEO & Digital Marketing Authority</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* New: Custom properties from your logo's color palette */
         :root {
-            --ts-navy: #0f4c81;
-            --ts-teal: #1fa2b7;
-            --ts-sky: #6da8d9;
-            --ts-slate: #9aa6b2;
+            --ts-navy: #1F3E68;
+            --ts-medium-blue: #488ACB;
+            --ts-teal: #1A9B9A;
+            --ts-grey: #95A1B0;
             --ts-text: #0b2b3a;
             --ts-bg: #ffffff;
         }
@@ -52,11 +52,10 @@
             padding: 1rem 0;
         }
 
-        .logo-svg {
-            height: 40px;
+        .logo-img {
+            height: 40px; /* Adjust height as needed */
             width: auto;
-            display: flex;
-            align-items: center;
+            display: block;
         }
 
         .nav-links {
@@ -91,7 +90,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(15, 76, 129, 0.3);
+            box-shadow: 0 10px 20px rgba(31, 62, 104, 0.3);
         }
         
         /* New Dropdown Menu Styles */
@@ -197,7 +196,7 @@
 
         .section-header p {
             font-size: 1.2rem;
-            color: var(--ts-slate);
+            color: var(--ts-grey);
             max-width: 600px;
             margin: 0 auto;
         }
@@ -243,7 +242,7 @@
         }
 
         .feature-card p {
-            color: var(--ts-slate);
+            color: var(--ts-grey);
             line-height: 1.7;
         }
 
@@ -271,7 +270,7 @@
 
         .content-text p {
             font-size: 1.1rem;
-            color: var(--ts-slate);
+            color: var(--ts-grey);
             margin-bottom: 2rem;
             line-height: 1.8;
         }
@@ -294,7 +293,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--ts-slate);
+            color: var(--ts-grey);
             font-size: 1.2rem;
         }
 
@@ -379,7 +378,7 @@
         }
 
         .footer-section ul li a {
-            color: var(--ts-slate);
+            color: var(--ts-grey);
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -389,10 +388,10 @@
         }
 
         .footer-bottom {
-            border-top: 1px solid var(--ts-slate);
+            border-top: 1px solid var(--ts-grey);
             padding-top: 2rem;
             text-align: center;
-            color: var(--ts-slate);
+            color: var(--ts-grey);
         }
 
         /* Responsive Design */
@@ -443,29 +442,9 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo-svg">
-              <svg viewBox="0 0 1600 800" style="width: 250px; height: 125px;" role="img" aria-labelledby="logoTitle logoDesc" xmlns="http://www.w3.org/2000/svg">
-                  <title id="logoTitle">Templet Solutions logo</title>
-                  <desc id="logoDesc">Geometric mark behind the text "TEMPLET SOLUTIONS", navy and teal palette on white background.</desc>
-                  <rect x="0" y="0" width="1600" height="800" fill="#ffffff" />
-                  <g id="geom-mark" transform="translate(600,150) rotate(-12)">
-                      <rect x="-220" y="-20" width="380" height="220" rx="6" ry="6" fill="var(--ts-navy)" opacity="1"></rect>
-                      <rect x="-60" y="40" width="380" height="220" rx="6" ry="6" fill="var(--ts-teal)" opacity="0.95"></rect>
-                      <rect x="-280" y="120" width="280" height="160" rx="6" ry="6" fill="var(--ts-sky)" opacity="0.88"></rect>
-                      <rect x="180" y="-40" width="160" height="160" rx="6" ry="6" fill="var(--ts-slate)" opacity="0.9"></rect>
-                      <g stroke="#ffffff" stroke-width="4" stroke-opacity="0.10" fill="none">
-                          <line x1="-60" y1="40" x2="140" y2="40" />
-                          <line x1="-60" y1="40" x2="-60" y2="-20" />
-                      </g>
-                  </g>
-                  <g id="wordmark" transform="translate(50,420)">
-                      <text x="120" y="0" font-family="'Playfair Display', serif" font-weight="700" font-size="210" fill="var(--ts-text)" letter-spacing="2" dominant-baseline="alphabetic">T</text>
-                      <text x="250" y="0" font-family="'Montserrat', sans-serif" font-weight="700" font-size="120" fill="var(--ts-text)" letter-spacing="6" dominant-baseline="alphabetic">EMPLET</text>
-                      <text x="380" y="120" font-family="'Playfair Display', serif" font-weight="700" font-size="120" fill="var(--ts-text)" letter-spacing="2" dominant-baseline="alphabetic">S</text>
-                      <text x="455" y="120" font-family="'Montserrat', sans-serif" font-weight="600" font-size="56" fill="var(--ts-text)" letter-spacing="10" dominant-baseline="alphabetic">OLUTIONS</text>
-                  </g>
-              </svg>
-            </div>
+            <a href="#">
+                <img src="logo.png" alt="Templet Solutions Logo" class="logo-img">
+            </a>
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li class="dropdown">
@@ -492,7 +471,7 @@
     <section class="features" id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Why Choose TempletSolutions?</h2>
+                <h2>Why Choose Templet Solutions?</h2>
                 <p>We combine artificial intelligence with proven marketing strategies to help businesses dominate their markets and achieve sustainable growth.</p>
             </div>
             
@@ -593,7 +572,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 TempletSolutions.com. All rights reserved. | Building AI-powered marketing success.</p>
+                <p>&copy; 2025 Templet Solutions.com. All rights reserved. | Building AI-powered marketing success.</p>
             </div>
         </div>
     </footer>
@@ -607,4 +586,61 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const content = await response.text();
-                const container 
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = content;
+                    // Optional: Scroll to the content after it's loaded
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    console.error(`Element with ID '${elementId}' not found.`);
+                }
+            } catch (error) {
+                console.error('Failed to load content:', error);
+            }
+        }
+    
+        // Load content on link click
+        document.querySelectorAll('.load-content').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const url = this.dataset.url;
+                loadContent(url, 'main-content-placeholder');
+            });
+        });
+    
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Simple form handling
+        document.querySelector('.lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thank you! Your free SEO guide will be sent to ' + email);
+                this.reset();
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+ 
