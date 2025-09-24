@@ -47,18 +47,18 @@
 
         nav {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column; /* Stack logo and nav vertically on desktop */
+            align-items: center; /* Center them horizontally */
             padding: 1rem 0;
-            position: relative; /* For mobile menu positioning */
+            position: relative;
         }
 
         /* Logo */
         .logo-img {
-            max-width: 400px; /* Larger max width for desktop */
+            max-width: 600px; /* Significantly larger max width for desktop */
             height: auto;
             display: block;
-            margin: 0 auto; /* Center the logo on desktop */
+            margin-bottom: 1rem; /* Add some space below the logo */
         }
 
         /* Navigation Links */
@@ -453,16 +453,17 @@
         }
 
         @media (max-width: 768px) {
-            .logo-img {
-                max-width: 200px;
-                margin: 0;
-            }
-
             nav {
+                flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
             }
-            
+
+            .logo-img {
+                max-width: 200px;
+                margin-bottom: 0;
+            }
+
             .nav-links, .cta-button {
                 display: none; /* Hide desktop nav links and cta button */
             }
@@ -549,9 +550,9 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Master AI-Powered SEO & Digital Marketing</h1>
-            <p>Transform your business with cutting-edge AI strategies, advanced SEO techniques, and data-driven marketing solutions that deliver measurable results.</p>
-            <a href="#lead-magnet" class="hero-cta">Download Free SEO Guide</a>
+            <h1>Master AI-Search Optimizatoin & Digital Marketing</h1>
+            <p>Transform your business with cutting-edge technique for AI citation, advanced SEO techniques, and data-driven marketing solutions that deliver measurable results.</p>
+            <a href="#lead-magnet" class="hero-cta">Download Free AISO Guide</a>
         </div>
     </section>
 
@@ -659,9 +660,4 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Templet Solutions.com. All rights reserved. | Building AI-powered marketing success.</p>
-            </div>
-        </div>
-    </footer>
-
-    <
+                <p>&copy; 2025 Templet Solutions.com. All rights reserved. | Buildin
