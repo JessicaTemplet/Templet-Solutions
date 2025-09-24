@@ -472,8 +472,7 @@
                     <a href="#">Resources &#9662;</a>
                     <div class="dropdown-content">
                         <a href="#about" class="load-content" data-url="partials/about.html">About Us</a>
-                        <a href="#" class="load-content" data-url="partials/article-1.html">Schema for AI Search</a>
-                        <a href="#" class="load-content" data-url="partials/case-studies.html">Case Studies</a>
+                        <a href="#article" class="load-content" data-url="partials/schema-for-ai.html">Schema for AI Search</a>
                     </div>
                 </li>
                 <li><a href="#contact">Contact</a></li>
@@ -606,4 +605,6 @@
                 const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
-              
+                }
+                const content = await response.text();
+                const container = document
