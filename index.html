@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempletSolutions - AI SEO & Digital Marketing Authority</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* New: Custom properties from your logo's color palette */
+        :root {
+            --ts-navy: #0f4c81;
+            --ts-teal: #1fa2b7;
+            --ts-sky: #6da8d9;
+            --ts-slate: #9aa6b2;
+            --ts-text: #0b2b3a;
+            --ts-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--ts-text);
+            background: var(--ts-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--ts-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo-svg {
+            height: 40px;
+            width: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--ts-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--ts-navy);
+        }
+
+        .cta-button {
+            background: var(--ts-navy);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(15, 76, 129, 0.3);
+        }
+        
+        /* New Dropdown Menu Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 15px; /* Spacing from the menu item */
+        }
+        
+        .dropdown-content a {
+            color: var(--ts-text);
+            padding: 12px 0;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #f1f1f1;
+            transition: background-color 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a:hover {
+            color: var(--ts-navy);
+            background-color: #f8fafc;
+        }
+        
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--ts-navy);
+            color: white;
+            padding: 120px 0 80px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            background: var(--ts-teal);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--ts-text);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--ts-slate);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--ts-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--ts-text);
+        }
+
+        .feature-card p {
+            color: var(--ts-slate);
+            line-height: 1.7;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 100px 0;
+        }
+
+        .content-section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--ts-text);
+        }
+
+        .content-text p {
+            font-size: 1.1rem;
+            color: var(--ts-slate);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .content-image {
+            text-align: center;
+        }
+
+        .content-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ts-slate);
+            font-size: 1.2rem;
+        }
+
+        /* Lead Magnet Section */
+        .lead-magnet {
+            background: var(--ts-navy);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .lead-magnet h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lead-magnet p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .lead-form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lead-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .lead-form button {
+            background: var(--ts-teal);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lead-form button:hover {
+            background: #19879b;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ts-text);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--ts-teal);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--ts-slate);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--ts-teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--ts-slate);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--ts-slate);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .lead-form {
+                flex-direction: column;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo-svg">
+              <svg viewBox="0 0 1600 800" width="100%" height="auto" role="img" aria-labelledby="logoTitle logoDesc" xmlns="http://www.w3.org/2000/svg">
+                  <title id="logoTitle">Templet Solutions logo</title>
+                  <desc id="logoDesc">Geometric mark behind the text "TEMPLET SOLUTIONS", navy and teal palette on white background.</desc>
+                  <rect x="0" y="0" width="1600" height="800" fill="#ffffff" />
+                  <g id="geom-mark" transform="translate(600,150) rotate(-12)">
+                      <rect x="-220" y="-20" width="380" height="220" rx="6" ry="6" fill="var(--ts-navy)" opacity="1"></rect>
+                      <rect x="-60" y="40" width="380" height="220" rx="6" ry="6" fill="var(--ts-teal)" opacity="0.95"></rect>
+                      <rect x="-280" y="120" width="280" height="160" rx="6" ry="6" fill="var(--ts-sky)" opacity="0.88"></rect>
+                      <rect x="180" y="-40" width="160" height="160" rx="6" ry="6" fill="var(--ts-slate)" opacity="0.9"></rect>
+                      <g stroke="#ffffff" stroke-width="4" stroke-opacity="0.10" fill="none">
+                          <line x1="-60" y1="40" x2="140" y2="40" />
+                          <line x1="-60" y1="40" x2="-60" y2="-20" />
+                      </g>
+                  </g>
+                  <g id="wordmark" transform="translate(50,420)">
+                      <text x="120" y="0" font-family="'Playfair Display', serif" font-weight="700" font-size="210" fill="var(--ts-text)" letter-spacing="2" dominant-baseline="alphabetic">T</text>
+                      <text x="250" y="0" font-family="'Montserrat', sans-serif" font-weight="700" font-size="120" fill="var(--ts-text)" letter-spacing="6" dominant-baseline="alphabetic">EMPLET</text>
+                      <text x="380" y="120" font-family="'Playfair Display', serif" font-weight="700" font-size="120" fill="var(--ts-text)" letter-spacing="2" dominant-baseline="alphabetic">S</text>
+                      <text x="455" y="120" font-family="'Montserrat', sans-serif" font-weight="600" font-size="56" fill="var(--ts-text)" letter-spacing="10" dominant-baseline="alphabetic">OLUTIONS</text>
+                  </g>
+              </svg>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li class="dropdown">
+                    <a href="#">Resources &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="#about" class="load-content" data-url="partials/about.html">About Us</a>
+                        <a href="#" class="load-content" data-url="partials/article-1.html">Schema for AI Search</a>
+                        <a href="#" class="load-content" data-url="partials/case-studies.html">Case Studies</a>
+                    </div>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Master AI-Powered SEO & Digital Marketing</h1>
+            <p>Transform your business with cutting-edge AI strategies, advanced SEO techniques, and data-driven marketing solutions that deliver measurable results.</p>
+            <a href="#lead-magnet" class="hero-cta">Download Free SEO Guide</a>
+        </div>
+    </section>
+
+    <section class="features" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose TempletSolutions?</h2>
+                <p>We combine artificial intelligence with proven marketing strategies to help businesses dominate their markets and achieve sustainable growth.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered SEO</h3>
+                    <p>Leverage artificial intelligence to identify opportunities, optimize content, and outrank competitors with data-driven strategies.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Local GEO Optimization</h3>
+                    <p>Dominate local search results and attract customers in your area with advanced geographic optimization techniques.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Make informed decisions with comprehensive analytics, conversion tracking, and performance insights that drive growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="main-content-placeholder">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Proven AI SEO Strategies That Work</h2>
+                    <p>Our proprietary AI-driven approach analyzes thousands of ranking factors to create SEO strategies that actually move the needle. We don't just follow best practices – we use machine learning to discover what works for your specific industry and competition.</p>
+                    <p>From keyword research to content optimization, every aspect of our SEO process is enhanced by artificial intelligence to deliver faster, more accurate results.</p>
+                    <a href="#" class="cta-button">Learn More About Our Process</a>
+                </div>
+                <div class="content-image">
+                    <div class="placeholder-image">AI SEO Dashboard Preview</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lead-magnet" id="lead-magnet">
+        <div class="container">
+            <h2>Get Your Free AI SEO Starter Guide</h2>
+            <p>Download our comprehensive guide that reveals the 10 AI tools every business owner should use to improve their search rankings and drive more traffic.</p>
+            
+            <form class="lead-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Download Free Guide</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">AI-Powered SEO</a></li>
+                        <li><a href="#">Local GEO Optimization</a></li>
+                        <li><a href="#">Content Marketing</a></li>
+                        <li><a href="#">Technical SEO Audits</a></li>
+                        <li><a href="#">Analytics & Reporting</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">SEO Blog</a></li>
+                        <li><a href="#">AI Marketing Guides</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Free Tools</a></li>
+                        <li><a href="#">Webinars</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Newsletter</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 TempletSolutions.com. All rights reserved. | Building AI-powered marketing success.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to load content from a file and inject it into an element
+        async function loadContent(url, elementId) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+              
