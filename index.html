@@ -43,7 +43,7 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header - FIXED */
         header {
             background: var(--ts-bg);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -55,18 +55,18 @@
 
         nav {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
             position: relative;
         }
 
-        /* Logo */
+        /* Logo - FIXED */
         .logo-img {
-            max-width: 600px;
+            max-width: 300px;
+            width: 100%;
             height: auto;
             display: block;
-            margin-bottom: 1rem;
         }
 
         /* Navigation Links */
@@ -74,7 +74,9 @@
             display: flex;
             list-style: none;
             gap: 2rem;
-            position: relative;
+            align-items: center;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
@@ -193,7 +195,7 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* Hero Section - UPDATED */
         .hero {
             background: var(--ts-navy);
             color: white;
@@ -218,6 +220,10 @@
             margin-right: auto;
         }
 
+        .hero p strong {
+            color: var(--ts-teal);
+        }
+
         .hero-cta {
             background: var(--ts-teal);
             color: white;
@@ -236,7 +242,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
 
-        /* Features Section */
+        /* Features Section - UPDATED */
         .features {
             padding: 100px 0;
             background: #f8fafc;
@@ -305,7 +311,11 @@
             line-height: 1.7;
         }
 
-        /* Content Sections */
+        .feature-card p strong {
+            color: var(--ts-navy);
+        }
+
+        /* Content Sections - UPDATED */
         .content-section {
             padding: 100px 0;
         }
@@ -334,6 +344,27 @@
             line-height: 1.8;
         }
 
+        .content-text ol {
+            margin-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-text ol li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--ts-text);
+        }
+
+        .content-text ol strong {
+            color: var(--ts-navy);
+        }
+
+        .content-text h3 {
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--ts-text);
+        }
+
         .content-image {
             text-align: center;
         }
@@ -354,6 +385,21 @@
             justify-content: center;
             color: var(--ts-grey);
             font-size: 1.2rem;
+        }
+
+        .cta-button {
+            background: var(--ts-teal);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--ts-navy);
+            transform: translateY(-2px);
         }
 
         /* Lead Magnet Section */
@@ -524,36 +570,36 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Master AI-Powered SEO & Digital Marketing</h1>
-            <p>Transform your business with cutting-edge AI strategies, advanced SEO techniques, and data-driven marketing solutions that deliver measurable results.</p>
-            <a href="#lead-magnet" class="hero-cta">Download Free SEO Guide</a>
+            <h1>Become the Source AI Cites.</h1>
+            <p>We provide the strategic framework for AI Search Optimization. And just like a skilled surgeon addresses underlying issues while performing a procedure, <strong>we ensure your foundational SEO is flawless while optimizing for AI.</strong> This builds a durable asset, not just a quick fix.</p>
+            <a href="#lead-magnet" class="hero-cta">Download Free AI SEO Framework</a>
         </div>
     </section>
 
     <section class="features" id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Why Choose Templet Solutions?</h2>
-                <p>We combine artificial intelligence with proven marketing strategies to help businesses dominate their markets and achieve sustainable growth.</p>
+                <h2>Where Deep Expertise Meets AI Search Intelligence.</h2>
+                <p>Other agencies might just apply an AI "band-aid." We perform a full diagnostic.</p>
             </div>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🤖</div>
-                    <h3>AI-Powered SEO</h3>
-                    <p>Leverage artificial intelligence to identify opportunities, optimize content, and outrank competitors with data-driven strategies.</p>
+                    <div class="feature-icon">🔍</div>
+                    <h3>Surgical Precision SEO</h3>
+                    <p><strong>Think of it like surgery:</strong> If a surgeon finds an unrelated but potential issue while performing a procedure, they address it. Similarly, while implementing our AISO framework, <strong>we identify and resolve core SEO issues</strong> that would otherwise hinder both human and AI accessibility.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <h3>Local GEO Optimization</h3>
-                    <p>Dominate local search results and attract customers in your area with advanced geographic optimization techniques.</p>
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Foundation-First Approach</h3>
+                    <p>We don't just optimize for AI—we future-proof your entire digital foundation. Fixing broken links, poor site speed, and technical issues while implementing cutting-edge AI strategies.</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Advanced Analytics</h3>
-                    <p>Make informed decisions with comprehensive analytics, conversion tracking, and performance insights that drive growth.</p>
+                    <div class="feature-icon">🚀</div>
+                    <h3>Durable Results</h3>
+                    <p>Get a fully optimized site, not just a single feature. We build assets that withstand algorithm changes and deliver sustainable growth through comprehensive optimization.</p>
                 </div>
             </div>
         </div>
@@ -563,13 +609,20 @@
         <div class="container">
             <div class="content-grid">
                 <div class="content-text">
-                    <h2>Proven AI SEO Strategies That Work</h2>
-                    <p>Our proprietary AI-driven approach analyzes thousands of ranking factors to create SEO strategies that actually move the needle. We don't just follow best practices – we use machine learning to discover what works for your specific industry and competition.</p>
-                    <p>From keyword research to content optimization, every aspect of our SEO process is enhanced by artificial intelligence to deliver faster, more accurate results.</p>
-                    <a href="#" class="cta-button">Learn More About Our Process</a>
+                    <h2>We Don't Just Optimize for AI. We Future-Proof Your Foundation.</h2>
+                    <p>Trying to get AI to cite your content without fixing basic SEO is like trying to paint a house with a crumbling foundation. It might look good for a minute, but it won't last.</p>
+                    
+                    <h3>Our process is built on a simple, thorough principle:</h3>
+                    <ol>
+                        <li><strong>Diagnose the Foundation:</strong> We conduct a full-site SEO audit to identify any critical technical issues.</li>
+                        <li><strong>Implement the AISO Framework:</strong> We apply our proprietary methodology to make your content AI-citation-ready.</li>
+                        <li><strong>Resolve & Integrate:</strong> We fix the foundational problems <em>as we go</em>, ensuring your entire digital presence is robust, fast, and authoritative for both human users and AI systems.</li>
+                    </ol>
+                    
+                    <a href="#contact" class="cta-button">Get Your Comprehensive Audit</a>
                 </div>
                 <div class="content-image">
-                    <div class="placeholder-image">AI SEO Dashboard Preview</div>
+                    <div class="placeholder-image">AI SEO Diagnostic Dashboard</div>
                 </div>
             </div>
         </div>
@@ -604,8 +657,8 @@
                         <li><a href="#">SEO Blog</a></li>
                         <li><a href="#">AI Marketing Guides</a></li>
                         <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Free Tools</a></li>
-                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Free Tools</a></<li>
+                            3<a href="#">Webinars</a></li>
                     </ul>
                 </div>
                 
@@ -647,16 +700,37 @@
                 const content = await response.text();
                 const container = document.getElementById(elementId);
                 if (container) {
-                    container.innerHTML = content;
+                    // Replace the entire section content
+                    const section = container.closest('.content-section');
+                    if (section) {
+                        section.innerHTML = `
+                            <div class="container">
+                                ${content}
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = content;
+                    }
+                    // Scroll to the content
                     container.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 } else {
                     console.error(`Element with ID '${elementId}' not found.`);
                 }
             } catch (error) {
                 console.error('Failed to load content:', error);
+                // Fallback content
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = `
+                        <div class="container">
+                            <h2>Content Not Available</h2>
+                            <p>Sorry, we couldn't load the requested content. Please try again later.</p>
+                        </div>
+                    `;
+                }
             }
         }
-    
+
         // Load content on link click
         document.querySelectorAll('.load-content').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -665,7 +739,7 @@
                 loadContent(url, 'main-content-placeholder');
             });
         });
-    
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
