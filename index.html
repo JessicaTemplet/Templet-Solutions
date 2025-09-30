@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Templet Solutions - AI SEO & Digital Marketing Authority</title>
-
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- MailerLite universal (kept as you had it) -->
+    
     <script>
         (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
         .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
@@ -22,133 +17,111 @@
 </head>
 <body>
     <header>
-        <div class="container header-inner">
-            <a href="#" class="brand" aria-label="Templet Solutions home">
-                <img src="logo.png" alt="Templet Solutions logo" class="logo-img">
+        <nav class="container">
+            <a href="#">
+                <img src="logo.png" alt="Templet Solutions Logo" class="logo-img">
             </a>
-
-            <!-- Desktop nav -->
-            <nav class="primary-nav" aria-label="Primary navigation">
-                <ul class="nav-links" role="menubar" aria-hidden="false">
-                    <li role="none"><a role="menuitem" href="#services">Services</a></li>
-
-                    <li class="dropdown" id="resources-dropdown" role="none">
-                        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" id="dropdown-toggle">
-                            Resources <span aria-hidden="true">▾</span>
-                        </button>
-
-                        <div class="dropdown-content" role="menu" aria-labelledby="dropdown-toggle">
-                            <a role="menuitem" href="#about" class="load-content" data-url="partials/about.html">About Us</a>
-                            <a role="menuitem" href="#schema" class="load-content" data-url="partials/schema-for-ai.html">Schema for AI Search</a>
-                            <a role="menuitem" href="#success" class="load-content" data-url="partials/client-success.html">Client Success</a>
-                            <a role="menuitem" href="#audit" class="load-content" data-url="partials/ai-audit.html">AI Technical Audit</a>
-                        </div>
-                    </li>
-
-                    <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
-                    <li role="none"><a role="menuitem" href="#contact" class="cta-button">Get Started</a></li>
+            
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li class="dropdown">
+                    <a href="#">Resources &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="#about" class="load-content" data-url="partials/about.html">About Us</a>
+                        <a href="#schema" class="load-content" data-url="partials/schema-for-ai.html">Schema for AI Search</a>
+                        <a href="#success" class="load-content" data-url="partials/client-success.html">Client Success</a>
+                        <a href="#audit" class="load-content" data-url="partials/ai-audit.html">AI Technical Audit</a>
+                    </div>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="cta-button">Get Started</a></li>
+            </ul>
+            
+            <div class="menu-toggle" id="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul class="mobile-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="cta-button">Get Started</a></li>
                 </ul>
             </nav>
-
-            <!-- Mobile menu toggle -->
-            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation" aria-controls="mobile-nav" aria-expanded="false">
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
-
-            <!-- Mobile nav (not nested in a <nav> tag inside another <nav>) -->
-            <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
-                <ul class="mobile-links" role="menu">
-                    <li role="none"><a role="menuitem" href="#services">Services</a></li>
-                    <li role="none">
-                        <button class="mobile-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Resources ▾</button>
-                        <div class="mobile-dropdown-content" role="menu">
-                            <a role="menuitem" href="#about" class="load-content" data-url="partials/about.html">About Us</a>
-                            <a role="menuitem" href="#schema" class="load-content" data-url="partials/schema-for-ai.html">Schema for AI Search</a>
-                            <a role="menuitem" href="#success" class="load-content" data-url="partials/client-success.html">Client Success</a>
-                            <a role="menuitem" href="#audit" class="load-content" data-url="partials/ai-audit.html">AI Technical Audit</a>
-                        </div>
-                    </li>
-                    <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
-                    <li role="none"><a role="menuitem" href="#contact" class="cta-button">Get Started</a></li>
-                </ul>
-            </div>
-        </div>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="container">
-                <h1>Become the Source AI Cites.</h1>
-                <p>We provide the strategic framework for AI Search Optimization. And just like a skilled surgeon addresses underlying issues while performing a procedure, <strong>we ensure your foundational SEO is flawless while optimizing for AI.</strong> This builds a durable asset, not just a quick fix.</p>
-                <a href="#lead-magnet" class="hero-cta">Download Free AI SEO Framework</a>
+    <section class="hero">
+        <div class="container">
+            <h1>Become the Source AI Cites.</h1>
+            <p>We provide the strategic framework for AI Search Optimization. And just like a skilled surgeon addresses underlying issues while performing a procedure, <strong>we ensure your foundational SEO is flawless while optimizing for AI.</strong> This builds a durable asset, not just a quick fix.</p>
+            <a href="#lead-magnet" class="hero-cta">Download Free AI SEO Framework</a>
+        </div>
+    </section>
+
+    <section class="features" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Where Deep Expertise Meets AI Search Intelligence.</h2>
+                <p>Other agencies might just apply an AI "band-aid." We perform a full diagnostic.</p>
             </div>
-        </section>
-
-        <section class="features" id="services">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Where Deep Expertise Meets AI Search Intelligence.</h2>
-                    <p>Other agencies might just apply an AI "band-aid." We perform a full diagnostic.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#9906;</div>
+                    <h3>Surgical Precision SEO</h3>
+                    <p><strong>Think of it like surgery:</strong> If a surgeon finds an unrelated but potential issue while performing a procedure, they address it. Similarly, while implementing our AISO framework, <strong>we identify and resolve core SEO issues</strong> that would otherwise hinder both human and AI accessibility.</p>
                 </div>
-
-                <div class="features-grid">
-                    <div class="feature-card animate-init">
-                        <div class="feature-icon" aria-hidden="true">&#9906;</div>
-                        <h3>Surgical Precision SEO</h3>
-                        <p><strong>Think of it like surgery:</strong> If a surgeon finds an unrelated but potential issue while performing a procedure, they address it. Similarly, while implementing our AISO framework, <strong>we identify and resolve core SEO issues</strong> that would otherwise hinder both human and AI accessibility.</p>
-                    </div>
-
-                    <div class="feature-card animate-init">
-                        <div class="feature-icon" aria-hidden="true">&#128161;</div>
-                        <h3>Foundation-First Approach</h3>
-                        <p>We don't just optimize for AI—we future-proof your entire digital foundation. Fixing broken links, poor site speed, and technical issues while implementing cutting-edge AI strategies.</p>
-                    </div>
-
-                    <div class="feature-card animate-init">
-                        <div class="feature-icon" aria-hidden="true">&#9733;</div>
-                        <h3>Durable Results</h3>
-                        <p>Get a fully optimized site, not just a single feature. We build assets that withstand algorithm changes and deliver sustainable growth through comprehensive optimization.</p>
-                    </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">&#128161;</div>
+                    <h3>Foundation-First Approach</h3>
+                    <p>We don't just optimize for AI—we future-proof your entire digital foundation. Fixing broken links, poor site speed, and technical issues while implementing cutting-edge AI strategies.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">&#9733;</div>
+                    <h3>Durable Results</h3>
+                    <p>Get a fully optimized site, not just a single feature. We build assets that withstand algorithm changes and deliver sustainable growth through comprehensive optimization.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="content-section" id="main-content-placeholder">
-            <div class="container">
-                <div class="content-grid">
-                    <div class="content-text animate-init">
-                        <h2>We Don't Just Optimize for AI. We Future-Proof Your Foundation.</h2>
-                        <p>Trying to get AI to cite your content without fixing basic SEO is like trying to paint a house with a crumbling foundation. It might look good for a minute, but it won't last.</p>
-
-                        <h3>Our process is built on a simple, thorough principle:</h3>
-                        <ol>
-                            <li><strong>Diagnose the Foundation:</strong> We conduct a full-site SEO audit to identify any critical technical issues.</li>
-                            <li><strong>Implement the AISO Framework:</strong> We apply our proprietary methodology to make your content AI-citation-ready.</li>
-                            <li><strong>Resolve & Integrate:</strong> We fix the foundational problems <em>as we go</em>, ensuring your entire digital presence is robust, fast, and authoritative for both human users and AI systems.</li>
-                        </ol>
-
-                        <a href="#contact" class="cta-button">Get Your Comprehensive Audit</a>
-                    </div>
-
-                    <div class="content-image animate-init">
-                        <!-- If you replace with a real image, add alt text describing it -->
-                        <div class="placeholder-image" role="img" aria-label="AI SEO Diagnostic Dashboard">AI SEO Diagnostic Dashboard</div>
-                    </div>
+    <section class="content-section" id="main-content-placeholder">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>We Don't Just Optimize for AI. We Future-Proof Your Foundation.</h2>
+                    <p>Trying to get AI to cite your content without fixing basic SEO is like trying to paint a house with a crumbling foundation. It might look good for a minute, but it won't last.</p>
+                    
+                    <h3>Our process is built on a simple, thorough principle:</h3>
+                    <ol>
+                        <li><strong>Diagnose the Foundation:</strong> We conduct a full-site SEO audit to identify any critical technical issues.</li>
+                        <li><strong>Implement the AISO Framework:</strong> We apply our proprietary methodology to make your content AI-citation-ready.</li>
+                        <li><strong>Resolve & Integrate:</strong> We fix the foundational problems <em>as we go</em>, ensuring your entire digital presence is robust, fast, and authoritative for both human users and AI systems.</li>
+                    </ol>
+                    
+                    <a href="#contact" class="cta-button">Get Your Comprehensive Audit</a>
+                </div>
+                <div class="content-image">
+                    <div class="placeholder-image">AI SEO Diagnostic Dashboard</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="lead-magnet" id="lead-magnet">
-            <div class="container">
-                <h2>Get Your Free AI SEO Starter Guide</h2>
-                <p>Download our comprehensive guide that reveals the 10 AI tools every business owner should use to improve their search rankings and drive more traffic.</p>
-
-                <div class="ml-embedded" data-form="VvvwOL" aria-hidden="false"></div>
+    <section class="lead-magnet" id="lead-magnet">
+        <div class="container">
+            <h2>Get Your Free AI SEO Starter Guide</h2>
+            <p>Download our comprehensive guide that reveals the 10 AI tools every business owner should use to improve their search rankings and drive more traffic.</p>
+            
+            <div class="ml-embedded" data-form="VvvwOL"></div>
             </div>
-        </section>
-    </main>
+    </section>
 
     <footer>
         <div class="container">
@@ -163,7 +136,7 @@
                         <li><a href="#">Analytics & Reporting</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="footer-section">
                     <h3>Resources</h3>
                     <ul>
@@ -174,7 +147,7 @@
                         <li><a href="#">Webinars</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="footer-section">
                     <h3>Company</h3>
                     <ul>
@@ -184,7 +157,7 @@
                         <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="footer-section">
                     <h3>Connect</h3>
                     <ul>
@@ -195,14 +168,13 @@
                     </ul>
                 </div>
             </div>
-
+            
             <div class="footer-bottom">
                 <p>&copy; 2025 Templet Solutions. All rights reserved. | Building AI-powered marketing success.</p>
             </div>
         </div>
     </footer>
 
-    <!-- site JS -->
     <script src="script.js"></script>
 </body>
-    </html>
+</html>
