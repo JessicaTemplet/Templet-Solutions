@@ -1,95 +1,220 @@
-// Function to load content from a file and inject it into an element
-async function loadContent(url, elementId) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const content = await response.text();
-        const container = document.getElementById(elementId);
-        if (container) {
-            // Replace the entire section content
-            const section = container.closest('.content-section');
-            if (section) {
-                section.innerHTML = `
+/* script.js - Cleaned, robust interactions */
+
+/* Helper: wait for DOM loaded */
+document.addEventListener('DOMContentLoaded', function () {
+
+    /* --------- Partial content loader --------- */
+    async function loadContent(url, elementId) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const content = await response.text();
+            const container = document.getElementById(elementId);
+            if (container) {
+                // Replace the entire section content (keeps consistent layout)
+                const section = container.closest('.content-section');
+                if (section) {
+                    section.innerHTML = `
+                        <div class="container">
+                            ${content}
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = content;
+                }
+                // Scroll to the updated content
+                const elToScroll = container || section;
+                if (elToScroll) {
+                    elToScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else {
+                console.error(`Element with ID '${elementId}' not found.`);
+            }
+        } catch (error) {
+            console.error('Failed to load content:', error);
+            const container = document.getElementById(elementId);
+            if (container) {
+                container.innerHTML = `
                     <div class="container">
-                        ${content}
+                        <h2>Content Not Available</h2>
+                        <p>Sorry, we couldn't load the requested content. Please try again later.</p>
                     </div>
                 `;
-            } else {
-                container.innerHTML = content;
             }
-            // Scroll to the content
-            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-            console.error(`Element with ID '${elementId}' not found.`);
-        }
-    } catch (error) {
-        console.error('Failed to load content:', error);
-        // Fallback content
-        const container = document.getElementById(elementId);
-        if (container) {
-            container.innerHTML = `
-                <div class="container">
-                    <h2>Content Not Available</h2>
-                    <p>Sorry, we couldn't load the requested content. Please try again later.</p>
-                </div>
-            `;
         }
     }
-}
 
-// Load content on link click (for the dropdown partials)
-document.querySelectorAll('.load-content').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const url = this.dataset.url;
-        loadContent(url, 'main-content-placeholder');
+    // Attach click handlers for loadable links
+    document.querySelectorAll('.load-content').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const url = this.dataset.url;
+            if (url) loadContent(url, 'main-content-placeholder');
+        });
     });
-});
 
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+    /* --------- Smooth anchor scrolling (safe) --------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            // Only handle internal anchors with at least one character after '#'
+            if (href && href.length > 1 && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // If target doesn't exist, let default behavior happen or just do nothing
+                    console.warn('Anchor target not found:', href);
+                }
+            }
+        });
+    });
+
+    /* --------- Intersection Observer for reveal animations --------- */
+    const observerOptions = {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-on-scroll');
+                entry.target.classList.remove('animate-init');
+                // Optionally unobserve to save work
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-init').forEach(el => revealObserver.observe(el));
+
+    /* --------- Dropdown (desktop) - accessible toggle --------- */
+    const dropdown = document.getElementById('resources-dropdown');
+    const dropdownToggle = document.getElementById('dropdown-toggle');
+
+    if (dropdown && dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+            const isOpen = dropdown.classList.toggle('open');
+            dropdownToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // Close if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target) && dropdown.classList.contains('open')) {
+                dropdown.classList.remove('open');
+                dropdownToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Keyboard: close with Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && dropdown.classList.contains('open')) {
+                dropdown.classList.remove('open');
+                dropdownToggle.setAttribute('aria-expanded', 'false');
+                dropdownToggle.focus();
+            }
+        });
+    }
+
+    /* --------- Mobile menu toggle --------- */
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (menuToggle && mobileNav) {
+        function setMobileState(open) {
+            if (open) {
+                mobileNav.classList.add('open');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                mobileNav.setAttribute('aria-hidden', 'false');
+                // prevent body scroll while menu open
+                document.body.style.overflow = 'hidden';
+            } else {
+                mobileNav.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        }
+
+        menuToggle.addEventListener('click', () => {
+            setMobileState(!mobileNav.classList.contains('open'));
+        });
+
+        // Allow keyboard toggling (Enter/Space)
+        menuToggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setMobileState(!mobileNav.classList.contains('open'));
+            }
+        });
+
+        // Close when clicking a mobile link (and if link has a hash, let smooth-scroll handle it)
+        mobileNav.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => setMobileState(false));
+        });
+
+        // Close mobile menu when clicking outside it
+        document.addEventListener('click', (e) => {
+            if (!mobileNav.contains(e.target) && !menuToggle.contains(e.target) && mobileNav.classList.contains('open')) {
+                setMobileState(false);
+            }
+        });
+
+        // Close with Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+                setMobileState(false);
+            }
+        });
+    }
+
+    /* --------- Mobile dropdown inside mobile nav --------- */
+    document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
+        btn.addEventListener('click', function () {
+            const parent = this.parentElement;
+            const isOpen = parent.classList.toggle('mobile-dropdown-open');
+            this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    });
+
+    /* --------- Close mobile dropdowns when nav closes (safety) --------- */
+    // Ensure mobile dropdowns are closed when mobile nav is hidden
+    const closeMobileDropdowns = () => {
+        document.querySelectorAll('.mobile-dropdown-open').forEach(el => {
+            el.classList.remove('mobile-dropdown-open');
+            const btn = el.querySelector('.mobile-dropdown-toggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+    };
+    // Hook into menu close / open
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            if (!mobileNav.classList.contains('open')) {
+                // opening -> leave dropdowns as they are
+            } else {
+                // closing -> reset mobile dropdowns
+                closeMobileDropdowns();
+            }
+        });
+    }
+
+    /* --------- Observe dynamically-inserted animate-init elements (for content loader) --------- */
+    const observerForNew = new MutationObserver((mutations) => {
+        mutations.forEach(m => {
+            m.addedNodes.forEach(node => {
+                if (node.nodeType === 1) {
+                    node.querySelectorAll && node.querySelectorAll('.animate-init').forEach(el => {
+                        revealObserver.observe(el);
+                    });
+                }
             });
-        }
+        });
     });
-});
 
-// Add scroll animations (NOTE: You'll need to make sure the CSS for .animate-on-scroll is in style.css)
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+    observerForNew.observe(document.body, { childList: true, subtree: true });
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-on-scroll');
-        }
-    });
-});
-
-// Observe all elements you want to animate on scroll
-document.querySelectorAll('.animate-on-scroll').forEach(element => observer.observe(element));
-
-// Toggle mobile menu visibility
-const menuToggle = document.getElementById('menu-toggle');
-const mobileNav = document.getElementById('mobile-nav');
-
-menuToggle.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-});
-
-// Close the mobile menu when a link is clicked
-document.querySelectorAll('.mobile-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileNav.classList.remove('open');
-    });
 });
