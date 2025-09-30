@@ -6,29 +6,41 @@ document.addEventListener('DOMContentLoaded', function () {
     /* --------- Partial content loader --------- */
     async function loadContent(url, elementId) {
         try {
+            // Add loading state
+            const container = document.getElementById(elementId);
+            if (container) {
+                container.classList.add('loading');
+            }
+            
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
+            
             const content = await response.text();
-            const container = document.getElementById(elementId);
+            
             if (container) {
-                // Replace the entire section content (keeps consistent layout)
-                const section = container.closest('.content-section');
-                if (section) {
-                    section.innerHTML = `
-                        <div class="container">
-                            ${content}
+                // Clear and insert new content with proper structure
+                container.innerHTML = `
+                    <div class="container">
+                        <div class="content-grid">
+                            <div class="content-text">
+                                ${content}
+                            </div>
                         </div>
-                    `;
-                } else {
-                    container.innerHTML = content;
-                }
-                // Scroll to the updated content
-                const elToScroll = container || section;
-                if (elToScroll) {
-                    elToScroll.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                    </div>
+                `;
+                
+                // Remove loading state
+                container.classList.remove('loading');
+                
+                // Re-initialize animations for new content
+                container.querySelectorAll('.animate-init').forEach(el => {
+                    revealObserver.observe(el);
+                });
+                
+                // Scroll to content
+                container.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
                 console.error(`Element with ID '${elementId}' not found.`);
             }
@@ -38,10 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (container) {
                 container.innerHTML = `
                     <div class="container">
-                        <h2>Content Not Available</h2>
-                        <p>Sorry, we couldn't load the requested content. Please try again later.</p>
+                        <div class="content-grid">
+                            <div class="content-text">
+                                <h2>Content Not Available</h2>
+                                <p>Sorry, we couldn't load the requested content. Please try again later.</p>
+                                <a href="#home" class="cta-button">Return Home</a>
+                            </div>
+                        </div>
                     </div>
                 `;
+                container.classList.remove('loading');
             }
         }
     }
@@ -52,6 +70,11 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
             const url = this.dataset.url;
             if (url) loadContent(url, 'main-content-placeholder');
+            
+            // Close mobile menu if open
+            if (mobileNav && mobileNav.classList.contains('open')) {
+                setMobileState(false);
+            }
         });
     });
 
@@ -65,6 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    
+                    // Close mobile menu if open
+                    if (mobileNav && mobileNav.classList.contains('open')) {
+                        setMobileState(false);
+                    }
                 } else {
                     // If target doesn't exist, let default behavior happen or just do nothing
                     console.warn('Anchor target not found:', href);
@@ -98,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (dropdown && dropdownToggle) {
         dropdownToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
             const isOpen = dropdown.classList.toggle('open');
             dropdownToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
@@ -124,22 +153,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
 
-    if (menuToggle && mobileNav) {
-        function setMobileState(open) {
-            if (open) {
-                mobileNav.classList.add('open');
-                menuToggle.setAttribute('aria-expanded', 'true');
-                mobileNav.setAttribute('aria-hidden', 'false');
-                // prevent body scroll while menu open
-                document.body.style.overflow = 'hidden';
-            } else {
-                mobileNav.classList.remove('open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                mobileNav.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-            }
+    // Function to set mobile navigation state
+    function setMobileState(open) {
+        if (open) {
+            mobileNav.classList.add('open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+            mobileNav.setAttribute('aria-hidden', 'false');
+            // prevent body scroll while menu open
+            document.body.style.overflow = 'hidden';
+        } else {
+            mobileNav.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            mobileNav.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            // Close any open mobile dropdowns
+            closeMobileDropdowns();
         }
+    }
 
+    if (menuToggle && mobileNav) {
         menuToggle.addEventListener('click', () => {
             setMobileState(!mobileNav.classList.contains('open'));
         });
@@ -152,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Close when clicking a mobile link (and if link has a hash, let smooth-scroll handle it)
+        // Close when clicking a mobile link
         mobileNav.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => setMobileState(false));
         });
@@ -174,7 +206,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* --------- Mobile dropdown inside mobile nav --------- */
     document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
             const parent = this.parentElement;
             const isOpen = parent.classList.toggle('mobile-dropdown-open');
             this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -182,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* --------- Close mobile dropdowns when nav closes (safety) --------- */
-    // Ensure mobile dropdowns are closed when mobile nav is hidden
     const closeMobileDropdowns = () => {
         document.querySelectorAll('.mobile-dropdown-open').forEach(el => {
             el.classList.remove('mobile-dropdown-open');
@@ -190,17 +222,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (btn) btn.setAttribute('aria-expanded', 'false');
         });
     };
-    // Hook into menu close / open
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            if (!mobileNav.classList.contains('open')) {
-                // opening -> leave dropdowns as they are
-            } else {
-                // closing -> reset mobile dropdowns
-                closeMobileDropdowns();
-            }
-        });
-    }
 
     /* --------- Observe dynamically-inserted animate-init elements (for content loader) --------- */
     const observerForNew = new MutationObserver((mutations) => {
