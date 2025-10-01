@@ -16,7 +16,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin-top:0 !important;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
@@ -141,7 +141,7 @@ nav {
     background: var(--ts-navy);
     color: white;
     /* Added more top padding because the header is taller now */
-    padding: 150px 0 80px; 
+    padding: 100px 0 80px; 
     margin-top: 0; 
     text-align: center;
 }
