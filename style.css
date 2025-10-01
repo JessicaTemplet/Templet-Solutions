@@ -46,7 +46,7 @@ nav {
     display: flex;
     flex-direction: column; 
     align-items: center; /* Center all contents horizontally */
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     position: relative;
 }
 
@@ -56,7 +56,7 @@ nav {
     width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 0.5rem; /* Space below the logo and above the menu */
+    margin-bottom: 0.25rem; /* Space below the logo and above the menu */
 }
 
 /* Navigation Links - Horizontal and Centered */
@@ -79,7 +79,7 @@ nav {
     color: var(--ts-text);
     font-weight: 500;
     transition: color 0.3s ease;
-    padding: 0.5rem 0; /* Add padding for click area */
+    padding: 0.4rem 0; /* Add padding for click area */
 }
 
 .nav-links a:hover {
