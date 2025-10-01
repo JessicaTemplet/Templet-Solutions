@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ===== DESKTOP DROPDOWN (Click instead of hover) ===== */
-    // Note: This logic only applies to screens wider than 768px (Desktop/Tablet).
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
     dropdownToggles.forEach(toggle => {
@@ -93,9 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    /* ===== EXISTING FUNCTIONALITY (Kept in place) ===== */
-    
-    // NOTE: Your previous partial content loading logic was removed as the new links point to separate folder pages (e.g., /Services/ or /Articles/article-title.html)
+    /* ===== EXISTING FUNCTIONALITY (Smooth Scrolling & Animation) ===== */
     
     // Smooth Scrolling for all internal # anchors (e.g., #resource-library)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -107,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             
             // Close mobile menu after clicking an internal link
-            if (mobileNav.classList.contains('open')) {
+            if (mobileNav && mobileNav.classList.contains('open')) {
                 setMobileState(false);
             }
         });
