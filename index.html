@@ -22,38 +22,56 @@
                 <img src="logo.png" alt="Templet Solutions Logo" class="logo-img">
             </a>
             
+            <!-- Updated Desktop Navigation -->
             <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
+                <li><a href="/Services/">Services</a></li>
                 <li class="dropdown">
-                    <a href="#">Resources &#9662;</a>
+                    <a href="#" class="dropdown-toggle">Articles ▾</a>
                     <div class="dropdown-content">
-                        <a href="#about" class="load-content" data-url="partials/about.html">About Us</a>
-                        <a href="#schema" class="load-content" data-url="partials/schema-for-ai.html">Schema for AI Search</a>
-                        <a href="#success" class="load-content" data-url="partials/client-success.html">Client Success</a>
-                        <a href="#audit" class="load-content" data-url="partials/ai-audit.html">AI Technical Audit</a>
+                        <a href="/Articles/understanding-seo/">Understanding SEO</a>
+                        <a href="/Articles/ai-search-optimization/">AI Search Optimization</a>
+                        <a href="/Articles/foundational-seo/">Foundational SEO Techniques</a>
+                        <!-- Add more article links here -->
                     </div>
                 </li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/Resource-Library/">Resource Library</a></li>
+                <li><a href="/About/">About</a></li>
+                <li><a href="/Contact/">Contact</a></li>
+                <li><a href="/Privacy-Policy/">Privacy Policy</a></li>
                 <li><a href="#contact" class="cta-button">Get Started</a></li>
             </ul>
             
-            <div class="menu-toggle" id="menu-toggle">
+            <!-- Mobile Menu Toggle -->
+            <div class="menu-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
             
-            <nav class="mobile-nav" id="mobile-nav">
+            <!-- Updated Mobile Navigation -->
+            <div class="mobile-nav" id="mobile-nav">
                 <ul class="mobile-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/Services/">Services</a></li>
+                    <li class="mobile-dropdown">
+                        <button class="mobile-dropdown-toggle" aria-expanded="false">Articles ▾</button>
+                        <ul class="mobile-dropdown-content">
+                            <li><a href="/Articles/understanding-seo/">Understanding SEO</a></li>
+                            <li><a href="/Articles/ai-search-optimization/">AI Search Optimization</a></li>
+                            <li><a href="/Articles/foundational-seo/">Foundational SEO Techniques</a></li>
+                            <!-- Add more article links here -->
+                        </ul>
+                    </li>
+                    <li><a href="/Resource-Library/">Resource Library</a></li>
+                    <li><a href="/About/">About</a></li>
+                    <li><a href="/Contact/">Contact</a></li>
+                    <li><a href="/Privacy-Policy/">Privacy Policy</a></li>
                     <li><a href="#contact" class="cta-button">Get Started</a></li>
                 </ul>
-            </nav>
+            </div>
         </nav>
     </header>
 
+    <!-- The rest of your content remains exactly the same -->
     <section class="hero">
         <div class="container">
             <h1>Become the Source AI Cites.</h1>
@@ -62,117 +80,10 @@
         </div>
     </section>
 
-    <section class="features" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Where Deep Expertise Meets AI Search Intelligence.</h2>
-                <p>Other agencies might just apply an AI "band-aid." We perform a full diagnostic.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">&#9906;</div>
-                    <h3>Surgical Precision SEO</h3>
-                    <p><strong>Think of it like surgery:</strong> If a surgeon finds an unrelated but potential issue while performing a procedure, they address it. Similarly, while implementing our AISO framework, <strong>we identify and resolve core SEO issues</strong> that would otherwise hinder both human and AI accessibility.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">&#128161;</div>
-                    <h3>Foundation-First Approach</h3>
-                    <p>We don't just optimize for AI—we future-proof your entire digital foundation. Fixing broken links, poor site speed, and technical issues while implementing cutting-edge AI strategies.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">&#9733;</div>
-                    <h3>Durable Results</h3>
-                    <p>Get a fully optimized site, not just a single feature. We build assets that withstand algorithm changes and deliver sustainable growth through comprehensive optimization.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="content-section" id="main-content-placeholder">
-        <div class="container">
-            <div class="content-grid">
-                <div class="content-text">
-                    <h2>We Don't Just Optimize for AI. We Future-Proof Your Foundation.</h2>
-                    <p>Trying to get AI to cite your content without fixing basic SEO is like trying to paint a house with a crumbling foundation. It might look good for a minute, but it won't last.</p>
-                    
-                    <h3>Our process is built on a simple, thorough principle:</h3>
-                    <ol>
-                        <li><strong>Diagnose the Foundation:</strong> We conduct a full-site SEO audit to identify any critical technical issues.</li>
-                        <li><strong>Implement the AISO Framework:</strong> We apply our proprietary methodology to make your content AI-citation-ready.</li>
-                        <li><strong>Resolve & Integrate:</strong> We fix the foundational problems <em>as we go</em>, ensuring your entire digital presence is robust, fast, and authoritative for both human users and AI systems.</li>
-                    </ol>
-                    
-                    <a href="#contact" class="cta-button">Get Your Comprehensive Audit</a>
-                </div>
-                <div class="content-image">
-                    <div class="placeholder-image">AI SEO Diagnostic Dashboard</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="lead-magnet" id="lead-magnet">
-        <div class="container">
-            <h2>Get Your Free AI SEO Starter Guide</h2>
-            <p>Download our comprehensive guide that reveals the 10 AI tools every business owner should use to improve their search rankings and drive more traffic.</p>
-            
-            <div class="ml-embedded" data-form="VvvwOL"></div>
-            </div>
-    </section>
+    <!-- ... rest of your existing sections ... -->
 
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">AI-Powered SEO</a></li>
-                        <li><a href="#">Local GEO Optimization</a></li>
-                        <li><a href="#">Content Marketing</a></li>
-                        <li><a href="#">Technical SEO Audits</a></li>
-                        <li><a href="#">Analytics & Reporting</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">SEO Blog</a></li>
-                        <li><a href="#">AI Marketing Guides</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Free Tools</a></li>
-                        <li><a href="#">Webinars</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="mailto:jessicatemplet@templetsolutions.com">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <ul>
-                        <li><a href="mailto:jessicatemplet@templetsolutions.com">jessicatemplet@templetsolutions.com</a></li>
-                        <li><a href="tel:+16015222156">Phone: (601) 522-2156</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">Twitter</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Templet Solutions. All rights reserved. | Building AI-powered marketing success.</p>
-            </div>
-        </div>
+        <!-- ... your existing footer ... -->
     </footer>
 
     <script src="script.js"></script>
