@@ -1,4 +1,4 @@
-/* style.css - Consolidated Version with Updated Navigation */
+/* styles.css - Final Merged Version */
 /* Custom properties from your logo's color palette */
 :root {
     --ts-navy: #1F3E68;
@@ -38,30 +38,40 @@ header {
     z-index: 1000;
 }
 
+/* ------------------------------------------------------------------ */
+/* UPDATED NAV: Stacked Logo (Top) and Horizontal Menu (Bottom) */
+/* ------------------------------------------------------------------ */
 nav {
+    /* Stack elements vertically (Logo then Menu) */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; 
+    align-items: center; /* Center all contents horizontally */
     padding: 1rem 0;
     position: relative;
 }
 
-/* Logo */
+/* Logo - Corrected Max Width for Desktop */
 .logo-img {
-    max-width: 600px;
+    max-width: 250px; /* NEW Smaller size for desktop/tablet */
     width: 100%;
     height: auto;
     display: block;
+    margin-bottom: 0.5rem; /* Space below the logo and above the menu */
 }
 
-/* Navigation Links */
+/* Navigation Links - Horizontal and Centered */
 .nav-links {
     display: flex;
+    /* Explicitly horizontal */
+    flex-direction: row; 
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem; /* Spacing between menu items */
     align-items: center;
     margin: 0;
     padding: 0;
+    width: 100%; /* Take up full space to help centering */
+    flex-wrap: wrap; 
+    justify-content: center; /* Center the links if they wrap */
 }
 
 .nav-links a {
@@ -69,15 +79,16 @@ nav {
     color: var(--ts-text);
     font-weight: 500;
     transition: color 0.3s ease;
+    padding: 0.5rem 0; /* Add padding for click area */
 }
 
 .nav-links a:hover {
     color: var(--ts-navy);
 }
 
-/* ---------------------------------------------------- */
-/* !!! UPDATED DESKTOP DROPDOWN MENU (CLICK ACTIVATED) !!! */
-/* ---------------------------------------------------- */
+/* ------------------------------------------------------------------ */
+/* DESKTOP DROPDOWN MENU (Click Activated) */
+/* ------------------------------------------------------------------ */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -123,178 +134,15 @@ nav {
     background-color: #f8fafc;
 }
 
-/* ---------------------------------------------------- */
-/* !!! UPDATED MOBILE MENU BUTTON & STYLES !!! */
-/* ---------------------------------------------------- */
-.menu-toggle {
-    display: none; /* Hide on desktop, shown by media query */
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    z-index: 1001;
-    padding: 5px;
-    border: none;
-    background: none;
-}
-
-.bar {
-    width: 100%;
-    height: 3px;
-    background-color: var(--ts-text);
-    transition: all 0.3s ease-in-out;
-}
-
-/* Hamburger transition for 'X' icon */
-.menu-toggle[aria-expanded="true"] .bar:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
-}
-.menu-toggle[aria-expanded="true"] .bar:nth-child(2) {
-    opacity: 0;
-}
-.menu-toggle[aria-expanded="true"] .bar:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
-}
-
-.mobile-nav {
-    /* Critical initial state: hidden off-screen */
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 250px;
-    height: 100%;
-    background-color: var(--ts-bg);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    padding-top: 80px;
-    /* Use flex for internal layout */
-    display: flex; 
-    flex-direction: column; /* Added for correct internal stacking */
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 1000;
-}
-
-.mobile-nav.open {
-    transform: translateX(0);
-}
-
-.mobile-nav ul {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-}
-
-.mobile-nav li {
-    width: 100%;
-    border-bottom: 1px solid #eee;
-}
-
-.mobile-nav a, .mobile-dropdown-link {
-    display: block;
-    width: 100%;
-    padding: 15px 20px; /* Adjusted padding to look better with button */
-    color: var(--ts-text);
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
-    text-align: left; /* Adjusted alignment */
-}
-
-/* Specific styling for the CTA button in the mobile menu */
-.mobile-nav a.cta-button {
-    text-align: center;
-    margin: 10px;
-    width: auto;
-    border-radius: 8px;
-    padding: 10px 20px;
-    display: inline-block;
-}
-
-.mobile-nav a:hover, .mobile-nav li:hover > a {
-    background-color: #f8fafc;
-}
-
-/* MOBILE DROPDOWN STYLES (For nested Articles) */
-.mobile-dropdown {
-    position: relative;
-    display: flex; /* Make the list item a flex container */
-    align-items: center;
-    justify-content: space-between;
-}
-
-.mobile-dropdown-link {
-    /* Take up most of the space next to the button */
-    width: calc(100% - 40px); 
-    padding-right: 0;
-}
-
-.mobile-dropdown-toggle {
-    width: 40px;
-    height: 100%;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--ts-text);
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    transition: transform 0.3s ease;
-    flex-shrink: 0; 
-}
-
-/* Visual cue for dropdown toggle button (rotates on open) */
-.mobile-dropdown-toggle::after {
-    content: '›';
-    display: block;
-    font-weight: bold;
-    line-height: 1;
-}
-
-.mobile-dropdown-toggle[aria-expanded="true"]::after {
-    transform: rotate(90deg);
-}
-
-.mobile-dropdown-content {
-    /* Initially hidden */
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
-    background-color: #f4f6f9;
-}
-
-.mobile-dropdown-open .mobile-dropdown-content {
-    /* A large value to allow the content to slide down */
-    max-height: 500px; 
-    position: static; /* Let it flow naturally */
-}
-
-.mobile-dropdown-content li {
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.mobile-dropdown-content a {
-    padding-left: 40px;
-    font-size: 1.1rem;
-}
-/* ---------------------------------------------------- */
-/* !!! END NAVIGATION UPDATES !!! */
-/* ---------------------------------------------------- */
-
+/* NOTE: All mobile-specific styles (.menu-toggle, .mobile-nav, etc.) have been removed */
 
 /* Hero Section */
 .hero {
     background: var(--ts-navy);
     color: white;
-    padding: 120px 0 80px;
-    margin-top: 80px;
+    /* Added more top padding because the header is taller now */
+    padding: 150px 0 80px; 
+    margin-top: 0; 
     text-align: center;
 }
 
@@ -305,6 +153,8 @@ nav {
     line-height: 1.2;
 }
 
+/* ... (All your existing content styles below) ... */
+/* Hero Section */
 .hero p {
     font-size: 1.3rem;
     margin-bottom: 2rem;
@@ -639,36 +489,17 @@ footer {
 }
 
 /* Responsive Design */
+/* NOTE: The nav/logo/hamburger overrides have been REMOVED from the mobile query */
 @media (min-width: 769px) {
-    /* Hide the mobile navigation components on desktop */
-    .mobile-nav, .menu-toggle {
-        /* Important to ensure desktop overrides previous mobile-only styles */
-        display: none !important; 
-    }
+    /* No navigation overrides needed here */
 }
 
 @media (max-width: 768px) {
-    nav {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
+    /* Logo scaling for mobile */
     .logo-img {
         max-width: 400px;
-        margin-bottom: 0;
-    }
-
-    /* CRITICAL: Hide the desktop menu links on mobile */
-    .nav-links {
-        display: none;
     }
     
-    /* CRITICAL: Show the hamburger menu button on mobile */
-    .menu-toggle {
-        display: flex;
-    }
-
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -742,4 +573,4 @@ footer {
 .animate-on-scroll {
     animation: fadeInUp 0.8s ease forwards;
     }
-
+    
