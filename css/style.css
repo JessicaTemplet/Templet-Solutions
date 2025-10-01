@@ -8,38 +8,73 @@
     --ts-bg: #ffffff;
 }
 
-/* ... (Your existing global styles remain here) ... */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--ts-text);
+    background: var(--ts-bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
 /* Header */
 header {
-    /* ... existing styles ... */
+    background: var(--ts-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
     z-index: 1000;
 }
 
 nav {
-    /* ... existing styles ... */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
 }
 
 /* Logo */
 .logo-img {
-    /* ... existing styles ... */
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Navigation Links */
 .nav-links {
-    /* ... existing styles ... */
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    /* ... existing styles ... */
+    text-decoration: none;
+    color: var(--ts-text);
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
     color: var(--ts-navy);
 }
 
-/* * DESKTOP DROPDOWN MENU - UPDATED FOR CLICK (NO HOVER)
-*/
+/* * DESKTOP DROPDOWN MENU - UPDATED FOR CLICK (NO HOVER) */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -50,7 +85,7 @@ nav {
     display: none;
     position: absolute;
     background-color: white;
-    min-width: 200px;
+    min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     padding: 12px 16px;
@@ -67,15 +102,27 @@ nav {
 }
 
 .dropdown-content a {
-    /* ... existing styles ... */
+    color: var(--ts-text);
+    padding: 12px 0;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #f1f1f1;
+    transition: background-color 0.3s ease;
+    white-space: normal; /* Allow long titles to wrap */
 }
 
-/* ... (Rest of existing dropdown-content styles) ... */
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
 
-/* * MOBILE MENU BUTTON & STYLES 
-*/
+.dropdown-content a:hover {
+    color: var(--ts-navy);
+    background-color: #f8fafc;
+}
+
+/* * MOBILE MENU BUTTON & STYLES */
 .menu-toggle {
-    display: none; /* Hide on desktop */
+    display: none; /* Hide on desktop, shown by media query */
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
@@ -86,7 +133,6 @@ nav {
     right: 20px;
     transform: translateY(-50%);
     z-index: 1001;
-    /* Added to make it a better touch target */
     padding: 5px;
     border: none;
     background: none;
@@ -111,7 +157,7 @@ nav {
 }
 
 .mobile-nav {
-    /* Changed from display: none to transform for the slide effect */
+    /* Critical initial state: hidden off-screen */
     position: fixed;
     top: 0;
     right: 0;
@@ -120,11 +166,9 @@ nav {
     background-color: var(--ts-bg);
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     padding-top: 80px;
-    /* Must be hidden off-screen when closed */
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-    /* Make it a flex container when open */
     display: flex;
 }
 
@@ -139,7 +183,6 @@ nav {
 }
 
 .mobile-nav li {
-    /* Removed redundant styling from here, moved to anchor/button */
     width: 100%;
     border-bottom: 1px solid #eee;
 }
@@ -152,7 +195,16 @@ nav {
     text-decoration: none;
     font-size: 1.2rem;
     transition: background-color 0.3s ease;
-    text-align: left; /* Align text to the left for better readability */
+    text-align: left;
+}
+
+.mobile-nav a.cta-button {
+    text-align: center;
+    margin: 10px;
+    width: auto;
+    border-radius: 8px;
+    padding: 10px 20px;
+    display: inline-block;
 }
 
 .mobile-nav a:hover, .mobile-nav li:hover > a {
@@ -162,18 +214,16 @@ nav {
 /* MOBILE DROPDOWN STYLES */
 .mobile-dropdown {
     position: relative;
+    display: flex; /* Make the list item a flex container */
+    align-items: center;
+    justify-content: space-between;
 }
 
 .mobile-dropdown-link {
-    display: inline-block; /* Make it a block for padding, but keep space for button */
-    width: calc(100% - 40px); /* Leave room for the toggle button */
+    width: calc(100% - 40px);
 }
 
 .mobile-dropdown-toggle {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
     width: 40px;
     height: 100%;
     border: none;
@@ -187,17 +237,19 @@ nav {
     justify-content: center;
     padding: 0;
     transition: transform 0.3s ease;
+    flex-shrink: 0; /* Prevents button from shrinking */
 }
 
 /* Visual cue for dropdown toggle button */
 .mobile-dropdown-toggle::after {
-    content: '›'; /* A common symbol for a right-arrow */
+    content: '›';
     display: block;
     font-weight: bold;
+    line-height: 1;
 }
 
 .mobile-dropdown-toggle[aria-expanded="true"]::after {
-    transform: rotate(90deg); /* Rotate the arrow when open */
+    transform: rotate(90deg);
 }
 
 .mobile-dropdown-content {
@@ -205,12 +257,17 @@ nav {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-in-out;
-    background-color: #f4f6f9; /* Subtle background for submenu */
+    background-color: #f4f6f9;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 50;
 }
 
 .mobile-dropdown-open .mobile-dropdown-content {
     /* A value large enough to contain the content */
     max-height: 500px; 
+    position: static; /* Let it flow naturally in the list */
 }
 
 .mobile-dropdown-content li {
@@ -218,30 +275,28 @@ nav {
 }
 
 .mobile-dropdown-content a {
-    padding-left: 40px; /* Indent sub-items */
+    padding-left: 40px;
     font-size: 1.1rem;
 }
 
-/* ... (Your existing hero, features, content styles) ... */
 
-/* Lead Magnet Section */
-.lead-magnet {
+/* Hero Section */
+/* ... (Your existing hero, features, content styles below) ... */
+.hero {
     background: var(--ts-navy);
     color: white;
-    padding: 80px 0;
+    padding: 120px 0 80px;
+    margin-top: 80px;
     text-align: center;
-    /* Renamed ID in HTML, keeping .lead-magnet class */
 }
 
-/* ... (Rest of existing styles) ... */
+/* ... (All other content sections are unchanged) ... */
+
 
 /* Responsive Design */
 @media (min-width: 769px) {
     /* Hide the mobile navigation components on desktop */
-    .mobile-nav {
-        display: none !important;
-    }
-    .menu-toggle {
+    .mobile-nav, .menu-toggle {
         display: none !important;
     }
     /* Re-enable the desktop navigation */
@@ -251,15 +306,47 @@ nav {
 }
 
 @media (max-width: 768px) {
-    /* Hide desktop-only nav items */
-    .nav-links, .cta-button:not(.hero-cta) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-img {
+        max-width: 400px;
+        margin-bottom: 0;
+    }
+
+    /* CRITICAL: Hide the desktop menu links on mobile */
+    .nav-links {
         display: none;
     }
     
-    /* Show the hamburger menu button */
+    /* CRITICAL: Show the hamburger menu button on mobile */
     .menu-toggle {
         display: flex;
     }
 
-    /* ... (Rest of your existing mobile styles) ... */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
 }
+
+/* ... (Rest of existing styles) ... */
