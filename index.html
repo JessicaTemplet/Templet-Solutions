@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Templet Solutions - AI SEO & Digital Marketing Authority</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     
     <script>
         (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
@@ -18,37 +18,65 @@
 <body>
     <header>
         <nav class="container">
-            <a href="#">
+            <a href="/">
                 <img src="logo.png" alt="Templet Solutions Logo" class="logo-img">
             </a>
             
             <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
+                <li><a href="/Services/">Services</a></li>
+
                 <li class="dropdown">
-                    <a href="#">Resources &#9662;</a>
+                    <a href="/Articles/" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">Articles &#9662;</a>
                     <div class="dropdown-content">
-                        <a href="#about" class="load-content" data-url="partials/about.html">About Us</a>
-                        <a href="#schema" class="load-content" data-url="partials/schema-for-ai.html">Schema for AI Search</a>
-                        <a href="#success" class="load-content" data-url="partials/client-success.html">Client Success</a>
-                        <a href="#audit" class="load-content" data-url="partials/ai-audit.html">AI Technical Audit</a>
+                        <a href="/Articles/complete-guide-to-serps-and-ai-serps.html">Complete Guide to SERPs and AI SERPs</a>
+                        <a href="/Articles/prompt-engineering-for-seo-getting-chatgpt-claude-perplexity-and-gemini-to-a-1.html">Prompt Engineering for SEO: Getting ChatGPT, Claude, Perplexity, and Gemini to A+</a>
+                        <a href="/Articles/schema-markup-for-ai-complete-implementation-guide-for-2025.html">Schema Markup for AI: Complete Implementation Guide for 2025</a>
+                        <a href="/Articles/the-cite-framework-your-system-for-getting-ai-systems-to-reference-your-content.html">The CITE Framework: Your System for Getting AI Systems to Reference Your Content</a>
+                        <a href="/Articles/the-teach-framework-your-system-for-building-authority-through-knowledge-sharing.html">The TEACH Framework: Your System for Building Authority Through Knowledge Sharing</a>
+                        <a href="/Articles/writing-headlines-and-headers-that-ai-systems-love-to-cite.html">Writing Headlines and Headers That AI Systems Love to Cite</a>
                     </div>
                 </li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact" class="cta-button">Get Started</a></li>
+                
+                <li><a href="#resource-library">Resource Library</a></li>
+                
+                <li><a href="/About/">About</a></li>
+                
+                <li><a href="/Contact/">Contact</a></li>
+                
+                <li><a href="/Privacy-Policy/">Privacy Policy</a></li>
+
+                <li><a href="/Contact/" class="cta-button">Get Started</a></li>
             </ul>
             
-            <div class="menu-toggle" id="menu-toggle">
+            <button class="menu-toggle" id="menu-toggle" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
-            </div>
+            </button>
             
-            <nav class="mobile-nav" id="mobile-nav">
+            <nav class="mobile-nav" id="mobile-nav" aria-hidden="true">
                 <ul class="mobile-links">
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#contact" class="cta-button">Get Started</a></li>
+                    <li><a href="/Services/">Services</a></li>
+                    
+                    <li class="mobile-dropdown">
+                        <a href="/Articles/" class="mobile-dropdown-link">Articles</a>
+                        <button class="mobile-dropdown-toggle" aria-expanded="false" aria-label="Toggle Articles submenu"></button>
+                        <ul class="mobile-dropdown-content">
+                            <li><a href="/Articles/complete-guide-to-serps-and-ai-serps.html">Complete Guide to SERPs and AI SERPs</a></li>
+                            <li><a href="/Articles/prompt-engineering-for-seo-getting-chatgpt-claude-perplexity-and-gemini-to-a-1.html">Prompt Engineering for SEO: Getting ChatGPT, Claude, Perplexity, and Gemini to A+</a></li>
+                            <li><a href="/Articles/schema-markup-for-ai-complete-implementation-guide-for-2025.html">Schema Markup for AI: Complete Implementation Guide for 2025</a></li>
+                            <li><a href="/Articles/the-cite-framework-your-system-for-getting-ai-systems-to-reference-your-content.html">The CITE Framework: Your System for Getting AI Systems to Reference Your Content</a></li>
+                            <li><a href="/Articles/the-teach-framework-your-system-for-building-authority-through-knowledge-sharing.html">The TEACH Framework: Your System for Building Authority Through Knowledge Sharing</a></li>
+                            <li><a href="/Articles/writing-headlines-and-headers-that-ai-systems-love-to-cite.html">Writing Headlines and Headers That AI Systems Love to Cite</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li><a href="#resource-library">Resource Library</a></li>
+                    <li><a href="/About/">About</a></li>
+                    <li><a href="/Contact/">Contact</a></li>
+                    <li><a href="/Privacy-Policy/">Privacy Policy</a></li>
+                    
+                    <li><a href="/Contact/" class="cta-button">Get Started</a></li>
                 </ul>
             </nav>
         </nav>
@@ -58,7 +86,7 @@
         <div class="container">
             <h1>Become the Source AI Cites.</h1>
             <p>We provide the strategic framework for AI Search Optimization. And just like a skilled surgeon addresses underlying issues while performing a procedure, <strong>we ensure your foundational SEO is flawless while optimizing for AI.</strong> This builds a durable asset, not just a quick fix.</p>
-            <a href="#lead-magnet" class="hero-cta">Download Free AI SEO Framework</a>
+            <a href="#resource-library" class="hero-cta">Download Free AI SEO Framework</a>
         </div>
     </section>
 
@@ -105,7 +133,7 @@
                         <li><strong>Resolve & Integrate:</strong> We fix the foundational problems <em>as we go</em>, ensuring your entire digital presence is robust, fast, and authoritative for both human users and AI systems.</li>
                     </ol>
                     
-                    <a href="#contact" class="cta-button">Get Your Comprehensive Audit</a>
+                    <a href="/Contact/" class="cta-button">Get Your Comprehensive Audit</a>
                 </div>
                 <div class="content-image">
                     <div class="placeholder-image">AI SEO Diagnostic Dashboard</div>
@@ -114,47 +142,38 @@
         </div>
     </section>
 
-    <section class="lead-magnet" id="lead-magnet">
+    <section class="lead-magnet" id="resource-library">
         <div class="container">
-            <h2>Get Your Free AI SEO Starter Guide</h2>
-            <p>Download our comprehensive guide that reveals the 10 AI tools every business owner should use to improve their search rankings and drive more traffic.</p>
+            <h2>Unlock Our Premium Resource Library</h2>
+            <p>Access exclusive guides, case studies, and tools for AI-powered SEO and digital strategy. **Sign up below to gain immediate access!**</p>
             
             <div class="ml-embedded" data-form="VvvwOL"></div>
-            </div>
+        </div>
     </section>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Services</h3>
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="/Services/">Services</a></li>
+                        <li><a href="/Articles/">Articles</a></li>
+                        <li><a href="#resource-library">Resource Library</a></li>
+                        <li><a href="/About/">About</a></li>
+                        <li><a href="/Contact/">Contact</a></li>
+                        <li><a href="/Privacy-Policy/">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services Offered</h3>
                     <ul>
                         <li><a href="#">AI-Powered SEO</a></li>
                         <li><a href="#">Local GEO Optimization</a></li>
                         <li><a href="#">Content Marketing</a></li>
                         <li><a href="#">Technical SEO Audits</a></li>
                         <li><a href="#">Analytics & Reporting</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="#">SEO Blog</a></li>
-                        <li><a href="#">AI Marketing Guides</a></li>
-                        <li><a href="#">Case Studies</a></li>
-                        <li><a href="#">Free Tools</a></li>
-                        <li><a href="#">Webinars</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="mailto:jessicatemplet@templetsolutions.com">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
                     </ul>
                 </div>
                 
