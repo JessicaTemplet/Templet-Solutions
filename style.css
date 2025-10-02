@@ -1,12 +1,19 @@
-/* styles.css - Final Merged Version */
-/* Custom properties from your logo's color palette */
+/* style.css - Final Merged Version */
+/* Custom properties (Updated for banner contrast and consistency) */
 :root {
-    --ts-navy: #1F3E68;
-    --ts-medium-blue: #488ACB;
-    --ts-teal: #1A9B9A;
-    --ts-grey: #95A1B0;
-    --ts-text: #0b2b3a;
-    --ts-bg: #ffffff;
+    /* Brand Colors (Updated for better contrast against banner) */
+    --ts-navy: #1C3A62;        
+    --ts-medium-blue: #4480BF; 
+    --ts-teal: #18A6A8;        
+    
+    /* Text and Background Colors */
+    --ts-text: #0a202a;        
+    --ts-bg: #f8fbfd;          
+    --ts-grey: #8592A0;        
+    
+    /* NEW: High-contrast white for header text overlay */
+    --ts-header-text: #ffffff;
+    --ts-header-link-hover: #18A6A8; 
 }
 
 * {
@@ -16,7 +23,9 @@
 }
 
 body {
-    margin-top:0 !important;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    /* CRITICAL FIX: Ensure no margin pushes the page content down */
+    margin-top: 0 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
@@ -30,7 +39,13 @@ body {
 
 /* Header */
 header {
-    background: var(--ts-bg);
+    /* BANNER IMPLEMENTATION: Uses your image as a background */
+    background-image: url('NAME_OF_YOUR_BANNER_FILE.png'); /* <--- CHANGE THIS FILENAME */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--ts-navy); /* Fallback color */
+    
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
@@ -39,51 +54,52 @@ header {
 }
 
 /* ------------------------------------------------------------------ */
-/* UPDATED NAV: Stacked Logo (Top) and Horizontal Menu (Bottom) */
+/* UPDATED NAV: Compacted Stacked Layout */
 /* ------------------------------------------------------------------ */
 nav {
-    /* Stack elements vertically (Logo then Menu) */
     display: flex;
     flex-direction: column; 
-    align-items: center; /* Center all contents horizontally */
-    padding: .75rem 0;
+    align-items: center; 
+    /* Minimized vertical padding for a compact header */
+    padding: 0.5rem 0; 
     position: relative;
+    /* REMOVED: max-height and overflow properties */
 }
 
-/* Logo - Corrected Max Width for Desktop */
+/* Logo - Compacted Size and Spacing */
 .logo-img {
-    max-width: 250px; /* NEW Smaller size for desktop/tablet */
+    max-width: 200px; /* NEW Final compact desktop size */
     width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 0.25rem; /* Space below the logo and above the menu */
+    margin-bottom: 0; /* Removed space below logo */
 }
 
 /* Navigation Links - Horizontal and Centered */
 .nav-links {
     display: flex;
-    /* Explicitly horizontal */
     flex-direction: row; 
     list-style: none;
-    gap: 1.5rem; /* Spacing between menu items */
+    gap: 1.5rem; 
     align-items: center;
     margin: 0;
     padding: 0;
-    width: 100%; /* Take up full space to help centering */
+    width: 100%; 
     flex-wrap: wrap; 
-    justify-content: center; /* Center the links if they wrap */
+    justify-content: center; 
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--ts-text);
+    /* High contrast color against the banner */
+    color: var(--ts-header-text); 
     font-weight: 500;
     transition: color 0.3s ease;
-    padding: 0.4rem 0; /* Add padding for click area */
+    padding: 0.3rem 0; /* Minimized vertical padding on links */
 }
 
 .nav-links a:hover {
-    color: var(--ts-navy);
+    color: var(--ts-teal);
 }
 
 /* ------------------------------------------------------------------ */
@@ -98,7 +114,8 @@ nav {
     /* Initially hidden */
     display: none; 
     position: absolute;
-    background-color: white;
+    /* Dropdown color remains white */
+    background-color: white; 
     min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -140,8 +157,8 @@ nav {
 .hero {
     background: var(--ts-navy);
     color: white;
-    /* Added more top padding because the header is taller now */
-    padding: 100px 0 80px; 
+    /* CRITICAL FIX: INCREASED TOP PADDING to ensure content clears the FIXED header */
+    padding: 150px 0 80px; 
     margin-top: 0; 
     text-align: center;
 }
@@ -153,7 +170,7 @@ nav {
     line-height: 1.2;
 }
 
-/* ... (All your existing content styles below) ... */
+/* ... (Rest of your existing content styles below) ... */
 /* Hero Section */
 .hero p {
     font-size: 1.3rem;
@@ -189,7 +206,7 @@ nav {
 /* Features Section */
 .features {
     padding: 100px 0;
-    background: #f8fafc;
+    background: var(--ts-bg); /* Using new background variable */
 }
 
 .section-header {
@@ -489,7 +506,6 @@ footer {
 }
 
 /* Responsive Design */
-/* NOTE: The nav/logo/hamburger overrides have been REMOVED from the mobile query */
 @media (min-width: 769px) {
     /* No navigation overrides needed here */
 }
@@ -497,7 +513,7 @@ footer {
 @media (max-width: 768px) {
     /* Logo scaling for mobile */
     .logo-img {
-        max-width: 400px;
+        max-width: 300px; /* Reduced mobile size */
     }
     
     .hero h1 {
@@ -546,7 +562,7 @@ footer {
 
 @media (max-width: 480px) {
     .logo-img {
-        max-width: 300px;
+        max-width: 250px; /* Reduced mobile size */
     }
     
     .article-content {
