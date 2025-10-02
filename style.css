@@ -91,7 +91,10 @@ nav {
     padding: 0;
     width: 100%; 
     flex-wrap: wrap; 
-    justify-content: center; 
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    translateX(50%);
 }
 
 .nav-links a {
