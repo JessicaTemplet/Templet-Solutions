@@ -598,54 +598,43 @@ footer {
     animation: fadeInUp 0.8s ease forwards;
     }
     
-/* --- Centering Fix for All Article Paragraphs (Overrides line 25) --- */
-
-/* Targets ALL paragraphs inside the <main> element with both 'article' and 'container' classes */
-.article.container p {
-    /* * Setting the text alignment to 'left' is typical for reading ease, 
-     * but we must force the *block* to center. 
-     */
-    
-    /* * CRITICAL: Use margin: auto to center the <p> block itself if it 
-     * has a max-width, or just to ensure no left-margin is explicitly set.
-     */
+/* === ULTIMATE CENTERING OVERRIDE FIX FOR ARTICLE CONTENT === */
+/* This targets virtually every block element inside your centered main container 
+   and forces it to respect the margins and boundaries set by the .container class. 
+*/
+.article.container * {
+    /* 1. Force the element block itself to be centered (overriding rogue margins) */
     margin-left: auto !important; 
     margin-right: auto !important;
+    
+    /* 2. CRITICAL: Ensures no element (like a table, code block, or image)
+          is hard-coded to be wider than its parent container's width. */
+    max-width: 100% !important; 
+    
+    /* 3. Ensures the element can be centered if it's naturally smaller than 100% */
+    display: block; 
+    
+    /* 4. Resets any left-alignment rules from a generic 'p' tag selector */
+    text-align: initial !important; 
+    
+    /* 5. Clear any rogue padding on the left/right that may be pushing content left */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    
+    /* Note: Only use the rule below if text itself is also not wrapping correctly, 
+       but typically you want text to remain left-aligned inside the centered block. */
+    /* width: 100% !important; */ 
 }
 
-/* Optional: Also ensure images/figures remain centered */
-.article.container img,
-.article.container figure {
-    display: block; /* Make sure they behave like block elements */
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-/* --- FINAL CENTERING OVERRIDE FIX --- */
-
-/* Targets ALL block-level elements inside the centered article */
+/* Re-apply standard text alignment where necessary, so text doesn't look centered */
+.article.container h1,
 .article.container h2,
 .article.container h3,
 .article.container p,
 .article.container ul,
 .article.container ol,
-.article.container pre,
-.article.container blockquote,
-.article.container figure {
-    /* Critical: Forces the margins to center the element block, overriding
-       any generic or external styles that might be setting margin-left: 0. */
-    margin-left: auto !important; 
-    margin-right: auto !important;
-    
-    /* Ensures elements that may be wider than the container are constrained */
-    max-width: 100% !important; 
-}
-
-/* Specific fix for images that might break the flow */
-.article.container img {
-    display: block; /* Ensures margin: auto works */
-    margin-left: auto !important; 
-    margin-right: auto !important;
-    max-width: 100% !important;
-    height: auto;
+.article.container blockquote {
+    text-align: left !important;
+    /* Remove the 'display: block !important;' for these elements if it causes issues,
+       but the selector above should take care of centering the block. */
 }
