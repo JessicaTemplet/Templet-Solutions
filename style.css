@@ -40,7 +40,7 @@ body {
 /* Header */
 header {
     /* BANNER IMPLEMENTATION: Uses your image as a background */
-    background-image: url('NAME_OF_YOUR_BANNER_FILE.png'); /* <--- CHANGE THIS FILENAME */
+    background-image: url('logo.png'); /* <--- CHANGE THIS FILENAME */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
