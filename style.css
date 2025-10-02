@@ -2,9 +2,9 @@
 /* Custom properties (Updated for banner contrast and consistency) */
 :root {
     /* Brand Colors (Updated for better contrast against banner) */
-    --ts-navy: #1C3A62;        
-    --ts-medium-blue: #4480BF; 
-    --ts-teal: #18A6A8;        
+    --ts-navy: #0A1931;        
+    --ts-medium-blue: #1E3F66; 
+    --ts-teal: #40B4D1;        
     
     /* Text and Background Colors */
     --ts-text: #0a202a;        
