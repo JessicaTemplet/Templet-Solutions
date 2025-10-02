@@ -598,18 +598,25 @@ footer {
     animation: fadeInUp 0.8s ease forwards;
     }
     
-/* === Article Page Layout Fixes (Removed/Corrected) === */
-/* The problematic article-specific header/layout overrides have been removed. */
-/* The global header and footer styles will now apply correctly to all pages. */
+/* --- Centering Fix for All Article Paragraphs (Overrides line 25) --- */
 
-/* Article content heading styles from the old block are merged above, but leaving */
-/* the code block style as it's useful for technical articles. */
-.article-content pre code {
-    display: block;
-    background: #f4f4f4;
-    padding: 12px;
-    border-radius: 6px;
-    overflow-x: auto;
-    font-size: 0.95em;
-    line-height: 1.5;
+/* Targets ALL paragraphs inside the <main> element with both 'article' and 'container' classes */
+.article.container p {
+    /* * Setting the text alignment to 'left' is typical for reading ease, 
+     * but we must force the *block* to center. 
+     */
+    
+    /* * CRITICAL: Use margin: auto to center the <p> block itself if it 
+     * has a max-width, or just to ensure no left-margin is explicitly set.
+     */
+    margin-left: auto !important; 
+    margin-right: auto !important;
+}
+
+/* Optional: Also ensure images/figures remain centered */
+.article.container img,
+.article.container figure {
+    display: block; /* Make sure they behave like block elements */
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
