@@ -1,443 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Guide to SERPs and AI SERPs | Templet Solutions</title>
-    
-    <link rel="stylesheet" href="../style.css">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://www.templetsolutions.com/articles/complete-guide-to-serps-and-ai-serps.html"
-      },
-      "headline": "Complete Guide to SERPs and AI SERPs",
-      "description": "Search Engine Results Pages (SERPs) have evolved dramatically from simple blue links to complex, feature-rich interfaces that include AI-generated responses, visual elements, and interactive components.",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://www.templetsolutions.com/images/serps.jpg",
-        "width": 1200,
-        "height": 675
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Jessica Templet"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Templet Solutions",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.templetsolutions.com/logo.png",
-          "width": 300,
-          "height": 60
-        }
-      },
-      "datePublished": "2025-09-29",
-      "dateModified": "2025-09-29",
-      "articleSection": "Search Engine Optimization"
-    }
-    </script>
+  <meta charset="UTF-8">
+  <title>Prompt Engineering for SEO: Getting ChatGPT, Claude, Perplexity, and Gemini to A (1)</title>
+  <meta name="description" content="If you've ever sat down with your favorite AI tool, typed in something like &quot;Audit my page for SEO&quot; and then stared at a vague, surface-level answer that felt more like a generic checklist than actionable insight—you're not alone. I've been there too, and I've spent the last year figuring out exactly why this happens and how to fix it.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://www.templetsolutions.com/articles/prompt-engineering-for-seo-getting-chatgpt-claude-perplexity-and-gemini-to-a-1.html">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <article class="article-content" itemscope itemtype="https://schema.org/Article">
-        <div class="container">
-            <meta itemprop="datePublished" content="2025-09-29">
-            <meta itemprop="author" content="Jessica Templet">
-            
-            <div class="article-meta">
-                <span itemprop="datePublished">September 29, 2025</span> | 
-                <span itemprop="author">By Jessica Templet</span>
-            </div>
-            
-            <h1 itemprop="headline">Complete Guide to SERPs and AI SERPs</h1>
-            
-            <div itemprop="articleBody">
-                <section>
-                    <h2>Introduction</h2>
-                    <p>Search Engine Results Pages (SERPs) have evolved dramatically from simple blue links to complex, feature-rich interfaces that include AI-generated responses, visual elements, and interactive components. This guide explores both traditional SERPs and the emerging landscape of AI SERPs, providing strategies for optimizing content across all result types.</p>
-                    <p>Understanding SERP evolution is crucial for digital marketers, content creators, and businesses seeking to maintain visibility in an increasingly competitive and technologically advanced search environment.</p>
-                </section>
+  
+  <!-- 🔹 Header / Nav / Banner -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="logo">
+        <img src="/images/logo.png" alt="Templet Solutions Logo">
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/articles.html">Articles</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
 
-                <section>
-                    <h2>Traditional SERPs (Search Engine Results Pages)</h2>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>Templet Solutions</h1>
+        <p>AI SEO & Digital Marketing Authority</p>
+        <a href="/services.html" class="cta-button">Get Started</a>
+      </div>
+    </section>
+  </header>
 
-                    <h3>Understanding SERP Structure</h3>
-
-                    <h4>Core Components</h4>
-                    <h5>Organic Results</h5>
-                    <ul>
-                        <li>Traditional blue links with title, URL, and meta description</li>
-                        <li>The foundation of search results since the early days of search engines</li>
-                        <li>Ranked based on relevance, authority, and hundreds of ranking factors</li>
-                        <li>Still drive the majority of clicks for many query types</li>
-                        <li>Include breadcrumb navigation and publish dates when available</li>
-                    </ul>
-
-                    <h5>Paid Results (Ads)</h5>
-                    <ul>
-                        <li>Pay-per-click advertisements that appear above, below, or alongside organic results</li>
-                        <li>Marked with "Ad" or "Sponsored" labels for transparency</li>
-                        <li>Include text ads, shopping ads, and display advertisements</li>
-                        <li>Targeted based on keywords, demographics, and user behavior</li>
-                        <li>Generate immediate visibility but require ongoing investment</li>
-                    </ul>
-
-                    <h5>Universal Search Elements</h5>
-                    <ul>
-                        <li>Integration of different content types into main search results</li>
-                        <li>Images, videos, news articles, and maps mixed with text results</li>
-                        <li>Provides diverse content formats to match user intent</li>
-                        <li>Increases engagement and time spent on search results</li>
-                        <li>Offers multiple pathways for content discovery</li>
-                    </ul>
-
-                    <h3>SERP Layout Evolution</h3>
-                    <h4>Desktop vs. Mobile SERPs</h4>
-                    <ul>
-                        <li>Mobile-first indexing has made mobile SERPs the primary focus</li>
-                        <li>Mobile layouts are more compact with larger touch targets</li>
-                        <li>Desktop SERPs often show more information and additional features</li>
-                        <li>Responsive design considerations affect how content appears across devices</li>
-                        <li>Local results are more prominent on mobile due to location context</li>
-                    </ul>
-
-                    <h4>Geographic and Language Variations</h4>
-                    <ul>
-                        <li>SERPs vary significantly based on user location and language settings</li>
-                        <li>Local search results prioritize nearby businesses and services</li>
-                        <li>Cultural relevance affects content ranking and presentation</li>
-                        <li>International SEO requires understanding regional SERP differences</li>
-                        <li>Multilingual content optimization for global reach</li>
-                    </ul>
-
-                    <h3>Major SERP Features</h3>
-
-                    <h4>Featured Snippets</h4>
-                    <h5>Types of Featured Snippets</h5>
-                    <ul>
-                        <li>Paragraph snippets: Direct answers extracted from web pages</li>
-                        <li>List snippets: Numbered or bulleted lists for step-by-step information</li>
-                        <li>Table snippets: Structured data presented in tabular format</li>
-                        <li>Video snippets: Video content with relevant timestamps</li>
-                    </ul>
-
-                    <h5>Optimization Strategies</h5>
-                    <ul>
-                        <li>Target question-based keywords with clear, concise answers</li>
-                        <li>Use proper heading structures (H2, H3) to organize content</li>
-                        <li>Create content that directly answers common user questions</li>
-                        <li>Format lists and tables clearly for easy extraction</li>
-                        <li>Include relevant statistics and data points</li>
-                        <li>Maintain content accuracy and freshness</li>
-                    </ul>
-
-                    <h5>Impact on Click-Through Rates</h5>
-                    <ul>
-                        <li>Featured snippets can reduce clicks to source websites</li>
-                        <li>Position zero visibility increases brand awareness and authority</li>
-                        <li>Voice search often pulls answers from featured snippets</li>
-                        <li>Optimization requires balance between visibility and traffic</li>
-                    </ul>
-
-                    <h4>Knowledge Panels</h4>
-                    <p>Entity-based results provide comprehensive information boxes for people, places, organizations, and concepts. They are sourced from knowledge graphs and authoritative websites and can include images, key facts, social links, and related entities.</p>
-                    <h5>Optimization Approaches</h5>
-                    <ul>
-                        <li>Implement comprehensive schema markup for entity information</li>
-                        <li>Maintain consistent NAP (Name, Address, Phone) information across the web</li>
-                        <li>Build authoritative content about your entity or organization</li>
-                        <li>Encourage mentions and citations from reputable sources</li>
-                        <li>Monitor and correct inaccurate information when possible</li>
-                    </ul>
-
-                    <h4>Local Pack Results</h4>
-                    <p>The three-pack format highlights top local businesses with integrated map features and is crucial for local service visibility.</p>
-                    <h5>Local SEO Optimization</h5>
-                    <ul>
-                        <li>Optimize Google My Business profile completely</li>
-                        <li>Encourage and manage customer reviews actively</li>
-                        <li>Ensure consistent business information across directories</li>
-                        <li>Build local citations and backlinks</li>
-                        <li>Create location-specific content and landing pages</li>
-                    </ul>
-
-                    <h4>Image and Video Results</h4>
-                    <h5>Image Pack Features</h5>
-                    <ul>
-                        <li>Horizontal scrollable image results for visual queries</li>
-                        <li>Includes source attribution and related search suggestions</li>
-                        <li>Important for e-commerce, recipes, tutorials, and visual content</li>
-                        <li>Can appear for both image-specific and general queries</li>
-                    </ul>
-
-                    <h5>Video Results Integration</h5>
-                    <ul>
-                        <li>Video thumbnails with duration and source information</li>
-                        <li>Prominent placement for how-to and entertainment queries</li>
-                        <li>YouTube integration with Google search results</li>
-                        <li>Requires video SEO optimization including titles, descriptions, and transcripts</li>
-                    </ul>
-
-                    <h5>Optimization Best Practices</h5>
-                    <ul>
-                        <li>Use high-quality, relevant images with descriptive filenames</li>
-                        <li>Implement image alt text and structured data markup</li>
-                        <li>Create video content with engaging thumbnails and titles</li>
-                        <li>Optimize video descriptions and include transcripts</li>
-                        <li>Use appropriate file formats and compression for fast loading</li>
-                    </ul>
-
-                    <h4>People Also Ask (PAA)</h4>
-                    <p>Dynamic question expansion surfaces related queries and creates opportunities for multiple content placements.</p>
-                    <h5>Content Strategy</h5>
-                    <ul>
-                        <li>Research common questions in your industry using tools like AnswerThePublic</li>
-                        <li>Create comprehensive FAQ sections addressing related queries</li>
-                        <li>Structure content to answer both primary and secondary questions</li>
-                        <li>Use natural language that matches how people ask questions</li>
-                        <li>Update content regularly based on emerging questions</li>
-                    </ul>
-
-                    <h4>Shopping Results</h4>
-                    <p>Product listings integrate visual product cards, pricing, and ratings—important for e-commerce visibility.</p>
-                    <h5>E-commerce Optimization</h5>
-                    <ul>
-                        <li>Set up and optimize Google Merchant Center feeds</li>
-                        <li>Include high-quality product images and detailed descriptions</li>
-                        <li>Implement product schema markup and structured data</li>
-                        <li>Maintain competitive pricing and inventory information</li>
-                        <li>Encourage and manage customer reviews and ratings</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>AI SERPs (AI-Powered Search Results)</h2>
-
-                    <h3>Emergence of AI-Powered Search</h3>
-                    <p>AI has been integrated into search engines initially via NLP improvements and has evolved into full generative capabilities that synthesize information, understand intent, and present consolidated answers.</p>
-                    <h5>Major Platforms Implementing AI SERPs</h5>
-                    <ul>
-                        <li>Google Search Generative Experience (SGE) with AI-powered snapshots</li>
-                        <li>Microsoft Bing with GPT-powered chat integration</li>
-                        <li>Perplexity AI combining conversational search with citations</li>
-                        <li>Other emerging search startups leveraging AI for niche verticals</li>
-                        <li>Integration of AI responses in specialized search (shopping, travel, health)</li>
-                    </ul>
-
-                    <h3>AI SERP Features</h3>
-
-                    <h4>AI Snapshots</h4>
-                    <ul>
-                        <li>Generated summaries that combine information from multiple sources</li>
-                        <li>Provide direct answers to complex questions</li>
-                        <li>Include citations to source material for verification</li>
-                        <li>May incorporate multimedia content like images and videos</li>
-                        <li>Update dynamically based on query context and refinement</li>
-                    </ul>
-
-                    <h4>Conversational Search</h4>
-                    <ul>
-                        <li>Users interact with search in a back-and-forth manner</li>
-                        <li>AI remembers context across multiple queries</li>
-                        <li>Enables deeper exploration of topics without starting over</li>
-                        <li>Incorporates personalization based on user preferences and history</li>
-                        <li>More natural language queries compared to keyword-based searches</li>
-                    </ul>
-
-                    <h4>Multimodal Results</h4>
-                    <ul>
-                        <li>Integration of text, images, and video into AI responses</li>
-                        <li>Visual recognition allows users to search with images or voice</li>
-                        <li>AI can interpret and combine multiple input types simultaneously</li>
-                        <li>Expands beyond traditional text-based search to richer experiences</li>
-                        <li>Examples: searching with screenshots, visual identification, and AR integration</li>
-                    </ul>
-
-                    <h3>Impact of AI on Search Behavior</h3>
-                    <h4>User Experience Changes</h4>
-                    <ul>
-                        <li>Faster access to comprehensive answers without clicking through links</li>
-                        <li>Reduced need for multiple searches and query reformulation</li>
-                        <li>Higher expectations for personalization and accuracy</li>
-                        <li>Shift toward more conversational, natural language queries</li>
-                        <li>More time spent within search environment rather than external sites</li>
-                    </ul>
-
-                    <h4>Implications for Website Traffic</h4>
-                    <ul>
-                        <li>Decreased click-through rates as users find answers directly in search</li>
-                        <li>Increased importance of being cited as an authoritative source</li>
-                        <li>Opportunities for visibility shift from traditional rankings to AI citations</li>
-                        <li>New competition landscape where authority and trustworthiness matter most</li>
-                        <li>SEO must adapt to prioritize "answer inclusion" rather than just rankings</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>SERP Features and Optimization</h2>
-
-                    <h3>Schema Markup and Structured Data</h3>
-                    <ul>
-                        <li>Enables search engines to understand and present content better</li>
-                        <li>Essential for rich results like FAQs, recipes, and events</li>
-                        <li>Helps content qualify for AI summaries and featured snippets</li>
-                        <li>Types include article, product, review, event, and local business schema</li>
-                        <li>Implementation improves both CTR and AI visibility</li>
-                    </ul>
-
-                    <h3>Content Optimization for Featured Placement</h3>
-                    <ul>
-                        <li>Focus on E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)</li>
-                        <li>Create comprehensive, well-structured content that directly addresses queries</li>
-                        <li>Use clear formatting with headers, lists, and tables</li>
-                        <li>Incorporate visuals and multimedia elements where relevant</li>
-                        <li>Ensure regular content updates and accuracy verification</li>
-                    </ul>
-
-                    <h3>Technical SEO Factors</h3>
-                    <ul>
-                        <li>Site speed and mobile optimization remain crucial</li>
-                        <li>Proper indexing and crawlability determine discoverability</li>
-                        <li>HTTPS security and Core Web Vitals affect ranking and visibility</li>
-                        <li>Clean URL structures and internal linking improve context understanding</li>
-                        <li>Accessibility improvements enhance both SEO and usability</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>AI SERP Optimization Strategies</h2>
-                    <h3>Content Suitability for AI Inclusion</h3>
-                    <ul>
-                        <li>Create authoritative, well-cited content likely to be used in AI responses</li>
-                        <li>Provide original insights, data, and expert commentary</li>
-                        <li>Develop content that answers complex, multi-part questions</li>
-                        <li>Avoid thin or duplicate content that offers little value</li>
-                        <li>Build topical authority through comprehensive coverage of subject areas</li>
-                    </ul>
-
-                    <h3>Authority and Trust Signals</h3>
-                    <ul>
-                        <li>Build strong author profiles with visible credentials and expertise</li>
-                        <li>Earn high-quality backlinks from reputable domains</li>
-                        <li>Maintain transparency with clear sourcing and attribution</li>
-                        <li>Encourage positive reviews and user-generated content</li>
-                        <li>Demonstrate real-world experience in content production</li>
-                    </ul>
-
-                    <h3>Technical Implementation for AI Visibility</h3>
-                    <ul>
-                        <li>Implement advanced schema markup consistently</li>
-                        <li>Maintain structured data accuracy across all pages</li>
-                        <li>Ensure content accessibility through alt text and transcripts</li>
-                        <li>Provide machine-readable data for complex content types</li>
-                        <li>Use XML sitemaps and proper canonicalization for clarity</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Comparative Analysis: Traditional vs. AI SERPs</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Aspect</th>
-                                <th>Traditional SERPs</th>
-                                <th>AI SERPs</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Primary Interaction</td>
-                                <td>Click-through to websites</td>
-                                <td>Direct answers within search</td>
-                            </tr>
-                            <tr>
-                                <td>Content Source</td>
-                                <td>Indexed web pages</td>
-                                <td>Combination of web pages, knowledge bases, and generative AI</td>
-                            </tr>
-                            <tr>
-                                <td>User Behavior</td>
-                                <td>Multiple searches and site visits</td>
-                                <td>Conversational refinement and fewer clicks</td>
-                            </tr>
-                            <tr>
-                                <td>SEO Focus</td>
-                                <td>Rankings and CTR</td>
-                                <td>Citation inclusion and authority signals</td>
-                            </tr>
-                            <tr>
-                                <td>Measurement</td>
-                                <td>Impressions, clicks, rankings</td>
-                                <td>AI mention frequency, trust indicators</td>
-                            </tr>
-                            <tr>
-                                <td>Business Opportunity</td>
-                                <td>Organic traffic and ads</td>
-                                <td>Brand authority, AI reference, and contextual relevance</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-
-                <section>
-                    <h2>Tools and Monitoring</h2>
-
-                    <h3>SERP Analysis Tools</h3>
-                    <ul>
-                        <li><strong>SEMrush</strong> and <strong>Ahrefs</strong> for tracking keyword rankings and SERP features</li>
-                        <li><strong>Moz Pro</strong> for SERP feature monitoring and optimization recommendations</li>
-                        <li><strong>Rank Ranger</strong> for daily SERP feature tracking</li>
-                        <li><strong>STAT Search Analytics</strong> for large-scale SERP analysis</li>
-                        <li>Custom tools for monitoring AI SERP inclusion and citations</li>
-                    </ul>
-
-                    <h3>AI Search Visibility Tools</h3>
-                    <ul>
-                        <li>Emerging platforms to track inclusion in AI summaries</li>
-                        <li>Tools like <strong>MarketMuse</strong> and <strong>Surfer SEO</strong> incorporating AI optimization</li>
-                        <li>manual monitoring of AI SERPs through test queries</li>
-                        <li>Proprietary dashboards for measuring brand presence in AI results</li>
-                        <li>Future evolution toward standardized AI visibility metrics</li>
-                    </ul>
-                </section>
-
-                <section>
-                    <h2>Future of Search Results</h2>
-
-                    <h3>Predicted Developments</h3>
-                    <ul>
-                        <li>Increased personalization based on individual search history and preferences</li>
-                        <li>More conversational and multimodal search interfaces</li>
-                        <li>Greater integration of augmented reality and visual search</li>
-                        <li>Enhanced voice search capabilities with natural language understanding</li>
-                        <li>Real-time information synthesis from multiple sources</li>
-                    </ul>
-
-                    <h3>Long-term Implications</h3>
-                    <ul>
-                        <li>Search becoming more of an assistant than a directory</li>
-                        <li>Increased importance of brand authority and trust signals</li>
-                        <li>Shift from keyword optimization to topic and entity optimization</li>
-                        <li>New metrics for measuring search success beyond traditional rankings</li>
-                        <li>Opportunities for specialized vertical search experiences</li>
-                    </ul>
-                </section>
-
-                <div class="lead-magnet-cta">
-                    <h3>Get Our AI SERP Optimization Checklist</h3>
-                    <p>Download our comprehensive checklist to ensure your content is optimized for both traditional and AI-powered search results. Includes schema implementation guides, authority-building strategies, and technical optimization tips.</p>
-                    <a href="lead-magnets/ai-serp-checklist.html" class="cta-button">Download Free Checklist</a>
-                </div>
-
-                <a href="#" class="back-to-top">&larr; Back to Resources</a>
-            </div>
-        </div>
+  <!-- 🔹 Main Article -->
+  <main class="container">
+    <article>
+      <h1>Prompt Engineering for SEO: Getting ChatGPT, Claude, Perplexity, and Gemini to A (1)</h1>
+      <p>If you've ever sat down with your favorite AI tool, typed in something like "Audit my page for SEO" and then stared at a vague, surface-level answer that felt more like a generic checklist than actionable insight—you're not alone...</p>
+      
+      <!-- 👉 full article content continues here -->
+      <!-- (all your H2, H3, paragraphs, lists, etc. go right inside this <article>) -->
+      
     </article>
-    
-    </body>
+  </main>
+
+  <!-- 🔹 Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Templet Solutions. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+</body>
 </html>
