@@ -58,9 +58,12 @@ header {
 /* ------------------------------------------------------------------ */
 nav {
     display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: flex-end;
+    min-height:180px; 
+    padding: 0;
+    position: relative;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: center;
     
     /* Minimized vertical padding for a compact header */
     padding: 3rem 0 3rem 0; 
