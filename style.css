@@ -620,3 +620,32 @@ footer {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+
+/* --- FINAL CENTERING OVERRIDE FIX --- */
+
+/* Targets ALL block-level elements inside the centered article */
+.article.container h2,
+.article.container h3,
+.article.container p,
+.article.container ul,
+.article.container ol,
+.article.container pre,
+.article.container blockquote,
+.article.container figure {
+    /* Critical: Forces the margins to center the element block, overriding
+       any generic or external styles that might be setting margin-left: 0. */
+    margin-left: auto !important; 
+    margin-right: auto !important;
+    
+    /* Ensures elements that may be wider than the container are constrained */
+    max-width: 100% !important; 
+}
+
+/* Specific fix for images that might break the flow */
+.article.container img {
+    display: block; /* Ensures margin: auto works */
+    margin-left: auto !important; 
+    margin-right: auto !important;
+    max-width: 100% !important;
+    height: auto;
+}
