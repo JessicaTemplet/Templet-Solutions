@@ -59,9 +59,11 @@ header {
 nav {
     display: flex;
     flex-direction: column; 
-    align-items: bottom; 
+    align-items: center;
+    justify-content: flex-end;
+    
     /* Minimized vertical padding for a compact header */
-    padding: 3rem 0 4rem 0; 
+    padding: 3rem 0 3rem 0; 
     position: relative;
     /* REMOVED: max-height and overflow properties */
 }
@@ -158,7 +160,7 @@ nav {
     background: var(--ts-navy);
     color: white;
     /* CRITICAL FIX: INCREASED TOP PADDING to ensure content clears the FIXED header */
-    padding: 150px 0 80px; 
+    padding: 180px 0 80px; 
     margin-top: 0; 
     text-align: center;
 }
