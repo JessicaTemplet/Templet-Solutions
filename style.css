@@ -13,7 +13,7 @@
     
     /* High-contrast white for header text overlay (currently unused) */
     --ts-header-text: #ffffff;
-    --ts-header-link-hover: #18A6A8; 
+    --ts-header-link-hover: #18A6A8;
 }
 
 * {
@@ -23,7 +23,10 @@
 }
 
 body {
-    margin-top: 0 !important;
+    /* CRITICAL FIX: The homepage uses .hero padding for header offset. */
+    /* For article pages (which may not have a .hero), we add the necessary offset here */
+    /* to prevent content from hiding behind the fixed header. */
+    margin-top: 180px !important; 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--ts-text);
@@ -58,7 +61,7 @@ header {
 nav {
     display: flex;
     /* Sets the final desired height for the banner area */
-    min-height: 180px; 
+    min-height: 180px;
     padding: 0;
     position: relative; /* CRITICAL for positioning the .nav-links */
     width: 100%;
@@ -77,27 +80,27 @@ nav {
 /* Navigation Links - Bottom Aligned and Centered */
 .nav-links {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     list-style: none;
-    gap: 1.5rem; 
+    gap: 1.5rem;
     align-items: center;
     margin: 0;
     padding: 0;
     width: auto; /* Allows element to size to its content */
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     
     /* CRITICAL FIX: Absolute positioning for bottom-anchoring and centering */
     position: absolute;
     bottom: 0; /* Anchor to the bottom edge */
     left: 50%;
     /* FIX: The minus sign (-) centers the element perfectly */
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 }
 
 .nav-links a {
     text-decoration: none;
     /* High contrast color against the banner */
-    color: var(--ts-navy); 
+    color: var(--ts-navy);
     font-weight: 500;
     transition: color 0.3s ease;
     padding: 0.5rem 0;
@@ -117,10 +120,10 @@ nav {
 
 .dropdown-content {
     /* Initially hidden */
-    display: none; 
+    display: none;
     position: absolute;
     /* Dropdown color remains white */
-    background-color: white; 
+    background-color: white;
     min-width: 250px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -129,7 +132,7 @@ nav {
     margin-top: 15px;
     /* Center the dropdown relative to the link */
     left: 50%;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 }
 
 /* State for showing the dropdown content via JavaScript */
@@ -163,8 +166,8 @@ nav {
     background: var(--ts-navy);
     color: white;
     /* CRITICAL FIX: Pushes content down to clear the 180px fixed banner */
-    padding: 180px 0 80px; 
-    margin-top: 0; 
+    padding: 180px 0 80px;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -387,7 +390,7 @@ nav {
     opacity: 0.9;
 }
 
-/* Footer */
+/* Footer (This section is already correctly styled for the homepage) */
 footer {
     background: var(--ts-text);
     color: white;
@@ -431,7 +434,7 @@ footer {
     color: var(--ts-grey);
 }
 
-/* Article Specific Styles */
+/* Article Specific Styles (These are for the *main content* area, which you kept) */
 .article-content {
     max-width: 800px;
     margin: 0 auto;
@@ -594,47 +597,19 @@ footer {
 .animate-on-scroll {
     animation: fadeInUp 0.8s ease forwards;
     }
-        
-/* === Article Page Layout Fixes === */
+    
+/* === Article Page Layout Fixes (Removed/Corrected) === */
+/* The problematic article-specific header/layout overrides have been removed. */
+/* The global header and footer styles will now apply correctly to all pages. */
 
-/* Make sure banner matches homepage size/behavior */
-.banner {
-  background: url('../images/banner.jpg') center/cover no-repeat;
-  color: #fff;
-  padding: 120px 20px; /* matches homepage spacing */
-  text-align: center;
-  position: relative;
-}
-
-/* Ensure article content starts *after* the banner */
-main.container {
-  margin-top: 40px; /* adds spacing so content isn’t overlapping */
-}
-
-/* Consistent heading styles for articles */
-.article-content h1 {
-  font-size: 2.2em;
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-.article-content h2 {
-  font-size: 1.6em;
-  margin-top: 40px;
-  margin-bottom: 15px;
-}
-.article-content h3 {
-  font-size: 1.3em;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-
-/* Code blocks (for readability in articles) */
+/* Article content heading styles from the old block are merged above, but leaving */
+/* the code block style as it's useful for technical articles. */
 .article-content pre code {
-  display: block;
-  background: #f4f4f4;
-  padding: 12px;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 0.95em;
-  line-height: 1.5;
+    display: block;
+    background: #f4f4f4;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.95em;
+    line-height: 1.5;
 }
