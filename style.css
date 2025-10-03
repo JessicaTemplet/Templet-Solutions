@@ -1,4 +1,4 @@
-/* style.css - FINAL CORRECTED VERSION */
+/* style.css - FINAL CORRECTED VERSION (Button Color and Rendering Fix) */
 
 /* Custom properties (Updated for banner aesthetics) */
 :root {
@@ -49,7 +49,7 @@ body {
     border: 0;
 }
 
-/* -------------------- HEADER (BANNER SIZING AND Z-INDEX FIX) -------------------- */
+/* -------------------- HEADER (RENDERING FIX) -------------------- */
 header {
     background-image: url('logo.png');
     background-size: cover; 
@@ -60,28 +60,24 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    /* 🛑 CRITICAL FIX 2: Set very high z-index to ensure it sits on top of all content */
-    z-index: 10000; 
-    /* FIX 3: Use aspect-ratio for non-squished image */
+    /* FIX 2: Revert z-index to original safe value to allow rest of page to render */
+    z-index: 1000; 
     height: auto; 
     aspect-ratio: 4 / 1; 
     max-height: 200px; 
 }
 
-/* -------------------- NAVIGATION (VISIBILITY & ALIGNMENT FIX) -------------------- */
+/* -------------------- NAVIGATION (COLOR AND POSITION FIX) -------------------- */
 nav {
     display: flex;
     width: 100%;
-    /* FIX 4: Nav must fill the header's height */
     height: 100%; 
     justify-content: center;
-    /* 🛑 CRITICAL FIX 5: Use align-items on the NAV to push the content to the bottom */
-    align-items: flex-end;
-    /* Adding padding to lift the links slightly off the bottom edge */
-    padding-bottom: 10px; 
+    /* FIX 3: Use align-items to push content to the bottom */
+    align-items: flex-end; 
+    padding-bottom: 10px; /* Space from the bottom of the banner */
     position: relative;
-    /* FIX: Give the nav a stacking context just in case */
-    z-index: 10001; 
+    z-index: 1001; /* Ensure nav is above header background */
 }
 
 /* Mobile toggle button (hidden on desktop) */
@@ -91,7 +87,7 @@ nav {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    z-index: 10002; /* Needs to be above the nav */
+    z-index: 1002;
     background: var(--ts-teal);
     color: white;
     padding: 10px 15px;
@@ -101,8 +97,7 @@ nav {
 }
 
 .nav-links {
-    /* 🛑 CRITICAL FIX 6: Removed 'position: absolute;' and 'bottom: 10px;' here. 
-       We are now using flexbox on the parent 'nav' to handle vertical alignment. */
+    /* FIX 4: Use static position and rely on parent NAV's flex-end for vertical alignment */
     position: static; 
     
     display: flex;
@@ -114,12 +109,13 @@ nav {
     padding: 0;
     flex-wrap: wrap;
     transition: transform 0.3s ease; 
+    z-index: 1001;
 }
 
 .nav-links a {
     text-decoration: none;
-    /* CRITICAL: Keep color WHITE for visibility */
-    color: white; 
+    /* 🛑 CRITICAL FIX 5: Set color back to --ts-navy as requested (assuming the banner image has white areas for contrast) */
+    color: var(--ts-navy); 
     font-weight: 500;
     transition: color 0.3s ease;
     padding: 0.5rem 0;
@@ -139,10 +135,10 @@ nav {
     display: none;
     position: absolute;
     background-color: white;
-    /* FIX 7: Ensure min-width is sufficient and z-index is high */
     min-width: 350px; 
     box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-    z-index: 10002; /* Needs to be above the nav */
+    /* FIX 6: Ensure dropdown is on top of nav/header */
+    z-index: 1002; 
     padding: 12px 16px;
     border-radius: 8px;
     margin-top: 15px;
@@ -153,10 +149,36 @@ nav {
 .dropdown.open .dropdown-content {
     display: block;
 }
-/* ... (rest of the dropdown content CSS remains the same) ... */
+
+.dropdown-content a {
+    color: var(--ts-text);
+    padding: 10px 5px; 
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #e0e0e0; 
+    transition: background-color 0.3s ease;
+    white-space: normal;
+    line-height: 1.3;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    color: var(--ts-navy);
+    background-color: #f0f0f0;
+}
 
 /* -------------------- HERO -------------------- */
-/* ... (rest of the content CSS remains the same) ... */
+.hero {
+    background: var(--ts-navy);
+    color: white;
+    padding: 180px 0 80px;
+    text-align: center;
+}
+
+/* ... (Rest of the CSS code remains the same as the last working version) ... */
 
 /* -------------------- FEATURES -------------------- */
 .features {
@@ -165,7 +187,306 @@ nav {
     /* CRITICAL FIX: Preserved to prevent content layout break */
     overflow: hidden; 
 }
-/* ... (rest of the content CSS remains the same) ... */
+/* ... (The rest of the CSS from this point down is preserved and correct) ... */
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-text);
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--ts-grey);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 60px;
+}
+
+.feature-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--ts-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-text);
+}
+
+.feature-card p {
+    color: var(--ts-grey);
+    line-height: 1.7;
+}
+
+.feature-card p strong {
+    color: var(--ts-navy);
+}
+
+/* -------------------- CONTENT SECTIONS -------------------- */
+.content-section {
+    padding: 100px 0;
+}
+
+.content-section:nth-child(even) {
+    background: #f8fafc;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.content-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--ts-text);
+}
+
+.content-text h3 {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem 0;
+    color: var(--ts-text);
+}
+
+.content-text p {
+    font-size: 1.1rem;
+    color: var(--ts-grey);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.content-text ol,
+.content-text ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.content-text li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: var(--ts-text);
+}
+
+.content-text ol strong {
+    color: var(--ts-navy);
+}
+
+.content-image {
+    text-align: center;
+}
+
+/* Styling for the placeholder divs in the HTML */
+.content-image > div[class*="images/"] { 
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ts-grey);
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+}
+.content-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* -------------------- CTA BUTTONS -------------------- */
+.cta-button {
+    background: var(--ts-teal);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: var(--ts-navy);
+    transform: translateY(-2px);
+}
+
+/* -------------------- LEAD MAGNET -------------------- */
+.lead-magnet {
+    background: var(--ts-navy);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.lead-magnet h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.lead-magnet p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.lead-magnet-cta {
+    background: #f8fafc;
+    border-left: 4px solid var(--ts-teal);
+    padding: 2rem;
+    margin: 3rem 0;
+    border-radius: 8px;
+}
+
+.lead-magnet-cta h3 {
+    color: var(--ts-navy);
+    margin-top: 0;
+}
+
+.lead-magnet-cta p {
+    margin-bottom: 1.5rem;
+}
+
+/* -------------------- FOOTER -------------------- */
+footer {
+    background: var(--ts-text);
+    color: white;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--ts-teal);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: var(--ts-grey);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: var(--ts-teal);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--ts-grey);
+    padding-top: 2rem;
+    text-align: center;
+    color: var(--ts-grey);
+}
+
+/* -------------------- ARTICLE CONTENT -------------------- */
+.article-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.article-meta {
+    color: var(--ts-grey);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+
+.article-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-text);
+    line-height: 1.2;
+}
+
+.article-content h2 {
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--ts-text);
+}
+
+.article-content h3 {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem 0;
+    color: var(--ts-text);
+}
+
+.article-content p {
+    margin: 0 0 1.5rem 0; 
+    line-height: 1.8;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* -------------------- BACK TO TOP -------------------- */
+.back-to-top {
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--ts-teal);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-to-top:hover {
+    text-decoration: underline;
+}
 
 /* -------------------- RESPONSIVE -------------------- */
 @media (max-width: 768px) {
@@ -176,11 +497,10 @@ nav {
     
     /* Center nav content at the bottom of the banner on mobile */
     nav {
-        /* Keep flex-end for mobile banner, but remove padding-right for full width */
         align-items: flex-end; 
         justify-content: flex-start;
         padding-right: 0; 
-        padding-bottom: 0; /* Let mobile menu handle its own padding */
+        padding-bottom: 0; 
     }
 
     .nav-links {
@@ -195,11 +515,94 @@ nav {
         background: var(--ts-navy); 
         padding: 60px 20px 20px;
         box-shadow: -5px 0 15px rgba(0,0,0,0.4);
-        z-index: 9999; /* Adjusting mobile z-index to be safe */
+        z-index: 999; 
         transform: translateX(100%); 
         gap: 1.5rem; 
     }
-/* ... (rest of the media query CSS remains the same) ... */
+
+    /* State when menu is open (triggered by JS) */
+    .nav-links.open {
+        transform: translateX(0); 
+    }
+    
+    .nav-links a {
+        color: white; 
+        padding: 0.8rem 0;
+    }
+
+    .dropdown-content {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        left: auto;
+        background: var(--ts-medium-blue);
+    }
+    
+    .dropdown-content a {
+        color: white;
+        padding: 8px 10px;
+    }
+
+    body {
+        margin-top: calc(100vw / 4); 
+    }
+
+    header {
+        background-size: cover;
+        height: auto; 
+        aspect-ratio: 4 / 1;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .content-grid,
+    .features-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .article-content h1 {
+        font-size: 2rem;
+    }
 }
 
-/* ... (rest of the media query and animation CSS remains the same) ... */
+@media (max-width: 480px) {
+    .article-content {
+        padding: 1rem 0;
+    }
+
+    .article-content h1 {
+        font-size: 1.8rem;
+    }
+
+    body {
+        margin-top: calc(100vw / 4); 
+    }
+
+    header {
+        aspect-ratio: 4 / 1;
+    }
+}
+
+/* -------------------- ANIMATIONS -------------------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    animation: fadeInUp 0.8s ease forwards;
+}
