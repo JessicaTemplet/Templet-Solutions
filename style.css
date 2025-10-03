@@ -36,6 +36,19 @@ body {
     padding: 0 20px;
 }
 
+/* -------------------- NEW: ACCESSIBLE LOGO H1 -------------------- */
+/* Visually hidden but readable logo text for SEO/A11Y */
+.logo-h1 {
+    position: absolute; 
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 /* -------------------- HEADER -------------------- */
 header {
     background-image: url('logo.png');
@@ -61,6 +74,22 @@ nav {
     position: relative;
 }
 
+/* NEW: Mobile toggle button styles */
+#menu-toggle {
+    display: none; /* Hidden on Desktop */
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    z-index: 1001;
+    background: var(--ts-teal);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .nav-links {
     display: flex;
     flex-direction: row;
@@ -70,6 +99,7 @@ nav {
     margin: 0;
     padding: 0;
     flex-wrap: wrap;
+    transition: transform 0.3s ease; /* For mobile slide-out */
 }
 
 .nav-links a {
@@ -449,8 +479,9 @@ footer {
     color: var(--ts-text);
 }
 
+/* CRITICAL FIX: Removed the conflicting 20px horizontal margins */
 .article-content p {
-    margin: 0 20px 1.5rem 20px;
+    margin: 0 0 1.5rem 0; 
     line-height: 1.8;
 }
 
@@ -478,41 +509,65 @@ footer {
     text-decoration: underline;
 }
 
-/* -------------------- ARTICLE CONTAINERS -------------------- */
-.article.container img,
-.article.container table,
-.article.container pre,
-.article.container .highlight {
-    max-width: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.article.container h1,
-.article.container h2,
-.article.container h3,
-.article.container p,
-.article.container ul,
-.article.container ol,
-.article.container li {
-    text-align: left;
-    display: block;
-}
+/* DELETED: Removed redundant and conflicting .article.container rules */
 
 /* -------------------- RESPONSIVE -------------------- */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 15px;
+    /* NEW: Show mobile toggle button */
+    #menu-toggle {
+        display: block; 
+    }
+    
+    /* Center nav content at the bottom of the banner on mobile */
+    nav {
+        justify-content: flex-end; /* Push content to the right edge */
+        align-items: flex-start; /* Align content to the top */
+        padding-right: 80px; /* Space for the new mobile toggle button */
     }
 
+    .nav-links {
+        /* Mobile menu sidebar style */
+        position: fixed;
+        flex-direction: column;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 80%; /* Sidebar width */
+        max-width: 300px;
+        background: var(--ts-navy); 
+        padding: 60px 20px 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.4);
+        z-index: 999;
+        transform: translateX(100%); /* Start hidden off-screen */
+        gap: 1.5rem; /* Increased gap for readability */
+    }
+
+    /* State when menu is open (triggered by JS) */
+    .nav-links.open {
+        transform: translateX(0); /* Slides the menu into view */
+    }
+    
+    .nav-links a {
+        color: white; /* Make links readable on dark background */
+        padding: 0.8rem 0;
+    }
+
+    .nav-links a:hover {
+        color: var(--ts-teal);
+    }
+    
+    /* Dropdown links inside mobile menu */
     .dropdown-content {
         position: static;
         transform: none;
         margin-top: 10px;
         left: auto;
+        background: var(--ts-medium-blue);
+    }
+    
+    .dropdown-content a {
+        color: white;
+        padding: 8px 10px;
     }
 
     body {
@@ -522,10 +577,6 @@ footer {
     header {
         background-size: cover;
         aspect-ratio: 4 / 1;
-    }
-
-    nav {
-        min-height: auto;
     }
 
     .hero h1 {
@@ -602,5 +653,3 @@ footer {
 .animate-on-scroll {
     animation: fadeInUp 0.8s ease forwards;
 }
-
-/* --------------------
