@@ -1,18 +1,18 @@
-/* style.css - FINAL CORRECTED VERSION */
+/* style.css - REFACTORED & CORRECTED VERSION */
+
 /* Custom properties (Updated for banner aesthetics) */
 :root {
     /* Brand Colors (Deep blues and electric teal) */
-    --ts-navy: #0A1931;        /* Deep Blue / Almost Black (Primary Dark) */
-    --ts-medium-blue: #1E3F66; /* Mid-tone for background/accents */
-    --ts-teal: #40B4D1;        /* Bright Teal/Electric Blue (Accent) */
-    
+    --ts-navy: #0A1931;
+    --ts-medium-blue: #1E3F66;
+    --ts-teal: #40B4D1;
+
     /* Text and Background Colors */
-    --ts-text: #0a202a;        /* Very dark text (nearly black) */
-    --ts-bg: #f8fbfd;          /* Off-white background for body/sections */
-    --ts-grey: #8592A0;        /* General gray text */
-    
-    /* High-contrast white for header text overlay (currently unused) */
-    --ts-header-text: #ffffff;
+    --ts-text: #0a202a;
+    --ts-bg: #f8fbfd;
+    --ts-grey: #8592A0;
+
+    /* Header link hover */
     --ts-header-link-hover: #18A6A8;
 }
 
@@ -23,11 +23,11 @@
 }
 
 body {
-    margin-top: 180px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
+    margin-top: 180px; /* matches desktop header height */
 }
 
 .container {
@@ -36,46 +36,31 @@ body {
     padding: 0 20px;
 }
 
-/* Header */
+/* -------------------- HEADER -------------------- */
 header {
-    /* CORRECTED PATH: logo.png is in root directory */
     background-image: url('logo.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-color: var(--ts-navy);
-    
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    aspect-ratio: 4 / 1; /* preserves 4:1 ratio */
 }
 
-/* ------------------------------------------------------------------ */
-/* CORRECTED NAV: Better positioning without absolute */
-/* ------------------------------------------------------------------ */
+/* -------------------- NAVIGATION -------------------- */
 nav {
     display: flex;
-    min-height: 180px;
-    padding: 0;
-    position: relative;
     width: 100%;
     justify-content: center;
     align-items: flex-end;
     padding-bottom: 20px;
+    position: relative;
 }
 
-/* Logo (Styles kept for safety, but HTML element should be deleted) */
-.logo-img {
-    max-width: 200px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin-bottom: 0;
-}
-
-/* Navigation Links - Better positioning */
 .nav-links {
     display: flex;
     flex-direction: row;
@@ -84,7 +69,6 @@ nav {
     align-items: center;
     margin: 0;
     padding: 0;
-    width: auto;
     flex-wrap: wrap;
 }
 
@@ -100,9 +84,7 @@ nav {
     color: var(--ts-teal);
 }
 
-/* ------------------------------------------------------------------ */
-/* DESKTOP DROPDOWN MENU (Click Activated) */
-/* ------------------------------------------------------------------ */
+/* Dropdown menu */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -113,7 +95,7 @@ nav {
     position: absolute;
     background-color: white;
     min-width: 250px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
     z-index: 1;
     padding: 12px 16px;
     border-radius: 8px;
@@ -122,7 +104,6 @@ nav {
     transform: translateX(-50%);
 }
 
-/* State for showing the dropdown content via JavaScript */
 .dropdown.open .dropdown-content {
     display: block;
 }
@@ -146,12 +127,11 @@ nav {
     background-color: #f8fafc;
 }
 
-/* Hero Section */
+/* -------------------- HERO -------------------- */
 .hero {
     background: var(--ts-navy);
     color: white;
     padding: 180px 0 80px;
-    margin-top: 0;
     text-align: center;
 }
 
@@ -193,7 +173,7 @@ nav {
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-/* Features Section */
+/* -------------------- FEATURES -------------------- */
 .features {
     padding: 100px 0;
     background: var(--ts-bg);
@@ -266,7 +246,7 @@ nav {
     color: var(--ts-navy);
 }
 
-/* Content Sections */
+/* -------------------- CONTENT SECTIONS -------------------- */
 .content-section {
     padding: 100px 0;
 }
@@ -288,6 +268,12 @@ nav {
     color: var(--ts-text);
 }
 
+.content-text h3 {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem 0;
+    color: var(--ts-text);
+}
+
 .content-text p {
     font-size: 1.1rem;
     color: var(--ts-grey);
@@ -295,25 +281,20 @@ nav {
     line-height: 1.8;
 }
 
-.content-text ol {
-    margin-left: 1.5rem;
-    margin-bottom: 2rem;
+.content-text ol,
+.content-text ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
 }
 
-.content-text ol li {
-    margin-bottom: 1rem;
+.content-text li {
+    margin-bottom: 0.5rem;
     line-height: 1.6;
     color: var(--ts-text);
 }
 
 .content-text ol strong {
     color: var(--ts-navy);
-}
-
-.content-text h3 {
-    font-size: 1.4rem;
-    margin: 2rem 0 1rem 0;
-    color: var(--ts-text);
 }
 
 .content-image {
@@ -338,6 +319,7 @@ nav {
     font-size: 1.2rem;
 }
 
+/* -------------------- CTA BUTTONS -------------------- */
 .cta-button {
     background: var(--ts-teal);
     color: white;
@@ -353,7 +335,7 @@ nav {
     transform: translateY(-2px);
 }
 
-/* Lead Magnet Section */
+/* -------------------- LEAD MAGNET -------------------- */
 .lead-magnet {
     background: var(--ts-navy);
     color: white;
@@ -372,7 +354,24 @@ nav {
     opacity: 0.9;
 }
 
-/* Footer */
+.lead-magnet-cta {
+    background: #f8fafc;
+    border-left: 4px solid var(--ts-teal);
+    padding: 2rem;
+    margin: 3rem 0;
+    border-radius: 8px;
+}
+
+.lead-magnet-cta h3 {
+    color: var(--ts-navy);
+    margin-top: 0;
+}
+
+.lead-magnet-cta p {
+    margin-bottom: 1.5rem;
+}
+
+/* -------------------- FOOTER -------------------- */
 footer {
     background: var(--ts-text);
     color: white;
@@ -416,7 +415,7 @@ footer {
     color: var(--ts-grey);
 }
 
-/* Article Specific Styles */
+/* -------------------- ARTICLE CONTENT -------------------- */
 .article-content {
     max-width: 800px;
     margin: 0 auto;
@@ -452,12 +451,11 @@ footer {
 
 .article-content p {
     margin: 0 20px 1.5rem 20px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
-}
-
-.article-content ul, .article-content ol {
+.article-content ul,
+.article-content ol {
     margin-bottom: 1.5rem;
     padding-left: 1.5rem;
 }
@@ -467,24 +465,7 @@ footer {
     line-height: 1.6;
 }
 
-.lead-magnet-cta {
-    background: #f8fafc;
-    border-left: 4px solid var(--ts-teal);
-    padding: 2rem;
-    margin: 3rem 0;
-    border-radius: 8px;
-}
-
-.lead-magnet-cta h3 {
-    color: var(--ts-navy);
-    margin-top: 0;
-}
-
-.lead-magnet-cta p {
-    margin-bottom: 1.5rem;
-}
-
-/* Back to top button */
+/* -------------------- BACK TO TOP -------------------- */
 .back-to-top {
     display: inline-block;
     margin-top: 2rem;
@@ -497,7 +478,7 @@ footer {
     text-decoration: underline;
 }
 
-/* IMPROVED Centering for Article Content */
+/* -------------------- ARTICLE CONTAINERS -------------------- */
 .article.container img,
 .article.container table,
 .article.container pre,
@@ -519,46 +500,34 @@ footer {
     display: block;
 }
 
-/* Responsive Design */
-@media (min-width: 769px) {
-    /* No navigation overrides needed here */
-}
-
+/* -------------------- RESPONSIVE -------------------- */
 @media (max-width: 768px) {
-    /* Mobile navigation fixes */
     .nav-links {
         flex-direction: column;
         gap: 1rem;
         padding: 15px;
     }
-    
+
     .dropdown-content {
         position: static;
         transform: none;
         margin-top: 10px;
         left: auto;
     }
-    
-    /* Logo scaling for mobile */
-    .logo-img {
-        max-width: 300px;
-    }
-    
-    /* Adjust body margin for mobile */
+
     body {
-        margin-top: 160px;
+        margin-top: calc(100vw / 4); /* preserves 4:1 aspect ratio for banner */
     }
-    
-    /* Header adjustments for mobile */
+
     header {
-        background-size: contain;
-        min-height: 160px;
+        background-size: cover;
+        aspect-ratio: 4 / 1;
     }
-    
+
     nav {
-        min-height: 160px;
+        min-height: auto;
     }
-    
+
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -567,7 +536,9 @@ footer {
         font-size: 1.1rem;
     }
 
-    .content-grid {
+    .content-grid,
+    .features-grid,
+    .services-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
@@ -576,27 +547,18 @@ footer {
         flex-direction: column;
     }
 
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Article responsive styles */
     .article-content h1 {
         font-size: 2rem;
     }
-    
+
     .article-content h2 {
         font-size: 1.5rem;
     }
-    
+
     .article-content h3 {
         font-size: 1.2rem;
     }
-    
+
     .lead-magnet-cta {
         padding: 1.5rem;
         margin: 2rem 0;
@@ -607,29 +569,25 @@ footer {
     .logo-img {
         max-width: 250px;
     }
-    
+
     .article-content {
         padding: 1rem 0;
     }
-    
+
     .article-content h1 {
         font-size: 1.8rem;
     }
-    
+
     body {
-        margin-top: 140px;
+        margin-top: calc(100vw / 4); /* preserves 4:1 aspect ratio */
     }
-    
+
     header {
-        min-height: 140px;
-    }
-    
-    nav {
-        min-height: 140px;
+        aspect-ratio: 4 / 1;
     }
 }
 
-/* Animations */
+/* -------------------- ANIMATIONS -------------------- */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -645,22 +603,4 @@ footer {
     animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Utility Classes */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.mt-0 { margin-top: 0; }
-.mb-0 { margin-bottom: 0; }
+/* --------------------
