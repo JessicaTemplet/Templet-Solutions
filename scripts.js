@@ -1,37 +1,43 @@
 document.addEventListener('DOMContentLoaded', function () {
-    /* ===== MOBILE MENU FUNCTIONALITY (Button/Hamburger) ===== */
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
+    
+    // Desktop breakpoint definition (must match your CSS @media query)
+    const desktopBreakpoint = 769; 
 
-    // Function to set mobile navigation state
+    /* ===== MOBILE MENU FUNCTIONALITY ===== */
     function setMobileState(open) {
+        if (!mobileNav || !menuToggle) return; // Exit if elements aren't present
+
         if (open) {
             mobileNav.classList.add('open');
             menuToggle.setAttribute('aria-expanded', 'true');
             mobileNav.setAttribute('aria-hidden', 'false');
-            // Hide main page scroll when menu is open
-            document.body.style.overflow = 'hidden'; 
+            document.body.style.overflow = 'hidden'; // Prevents background scroll
         } else {
             mobileNav.classList.remove('open');
             menuToggle.setAttribute('aria-expanded', 'false');
             mobileNav.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            // Close any open mobile dropdowns when the main menu closes
-            closeMobileDropdowns(); 
         }
     }
 
     if (menuToggle && mobileNav) {
+        // Toggle menu on click
         menuToggle.addEventListener('click', () => {
             setMobileState(!mobileNav.classList.contains('open'));
         });
 
-        // Close when clicking a main mobile link (excluding dropdown links)
+        // Close when clicking any link within the mobile nav
         mobileNav.querySelectorAll('a').forEach(a => {
-            // Check if the link is NOT part of a dropdown content
-            if (!a.closest('.mobile-dropdown-content')) {
-                a.addEventListener('click', () => setMobileState(false));
-            }
+            a.addEventListener('click', () => {
+                // Wait for the smooth scroll to start before closing, if it's an anchor link
+                if (a.getAttribute('href').startsWith('#')) {
+                    setTimeout(() => setMobileState(false), 300); 
+                } else {
+                    setMobileState(false);
+                }
+            });
         });
 
         // Close with Escape key
@@ -42,44 +48,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* ===== MOBILE DROPDOWN TOGGLE (For Articles) ===== */
-    document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const parent = this.closest('.mobile-dropdown');
-            const isOpen = parent.classList.toggle('mobile-dropdown-open');
-            this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        });
-    });
-
-    // Close all mobile dropdowns
-    function closeMobileDropdowns() {
-        document.querySelectorAll('.mobile-dropdown-open').forEach(el => {
-            el.classList.remove('mobile-dropdown-open');
-            const btn = el.querySelector('.mobile-dropdown-toggle');
-            if (btn) btn.setAttribute('aria-expanded', 'false');
-        });
-    }
-
-    /* ===== DESKTOP DROPDOWN (Click instead of hover) ===== */
+    /* ===== DESKTOP DROPDOWN (Click activation) ===== */
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
     dropdownToggles.forEach(toggle => {
         toggle.addEventListener('click', function(e) {
-            // Only use click logic on larger screens (769px+)
-            if (window.innerWidth >= 769) {
+            // Only use click logic on larger screens (Desktop)
+            if (window.innerWidth >= desktopBreakpoint) {
                 e.preventDefault();
                 const dropdown = this.closest('.dropdown');
                 const isOpen = dropdown.classList.toggle('open');
                 this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             }
         });
+
+        // A11Y: Close on Escape key press when dropdown is open
+        toggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                this.closest('.dropdown').classList.remove('open');
+                this.setAttribute('aria-expanded', 'false');
+            }
+        });
     });
 
     // Close ALL desktop dropdowns when clicking outside
     document.addEventListener('click', (e) => {
-        // Only run on desktop
-        if (window.innerWidth >= 769) {
+        if (window.innerWidth >= desktopBreakpoint) {
             if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-content')) {
                 document.querySelectorAll('.dropdown.open').forEach(dropdown => {
                     dropdown.classList.remove('open');
@@ -92,9 +86,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    /* ===== EXISTING FUNCTIONALITY (Smooth Scrolling & Animation) ===== */
+    /* ===== SMOOTH SCROLLING & ANIMATION (Optimized) ===== */
     
-    // Smooth Scrolling for all internal # anchors (e.g., #resource-library)
+    // Smooth Scrolling for all internal # anchors
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -102,25 +96,24 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
-            
-            // Close mobile menu after clicking an internal link
-            if (mobileNav && mobileNav.classList.contains('open')) {
-                setMobileState(false);
-            }
         });
     });
 
-    // Intersection Observer for animations (Kept)
+    // Intersection Observer for animations (More efficient: watches main sections)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-on-scroll');
+                // Animate elements inside the intersecting section
+                entry.target.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    el.classList.add('animated');
+                });
+                observer.unobserve(entry.target); // Stop observing once animated
             }
         });
-    });
+    }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
 
-    document.querySelectorAll('.feature-card, .content-text, .content-image').forEach((el) => {
+    // Observe main layout sections
+    document.querySelectorAll('.hero, .features, .content-section, .lead-magnet').forEach((el) => {
         observer.observe(el);
     });
 });
-
