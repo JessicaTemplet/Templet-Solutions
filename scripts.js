@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         mobileNav.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => {
                 // Wait for the smooth scroll to start before closing, if it's an anchor link
-                if (a.getAttribute('href').startsWith('#')) {
+                if (a.getAttribute('href').startsWith('/#') || a.getAttribute('href').startsWith('#')) {
                     setTimeout(() => setMobileState(false), 300); 
                 } else {
                     setMobileState(false);
@@ -108,13 +108,18 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ===== SMOOTH SCROLLING & ANIMATION (Optimized) ===== */
     
     // Smooth Scrolling for all internal # anchors
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            
+            const targetAttr = this.getAttribute('href');
+            let targetId = targetAttr.replace(/^\//, ''); // Remove leading slash if present
 
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
