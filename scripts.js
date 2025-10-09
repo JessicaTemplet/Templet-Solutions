@@ -1,31 +1,71 @@
 document.addEventListener('DOMContentLoaded', function () {
+    
+    /* ===== NEW: CENTRALIZED NAVIGATION INJECTOR (STEP 1) ===== */
+
+    function loadNavigation() {
+        // Use the hyphenated file name, which is consistent with your naming convention
+        fetch('nav-content.html')
+            .then(response => {
+                if (!response.ok) {
+                    // Log a warning if the nav file fails to load
+                    console.warn(`Could not load navigation content from 'nav-content.html'. Status: ${response.status}`);
+                    return ''; // Return empty string to prevent injection failure
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Find the target navigation container
+                const nav = document.querySelector('nav[role="navigation"]');
+
+                if (nav) {
+                    // Assuming your HTML file has ONLY the logo h1 inside the <nav> (as directed):
+                    // <nav> <h1 class="logo-h1">...</h1> </nav>
+                    
+                    // We need to inject the new content AFTER the logo but INSIDE the <nav>
+                    nav.innerHTML += data;
+                }
+            })
+            .catch(error => {
+                console.error('Fatal error during navigation fetch:', error);
+            });
+    }
+
+    // Immediately run the function to inject the menu structure
+    loadNavigation();
+
+    /* ===== MOBILE MENU FUNCTIONALITY (STEP 2: REMAINS BELOW TO RUN AFTER INJECTION) ===== */
+
     // 🛑 FIX 1: Changed 'mobile-nav' to match the class name used for the menu container in CSS: '.nav-links'
+    // NOTE: These selectors MUST be run AFTER loadNavigation() completes, but we'll put the definition here.
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.querySelector('.nav-links'); // Targets the main navigation list
 
     // Desktop breakpoint definition (must match your CSS @media query)
-    // Your CSS media query is (max-width: 768px), so desktop starts at 769px.
     const desktopBreakpoint = 769; 
 
-    /* ===== MOBILE MENU FUNCTIONALITY ===== */
     function setMobileState(open) {
-        if (!mobileNav || !menuToggle) return; // Exit if elements aren't present
+        // Since loadNavigation is asynchronous, these elements might not exist immediately. 
+        // We'll trust the DOMContentLoaded event and the loadNavigation call to handle the timing.
+        
+        if (!mobileNav || !menuToggle) return; 
 
         if (open) {
             mobileNav.classList.add('open');
-            menuToggle.textContent = 'Close'; // Added text content change
+            menuToggle.textContent = 'Close'; 
             menuToggle.setAttribute('aria-expanded', 'true');
             mobileNav.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden'; // Prevents background scroll
+            document.body.style.overflow = 'hidden'; 
         } else {
             mobileNav.classList.remove('open');
-            menuToggle.textContent = 'Menu'; // Added text content change
+            menuToggle.textContent = 'Menu'; 
             menuToggle.setAttribute('aria-expanded', 'false');
             mobileNav.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
         }
     }
 
+    // Attach mobile menu listeners
+    // We only attach listeners if the elements are found (which they should be after injection)
     if (menuToggle && mobileNav) {
         // Toggle menu on click
         menuToggle.addEventListener('click', () => {
@@ -52,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    /* ===== DESKTOP DROPDOWN (Click activation) ===== */
-    // 🛑 FIX 2: Changed '.dropdown-toggle' to match the actual dropdown link in your structure: '.dropdown > a'
+    /* ===== DESKTOP DROPDOWN (Click activation) REMAINS THE SAME ===== */
+
     const dropdownToggles = document.querySelectorAll('.dropdown > a'); 
     
     dropdownToggles.forEach(toggle => {
@@ -61,14 +101,12 @@ document.addEventListener('DOMContentLoaded', function () {
         toggle.classList.add('dropdown-toggle'); 
         
         toggle.addEventListener('click', function(e) {
-            // Only use click logic on larger screens (Desktop)
             if (window.innerWidth >= desktopBreakpoint) {
                 e.preventDefault();
                 const dropdown = this.closest('.dropdown');
                 const isOpen = dropdown.classList.toggle('open');
                 this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                 
-                // Close other open dropdowns
                 document.querySelectorAll('.dropdown.open').forEach(otherDropdown => {
                     if (otherDropdown !== dropdown) {
                         otherDropdown.classList.remove('open');
@@ -105,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    /* ===== SMOOTH SCROLLING & ANIMATION (Optimized) ===== */
+    /* ===== SMOOTH SCROLLING & ANIMATION REMAINS THE SAME ===== */
     
     // Smooth Scrolling for all internal # anchors
     document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
@@ -134,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 observer.unobserve(entry.target); // Stop observing once animated
             }
         });
-    }, { threshold: 0.1 }); // Trigger when 10% of the section is visible
+    }, { threshold: 0.1 }); 
 
     // Observe main layout sections
     document.querySelectorAll('.hero, .features, .content-section, .lead-magnet').forEach((el) => {
