@@ -38,30 +38,33 @@ body {
 }
 
 /* -------------------- ACCESSIBLE LOGO H1 -------------------- */
-
-
+.logo-h1 {
+    position: absolute; 
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
 
 /* -------------------- HEADER (RENDERING FIX) -------------------- */
 header {
     background-image: url('logo.png');
-    background-size: contain; /* Changed from cover to contain */
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
-    background-color: var(--ts-navy); /* Fallback color */
-    height: 100px; /* Keep your fixed height */
-
-    
-    background-color: var(--ts-navy);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    /* Z-index restored to safe value */
-    z-index: 1000; 
-    
-    /* FIX: Set a consistent height for the fixed banner */
-    height: 100px; /* Use a fixed value (e.g., 100px) */
-    /* REMOVED: height: auto; aspect-ratio: 4 / 1; max-height: 200px; */
+    background-color: var(--ts-navy);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    /* Z-index restored to safe value */
+    z-index: 1000; 
+    height: auto; 
+    aspect-ratio: 4 / 1; 
+    max-height: 200px; 
 }
 
 /* NEW: Wrapper to constrain content and position the nav */
