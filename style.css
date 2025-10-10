@@ -38,21 +38,14 @@ body {
 }
 
 /* -------------------- ACCESSIBLE LOGO H1 -------------------- */
-.logo-h1 {
-    position: absolute; 
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
+
+
 
 /* -------------------- HEADER (RENDERING FIX) -------------------- */
 header {
     /* Banner Image Styling (Full-width banner) */
-    background-image: url('logo.png');
+    background-color: #0A1931; /* Your navy color as fallback */
+    background-image: url('logo.png');
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
