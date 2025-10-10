@@ -43,12 +43,13 @@ body {
 
 /* -------------------- HEADER (RENDERING FIX) -------------------- */
 header {
-    /* Banner Image Styling (Full-width banner) */
-    background-color: #0A1931; /* Your navy color as fallback */
-    background-image: url ("https://www.templetsolutions.com/logo.png");
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url('logo.png');
+    background-size: contain; /* Changed from cover to contain */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--ts-navy); /* Fallback color */
+    height: 100px; /* Keep your fixed height */
+
     
     background-color: var(--ts-navy);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
