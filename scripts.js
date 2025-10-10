@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ===== CENTRALIZED NAVIGATION INJECTOR (STEP 1) ===== */
     
     function loadNavigation() {
-        fetch('nav-content.html')
+        fetch('/nav-content.html')
             .then(response => {
                 if (!response.ok) {
                     console.warn(`Could not load navigation content from 'nav-content.html'. Status: ${response.status}`);
