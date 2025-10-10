@@ -3,33 +3,28 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ===== NEW: CENTRALIZED NAVIGATION INJECTOR (STEP 1) ===== */
 
     function loadNavigation() {
-        // Use the hyphenated file name, which is consistent with your naming convention
-        fetch('nav-content.html')
-            .then(response => {
-                if (!response.ok) {
-                    // Log a warning if the nav file fails to load
-                    console.warn(`Could not load navigation content from 'nav-content.html'. Status: ${response.status}`);
-                    return ''; // Return empty string to prevent injection failure
-                }
-                return response.text();
-            })
-            .then(data => {
-                // Find the target navigation container
-                const nav = document.querySelector('nav[role="navigation"]');
-
-                if (nav) {
-                    // Assuming your HTML file has ONLY the logo h1 inside the <nav> (as directed):
-                    // <nav> <h1 class="logo-h1">...</h1> </nav>
-                    
-                    // We need to inject the new content AFTER the logo but INSIDE the <nav>
-                    nav.innerHTML += data;
-                }
-            })
-            .catch(error => {
-                console.error('Fatal error during navigation fetch:', error);
-            });
-    }
-
+    fetch('nav-content.html')
+        .then(response => {
+            if (!response.ok) {
+                // This will help you know if the file isn't found
+                console.error(`Navigation file not found. Status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            const nav = document.querySelector('nav[role="navigation"]');
+            if (nav && data) {
+                console.log('Navigation content loaded successfully');
+                nav.innerHTML += data;
+            } else {
+                console.error('Navigation container not found or data empty');
+            }
+        })
+        .catch(error => {
+            console.error('Error loading navigation:', error);
+        });
+}
     // Immediately run the function to inject the menu structure
     loadNavigation();
 
