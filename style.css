@@ -1,4 +1,4 @@
-/* style.css - FINAL CORRECTED VERSION (Navigation Position Fixed) */
+/* style.css - FINAL CORRECTED VERSION (Navigation Position Fixed & Centering Fixed) */
 
 /* Custom properties (Updated for banner aesthetics) */
 :root {
@@ -28,13 +28,20 @@ body {
     color: var(--ts-text);
     background: var(--ts-bg);
     /* FIX 1: Ensure body content starts below the fixed header */
-    margin-top: 150px; 
+    margin-top: 150px;
+    /* CENTERING SAFETY CHECK: Ensure no side margin/padding on the body */
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    /* Centering Fix: Apply horizontal auto margins */
+    margin: 0 auto; 
+    /* Maintain padding for small screens, allowing margin: 0 auto to work */
+    padding: 0 20px; 
 }
 
 /* -------------------- ACCESSIBLE LOGO H1 -------------------- */
