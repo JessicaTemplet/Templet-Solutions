@@ -45,7 +45,7 @@ body {
 header {
     /* Banner Image Styling (Full-width banner) */
     background-color: #0A1931; /* Your navy color as fallback */
-    background-image: url "www.templetsolutions.com/logo.png";
+    background-image: url ("https://www.templetsolutions.com/logo.png");
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
