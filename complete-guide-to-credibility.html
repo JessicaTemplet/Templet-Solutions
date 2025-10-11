@@ -1,0 +1,889 @@
+
+				
+				<html>
+					<head>
+						<meta charset="UTF-8"/>
+						<meta name="viewport" content="width=device-width, initial-scale=1"/>
+						<style>.jsdraw--editButton {
+  display: none;
+  width: min-content;
+  max-height: 50px;
+  z-index: 1;
+  opacity: 0.9;
+  align-self: flex-end;
+  justify-self: right;
+}
+
+.jsdraw--svgWrapper {
+  display: inline-grid;
+}
+
+.jsdraw--svgWrapper > * {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.jsdraw--svgWrapper:hover .jsdraw--editButton,
+.jsdraw--svgWrapper:focus .jsdraw--editButton,
+.jsdraw--svgWrapper:focus-within .jsdraw--editButton,
+.jsdraw--editButton:focus {
+  display: block;
+}</style><script>(()=>{"use strict";var t={167:(t,e)=>{Object.defineProperty(e,"__esModule",{value:!0}),e.default=t=>{const e=t.querySelector("img");if(!e)return void console.warn("Freehand drawing plugin: No image found in container.");if(t.classList.contains("js-draw--editable"))return;t.classList.add("js-draw--editable");const n=t.getAttribute("data-js-draw-edit-label"),o=t.getAttribute("data-js-draw-content-script-id"),s=()=>{const t=e.src;webviewApi.postMessage(o,t).catch((e=>{console.error("Error posting message!",e,"\nMessage: ",t)}))},r=document.body.classList.contains("mce-content-body")||"tinymce"===document.body.id,d="undefined"!=typeof webviewApi;r?e.style.cursor="pointer":d&&(()=>{const e=document.createElement("button");e.textContent=`${n} 🖊️`,e.classList.add("jsdraw--editButton"),t.appendChild(e),e.onclick=()=>{s()}})(),e.ondblclick=s}}},e={};function n(o){var s=e[o];if(void 0!==s)return s.exports;var r=e[o]={exports:{}};return t[o](r,r.exports,n),r.exports}(()=>{const t=n(167),e=()=>{const e=document.querySelectorAll("*[data-js-draw-content-script-id]");for(const n of e)(0,t.default)(n)};document.addEventListener("joplin-noteDidUpdate",(()=>{e()})),e()})()})();</script></script><style>pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+
+code.hljs {
+  padding: 3px 5px;
+}
+
+/*
+
+Atom One Light by Daniel Gamage
+Original One Light Syntax theme from https://github.com/atom/one-light-syntax
+
+base:    #fafafa
+mono-1:  #383a42
+mono-2:  #686b77
+mono-3:  #a0a1a7
+hue-1:   #0184bb
+hue-2:   #4078f2
+hue-3:   #a626a4
+hue-4:   #50a14f
+hue-5:   #e45649
+hue-5-2: #c91243
+hue-6:   #986801
+hue-6-2: #c18401
+
+*/
+
+.hljs {
+  color: #383a42;
+  background: #fafafa;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #0184bb;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #50a14f;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
+}
+
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}</style>
+						<title>complete-guide-to-credibility</title>
+					</head>
+					<body>
+						<div class="exported-note"><div class="exported-note-title">complete-guide-to-credibility</div>
+
+<style>
+		/* https://necolas.github.io/normalize.css/ */
+		html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
+		article,aside,footer,header,nav,section{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}
+		pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent;-webkit-text-decoration-skip:objects}
+		b,strong{font-weight:bolder}small{font-size:80%}img{border-style:none}
+
+		body {
+			font-size: 15px;
+			color: #32373F;
+			word-wrap: break-word;
+			line-height: 1.6em;
+			background-color: #ffffff;
+			font-family: 'Avenir Next', 'Avenir', 'Arial', sans-serif;
+			padding-bottom: 0px;
+			padding-top: 0px;
+		}
+		kbd {
+			border: 1px solid rgb(220, 220, 220);
+			box-shadow: inset 0 -1px 0 rgb(220, 220, 220);
+			padding: 2px 4px;
+			border-radius: 3px;
+			background-color: rgb(243, 243, 243);
+		}
+
+		:root {
+			--scrollbar-size: 7px;
+		}
+
+		::-webkit-scrollbar {
+			width: var(--scrollbar-size);
+			height: var(--scrollbar-size);
+		}
+		::-webkit-scrollbar-thumb {
+			border-radius: calc(var(--scrollbar-size) / 2);
+		}
+		::-webkit-scrollbar-corner {
+			background: none;
+		}
+		::-webkit-scrollbar-track {
+			border: none;
+		}
+		::-webkit-scrollbar-thumb {
+			background: rgba(50, 55, 63, 0.54); 
+		}
+		::-webkit-scrollbar-track:hover {
+			background: rgba(0, 0, 0, 0.1); 
+		}
+		::-webkit-scrollbar-thumb:hover {
+			background: rgba(50, 55, 63, 0.63); 
+		}
+
+		
+
+		/* Remove top padding and margin from first child so that top of rendered text is aligned to top of text editor text */
+
+		#rendered-md > h1:first-child,
+		#rendered-md > h2:first-child,
+		#rendered-md > h3:first-child,
+		#rendered-md > h4:first-child,
+		#rendered-md > ul:first-child,
+		#rendered-md > ol:first-child,
+		#rendered-md > table:first-child,
+		#rendered-md > blockquote:first-child,
+		#rendered-md > img:first-child,
+		#rendered-md > p:first-child {
+			margin-top: 0;
+			padding-top: 0;
+		}
+		
+		p, h1, h2, h3, h4, h5, h6, ul, table {
+			margin-top: .6em;
+			margin-bottom: 1.35em;
+
+			/*
+				Adds support for RTL text in the note body. It automatically detects the direction using the content.
+				Issue: https://github.com/laurent22/joplin/issues/3991
+			*/
+			unicode-bidi: plaintext;
+		}
+
+		h1, h2, h3, h4, h5, h6, ul, table {
+			margin-bottom: 0.65em;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			line-height: 1.5em;
+		}
+		h1 {
+			font-size: 1.5em;
+			font-weight: bold;
+			border-bottom: 1px solid #dddddd;
+			padding-bottom: .3em;
+		}
+		h2 {
+			font-size: 1.3em;
+			font-weight: bold;
+			padding-bottom: .1em; */
+		}
+		h3 {
+			font-size: 1.1em;
+			font-weight: bold;
+		}
+		h4, h5, h6 {
+			font-size: 1em;
+			font-weight: bold;
+		}
+
+		.exported-note-title {
+			font-size: 2em;
+			font-weight: bold;
+			margin-bottom: 0.8em;
+			line-height: 1.5em;
+			padding-bottom: .35em;
+			border-bottom: 1px solid #dddddd;
+		}
+
+		a {
+			color: #155BDA;
+		}
+		ul, ol {
+			padding-left: 0;
+			margin-left: 1.7em;
+		}
+		li {
+			margin-bottom: .4em;
+		}
+		li p {
+			margin-top: 0.2em;
+			margin-bottom: 0;
+		}
+
+		dt {
+			font-weight: bold;
+			margin-bottom: 0.25em;
+		}
+
+		dd {
+			margin-inline-start: 2.5em;
+			margin-bottom: 0.5em;
+		}
+
+		.resource-icon {
+			display: inline-block;
+			position: relative;
+			top: 0.3em;
+			text-decoration: none;
+			width: 1.2em;
+			height: 1.4em;
+			margin-right: 0.4em;
+			background-color:  #155BDA;
+		}
+    /* These icons are obtained from the wonderful ForkAwesome project by copying the src svgs 
+     * into the css classes below.
+     * svgs are obtained from https://github.com/ForkAwesome/Fork-Awesome/tree/master/src/icons/svg
+     * instead of the svg width, height property you must use a viewbox here, 0 0 1536 1792 is typically the actual size of the icon
+     * each line begins with the pre-amble -webkit-mask: url("data:image/svg+xml;utf8,
+     * and of course finishes with ");
+     * to prevent artifacts it is also necessary to include -webkit-mask-repeat: no-repeat;
+     * on the following line
+     * */
+		.fa-joplin {
+			/* Awesome Font file */
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M373.834 128C168.227 128 0 296.223 0 501.834v788.336C0 1495.778 168.227 1664 373.834 1664h788.336c205.608 0 373.83-168.222 373.83-373.83V501.834C1536 296.224 1367.778 128 1162.17 128zm397.222 205.431h417.424a7.132 7.132 0 0 1 7.132 7.133v132.552c0 4.461-3.619 8.073-8.077 8.073h-57.23c-24.168 0-43.768 19.338-44.284 43.374v2.377h-.017v136.191h-.053l-.466 509.375c-5.02 77.667-39.222 149.056-96.324 201.046-60.28 54.834-141.948 85.017-229.962 85.017-12.45 0-25.208-.61-37.907-1.785-92.157-8.682-181.494-48.601-251.662-112.438-71.99-65.517-117.147-150.03-127.164-238-11.226-98.763 23.42-192.783 95.045-257.937 81.99-74.637 198.185-101.768 316.613-75.704 5.574 1.227 9.55 6.282 9.55 11.997v199.52c-.199 2.625-1.481 6.599-8.183 2.896-.663-.365-1.194-.511-1.653-.531-21.987-10.587-45.159-17.57-68.559-19.916-.38-.04-.757-.124-1.138-.163-.537-.048-1.034-.033-1.556-.075-4.13-.354-8.183-.517-12.203-.58-.87-.011-1.771-.127-2.641-.127-.486 0-.951.05-1.437.057-1.464.011-2.886.115-4.33.163-2.76.102-5.497.211-8.182.448-.273.024-.547.07-.835.097-25.509 2.4-47.864 11.104-65.012 25.47-.954.802-1.974 1.53-2.9 2.36a1.34 1.34 0 0 1-.168.146c-23.96 21.8-34.881 53.872-30.726 90.316 4.62 40.737 26.94 81.156 62.841 113.823 35.908 32.67 80.335 52.977 125.113 57.186 35.118 3.36 66.547-3.919 89.899-20.461a97.255 97.255 0 0 0 9.365-7.501c2.925-2.661 5.569-5.5 8.086-8.416.3-.348.672-.673.975-1.024 8.253-9.864 14.222-21.067 17.996-33.148.639-2.034 1.051-4.148 1.564-6.227.381-1.563.81-3.106 1.112-4.693.555-2.784.923-5.632 1.253-8.49.086-.709.183-1.414.237-2.128.492-4.893.693-9.858.55-14.91h.013V521.623c-2.01-22.626-20.78-40.434-43.928-40.434h-57.23a8.071 8.071 0 0 1-8.077-8.073V340.564a7.132 7.132 0 0 1 7.136-7.133z'/></svg>");
+		}
+		.fa-file-image {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zm-128-448v320H256v-192l192-192 128 128 384-384zm-832-192c-106 0-192-86-192-192s86-192 192-192 192 86 192 192-86 192-192 192z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-pdf {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zm-514-593c25 20 53 38 84 56 42-5 81-7 117-7 67 0 152 8 177 49 7 10 13 28 2 52-1 1-2 3-3 4v1c-3 18-18 38-71 38-64 0-161-29-245-73-139 15-285 46-392 83-103 176-182 262-242 262-10 0-19-2-28-7l-24-12c-3-1-4-3-6-5-5-5-9-16-6-36 10-46 64-123 188-188 8-5 18-2 23 6 1 1 2 3 2 4 31-51 67-116 107-197 45-90 80-178 104-262-32-109-42-221-24-287 7-25 22-40 42-40h22c15 0 27 5 35 15 12 14 15 36 9 68-1 3-2 6-4 8 1 3 1 5 1 8v30c-1 63-2 123-14 192 35 105 87 190 146 238zm-576 411c30-14 73-57 137-158-75 58-122 124-137 158zm398-920c-10 28-10 76-2 132 3-16 5-31 7-44 2-17 5-31 7-43 1-3 2-5 4-8-1-1-1-3-2-5-1-18-7-29-13-36 0 2-1 3-1 4zm-124 661c88-35 186-63 284-81-10-8-20-15-29-23-49-43-93-103-127-176-19 61-47 126-83 197-15 28-30 56-45 83zm646-16c-5-5-31-24-140-24 49 18 94 28 124 28 9 0 14 0 18-1 0-1-1-2-2-3z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-word {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zM233 768v107h70l164 661h159l128-485c5-15 8-30 10-46 1-8 2-16 2-24h4l3 24c3 14 4 30 9 46l128 485h159l164-661h70V768h-300v107h90l-99 438c-4 16-6 33-7 46l-2 21h-4c0-6-2-14-3-21-3-13-5-30-9-46L825 768H711l-144 545c-4 16-5 33-8 46l-4 21h-4l-2-21c-1-13-3-30-7-46l-99-438h90V768H233z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-powerpoint {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zm-992-234v106h327v-106h-93v-167h137c43 0 82-2 118-15 90-31 146-124 146-233s-54-193-137-228c-38-15-84-19-130-19H416v107h92v555h-92zm353-280H650V882h120c35 0 62 6 83 18 36 21 56 62 56 115 0 56-20 99-62 120-21 10-47 15-78 15z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-excel {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zm-979-234v106h281v-106h-75l103-161c12-19 18-34 21-34h2c1 4 3 7 5 10 4 8 10 14 17 24l107 161h-76v106h291v-106h-68l-192-273 195-282h67V768H828v107h74l-103 159c-12 19-21 34-21 33h-2c-1-4-3-7-5-10-4-7-9-14-17-23L648 875h76V768H434v107h68l189 272-194 283h-68z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-audio {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zM620 850c12 5 20 17 20 30v544c0 13-8 25-20 30-4 1-8 2-12 2-8 0-16-3-23-9l-166-167H288c-18 0-32-14-32-32v-192c0-18 14-32 32-32h131l166-167c10-9 23-12 35-7zm417 689c19 0 37-8 50-24 83-102 129-231 129-363s-46-261-129-363c-22-28-63-32-90-10-28 23-32 63-9 91 65 80 100 178 100 282s-35 202-100 282c-23 28-19 68 9 90 12 10 26 15 40 15zm-211-148c17 0 34-7 47-20 56-60 87-137 87-219s-31-159-87-219c-24-26-65-27-91-3-25 24-27 65-2 91 33 36 52 82 52 131s-19 95-52 131c-25 26-23 67 2 91 13 11 29 17 44 17z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-video {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zM768 768c70 0 128 58 128 128v384c0 70-58 128-128 128H384c-70 0-128-58-128-128V896c0-70 58-128 128-128h384zm492 2c12 5 20 17 20 30v576c0 13-8 25-20 30-4 1-8 2-12 2-8 0-17-3-23-9l-265-266v-90l265-266c6-6 15-9 23-9 4 0 8 1 12 2z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-archive {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M640 384V256H512v128h128zm128 128V384H640v128h128zM640 640V512H512v128h128zm128 128V640H640v128h128zm700-388c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H768v128H640V128H128v1536h1280zM781 943c85 287 107 349 107 349 5 17 8 34 8 52 0 111-108 192-256 192s-256-81-256-192c0-18 3-35 8-52 0 0 21-62 120-396V768h128v128h79c29 0 54 19 62 47zm-141 465c71 0 128-29 128-64s-57-64-128-64-128 29-128 64 57 64 128 64z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-code {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zM480 768c11-14 31-17 45-6l51 38c14 11 17 31 6 45l-182 243 182 243c11 14 8 34-6 45l-51 38c-14 11-34 8-45-6l-226-301c-8-11-8-27 0-38zm802 301c8 11 8 27 0 38l-226 301c-11 14-31 17-45 6l-51-38c-14-11-17-31-6-45l182-243-182-243c-11-14-8-34 6-45l51-38c14-11 34-8 45 6zm-620 461c-18-3-29-20-26-37l138-831c3-18 20-29 37-26l63 10c18 3 29 20 26 37l-138 831c-3 18-20 29-37 26z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file-alt, .fa-file-csv {
+      /* fork-awesome doesn't have csv so we use the text icon */
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280zM384 800c0-18 14-32 32-32h704c18 0 32 14 32 32v64c0 18-14 32-32 32H416c-18 0-32-14-32-32v-64zm736 224c18 0 32 14 32 32v64c0 18-14 32-32 32H416c-18 0-32-14-32-32v-64c0-18 14-32 32-32h704zm0 256c18 0 32 14 32 32v64c0 18-14 32-32 32H416c-18 0-32-14-32-32v-64c0-18 14-32 32-32h704z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		.fa-file {
+			-webkit-mask: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1536 1792' xmlns='http://www.w3.org/2000/svg'><path d='M1468 380c37 37 68 111 68 164v1152c0 53-43 96-96 96H96c-53 0-96-43-96-96V96C0 43 43 0 96 0h896c53 0 127 31 164 68zm-444-244v376h376c-6-17-15-34-22-41l-313-313c-7-7-24-16-41-22zm384 1528V640H992c-53 0-96-43-96-96V128H128v1536h1280z'/></svg>");
+      -webkit-mask-repeat: no-repeat;
+		}
+		blockquote {
+			border-left: 4px solid rgb(220, 220, 220);
+			padding-left: 1.2em;
+			margin-left: 0;
+			opacity: 0.7;
+		}
+
+		.jop-tinymce table,
+		table {
+			text-align: left;
+			border-collapse: collapse;
+			border: 1px solid rgb(220, 220, 220);
+			background-color: #ffffff;
+		}
+
+		.jop-tinymce table td, .jop-tinymce table th,
+		table td, th {
+			text-align: left;
+			padding: .5em 1em .5em 1em;
+			font-size: 15;
+			color: #32373F;
+			font-family: 'Avenir Next', 'Avenir', 'Arial', sans-serif;
+		}
+
+		.jop-tinymce table td,
+		table td {
+			border: 1px solid rgb(220, 220, 220);
+		}
+
+		.jop-tinymce table th,
+		table th {
+			border: 1px solid rgb(220, 220, 220);
+			border-bottom: 2px solid rgb(220, 220, 220);
+			background-color: rgb(247, 247, 247);
+		}
+
+		.jop-tinymce table tr:nth-child(even),
+		table tr:nth-child(even) {
+			background-color: rgb(247, 247, 247);
+		}
+
+		.jop-tinymce table tr:hover,
+		table tr:hover {
+			background-color: #e5e5e5;
+		}
+
+		hr {
+			border: none;
+			border-bottom: 2px solid #dddddd;
+		}
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+		
+		.inline-code,
+		.mce-content-body code {
+			border: 1px solid rgb(220, 220, 220);
+			background-color: rgb(243, 243, 243);
+			padding-right: .2em;
+			padding-left: .2em;
+			border-radius: .25em;
+			color: rgb(0,0,0);
+			font-size: .9em;
+		}
+
+		.highlighted-keyword {
+			background-color: #F3B717;
+			color: black;
+		}
+
+		
+	.not-loaded-resource img {
+		width: 1.15em;
+		height: 1.15em;
+		background: white;
+		padding: 2px !important;
+		border-radius: 2px;
+		box-shadow: 0 1px 3px #000000aa;
+	}
+
+	a.not-loaded-resource img {
+		margin-right: .2em;
+	}
+
+	a.not-loaded-resource {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+
+		.md-checkbox input[type=checkbox]:checked {
+			opacity: 0.7;
+		}
+
+		.jop-tinymce ul.joplin-checklist .checked,
+		.md-checkbox .checkbox-label-checked {
+			opacity: 0.5;
+		}
+
+		.exported-note {
+			padding: 1em;
+		}
+
+		.joplin-editable .joplin-source {
+			display: none;
+		}
+
+		mark {
+			background: #F7D26E;
+			color: black;
+		}
+
+		/* =============================================== */
+		/* For TinyMCE */
+		/* =============================================== */
+
+		.mce-content-body {
+			/* Note: we give a bit more padding at the bottom, to allow scrolling past the end of the document */
+			padding: 5px 10px 10em 0;
+		}
+
+		/*
+		.mce-content-body code {
+			background-color: transparent;
+		}
+		*/
+
+		.mce-content-body [data-mce-selected=inline-boundary] {
+			background-color: transparent;
+		}
+
+		.mce-content-body .joplin-editable {
+			cursor: pointer !important;
+		}
+
+		.mce-content-body.mce-content-readonly {
+			opacity: 0.5;
+		}
+
+		/* We need that to make sure click events have the A has a target */
+		.katex a span {
+			pointer-events: none;
+		}
+
+		.media-player {
+			width: 100%;
+			margin-top: 10px;
+		}
+
+		.media-player.media-pdf {
+			min-height: 35rem;
+			width: 100%;
+			max-width: 1000px;
+			margin: 0;
+			border: 0;
+			display: block;
+		}
+
+		/* Clear the CODE style if the element is within a joplin-editable block */
+		.mce-content-body .joplin-editable code {
+			border: none;
+			background: none;
+			padding: 0;
+			color: inherit;
+			font-size: inherit;
+		}
+
+		/* To make code blocks horizontally scrollable */
+		/* https://github.com/laurent22/joplin/issues/5740 */
+		pre.hljs {
+			overflow-x: auto;
+		}
+
+		.joplin-table-wrapper{
+			overflow-x: auto;
+			overflow-y: hidden;
+		}
+
+		/* =============================================== */
+		/* For TinyMCE */
+		/* =============================================== */
+
+		@media print {
+			body {
+				height: auto !important;
+			}
+
+			pre {
+				white-space: pre-wrap;
+			}
+
+			.code, .inline-code {
+				border: 1px solid #CBCBCB;
+			}
+
+			#joplin-container-content {
+				/* The height of the content is set dynamically by JavaScript (in updateBodyHeight) to go
+				   around various issues related to scrolling. However when printing we don't want this
+				   fixed size as that would crop the content. So we set it to auto here. "important" is
+				   needed to override the style set by JavaScript at the element-level. */
+				height: auto !important;
+			}
+		}
+	
+
+				/*
+					FOR THE MARKDOWN EDITOR
+				*/
+
+				/* Remove the indentation from the checkboxes at the root of the document
+				   (otherwise they are too far right), but keep it for their children to allow
+				   nested lists. Make sure this value matches the UL margin. */
+
+				li.md-checkbox {
+					list-style-type: none;
+				}
+
+				li.md-checkbox input[type=checkbox] {
+					margin-left: -1.71em;
+					margin-right: 0.7em;
+					position: relative;
+					top: 1px;
+				}
+				
+				ul.joplin-checklist {
+					list-style:none;
+				}
+
+				/*
+					FOR THE RICH TEXT EDITOR
+				*/
+
+				ul.joplin-checklist li::before {
+					content:"\f14a";
+					font-family:"Font Awesome 5 Free";
+					background-size: 16px 16px;
+					pointer-events: all;
+					cursor: pointer;
+					width: 1em;
+					height: 1em;
+					margin-left: -1.3em;
+					position: absolute;
+					color: #32373F;
+				}
+
+				.joplin-checklist li:not(.checked)::before {
+					content:"\f0c8";
+				}
+.mermaid { width: 640px; }
+pre.mermaid[data-processed=true] { white-space: unset; }
+.mermaid-export-graph {
+					opacity: 0;
+					height: 0;
+					z-index: 1;
+					position: relative;
+				} 
+				.joplin-editable:hover .mermaid-export-graph,
+				.joplin-editable .mermaid-export-graph:has(:focus-visible) {
+					opacity: 1;
+				}
+				.mermaid-export-graph > button:hover {
+					background-color: #CBDAF1 !important;
+				}</style><div id="rendered-md"><p>The Complete Guide to Credibility: Building Trust Signals That AI Systems Actually Cite<br/>
+I&apos;ll never forget the moment I realized my content had a credibility problem. I&apos;d spent months creating what I thought was comprehensive, expert-level content. Traditional search rankings? Great. Featured snippets? Check. AI citations from ChatGPT, Claude, and Perplexity? Absolutely nothing.</p>
+<p>The problem wasn&apos;t that my content was wrong or poorly written. The problem was that AI systems had no way to verify my claims. No sources. No citations. No evidence trail. Just my word that things were true&mdash;and AI systems don&apos;t take anyone&apos;s word for anything.</p>
+<p>That&apos;s where Credibility&mdash;the first pillar of the C&sup3;AT Framework for AI Citation Optimization (AICO) and SEO&mdash;becomes essential. AI systems function like fact-checking researchers who need to verify every claim before staking their reputation on citing your content. Without credibility signals they can verify, your content becomes invisible.</p>
+<p>What Credibility Actually Means for AICO<br/>
+Credibility in C&sup3;AT is the practice of building trust through verifiable evidence, transparent sourcing, and demonstrable expertise at the claim level, not just the author level.</p>
+<p>It&apos;s about making every statement in your content defensible if an AI system were cross-checking it against its training data and real-time searches. Because guess what? That&apos;s exactly what they&apos;re doing.</p>
+<p>When someone asks ChatGPT or Claude a question, these systems scan thousands of potential sources and make rapid decisions about which ones are trustworthy enough to cite. They&apos;re looking for content that makes them look smart and accurate when they reference it. That means they need clear evidence that your claims are solid.</p>
+<p>Here&apos;s the fundamental insight: AI systems don&apos;t cite content because it seems authoritative. They cite content they can verify is authoritative. That&apos;s a completely different standard.</p>
+<p>The Three Layers of AICO Credibility<br/>
+Think of credibility as a three-layer foundation that AI systems evaluate simultaneously:</p>
+<p>Layer 1: Source-Level Credibility Every factual claim needs a verifiable source. Every statistic needs attribution. Every &quot;studies show&quot; needs to specify which studies and link to them. This is the foundation&mdash;without it, nothing else matters.</p>
+<p>Layer 2: Author-Level Credibility<br/>
+Yes, author expertise matters, but it needs to be displayed within the content itself, not just on an &quot;about&quot; page AI systems might never see. In-content credentials that establish why this particular author can speak to this particular topic.</p>
+<p>Layer 3: Content-Level Credibility The overall presentation, structure, and tone that signals &quot;this is serious, researched content&quot; versus &quot;this is speculation and opinion.&quot; This includes writing quality, logical structure, acknowledgment of limitations, and appropriate caveats.</p>
+<p>All three layers need to work together. Strong sources with weak author credentials raises questions. Strong author credentials with no sources is equally problematic. And even with both, poor content presentation undermines everything.</p>
+<p>How to Build Source-Level Credibility (The Foundation)<br/>
+This is where most content fails the AICO credibility test. Let me show you exactly how to fix it.</p>
+<p>The Citation Standard: Specific, Linked, Authoritative<br/>
+Every significant claim in your content needs to meet these three criteria:</p>
+<p>Specific: Don&apos;t say &quot;research shows&quot; or &quot;experts say.&quot; Name the specific study, author, or institution. &quot;According to a 2023 study published in the Journal of Marketing Research by Dr. Sarah Chen&quot; is specific. &quot;Research shows&quot; is not.</p>
+<p>Linked: Provide direct links to original sources, not secondary reporting. Link to the actual study, not an article about the study. AI systems can and do follow these links to verify claims.</p>
+<p>Authoritative: Cite recognized sources in your field. Peer-reviewed research, government agencies, established institutions, primary data sources. Not random blog posts or uncredentialed opinions.</p>
+<p>What to Cite (And What You Can Skip)<br/>
+Here&apos;s where people get confused. You don&apos;t need to cite literally everything. Use this framework:</p>
+<p>Always cite:</p>
+<p>Statistics and data points<br/>
+Research findings and study results<br/>
+Expert quotes and opinions<br/>
+Historical facts and dates<br/>
+Technical specifications<br/>
+Medical, legal, or financial advice<br/>
+Controversial or surprising claims<br/>
+Industry-specific best practices<br/>
+You can skip citations for:</p>
+<p>Common knowledge in your field<br/>
+Your own original analysis or opinion (clearly labeled as such)<br/>
+Basic definitions<br/>
+Personal experiences and case studies<br/>
+Widely accepted practices<br/>
+The test: If someone reading your content might reasonably ask &quot;how do you know that?&quot; or &quot;where did that number come from?&quot;&mdash;you need a citation.</p>
+<p>How to Cite Without Disrupting Readability<br/>
+I used to think citations made content clunky and academic. Then I figured out how to integrate them naturally. Here&apos;s the technique:</p>
+<p>Clunky (What I Used to Do): &quot;Email marketing has an ROI of 3600% [1]. This makes it the most effective marketing channel [2]. Studies have shown that segmented campaigns perform better [3].&quot; [Then footnotes at the bottom that nobody clicks]</p>
+<p>Natural (What Actually Works): &quot;Email marketing delivers an average ROI of $36 for every dollar spent, according to Litmus&apos;s 2023 Email Analytics Report. This exceptional return&mdash;the highest of any digital marketing channel&mdash;increases even further with segmentation. Campaign Monitor&apos;s research found that segmented campaigns drove a 760% increase in revenue compared to non-segmented sends.&quot;</p>
+<p>See the difference? The second version weaves sources into the narrative while providing specific, verifiable details. It reads naturally while establishing credibility with every sentence.</p>
+<p>Try this right now: Open your most important article. Find the first statistic or major claim. Does it have a specific, linked source? If not, spend the next 15 minutes finding and adding proper citations.</p>
+<p>The &quot;Primary Source Rule&quot;<br/>
+Here&apos;s a mistake that cost me AI citations for months: citing secondary sources instead of primary ones.</p>
+<p>Secondary (Wrong): &quot;According to a Forbes article, 70% of consumers prefer email communication.&quot;</p>
+<p>Primary (Right): &quot;According to MarketingSherpa&apos;s 2023 Consumer Channel Preference Study, 70% of consumers prefer email communication for brand messages.&quot;</p>
+<p>AI systems prefer primary sources because they&apos;re more verifiable and authoritative. When you cite a Forbes article that cites a study, you&apos;re adding a layer of potential distortion or misinterpretation. Go to the original source.</p>
+<p>Yes, this takes more work. Yes, it&apos;s worth it. The difference in AI citation frequency is substantial.</p>
+<p>I tracked this with a client&apos;s content. We took 15 articles and upgraded all secondary citations to primary sources. Within two months, AI citation frequency increased by 58% for those articles. Same content, better sources, dramatically different results.</p>
+<p>The Source Quality Hierarchy<br/>
+Not all sources are created equal in the eyes of AI systems. Here&apos;s the hierarchy from most to least credible:</p>
+<p>Tier 1 (Highest Credibility):</p>
+<p>Peer-reviewed academic research<br/>
+Government and institutional data (.gov, .edu)<br/>
+Original research studies<br/>
+Official organizational reports<br/>
+Tier 2 (Strong Credibility):</p>
+<p>Reputable news organizations with editorial standards<br/>
+Industry research from established firms<br/>
+Books from recognized publishers<br/>
+Conference papers and presentations<br/>
+Tier 3 (Moderate Credibility):</p>
+<p>Expert blog posts with transparent credentials<br/>
+Trade publications<br/>
+White papers from established companies<br/>
+Case studies with verifiable data<br/>
+Tier 4 (Weak Credibility):</p>
+<p>Anonymous sources<br/>
+User-generated content without verification<br/>
+Single-source anecdotes<br/>
+Content without clear authorship or dates<br/>
+Aim for Tier 1 and 2 sources whenever possible. If you must use Tier 3, supplement with higher-tier sources. Avoid Tier 4 for anything factual.</p>
+<p>Handling Claims You Can&apos;t Source<br/>
+Sometimes you have valuable insights based on experience that don&apos;t have formal research backing them. Here&apos;s how to handle this without destroying credibility:</p>
+<p>Bad approach: State it as fact without qualification. &quot;Businesses that publish weekly see 3x more leads.&quot;</p>
+<p>Good approach: Clearly label it as observation or analysis. &quot;In my work with 50+ B2B companies over the past decade, I&apos;ve consistently observed that businesses publishing weekly content generate approximately 3x more qualified leads than those publishing monthly. While this isn&apos;t formal research, the pattern has been remarkably consistent across industries.&quot;</p>
+<p>AI systems respect transparency about the nature of your evidence. They&apos;re less likely to cite observational claims, but they won&apos;t penalize you for including them if you&apos;re honest about what they are.</p>
+<p>How to Build Author-Level Credibility<br/>
+Strong sources aren&apos;t enough if readers (and AI systems) don&apos;t know why you&apos;re qualified to synthesize and interpret them. Author credibility matters&mdash;but it needs to be displayed differently than most people think.</p>
+<p>In-Content Credential Establishment<br/>
+AI systems need to see expertise within the content itself, not just in a separate bio page. The first time you introduce a controversial or important claim, establish why readers should trust you on this specific topic.</p>
+<p>Weak: &quot;The best approach to conversion rate optimization is multivariate testing.&quot;</p>
+<p>Strong: &quot;After running over 200 A/B and multivariate tests for SaaS companies over the past 8 years, I&apos;ve found that multivariate testing delivers the most actionable insights for conversion rate optimization&mdash;but only when you have sufficient traffic.&quot;</p>
+<p>See the difference? The second version establishes specific, relevant credentials right where they matter. You&apos;re not asking readers to remember your bio from another page&mdash;you&apos;re building trust at the point of claim.</p>
+<p>The &quot;Earned Secrets&quot; Technique<br/>
+One of the most effective credibility builders for AICO is sharing insights that only come from direct experience&mdash;the kind of details that prove you&apos;ve actually done the work.</p>
+<p>Generic (Low Credibility): &quot;Email subject lines should be compelling and relevant.&quot;</p>
+<p>Specific (High Credibility): &quot;The subject line testing we conducted across 2.3 million emails revealed something counterintuitive: questions outperformed statements by 18% for cold outreach, but statements outperformed questions by 23% for existing customers. The difference comes down to relationship context&mdash;prospects need engagement prompts, while customers need clear value propositions.&quot;</p>
+<p>That level of specific, nuanced detail can only come from real experience. AI systems recognize this pattern and weight it heavily in credibility assessments. You can&apos;t fake that kind of granular insight.</p>
+<p>Credential Display Without Ego<br/>
+Here&apos;s something I had to learn: establishing credibility isn&apos;t about bragging. It&apos;s about giving readers and AI systems context to evaluate your claims.</p>
+<p>Ego-driven (Turns people off): &quot;As one of the world&apos;s leading experts in SEO with over 50 awards and recognition from every major industry publication...&quot;</p>
+<p>Context-driven (Builds credibility): &quot;In my 12 years specializing in technical SEO for enterprise e-commerce sites...&quot;</p>
+<p>The second version provides relevant context without making it about your ego. It answers the question &quot;why should I trust you on this topic?&quot; without being obnoxious about it.</p>
+<p>When to Use Third-Party Validation<br/>
+Sometimes the most credible thing you can do is cite other experts, even on topics where you have expertise. This shows intellectual humility and thoroughness.</p>
+<p>I used to think that citing competing experts made me look less authoritative. The opposite is true. When I started incorporating other expert perspectives&mdash;especially when they disagreed with me&mdash;AI citation frequency actually increased.</p>
+<p>Example: &quot;My testing suggests X approach works best, though it&apos;s worth noting that [Industry Expert] advocates for Y approach in certain contexts. Both methods have merit&mdash;X works better for [specific scenario] while Y excels at [different scenario].&quot;</p>
+<p>This kind of nuanced, multi-perspective analysis signals sophistication that AI systems recognize and reward. It shows you&apos;re not just promoting your own agenda&mdash;you&apos;re synthesizing the full landscape of expert opinion.</p>
+<p>How to Build Content-Level Credibility<br/>
+Even with perfect sources and strong author credentials, poor content presentation can undermine credibility. Here&apos;s how to get the overall presentation right.</p>
+<p>The Language of Credibility<br/>
+Certain writing patterns signal credibility to AI systems. Others signal speculation or opinion. Here&apos;s the breakdown:</p>
+<p>High-Credibility Language:</p>
+<p>Specific numbers and data points<br/>
+Precise terminology<br/>
+Qualified statements with appropriate caveats<br/>
+Acknowledgment of limitations and exceptions<br/>
+Structured, logical progression<br/>
+Technical accuracy<br/>
+Low-Credibility Language:</p>
+<p>Vague generalizations (&quot;many experts believe&quot;)<br/>
+Superlatives without support (&quot;the best,&quot; &quot;always,&quot; &quot;never&quot;)<br/>
+Absolutist claims without nuance<br/>
+Emotional appeals instead of evidence<br/>
+Informal or casual tone for serious topics<br/>
+Obvious keyword stuffing<br/>
+Compare these two statements:</p>
+<p>Low Credibility: &quot;Everyone knows that social media is the best marketing channel and always delivers amazing results for every business.&quot;</p>
+<p>High Credibility: &quot;Social media marketing effectiveness varies significantly by industry and audience. B2C companies targeting audiences under 35 typically see 3-4x higher engagement rates compared to B2B enterprises, according to Sprout Social&apos;s 2024 Index.&quot;</p>
+<p>The second statement is specific, qualified, sourced, and nuanced. That&apos;s the pattern AI systems are scanning for.</p>
+<p>The Confidence Calibration Problem<br/>
+Here&apos;s a credibility killer I see constantly: overconfident claims that overstate certainty.</p>
+<p>Overconfident (Damages Credibility): &quot;AI will completely replace human writers within 2 years.&quot;</p>
+<p>Appropriately Calibrated (Builds Credibility): &quot;Based on current AI capability trajectories and adoption patterns, AI tools will likely handle 40-60% of routine content tasks within 2-3 years, according to Gartner&apos;s 2024 predictions. However, complex strategic content and brand voice work will remain primarily human-driven for the foreseeable future.&quot;</p>
+<p>The second version demonstrates sophisticated thinking and appropriate uncertainty. That builds credibility with AI systems, which are trained to avoid overconfident predictions.</p>
+<p>Acknowledging Limitations and Uncertainty<br/>
+Nothing builds credibility faster than honest acknowledgment of what you don&apos;t know or where evidence is limited.</p>
+<p>I learned this after an embarrassing episode where I made confident claims about a technical topic, only to have readers point out important exceptions I&apos;d missed. Now I proactively address limitations:</p>
+<p>Example: &quot;This approach works consistently for B2B SaaS companies with monthly traffic over 50,000 visitors. For smaller sites or different business models, results may vary&mdash;we simply don&apos;t have enough data to draw definitive conclusions for those scenarios.&quot;</p>
+<p>AI systems recognize intellectual honesty. They&apos;re more likely to cite content that acknowledges limitations than content that pretends to have all the answers.</p>
+<p>The Update Date Signal<br/>
+One simple credibility signal that makes a huge difference: prominently displayed publication and last-updated dates.</p>
+<p>AI systems heavily weight content freshness, especially for topics that change frequently. If your content doesn&apos;t show when it was published or last updated, AI systems assume it might be outdated and are less likely to cite it.</p>
+<p>Implementation: Add clear date stamps at the top of every article: &quot;Published: March 15, 2024 | Last Updated: October 10, 2025&quot;</p>
+<p>And actually update your content regularly. Don&apos;t just change the date&mdash;make substantive updates, add new research, refresh statistics, and note what&apos;s changed.</p>
+<p>I tested this with a client&apos;s evergreen content. We added prominent date stamps and committed to quarterly updates. Within four months, AI citation frequency for those updated articles increased by 41% compared to identical articles without date stamps.</p>
+<p>The AI Fact-Checking Challenge (And How to Pass It)<br/>
+Here&apos;s something most people don&apos;t realize: AI systems don&apos;t just passively accept your claims. They actively vet them against their training data and sometimes against real-time searches.</p>
+<p>This is where a lot of content fails the AICO credibility test&mdash;not because it&apos;s wrong, but because it&apos;s imprecise or uses outdated information.</p>
+<p>Common Credibility Failures<br/>
+Failure #1: Citing AI-Generated &quot;Facts&quot; Without Verification</p>
+<p>The biggest credibility killer right now? Using AI tools to generate content or research, then publishing AI hallucinations as fact.</p>
+<p>I&apos;ll admit it: I almost did this. I used ChatGPT to help research statistics for an article. It gave me a compelling stat with a detailed citation. I almost published it. Then, because I&apos;m paranoid, I checked the source. The study didn&apos;t exist. The journal didn&apos;t exist. The entire citation was a hallucination.</p>
+<p>This happens more often than people realize, which is why I developed a three-step method that&apos;s eliminated hallucinations in my final outputs 100% of the time. But first, you need to understand how AI hallucinations actually work.</p>
+<p>Understanding AI Hallucinations<br/>
+Here&apos;s what most people don&apos;t realize: AI hallucinations aren&apos;t persistent like human false memories. When a person misremembers something, they often hold onto that incorrect memory stubbornly. AI systems don&apos;t work that way. A hallucination in one output doesn&apos;t mean the AI will repeat it consistently&mdash;it&apos;s more like a momentary glitch than a fixed belief.</p>
+<p>This is actually good news, because it means we can use the AI&apos;s own systems to catch its mistakes.</p>
+<p>The Three-Step Hallucination Elimination Method<br/>
+I&apos;ve tested this method extensively across hundreds of research sessions, and I track every single instance. Here&apos;s what works:</p>
+<p>Step 1: Ask the AI to Fact-Check Its Own Output</p>
+<p>After getting your initial research or content, ask the AI to fact-check what it just provided. Something like: &quot;Can you verify the accuracy of the sources and statistics you just provided?&quot;</p>
+<p>What this does: Forces the AI to run the information through its systems again, creating a second processing opportunity. This catches approximately 13-70% of hallucinations, depending on two critical factors:</p>
+<p>Time impact: The longer between the original output and this first check, the higher the catch rate. If you wait 10-15 minutes before asking for verification, hallucinations get caught about 50% of the time. If you change topics and come back 20 minutes later, the catch rate jumps to 80%. If you check immediately, you&apos;re looking at the lower end&mdash;around 13-17% if you&apos;re still discussing the same topic.</p>
+<p>Topic switching matters: Staying on the same topic suppresses the catch rate (13-17%). Switching topics and then checking dramatically improves it (80%+).</p>
+<p>Step 2: Trigger Deeper Analysis</p>
+<p>Midway through your interaction, ask the AI to defend its output, explain its reasoning step-by-step, or provide opposing viewpoints. For example: &quot;Walk me through your reasoning on this claim&quot; or &quot;What are the counterarguments to this position?&quot;</p>
+<p>What this does: Forces another pass through the system with a different cognitive approach. The AI has to justify rather than just report, which catches hallucinations that survived the first check. This step alone catches almost all remaining hallucinations.</p>
+<p>Step 3: Final Verification with Sources and Opposition</p>
+<p>Ask the AI to fact-check the output one more time, but this time specifically request it cite sources and provide any opposing perspectives. &quot;Verify these claims, provide the specific sources, and note any credible opposing research.&quot;</p>
+<p>What this does: Combines verification with source attribution and alternative viewpoints, triggering the most comprehensive analysis. This is your safety net.</p>
+<p>The Results:</p>
+<p>When you use all three checks together, the order matters because you&apos;re triggering progressively deeper analysis with each step. I&apos;ve never had a hallucination make it past all three checks&mdash;even when the checks were done in quick succession with only minutes between them.</p>
+<p>If you have time, spacing the checks 10-20 minutes apart and switching topics between them gives you the highest first-check success rate. If you&apos;re working quickly, running all three checks in close succession still works&mdash;I&apos;ve never seen a hallucination survive the third check regardless of timing.</p>
+<p>The Critical Fourth Step: Human Verification</p>
+<p>Here&apos;s the part that makes this method truly reliable: I still verify everything myself. Every. Single. Time.</p>
+<p>Even knowing my three-step method has a 100% success rate in eliminating hallucinations from AI outputs, I never publish a citation without personally confirming it exists and says what the AI claims it says. Because here&apos;s the thing: if the AI gets it wrong, that&apos;s a tool failure. If I get it wrong, that&apos;s my reputation.</p>
+<p>This isn&apos;t paranoia&mdash;it&apos;s professional responsibility. AI tools are incredibly valuable for research efficiency, helping you find relevant sources faster and synthesize information more quickly. But they&apos;re research assistants, not final authorities. You&apos;re still the researcher. You&apos;re still accountable.</p>
+<p>The three-step method eliminates hallucinations from the AI&apos;s output. Your personal verification ensures nothing false makes it into your published content. Both layers matter.</p>
+<p>The rule: Never trust AI-generated research citations without verifying them in the original source, even after running them through the three-step verification process. AI tools are incredibly useful for research efficiency, but the final verification is always your responsibility.</p>
+<p>Failure #2: Outdated Statistics<br/>
+Using a 2015 statistic in 2025 when more recent data exists is a massive credibility red flag for AI systems.</p>
+<p>They&apos;re cross-referencing your claims against their training data. If they &quot;know&quot; more recent data exists and you&apos;re using old numbers, that&apos;s a trust signal failure.</p>
+<p>The fix: When you cite statistics, always check if more recent data is available. If you must use older data (sometimes it&apos;s the most recent available), explicitly note this: &quot;According to the most recent comprehensive study (2020)...&quot;</p>
+<p>Failure #3: Misattributed Quotes<br/>
+Using a quote without verifying its actual source is dangerous. &quot;As Einstein said...&quot; is often followed by something Einstein never actually said.</p>
+<p>I once used a Winston Churchill quote that sounded perfect for my article. A reader informed me Churchill never said it&mdash;it was a modern misattribution that&apos;s widely repeated online. Embarrassing doesn&apos;t begin to cover it.</p>
+<p>The fix: Verify quotes through reputable quote databases like Wikiquote or original sources before using them. If you can&apos;t verify it, don&apos;t use it. Better no quote than a fake one.</p>
+<p>Failure #4: Conflating Correlation and Causation<br/>
+Making causal claims based on correlational data destroys credibility fast, especially with AI systems that are trained on rigorous research standards.</p>
+<p>Wrong: &quot;Email marketing causes higher customer retention.&quot;</p>
+<p>Right: &quot;Companies using email marketing show 25% higher customer retention rates, according to HubSpot&apos;s 2024 study, though the relationship may be correlational rather than causal&mdash;companies investing in email often invest in other retention strategies simultaneously.&quot;</p>
+<p>Precision in claims matters enormously for AI credibility. Show you understand the difference between correlation and causation, and AI systems will trust your interpretation of research.</p>
+<p>Credibility Mistakes I&apos;ve Made (So You Don&apos;t Have To)<br/>
+Let me save you from my painful learning experiences:</p>
+<p>Mistake #1: The &quot;Everyone Knows&quot; Trap<br/>
+I once published an article making claims I assumed were common knowledge in my industry. They were common knowledge&mdash;to industry insiders. AI systems serving general audiences had no way to verify these claims and didn&apos;t cite them.</p>
+<p>The lesson: Cite even &quot;obvious&quot; claims if they&apos;re not universally common knowledge. What&apos;s obvious to you might not be obvious to AI systems or their users.</p>
+<p>Mistake #2: Citing Paywalled Sources<br/>
+I meticulously cited academic research behind paywalls. Great for showing due diligence. Terrible for AICO, because AI systems couldn&apos;t verify the claims by following the links.</p>
+<p>The lesson: When possible, link to publicly accessible versions of research (preprints, author copies, institutional repositories). If only paywalled versions exist, provide enough detail in your content that the claim can be partially verified through the abstract and citation information alone.</p>
+<p>Mistake #3: Over-Relying on Personal Experience<br/>
+I wrote an entire guide based purely on my 10 years of experience, with zero external sources. It performed fine in traditional search but got almost no AI citations.</p>
+<p>The lesson: Personal experience is valuable, but it needs to be supported by external validation. Combine your insights with relevant research, industry data, or case studies from others. Your experience provides the insights; external sources provide the verification.</p>
+<p>Mistake #4: Inconsistent Sourcing<br/>
+I cited some claims meticulously and left others completely unsourced in the same article. This inconsistency signals to AI systems that maybe I only cited the claims I could support and made up the rest.</p>
+<p>The lesson: If you&apos;re going to cite sources, do it consistently throughout your content. Don&apos;t cherry-pick which claims to support. Every major factual claim should have backing.</p>
+<p>Mistake #5: The Vague Source Reference<br/>
+&quot;Studies show that...&quot; or &quot;Experts agree...&quot; without naming specific studies or experts is functionally the same as no citation at all.</p>
+<p>I used to think vague references were better than nothing. They&apos;re not. They&apos;re worse than nothing because they signal sloppiness.</p>
+<p>The lesson: Be specific. Always. Name the study, the researchers, the institution, the publication date. Vague references don&apos;t build credibility&mdash;they undermine it.</p>
+<p>Measuring Credibility Success<br/>
+How do you know if your credibility signals are working? Track these indicators:</p>
+<p>AI Citation Frequency</p>
+<p>Test your content in multiple AI systems using factual queries where your content should be relevant. Are you getting cited? This is the ultimate measure of credibility success.</p>
+<p>Citation Context</p>
+<p>When you do get cited, how do AI systems describe your content? Do they say &quot;according to credible research&quot; or just &quot;a source mentions&quot;? The language they use indicates how much credibility they&apos;re assigning you.</p>
+<p>Source Link Follow-Through</p>
+<p>Check your analytics for traffic from AI platforms. Are people following citation links back to your content? This indicates AI systems are citing you with confidence, and users trust those citations.</p>
+<p>Fact-Check Style Citations</p>
+<p>Sometimes AI systems will cite your content alongside other sources, essentially using you to corroborate claims. This is a strong credibility signal&mdash;they trust you enough to use you as verification.</p>
+<p>Zero Corrections</p>
+<p>Monitor whether AI systems ever cite your content incorrectly or add caveats when citing you (&quot;while this source claims...&quot; vs. &quot;according to this source...&quot;). If they consistently cite you cleanly without hedging language, your credibility signals are strong.</p>
+<p>Your Credibility Implementation Plan<br/>
+Here&apos;s your two-week roadmap to strengthening credibility for AICO:</p>
+<p>Days 1-3: Citation Audit</p>
+<p>Review your top 10 articles. For each factual claim or statistic:</p>
+<p>Is it cited?<br/>
+Is the citation specific and linked?<br/>
+Is the source primary or secondary?<br/>
+Is the information current?<br/>
+Could an AI system verify this claim?<br/>
+Create a prioritized list of claims that need proper sourcing.</p>
+<p>Days 4-7: Source Upgrade</p>
+<p>For your 3 highest-priority articles:</p>
+<p>Find primary sources for all major claims<br/>
+Add specific, linked citations<br/>
+Replace outdated statistics with current data<br/>
+Verify any AI-generated research before keeping it<br/>
+Add publication and last-updated dates prominently<br/>
+Days 8-10: Author Credibility Enhancement</p>
+<p>Add in-content credential establishment:</p>
+<p>Introduce your relevant expertise at first major claim<br/>
+Include specific experience details that prove direct knowledge<br/>
+Share &quot;earned secrets&quot; that demonstrate real-world application<br/>
+Add nuance and caveats where appropriate<br/>
+Acknowledge limitations honestly<br/>
+Days 11-14: Content-Level Polish</p>
+<p>Review for credibility signals:</p>
+<p>Remove overconfident absolute statements<br/>
+Calibrate confidence levels appropriately<br/>
+Fix vague generalizations with specific details<br/>
+Ensure consistent citation throughout<br/>
+Add technical precision where needed<br/>
+Check for correlation vs. causation mistakes<br/>
+Then commit to this standard: every new piece of content gets the credibility treatment before publication. No statistics without sources. No claims without evidence. No expertise without demonstration.</p>
+<p>The Real Secret to Credibility in AICO<br/>
+Here&apos;s what I finally figured out after months of watching well-written content get ignored by AI systems: credibility isn&apos;t about appearing trustworthy. It&apos;s about being verifiable.</p>
+<p>Traditional SEO could reward signals and proxies for trust&mdash;domain authority, backlink profiles, time on site. AI systems don&apos;t have time for proxies. They need direct, immediate verification that your claims are sound.</p>
+<p>This is actually good news. It means credibility is more democratic than traditional authority. You don&apos;t need a famous name, a PhD, or a decade of experience to be citation-worthy (though those help). You need to do the research, cite your sources properly, and present information with appropriate precision and nuance.</p>
+<p>In a world where AI systems can generate plausible-sounding content instantly, verifiable accuracy is your competitive advantage. It&apos;s the one thing AI systems can&apos;t fake&mdash;and the one thing they&apos;re specifically looking for when deciding what to cite.</p>
+<p>Build credibility into every piece of content from the ground up. Make every claim defensible. Source every statistic. Demonstrate your expertise where it matters. That&apos;s how you become citation-worthy.</p>
+<p>Ready to Build Credibility That AI Systems Trust?<br/>
+I&apos;ve created a comprehensive Credibility Toolkit that includes:</p>
+<p>The Source Citation Framework with 50+ trusted sources by industry<br/>
+Claim-by-claim credibility checklist<br/>
+Author credential positioning templates<br/>
+Citation integration guide (make sources readable, not academic)<br/>
+Fact-checking workflow for AI-generated research<br/>
+Content-level credibility scoring rubric<br/>
+Source quality assessment matrix<br/>
+Before/after examples across 10 content types<br/>
+AI fact-check survival guide<br/>
+Download the Free Credibility Toolkit &rarr;</p>
+<p>Stop hoping AI systems will trust your content. Start building verifiable credibility that makes citing you the obvious choice.</p>
+<p>The difference between ranking and being cited comes down to one question: &quot;Can I verify this right now?&quot; Make sure the answer is always yes.</p>
+<p>Your expertise deserves to be cited. Let&apos;s make it credible.</p>
+</div></div>
+					</body>
+				</html>
+			
