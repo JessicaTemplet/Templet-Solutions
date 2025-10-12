@@ -24,7 +24,7 @@ function attachListeners() {
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.querySelector('.nav-links'); // Targets the main navigation list
     
-    // 🛑 The fix remains: Target the button element with the class .dropdown-toggle
+    // Target the button element with the class .dropdown-toggle
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
     /* ===== 1. MOBILE MENU FUNCTIONALITY ===== */
@@ -57,10 +57,11 @@ function attachListeners() {
 
     dropdownToggles.forEach(dropdownButton => {
         
+        const dropdown = dropdownButton.closest('.dropdown'); // Find the parent <li> once
+
         dropdownButton.addEventListener('click', function(e) {
             if (window.innerWidth >= desktopBreakpoint) {
                 e.preventDefault(); // Prevent default link behavior on desktop
-                const dropdown = this.closest('.dropdown');
                 const isOpen = dropdown.classList.toggle('open');
                 this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                 
@@ -80,8 +81,17 @@ function attachListeners() {
         // A11Y: Close on Escape key press when dropdown is open
         dropdownButton.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                this.closest('.dropdown').classList.remove('open');
+                dropdown.classList.remove('open');
                 this.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // 🟢 CRITICAL FIX: Close dropdown on mouse leave (Desktop only)
+        dropdown.addEventListener('mouseleave', function() {
+            if (window.innerWidth >= desktopBreakpoint) {
+                // 'this' inside this handler refers to the 'dropdown' element (the <li>)
+                this.classList.remove('open'); 
+                dropdownButton.setAttribute('aria-expanded', 'false');
             }
         });
     });
@@ -106,14 +116,14 @@ function attachListeners() {
 
 /* ===== NAVIGATION CONTENT LOADING FIX (The batch fix for all pages) ===== */
 
-// 🛑 NEW FUNCTION: Loads navigation content from the external HTML file
+// NEW FUNCTION: Loads navigation content from the external HTML file
 function loadNavigationFromHTML() {
-    // 🛑 CRITICAL CHANGE: Target the new dedicated wrapper ID
+    // CRITICAL CHANGE: Target the new dedicated wrapper ID
     const navContainer = document.getElementById('navigation-bar-wrapper'); 
     if (!navContainer) return; // Exit if the container isn't found
 
     // The path must be correct for all your HTML pages
-    // 🟢 PATH CORRECTION APPLIED: Using root-relative path for universal loading
+    // PATH CORRECTION APPLIED: Using root-relative path for universal loading
     fetch('/nav-contents.html') 
         .then(response => {
             if (!response.ok) {
