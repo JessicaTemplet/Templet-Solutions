@@ -95,7 +95,9 @@ header {
 .nav-links li {
     padding: 0;
 }
-.nav-links a {
+.nav-links a,
+.dropdown-toggle { /* ADDED: Target the Articles button */
+    display: inline-block; /* Essential for padding to work */
     text-decoration: none;
     color: var(--ts-navy);
     background-color: transparent;
@@ -104,8 +106,15 @@ header {
     border-radius: 6px;
     font-weight: 600;
     transition: all 0.3s ease;
+    
+    /* ADDED: Fix button appearance */
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.6; /* Ensure vertical alignment matches <a> tags */
 }
-.nav-links a:hover {
+
+.nav-links a:hover,
+.dropdown-toggle:hover { /* ADDED: Apply hover state to the button */
     background-color: var(--ts-navy);
     color: white;
     border-color: var(--ts-navy);
