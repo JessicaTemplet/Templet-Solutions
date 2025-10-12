@@ -66,18 +66,6 @@ header {
     max-height: 200px; /* Reference height for nav bar positioning */
 }
 
-/* 🛑 REMOVED OLD NAV POSITIONING - it is now obsolete since <nav> is gone */
-/* 🛑 The code block below is replaced by the #navigation-bar-wrapper styles below */
-/* nav {
-    display: flex;
-    width: 100%;
-    height: 100%; 
-    justify-content: center;
-    position: relative;
-    z-index: 1001;
-}
-*/
-
 /* -------------------- NEW DEDICATED NAVIGATION BAR CONTAINER -------------------- */
 #navigation-bar-wrapper {
     position: fixed;
@@ -141,15 +129,24 @@ header {
 
 .nav-links a {
     text-decoration: none;
-    /* COLOR FIX: Ensure this is a dark color for visibility on the white nav bar */
-    color: var(--ts-navy); 
-    font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 0.5rem 0;
+    
+    /* 🟢 FIX: PROFESSIONAL BUTTON FORMATTING */
+    color: var(--ts-navy); /* Dark text */
+    background-color: transparent; /* Clear background */
+    border: 2px solid var(--ts-navy); /* Thin, dark border */
+    padding: 6px 15px; /* Adds button size/padding */
+    border-radius: 6px; /* Rounded corners */
+    
+    font-weight: 600; /* Bolder text for buttons */
+    /* REMOVED OLD: padding: 0.5rem 0; */
+    transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--ts-teal);
+    /* 🟢 FIX: BUTTON HOVER EFFECT */
+    background-color: var(--ts-navy); /* Dark background on hover */
+    color: white; /* White text on hover */
+    border-color: var(--ts-navy);
 }
 
 /* Dropdown menu */
@@ -170,6 +167,10 @@ header {
     margin-top: 15px;
     left: 50%;
     transform: translateX(-50%);
+    
+    /* 🟢 FIX: Enable Scrolling for long lists (e.g., articles) */
+    max-height: 400px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scroll bar */
 }
 
 .dropdown.open .dropdown-content {
@@ -592,102 +593,3 @@ footer {
         top: 0; 
         right: 0;
         height: 100%;
-        width: 80%; 
-        max-width: 300px;
-        background: var(--ts-navy); 
-        padding: 60px 20px 20px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.4);
-        z-index: 999; 
-        transform: translateX(100%); 
-        gap: 1.5rem; 
-        
-        /* Reset positioning for mobile menu slide-out */
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-bottom: 0;
-    }
-
-    /* State when menu is open (triggered by JS) */
-    .nav-links.open {
-        transform: translateX(0); 
-    }
-    
-    .nav-links a {
-        color: white; 
-        padding: 0.8rem 0;
-    }
-
-    .dropdown-content {
-        position: static;
-        transform: none;
-        margin-top: 10px;
-        left: auto;
-        background: var(--ts-medium-blue);
-    }
-    
-    .dropdown-content a {
-        color: white;
-        padding: 8px 10px;
-    }
-
-
-    header {
-        background-size: cover;
-        height: auto; 
-        aspect-ratio: 4 / 1;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .content-grid,
-    .features-grid,
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .article-content h1 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .article-content {
-        padding: 1rem 0;
-    }
-
-    .article-content h1 {
-        font-size: 1.8rem;
-    }
-
-    /* 🛑 CRITICAL FIX 4: Ensure body margin stays calculated */
-    body {
-        margin-top: calc(100vw / 4 + 40px); 
-    }
-
-    header {
-        aspect-ratio: 4 / 1;
-    }
-}
-
-/* -------------------- ANIMATIONS -------------------- */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    animation: fadeInUp 0.8s ease forwards;
-}
