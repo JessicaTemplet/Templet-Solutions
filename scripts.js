@@ -108,10 +108,11 @@ function attachListeners() {
 
 // 🛑 NEW FUNCTION: Loads navigation content from the external HTML file
 function loadNavigationFromHTML() {
-    const navContainer = document.getElementById('main-nav');
+    // 🛑 CRITICAL CHANGE: Target the new dedicated wrapper ID
+    const navContainer = document.getElementById('navigation-bar-wrapper'); 
     if (!navContainer) return; // Exit if the container isn't found
 
-    // This path must be correct for all your HTML pages
+    // The path must be correct for all your HTML pages
     fetch('nav-contents.html') 
         .then(response => {
             if (!response.ok) {
@@ -121,7 +122,7 @@ function loadNavigationFromHTML() {
             return response.text();
         })
         .then(htmlContent => {
-            // Inject the fetched HTML (the <button> and <ul>) into the empty <nav> tag
+            // Inject the fetched HTML (the <button> and <ul>) into the new wrapper div
             navContainer.innerHTML = htmlContent;
 
             // CRITICAL: Call attachListeners AFTER the content has been injected
