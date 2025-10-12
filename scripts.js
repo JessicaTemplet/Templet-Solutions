@@ -113,7 +113,8 @@ function loadNavigationFromHTML() {
     if (!navContainer) return; // Exit if the container isn't found
 
     // The path must be correct for all your HTML pages
-    fetch('nav-contents.html') 
+    // 🟢 PATH CORRECTION APPLIED: Using root-relative path for universal loading
+    fetch('/nav-contents.html') 
         .then(response => {
             if (!response.ok) {
                 console.error('Failed to load navigation content:', response.statusText);
