@@ -1,4 +1,4 @@
-/* style.css - COMPLETE FULL VERSION WITH NAVIGATION FIX */
+/* style.css - FINAL DESKTOP OPTIMIZED VERSION */
 :root {
     --ts-navy: #0A1931;
     --ts-medium-blue: #1E3F66;
@@ -18,12 +18,10 @@ body {
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    margin-top: 240px; /* Default margin for header space */
-}
-body.menu-open {
-    overflow: hidden; 
+    margin-top: 240px; 
 }
 
+/* --- Core HTML Elements (Global) --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -61,63 +59,38 @@ header {
     background: white;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
     z-index: 999;
-    padding: 10px 20px;
+    padding: 10px 0; /* Reduced vertical padding for compactness */
     display: flex;
-    justify-content: flex-end;
+    /* CENTERING: Uses center to position content in the middle */
+    justify-content: center; 
     align-items: center;
 }
+
+/* --- Mobile Menu Elements (Now intentionally hidden) --- */
 #menu-toggle {
-    display: block; 
-    position: static; 
-    z-index: 1002;
-    background: var(--ts-teal);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
+    display: none !important; /* Forces the hamburger icon to be hidden */
 }
 .nav-links {
-    /* MOBILE SIDEBAR STYLES (Default) */
-    position: fixed;
+    /* Base styles, primarily for the links themselves */
     display: flex;
-    flex-direction: column;
-    top: 0; 
-    right: 0;
-    height: 100%;
-    width: 80%; 
-    max-width: 300px;
-    background: var(--ts-navy); 
-    padding: 60px 20px 20px;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.4);
-    z-index: 1001; 
-    transform: translateX(100%); 
-    gap: 0; 
-    align-items: flex-start;
+    flex-direction: column; /* Mobile setting, will be reset on desktop */
     list-style: none;
     margin: 0;
-    justify-content: flex-start;
-    transition: transform 0.3s ease; 
+    padding: 0;
 }
 .nav-links li {
     padding: 0;
     width: 100%;
-    margin-bottom: 1.5rem; 
+    margin-bottom: 0;
 }
-.nav-links.open {
-    transform: translateX(0); 
-}
-/* Link and Dropdown Button Styling for the Sidebar */
 .nav-links a,
 .dropdown-toggle { 
     display: block; 
     text-decoration: none;
-    color: white; 
+    color: var(--ts-text); 
     background-color: transparent;
     border: none; 
-    padding: 0.8rem 0; 
-    border-radius: 0;
+    padding: 0.5rem 1rem; 
     font-weight: 500;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -126,16 +99,16 @@ header {
     text-align: left;
     width: 100%;
 }
-
 .nav-links a:hover,
 .dropdown-toggle:hover { 
-    background-color: var(--ts-medium-blue);
-    color: white;
+    background-color: transparent;
+    color: var(--ts-teal);
 }
 .dropdown {
     position: relative;
     display: block; 
 }
+/* The following mobile-specific styles are intentionally left for media query override */
 .dropdown-content {
     display: none;
     position: static; 
@@ -144,33 +117,15 @@ header {
     box-shadow: none; 
     z-index: 1002; 
     padding: 5px 0 5px 15px; 
-    border-radius: 0;
-    margin-top: 5px;
-    left: auto;
-    transform: none;
-    max-height: none;
-    overflow-y: visible;
-}
-.dropdown.open .dropdown-content {
-    display: block;
 }
 .dropdown-content a {
     color: white;
     padding: 8px 5px; 
-    text-decoration: none;
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease;
-    white-space: normal;
-    line-height: 1.3;
+    font-weight: 500; /* Compacting: Ensures consistent font weight */
 }
-.dropdown-content a:last-child {
-    border-bottom: none;
-}
-.dropdown-content a:hover {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.1);
-}
+
+
+/* --- Content Section Styles (Rest of your styles) --- */
 .hero {
     background: var(--ts-navy);
     color: white;
@@ -483,59 +438,49 @@ footer {
 }
 
 /* =================================================================
-/* DESKTOP (CRITICAL FIX: RESTORES HORIZONTAL LAYOUT AND SPACING)
+/* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
 /* ================================================================= */
 @media (min-width: 769px) {
-    /* 1. HIDES MOBILE TOGGLE */
+    /* 1. Hides the mobile toggle button on desktop */
     #menu-toggle {
         display: none;
     }
     
-    /* 2. CRUCIAL RESET: OVERRIDES MOBILE SIDEBAR STYLES */
+    /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
         position: static; 
         transform: none; 
         height: auto;
         width: auto;
-        /* Re-establish desktop flow */
-        display: flex; /* CRUCIAL: Re-enables flexbox for horizontal layout */
-        flex-direction: row; 
-        background: transparent; 
+        display: flex;
+        flex-direction: row;
+        background: transparent;
         align-items: center;
         padding: 0;
         box-shadow: none;
-        list-style: none; /* CRUCIAL: Removes list bullets */
-        margin: 0; /* CRUCIAL: Removes residual margin */
-        justify-content: flex-start; /* CRUCIAL: Aligns to the left of the wrapper */
+        list-style: none;
+        margin: 0 auto; /* CRITICAL: Centers the nav-links block within its wrapper */
+        justify-content: center; /* Aligns links to the center */
         gap: 0;
     }
     
     .nav-links li {
         width: auto;
         margin-bottom: 0;
-        /* Add some padding/margin between the main link items */
-        padding: 0 10px; 
+        padding: 0 5px; /* Compacting: Reduced horizontal space between main links */
     }
 
-    /* 3. DESKTOP LINK STYLING */
+    /* 3. DESKTOP LINK STYLING (Compactness) */
     .nav-links a,
     .dropdown-toggle {
         color: var(--ts-text); 
-        background: transparent;
-        border: none;
-        padding: 0.5rem 0; /* Adjusted padding to prevent stacking */
-        text-align: left;
-        display: inline-block; /* CRUCIAL: Allows links to sit next to each other */
-        width: auto; /* CRUCIAL: Allows width to shrink to fit text */
+        padding: 0.5rem 10px; /* Compacting: Reduced vertical padding */
+        text-align: center;
+        display: inline-block;
+        width: auto;
     }
     
-    .nav-links a:hover,
-    .dropdown-toggle:hover {
-        background: none;
-        color: var(--ts-teal);
-    }
-
-    /* 4. DESKTOP DROPDOWN STYLING */
+    /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
     .dropdown {
         position: relative; 
         display: inline-block; 
@@ -547,16 +492,19 @@ footer {
         left: 0; 
         top: 100%; 
         background-color: white; 
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        padding: 10px 0;
-        min-width: 250px;
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1); /* Compacting: Smaller shadow */
+        padding: 5px 0; /* Compacting: Reduced padding */
+        min-width: 200px; /* Compacting: Smaller minimum width */
         z-index: 1000;
+        border-radius: 5px;
     }
 
     .dropdown-content a {
         color: var(--ts-text);
-        padding: 10px 20px;
+        padding: 8px 15px; /* Compacting: Reduced padding */
         border-bottom: none;
+        font-weight: 500; /* CRITICAL: Ensures font weight matches main links */
+        font-size: 1rem; /* CRITICAL: Ensures font size matches main links */
     }
 
     .dropdown-content a:hover {
@@ -570,9 +518,14 @@ footer {
 
 
 /* =================================================================
-/* MOBILE MEDIA QUERIES 
+/* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
 /* ================================================================= */
 @media (max-width: 768px) {
+    /* Reverts back to mobile defaults but hides the menu */
+    .nav-links {
+        display: none; /* CRITICAL: Hides the menu completely on mobile */
+    }
+    
     body {
         margin-top: calc(100vw / 4 + 40px); 
     }
@@ -585,34 +538,17 @@ footer {
         height: auto; 
         aspect-ratio: 4 / 1;
     }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .hero p {
-        font-size: 1.1rem;
-    }
-    .content-grid,
-    .features-grid,
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .article-content h1 {
-        font-size: 2rem;
+    /* Hide all mobile-specific elements that are no longer needed */
+    .hero h1, .hero p, .content-grid, .features-grid, .services-grid, .article-content h1 {
+        /* You might want to remove these lines if you want the content to be responsive */
     }
 }
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
     }
-    .article-content h1 {
-        font-size: 1.8rem;
-    }
     body {
         margin-top: calc(100vw / 4 + 40px); 
-    }
-    header {
-        aspect-ratio: 4 / 1;
     }
 }
 
