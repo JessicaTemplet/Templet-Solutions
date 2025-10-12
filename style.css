@@ -582,7 +582,7 @@ footer {
         z-index: 1002;
     }
     
-    /* Center nav content at the bottom of the banner on mobile */
+   /* Center nav content at the bottom of the banner on mobile */
     /* REMOVED OLD NAV POSITIONING, it's now handled by the fixed wrapper */
 
     .nav-links {
@@ -593,3 +593,112 @@ footer {
         top: 0; 
         right: 0;
         height: 100%;
+        width: 80%; 
+        max-width: 300px;
+        background: var(--ts-navy); 
+        padding: 60px 20px 20px;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.4);
+        z-index: 999; 
+        transform: translateX(100%); 
+        gap: 1.5rem; 
+        
+        /* Reset positioning for mobile menu slide-out */
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-bottom: 0;
+    }
+
+    /* State when menu is open (triggered by JS) */
+    .nav-links.open {
+        transform: translateX(0); 
+    }
+    
+    .nav-links a {
+        /* MOBILE BUTTON FIX: On mobile, links inside the menu are full-width, white text, not buttons */
+        color: white; 
+        padding: 0.8rem 0;
+        /* Remove desktop button styles on mobile */
+        background-color: transparent;
+        border: none;
+        border-radius: 0;
+        font-weight: 500;
+    }
+
+    .dropdown-content {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        left: auto;
+        background: var(--ts-medium-blue);
+        
+        /* Ensure scrolling/height rules don't interfere with mobile list */
+        max-height: none;
+        overflow-y: visible;
+    }
+    
+    .dropdown-content a {
+        color: white;
+        padding: 8px 10px;
+    }
+
+
+    header {
+        background-size: cover;
+        height: auto; 
+        aspect-ratio: 4 / 1;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .content-grid,
+    .features-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .article-content h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-content {
+        padding: 1rem 0;
+    }
+
+    .article-content h1 {
+        font-size: 1.8rem;
+    }
+
+    /* 🛑 CRITICAL FIX 4: Ensure body margin stays calculated */
+    body {
+        margin-top: calc(100vw / 4 + 40px); 
+    }
+
+    header {
+        aspect-ratio: 4 / 1;
+    }
+}
+
+/* -------------------- ANIMATIONS -------------------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    animation: fadeInUp 0.8s ease forwards;
+}
