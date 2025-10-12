@@ -1,4 +1,4 @@
-/* style.css - FINAL CORRECTED VERSION (Navigation Position Fixed) */
+/* style.css - FINAL CORRECTED VERSION */
 
 /* Custom properties (Updated for banner aesthetics) */
 :root {
@@ -27,7 +27,7 @@ body {
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    /* FIX 1: Ensure body content starts below the fixed header */
+    /* FIX 1: Ensure body content starts below the fixed header (adjusted for responsiveness) */
     margin-top: 150px; 
 }
 
@@ -117,7 +117,7 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    /* Color remains navy for the desktop links */
+    /* 🛑 COLOR FIX: Ensure this is a dark color for visibility on the white banner */
     color: var(--ts-navy); 
     font-weight: 500;
     transition: color 0.3s ease;
@@ -591,6 +591,7 @@ footer {
     }
 
     body {
+        /* Use a responsive margin-top based on the header's aspect ratio */
         margin-top: calc(100vw / 4); 
     }
 
