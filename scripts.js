@@ -1,7 +1,7 @@
-// scripts.js - UPDATED FOR GLOBAL SIDEBAR MENU
+// scripts.js - FINAL VERSION WITH DESKTOP HOVER-OUT AND MOBILE CLICK-AWAY
 // =================================================================
 
-// Define your mobile/desktop breakpoint (kept for mobile menu close on link click)
+// Define your mobile/desktop breakpoint
 const desktopBreakpoint = 769;
 
 /* ===== UTILITY FUNCTIONS (Defined for scope but used after content loads) ===== */
@@ -11,10 +11,13 @@ function setMobileState(navElement, menuButton, isOpen) {
         navElement.classList.add('open');
         navElement.setAttribute('aria-hidden', 'false');
         menuButton.setAttribute('aria-expanded', 'true');
+        // Add a class to the body to prevent scrolling on mobile when menu is open
+        document.body.classList.add('menu-open');
     } else {
         navElement.classList.remove('open');
         navElement.setAttribute('aria-hidden', 'true');
         menuButton.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
     }
 }
 
@@ -23,15 +26,38 @@ function attachListeners() {
     const mobileNav = document.querySelector('.nav-links');
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    /* ===== 1. GLOBAL MENU TOGGLE FUNCTIONALITY (Now applies to all sizes) ===== */
-
     if (menuToggle && mobileNav) {
-        menuToggle.addEventListener('click', function() {
+        
+        /* ===== 1. GLOBAL MENU TOGGLE FUNCTIONALITY (Open/Close on click) ===== */
+
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent this click from immediately triggering the document click-away
             const isOpen = mobileNav.classList.contains('open');
             setMobileState(mobileNav, menuToggle, !isOpen);
         });
 
-        // Close menu when a standard link is clicked
+        /* ===== 2. DESKTOP HOVER-OUT LOGIC (Close on mouseleave for large screens) ===== */
+        
+        mobileNav.addEventListener('mouseleave', function() {
+            // Only close on mouseleave if we're in desktop mode AND the menu is open
+            if (window.innerWidth >= desktopBreakpoint && mobileNav.classList.contains('open')) {
+                setMobileState(mobileNav, menuToggle, false);
+            }
+        });
+        
+        /* ===== 3. MOBILE CLICK-AWAY LOGIC (Close on document click for small screens) ===== */
+        
+        document.addEventListener('click', function(e) {
+            // Check if menu is open AND we are on a mobile screen size
+            if (mobileNav.classList.contains('open') && window.innerWidth < desktopBreakpoint) {
+                // If the click target is NOT the menu toggle AND NOT inside the menu
+                if (!menuToggle.contains(e.target) && !mobileNav.contains(e.target)) {
+                    setMobileState(mobileNav, menuToggle, false);
+                }
+            }
+        });
+
+        // Close menu when a standard link is clicked (e.g., Home, About Us)
         mobileNav.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
             link.addEventListener('click', () => {
                 // Always close the sidebar when a final link is clicked
@@ -47,19 +73,20 @@ function attachListeners() {
         });
     }
 
-    /* ===== 2. DROPDOWN FUNCTIONALITY (Now applies to all sizes via click) ===== */
+    /* ===== 4. DROPDOWN FUNCTIONALITY (Click to open/close) ===== */
 
     dropdownToggles.forEach(dropdownButton => {
         const dropdown = dropdownButton.closest('.dropdown');
 
         dropdownButton.addEventListener('click', function(e) {
             e.preventDefault(); // Prevent accidental navigation on click
+            e.stopPropagation(); // Prevent this click from bubbling up and closing the main sidebar or other dropdowns
             
             // Toggle the dropdown open/closed
             const isOpen = dropdown.classList.toggle('open');
             this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             
-            // Close other open dropdowns (Applies to all screens)
+            // Close other open dropdowns
             document.querySelectorAll('.dropdown.open').forEach(otherDropdown => {
                 if (otherDropdown !== dropdown) {
                     otherDropdown.classList.remove('open');
@@ -78,14 +105,12 @@ function attachListeners() {
                 this.setAttribute('aria-expanded', 'false');
             }
         });
-
-        // REMOVED: mouseleave handler (Hover behavior is inconsistent with click-to-open sidebar)
     });
 
-    // Close ALL dropdowns when clicking outside
+    // Close inner dropdowns when clicking outside of them
     document.addEventListener('click', (e) => {
-        // If the click is NOT on a dropdown button AND NOT inside the sidebar (mobileNav)
-        if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.nav-links')) {
+        // If the click is NOT on a dropdown toggle AND NOT inside the dropdown menu itself
+        if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-content')) {
             document.querySelectorAll('.dropdown.open').forEach(dropdown => {
                 dropdown.classList.remove('open');
                 const toggle = dropdown.querySelector('.dropdown-toggle');
