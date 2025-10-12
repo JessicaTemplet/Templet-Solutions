@@ -27,8 +27,8 @@ body {
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    /* FIX 1: Ensure body content starts below the fixed header (adjusted for responsiveness) */
-    margin-top: 150px; 
+    /* 🛑 CRITICAL FIX 1: Body margin is set by the fixed HEADER (max 200px) + fixed NAV BAR (approx 40px) = 240px */
+    margin-top: 240px; 
 }
 
 .container {
@@ -49,7 +49,7 @@ body {
     border: 0;
 }
 
-/* -------------------- HEADER (RENDERING FIX) -------------------- */
+/* -------------------- HEADER -------------------- */
 header {
     background-image: url('logo.png');
     background-size: cover; 
@@ -60,29 +60,45 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    /* Z-index restored to safe value */
     z-index: 1000; 
     height: auto; 
     aspect-ratio: 4 / 1; 
-    max-height: 200px; 
+    max-height: 200px; /* Reference height for nav bar positioning */
 }
 
-/* -------------------- NAVIGATION (FINAL POSITION FIX) -------------------- */
-nav {
+/* 🛑 REMOVED OLD NAV POSITIONING - it is now obsolete since <nav> is gone */
+/* 🛑 The code block below is replaced by the #navigation-bar-wrapper styles below */
+/* nav {
     display: flex;
     width: 100%;
     height: 100%; 
     justify-content: center;
-    /* Parent NAV stays relative to help fix positioning */
     position: relative;
-    z-index: 1001; /* Ensure nav is above header background */
+    z-index: 1001;
+}
+*/
+
+/* -------------------- NEW DEDICATED NAVIGATION BAR CONTAINER -------------------- */
+#navigation-bar-wrapper {
+    position: fixed;
+    /* 🛑 CRITICAL FIX 2: Place nav exactly 200px (header max-height) from the top */
+    top: 200px; 
+    width: 100%;
+    background: white; /* Ensure it has a solid background */
+    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+    z-index: 999; /* Below header (1000) but above page content */
+    padding: 10px 0; /* Add vertical padding for height */
+    display: flex; /* Helps center contents */
+    justify-content: center;
+    align-items: center;
 }
 
 /* Mobile toggle button (hidden on desktop) */
 #menu-toggle {
     display: none; 
     position: absolute;
-    top: 50%;
+    /* 🛑 NEW POSITIONING: Relative to #navigation-bar-wrapper's height */
+    top: 50%; 
     right: 20px;
     transform: translateY(-50%);
     z-index: 1002;
@@ -95,29 +111,37 @@ nav {
 }
 
 .nav-links {
-    /* 🛑 FINAL FIX: Use relative position + flexbox to align to the bottom */
-    position: relative; 
-    width: 100%;
+    /* Reset position and centering, these are the links inside the new wrapper */
+    position: static; 
+    width: 100%; /* Take full width of parent (#navigation-bar-wrapper) */
+    max-width: 1200px; /* Match container width */
     
     display: flex;
     flex-direction: row;
     list-style: none;
+    
+    /* 🛑 LIST RESET FIXES */
+    margin: 0; 
+    padding: 0 20px; /* Add horizontal padding, remove vertical padding */
+    
     gap: 1.5rem;
     
-    /* These force the links to the bottom (align-items) and center (justify-content) */
-    align-items: flex-end; 
+    /* Center the links horizontally in the row */
+    align-items: center; 
     justify-content: center; 
 
-    margin: 0;
-    padding-bottom: 10px; /* Space from the bottom of the banner */
     flex-wrap: wrap;
     transition: transform 0.3s ease; 
-    z-index: 1001;
+    z-index: 1; /* Reset z-index now that parent wrapper handles layering */
+}
+
+.nav-links li {
+    padding: 0; /* Ensure no extra spacing on list items */
 }
 
 .nav-links a {
     text-decoration: none;
-    /* 🛑 COLOR FIX: Ensure this is a dark color for visibility on the white banner */
+    /* COLOR FIX: Ensure this is a dark color for visibility on the white nav bar */
     color: var(--ts-navy); 
     font-weight: 500;
     transition: color 0.3s ease;
@@ -140,7 +164,6 @@ nav {
     background-color: white;
     min-width: 350px; 
     box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-    /* Ensure dropdown is on top of nav/header */
     z-index: 1002; 
     padding: 12px 16px;
     border-radius: 8px;
@@ -178,7 +201,8 @@ nav {
 .hero {
     background: var(--ts-navy);
     color: white;
-    padding: 180px 0 80px;
+    /* Hero padding adjusted for the space taken up by the fixed elements above it */
+    padding: 80px 0 80px; 
     text-align: center;
 }
 
@@ -224,7 +248,6 @@ nav {
 .features {
     padding: 100px 0;
     background: var(--ts-bg);
-    /* CRITICAL FIX: Preserved to prevent content layout break */
     overflow: hidden; 
 }
 
@@ -532,24 +555,41 @@ footer {
 
 /* -------------------- RESPONSIVE -------------------- */
 @media (max-width: 768px) {
+    
+    /* 🛑 CRITICAL FIX 3: Mobile body margin must account for new fixed structure */
+    body {
+        /* Header height (100vw / 4) + Nav Bar height (approx 40px) */
+        margin-top: calc(100vw / 4 + 40px); 
+    }
+    
+    /* 🛑 NEW MOBILE NAV WRAPPER POSITIONING */
+    #navigation-bar-wrapper {
+        /* On mobile, the header height is variable, so we must calculate top dynamically */
+        top: calc(100vw / 4); 
+        padding: 5px 0; /* Less vertical padding on mobile */
+        /* Ensure it remains fixed */
+    }
+
     /* Show mobile toggle button */
     #menu-toggle {
+        /* 🛑 NEW POSITIONING: Relative to #navigation-bar-wrapper */
         display: block; 
+        position: absolute; /* Place relative to the fixed parent */
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        z-index: 1002;
     }
     
     /* Center nav content at the bottom of the banner on mobile */
-    nav {
-        align-items: flex-end; 
-        justify-content: flex-start;
-        padding-right: 0; 
-        padding-bottom: 0; 
-    }
+    /* REMOVED OLD NAV POSITIONING, it's now handled by the fixed wrapper */
 
     .nav-links {
-        /* Mobile menu sidebar style */
+        /* Mobile menu sidebar style - This should be a fixed full-height overlay */
         position: fixed;
         flex-direction: column;
-        top: 0;
+        /* Start from the top of the viewport for a full slide-out */
+        top: 0; 
         right: 0;
         height: 100%;
         width: 80%; 
@@ -590,10 +630,6 @@ footer {
         padding: 8px 10px;
     }
 
-    body {
-        /* Use a responsive margin-top based on the header's aspect ratio */
-        margin-top: calc(100vw / 4); 
-    }
 
     header {
         background-size: cover;
@@ -630,8 +666,9 @@ footer {
         font-size: 1.8rem;
     }
 
+    /* 🛑 CRITICAL FIX 4: Ensure body margin stays calculated */
     body {
-        margin-top: calc(100vw / 4); 
+        margin-top: calc(100vw / 4 + 40px); 
     }
 
     header {
