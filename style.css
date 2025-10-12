@@ -483,37 +483,50 @@ footer {
 }
 
 /* =================================================================
-/* DESKTOP (CRUCIAL FIX: RESTORES HORIZONTAL LAYOUT)
+/* DESKTOP (CRITICAL FIX: RESTORES HORIZONTAL LAYOUT AND SPACING)
 /* ================================================================= */
 @media (min-width: 769px) {
+    /* 1. HIDES MOBILE TOGGLE */
     #menu-toggle {
         display: none;
     }
+    
+    /* 2. CRUCIAL RESET: OVERRIDES MOBILE SIDEBAR STYLES */
     .nav-links {
-        position: static;
+        position: static; 
         transform: none; 
         height: auto;
         width: auto;
-        flex-direction: row;
-        background: transparent;
+        /* Re-establish desktop flow */
+        display: flex; /* CRUCIAL: Re-enables flexbox for horizontal layout */
+        flex-direction: row; 
+        background: transparent; 
         align-items: center;
         padding: 0;
         box-shadow: none;
+        list-style: none; /* CRUCIAL: Removes list bullets */
+        margin: 0; /* CRUCIAL: Removes residual margin */
+        justify-content: flex-start; /* CRUCIAL: Aligns to the left of the wrapper */
         gap: 0;
     }
     
     .nav-links li {
         width: auto;
         margin-bottom: 0;
+        /* Add some padding/margin between the main link items */
+        padding: 0 10px; 
     }
 
+    /* 3. DESKTOP LINK STYLING */
     .nav-links a,
     .dropdown-toggle {
         color: var(--ts-text); 
         background: transparent;
         border: none;
-        padding: 0.5rem 1rem; 
-        text-align: center;
+        padding: 0.5rem 0; /* Adjusted padding to prevent stacking */
+        text-align: left;
+        display: inline-block; /* CRUCIAL: Allows links to sit next to each other */
+        width: auto; /* CRUCIAL: Allows width to shrink to fit text */
     }
     
     .nav-links a:hover,
@@ -522,6 +535,7 @@ footer {
         color: var(--ts-teal);
     }
 
+    /* 4. DESKTOP DROPDOWN STYLING */
     .dropdown {
         position: relative; 
         display: inline-block; 
