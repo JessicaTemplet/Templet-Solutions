@@ -30,11 +30,11 @@
             <a href="https://templetsolutions.com/index.html" title="Go to Home Page"></a>
         </h1>
         
-        <nav role="navigation" id="main-nav">
-            <!-- Navigation injected by scripts.js -->
-        </nav>
-    </div>
+        </div>
 </header>
+
+<div id="navigation-bar-wrapper">
+    </div>
 
 <section class="hero" id="home">
     <div class="container">
@@ -143,5 +143,15 @@
 </footer>
 
 <script src="https://templetsolutions.com/scripts.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof loadNavigationFromHTML === 'function') {
+            loadNavigationFromHTML(); 
+        }
+        if (typeof setupAnimationObserver === 'function') {
+             setupAnimationObserver(); 
+        }
+    });
+</script>
 </body>
 </html>
