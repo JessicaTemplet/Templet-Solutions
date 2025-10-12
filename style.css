@@ -1,4 +1,4 @@
-/* style.css - FULL, COMPLETE, AND CORRECTED VERSION FOR GLOBAL SIDEBAR MENU */
+/* style.css - FINAL CLEANED VERSION */
 :root {
     --ts-navy: #0A1931;
     --ts-medium-blue: #1E3F66;
@@ -21,9 +21,9 @@ body {
     margin-top: 240px; /* Default margin for header space */
 }
 
-/* ADDED: Scroll lock for mobile when menu is open */
+/* ESSENTIAL FIX: Scroll lock for mobile when menu is open */
 body.menu-open {
-    overflow: hidden; 
+    overflow: hidden; 
 }
 
 .container {
@@ -480,68 +480,43 @@ footer {
     text-decoration: underline;
 }
 /* =================================================================
-/* MEDIA QUERY FOR DESKTOP STYLES (Enables Hover-Out behavior)
+/* DESKTOP (Minimalist Styles for Dropdown Functionality)
 /* ================================================================= */
 @media (min-width: 769px) {
-    /* Converts the sidebar into a horizontal desktop menu */
-    #navigation-bar-wrapper {
-        justify-content: flex-end; /* Align all content to the right */
-        padding: 10px 40px; /* Add more padding for desktop */
-    }
-
+    /* Hide the mobile toggle button */
     #menu-toggle {
-        display: none; /* Hide the menu button on desktop */
+        display: none;
     }
-    
+
+    /* Ensure desktop menu elements are inline for horizontal navigation */
     .nav-links {
-        position: static; /* No longer fixed sidebar */
-        transform: none; /* Always visible */
+        /* Revert the mobile fixed position to allow horizontal flow */
+        position: static;
+        transform: none; /* Crucial: ensures menu is visible on desktop */
+        flex-direction: row; /* Assumes your original desktop CSS handled this, but we reinforce it */
         width: auto;
-        max-width: none;
         height: auto;
-        flex-direction: row; /* Horizontal layout */
         box-shadow: none;
-        padding: 0;
         background: none;
-        z-index: 1001; 
-        transition: none;
-        margin-left: auto; /* Push the menu to the right */
+        padding: 0;
     }
 
-    .nav-links li {
-        margin-bottom: 0;
-        margin-left: 25px; /* Space between main links */
-        width: auto;
-    }
-
-    .nav-links a,
-    .dropdown-toggle {
-        color: var(--ts-text); /* Change link color for light background */
-        padding: 0 5px;
-        line-height: 1;
-        font-weight: 600;
-    }
-
-    .nav-links a:hover,
-    .dropdown-toggle:hover {
-        color: var(--ts-header-link-hover);
-        background-color: transparent;
-    }
-    
+    /* Set up dropdowns for standard desktop behavior (hover or click) */
     .dropdown {
-        /* This is crucial for desktop dropdowns to be positioned relative to the list item */
         position: relative; 
+        display: inline-block; /* Essential for horizontal desktop alignment */
     }
 
+    /* Dropdown container: position absolutely below the button/link */
     .dropdown-content {
-        position: absolute; /* Revert to standard dropdown menu positioning */
+        position: absolute; 
+        left: 0; 
+        top: 100%; /* Positions the menu directly below the main link */
+        /* Restore standard desktop styling */
         background-color: white;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        z-index: 1000;
         padding: 10px 0;
-        left: -10px; /* Align slightly left of the button */
-        margin-top: 10px;
-        border-radius: 5px;
+        z-index: 1000;
         min-width: 250px;
     }
 
@@ -550,15 +525,11 @@ footer {
         padding: 10px 20px;
         border-bottom: none;
     }
-    
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-    }
 }
 
 
 /* =================================================================
-/* MEDIA QUERY CLEANUP 
+/* MOBILE MEDIA QUERIES (Original)
 /* ================================================================= */
 @media (max-width: 768px) {
     body {
