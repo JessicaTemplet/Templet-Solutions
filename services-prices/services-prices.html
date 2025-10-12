@@ -18,8 +18,7 @@
     "@type": "Organization",
     "name": "Templet Solutions",
    
-    }
-  },
+    },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://www.templetsolutions.com/services-prices/services-prices.html"
@@ -39,10 +38,11 @@
             </a>
         </div>
         
-        <nav role="navigation" id="main-nav-placeholder">
-            </nav>
-    </div>
+        </div>
 </header>
+
+<div id="navigation-bar-wrapper">
+    </div>
 
 <div class="content-wrapper">
     <main class="article container">
@@ -239,6 +239,15 @@
         <p>&copy; 2025 Templet Solutions. All rights reserved.</p>
     </footer>
 </div>
+
 <script src="/scripts.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof loadNavigationFromHTML === 'function') {
+            loadNavigationFromHTML(); 
+        }
+        // No setupAnimationObserver needed on this page
+    });
+</script>
 </body>
 </html>
