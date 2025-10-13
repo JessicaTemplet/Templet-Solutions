@@ -1,691 +1,569 @@
-/* style.css - FINAL CORRECTED VERSION (Navigation Position Fixed & Centering Fixed) */
-
-/* Custom properties (Deep blues and electric teal) - Consolidated and Cleaned */
+/* style.css - FINAL DESKTOP OPTIMIZED VERSION */
 :root {
-    /* Brand Colors */
-    --ts-navy: #0A1931;
-    --ts-medium-blue: #1E3F66;
-    --ts-teal: #40B4D1;
-
-    /* Text and Background Colors */
-    --ts-text: #0a202a;
-    --ts-bg: #f8fbfd;
-    --ts-grey: #8592A0;
-
-    /* Header link hover */
-    --ts-header-link-hover: #18A6A8;
+    --ts-navy: #0A1931;
+    --ts-medium-blue: #1E3F66;
+    --ts-teal: #40B4D1;
+    --ts-text: #0a202a;
+    --ts-bg: #f8fbfd;
+    --ts-grey: #8592A0;
+    --ts-header-link-hover: #18A6A8;
 }
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: var(--ts-text);
-    background: var(--ts-bg);
-    /* 🔑 FIX: Increased margin-top to a safer value (180px) to clear the fixed header */
-    margin-top: 180px;
-    /* CENTERING SAFETY CHECK: Ensure no side margin/padding on the body */
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--ts-text);
+    background: var(--ts-bg);
+    margin-top: 240px; 
 }
 
+/* --- Core HTML Elements (Global) --- */
 .container {
-    max-width: 1200px;
-    /* Centering Fix: Apply horizontal auto margins */
-    margin: 0 auto; 
-    /* 🔑 FIX: Increased padding to 50px for the desired "2 inch" side margin effect */
-    padding: 0 50px; 
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-
-/* -------------------- ACCESSIBLE LOGO H1 -------------------- */
 .logo-h1 {
-    position: absolute; 
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+    position: absolute; 
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
-
-/* -------------------- HEADER (RENDERING FIX) -------------------- */
 header {
-    background-image: url('logo.png');
-    background-size: cover; 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: var(--ts-navy);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    /* Z-index restored to safe value */
-    z-index: 1000;
-    
-    /* 🔑 FIX: Make header a Flex container and push content (nav) to the bottom */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; 
-    
-    height: auto; 
-    aspect-ratio: 4 / 1; 
-    max-height: 200px; 
+    background-image: url('logo.png');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--ts-navy);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; 
+    height: auto; 
+    aspect-ratio: 4 / 1; 
+    max-height: 200px;
+}
+#navigation-bar-wrapper {
+    position: fixed;
+    top: 200px; 
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+    z-index: 999;
+    padding: 10px 0; /* Reduced vertical padding for compactness */
+    display: flex;
+    /* CENTERING: Uses center to position content in the middle */
+    justify-content: center; 
+    align-items: center;
 }
 
-/* -------------------- NAVIGATION (FINAL POSITION FIX) -------------------- */
-nav {
-    display: flex;
-    width: 100%;
-    /* 🛑 CLEANUP: Remove conflicting height/position on nav */
-    /* height: 100%; */
-    justify-content: center;
-    /* position: relative; */
-    z-index: 1001; /* Ensure nav is above header background */
-}
-
-/* Mobile toggle button (hidden on desktop) */
+/* --- Mobile Menu Elements (Now intentionally hidden) --- */
 #menu-toggle {
-    display: none; 
-    position: absolute;
-    top: 50%;
-    right: 50px; /* Adjusted to match new container padding */
-    transform: translateY(-50%);
-    z-index: 1002;
-    background: var(--ts-teal);
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    display: none !important; /* Forces the hamburger icon to be hidden */
 }
-
 .nav-links {
-    position: relative; 
-    width: 100%;
-    
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: 1.5rem;
-    
-    /* 🛑 CLEANUP: Remove align-items; the header's flexbox handles vertical positioning */
-    /* align-items: flex-end; */ 
-    justify-content: center;  /* Keeps horizontal centering */
-
-    margin: 0;
-    padding-bottom: 10px; /* Space from the bottom of the banner */
-    flex-wrap: wrap;
-    transition: transform 0.3s ease; 
-    z-index: 1001;
+    /* Base styles, primarily for the links themselves */
+    display: flex;
+    flex-direction: column; /* Mobile setting, will be reset on desktop */
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-
-.nav-links a {
-    text-decoration: none;
-    /* Color remains navy for the desktop links */
-    color: var(--ts-navy); 
-    font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 0.5rem 0;
+.nav-links li {
+    padding: 0;
+    width: 100%;
+    margin-bottom: 0;
 }
-
-.nav-links a:hover {
-    color: var(--ts-teal);
+.nav-links a,
+.dropdown-toggle { 
+    display: block; 
+    text-decoration: none;
+    color: var(--ts-text); 
+    background-color: transparent;
+    border: none; 
+    padding: 0.5rem 1rem; 
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1.6;
+    text-align: left;
+    width: 100%;
 }
-
-/* 🔑 Style the dropdown button to match the adjacent <a> tags */
-.dropdown-toggle {
-    /* Reset button default styles */
-    background: none;
-    border: none;
-    cursor: pointer;
-    /* Match the color and font of the surrounding <a> tags */
-    color: var(--ts-navy); /* Use navy to match nav-links a */
-    font-size: 1rem; /* Match the size of adjacent links */
-    font-family: inherit;
-    font-weight: 500;
-    padding: 0.5rem 0; /* Match the padding of adjacent links */
-    transition: color 0.3s ease;
+.nav-links a:hover,
+.dropdown-toggle:hover { 
+    background-color: transparent;
+    color: var(--ts-teal);
 }
-
-.dropdown-toggle:hover,
-.dropdown-toggle:focus {
-    color: var(--ts-teal);
-}
-
-
-/* Dropdown menu */
 .dropdown {
-    position: relative;
-    display: inline-block;
+    position: relative;
+    display: block; 
 }
-
+/* The following mobile-specific styles are intentionally left for media query override */
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 350px; 
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-    /* Ensure dropdown is on top of nav/header */
-    z-index: 1002; 
-    padding: 12px 16px;
-    border-radius: 8px;
-    margin-top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+    display: none;
+    position: static; 
+    background-color: var(--ts-medium-blue); 
+    min-width: 100%; 
+    box-shadow: none; 
+    z-index: 1002; 
+    padding: 5px 0 5px 15px; 
 }
-
-.dropdown.open .dropdown-content {
-    display: block;
-}
-
 .dropdown-content a {
-    /* Set color to --ts-text for contrast on white background */
-    color: var(--ts-text);
-    padding: 10px 5px; 
-    text-decoration: none;
-    display: block;
-    border-bottom: 1px solid #e0e0e0; 
-    transition: background-color 0.3s ease;
-    white-space: normal;
-    line-height: 1.3;
+    color: white;
+    padding: 8px 5px; 
+    font-weight: 500; /* Compacting: Ensures consistent font weight */
 }
 
-.dropdown-content a:last-child {
-    border-bottom: none;
-}
 
-.dropdown-content a:hover {
-    color: var(--ts-navy);
-    background-color: #f0f0f0;
-}
-
-/* -------------------- HERO -------------------- */
+/* --- Content Section Styles (Rest of your styles) --- */
 .hero {
-    background: var(--ts-navy);
-    color: white;
-    padding: 180px 0 80px;
-    text-align: center;
+    background: var(--ts-navy);
+    color: white;
+    padding: 80px 0 80px;  
+    text-align: center;
 }
-
 .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
 }
-
 .hero p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
 .hero p strong {
-    color: var(--ts-teal);
+    color: var(--ts-teal);
 }
-
 .hero-cta {
-    background: var(--ts-teal);
-    color: white;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 1rem;
-    transition: all 0.3s ease;
+    background: var(--ts-teal);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
 }
-
 .hero-cta:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
-
-/* -------------------- FEATURES -------------------- */
 .features {
-    padding: 100px 0;
-    background: var(--ts-bg);
-    /* CRITICAL FIX: Preserved to prevent content layout break */
-    overflow: hidden; 
+    padding: 100px 0;
+    background: var(--ts-bg);
+    overflow: hidden; 
 }
-
 .section-header {
-    text-align: center;
-    margin-bottom: 80px;
+    text-align: center;
+    margin-bottom: 80px;
 }
-
 .section-header h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--ts-text);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-text);
 }
-
 .section-header p {
-    font-size: 1.2rem;
-    color: var(--ts-grey);
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 1.2rem;
+    color: var(--ts-grey);
+    max-width: 600px;
+    margin: 0 auto;
 }
-
 .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-    margin-top: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 60px;
 }
-
 .feature-card {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-    text-align: center;
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
 }
-
 .feature-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
-
 .feature-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--ts-teal);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-size: 2rem;
-    color: white;
+    width: 80px;
+    height: 80px;
+    background: var(--ts-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
 }
-
 .feature-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--ts-text);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-text);
 }
-
 .feature-card p {
-    color: var(--ts-grey);
-    line-height: 1.7;
+    color: var(--ts-grey);
+    line-height: 1.7;
 }
-
 .feature-card p strong {
-    color: var(--ts-navy);
+    color: var(--ts-navy);
 }
-
-/* -------------------- CONTENT SECTIONS -------------------- */
 .content-section {
-    padding: 100px 0;
+    padding: 100px 0;
 }
-
 .content-section:nth-child(even) {
-    background: #f8fafc;
+    background: #f8fafc;
 }
-
 .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
 }
-
 .content-text h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1.5rem;
-    color: var(--ts-text);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--ts-text);
 }
-
 .content-text h3 {
-    font-size: 1.4rem;
-    margin: 2rem 0 1rem 0;
-    color: var(--ts-text);
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem 0;
+    color: var(--ts-text);
 }
-
 .content-text p {
-    font-size: 1.1rem;
-    color: var(--ts-grey);
-    margin-bottom: 2rem;
-    line-height: 1.8;
+    font-size: 1.1rem;
+    color: var(--ts-grey);
+    margin-bottom: 2rem;
+    line-height: 1.8;
 }
-
 .content-text ol,
 .content-text ul {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
 }
-
 .content-text li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
-    color: var(--ts-text);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: var(--ts-text);
 }
-
 .content-text ol strong {
-    color: var(--ts-navy);
+    color: var(--ts-navy);
 }
-
 .content-image {
-    text-align: center;
+    text-align: center;
 }
-
-/* Styling for the placeholder divs in the HTML */
-.content-image > div[class*="images/"] { 
-    width: 100%;
-    height: 300px;
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ts-grey);
-    font-size: 1.2rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+.content-image > div[class*="images/"] { 
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ts-grey);
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
 }
 .content-image img {
-    max-width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
-
-/* -------------------- CTA BUTTONS -------------------- */
+.bio-image img {
+    max-width: 250px; 
+    height: auto; 
+    display: block;
+    margin: 0 auto 25px auto; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.bio-image figcaption {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--ts-grey);
+    max-width: 80%;
+    margin: 0 auto 40px auto;
+}
 .cta-button {
-    background: var(--ts-teal);
-    color: white;
-    padding: 0.8rem 1.8rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    /* Ensures it renders as a button with padding */
-    display: inline-block; 
-    transition: all 0.3s ease;
+    background: var(--ts-teal);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block; 
+    transition: all 0.3s ease;
 }
-
 .cta-button:hover {
-    background: var(--ts-navy);
-    transform: translateY(-2px);
+    background: var(--ts-navy);
+    transform: translateY(-2px);
 }
-
-/* -------------------- LEAD MAGNET -------------------- */
 .lead-magnet {
-    background: var(--ts-navy);
-    color: white;
-    padding: 80px 0;
-    text-align: center;
+    background: var(--ts-navy);
+    color: white;
+    padding: 80px 0;
+    text-align: center;
 }
-
 .lead-magnet h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
 }
-
 .lead-magnet p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
 }
-
 .lead-magnet-cta {
-    background: #f8fafc;
-    border-left: 4px solid var(--ts-teal);
-    padding: 2rem;
-    margin: 3rem 0;
-    border-radius: 8px;
+    background: #f8fafc;
+    border-left: 4px solid var(--ts-teal);
+    padding: 2rem;
+    margin: 3rem 0;
+    border-radius: 8px;
 }
-
 .lead-magnet-cta h3 {
-    color: var(--ts-navy);
-    margin-top: 0;
+    color: var(--ts-navy);
+    margin-top: 0;
 }
-
 .lead-magnet-cta p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
-
-/* -------------------- FOOTER -------------------- */
 footer {
-    background: var(--ts-text);
-    color: white;
-    padding: 60px 0 30px;
+    background: var(--ts-text);
+    color: white;
+    padding: 60px 0 30px;
 }
-
 .footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
 }
-
 .footer-section h3 {
-    margin-bottom: 1.5rem;
-    color: var(--ts-teal);
+    margin-bottom: 1.5rem;
+    color: var(--ts-teal);
 }
-
 .footer-section ul {
-    list-style: none;
+    list-style: none;
 }
-
 .footer-section ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
-
 .footer-section ul li a {
-    color: var(--ts-grey);
-    text-decoration: none;
-    transition: color 0.3s ease;
+    color: var(--ts-grey);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
-
 .footer-section ul li a:hover {
-    color: var(--ts-teal);
+    color: var(--ts-teal);
 }
-
 .footer-bottom {
-    border-top: 1px solid var(--ts-grey);
-    padding-top: 2rem;
-    text-align: center;
-    color: var(--ts-grey);
+    border-top: 1px solid var(--ts-grey);
+    padding-top: 2rem;
+    text-align: center;
+    color: var(--ts-grey);
 }
-
-/* -------------------- ARTICLE CONTENT -------------------- */
 .article-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
 }
-
 .article-meta {
-    color: var(--ts-grey);
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 1rem;
+    color: var(--ts-grey);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
 }
-
 .article-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--ts-text);
-    line-height: 1.2;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--ts-text);
+    line-height: 1.2;
 }
-
 .article-content h2 {
-    font-size: 1.8rem;
-    margin: 2.5rem 0 1rem 0;
-    color: var(--ts-text);
+    font-size: 1.8rem;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--ts-text);
 }
-
 .article-content h3 {
-    font-size: 1.4rem;
-    margin: 2rem 0 1rem 0;
-    color: var(--ts-text);
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem 0;
+    color: var(--ts-text);
 }
-
 .article-content p {
-    margin: 0 0 1.5rem 0; 
-    line-height: 1.8;
+    margin: 0 0 1.5rem 0;  
+    line-height: 1.8;
 }
-
 .article-content ul,
 .article-content ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
 }
-
 .article-content li {
-    margin-bottom: 0.5rem;
-    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
 }
-
-/* -------------------- BACK TO TOP -------------------- */
+.article-content ol strong {
+    color: var(--ts-navy);
+}
 .back-to-top {
-    display: inline-block;
-    margin-top: 2rem;
-    color: var(--ts-teal);
-    text-decoration: none;
-    font-weight: 600;
+    display: inline-block;
+    margin-top: 2rem;
+    color: var(--ts-teal);
+    text-decoration: none;
+    font-weight: 600;
 }
-
 .back-to-top:hover {
-    text-decoration: underline;
+    text-decoration: underline;
 }
 
-/* -------------------- RESPONSIVE -------------------- */
+/* =================================================================
+/* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
+/* ================================================================= */
+@media (min-width: 769px) {
+    /* 1. Hides the mobile toggle button on desktop */
+    #menu-toggle {
+        display: none;
+    }
+    
+    /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
+    .nav-links {
+        position: static; 
+        transform: none; 
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        background: transparent;
+        align-items: center;
+        padding: 0;
+        box-shadow: none;
+        list-style: none;
+        margin: 0 auto; /* CRITICAL: Centers the nav-links block within its wrapper */
+        justify-content: center; /* Aligns links to the center */
+        gap: 0;
+    }
+    
+    .nav-links li {
+        width: auto;
+        margin-bottom: 0;
+        padding: 0 5px; /* Compacting: Reduced horizontal space between main links */
+    }
+
+    /* 3. DESKTOP LINK STYLING (Compactness) */
+    .nav-links a,
+    .dropdown-toggle {
+        color: var(--ts-text); 
+        padding: 0.5rem 10px; /* Compacting: Reduced vertical padding */
+        text-align: center;
+        display: inline-block;
+        width: auto;
+    }
+    
+    /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
+    .dropdown {
+        position: relative; 
+        display: inline-block; 
+    }
+
+    .dropdown-content {
+        display: none; 
+        position: absolute; 
+        left: 0; 
+        top: 100%; 
+        background-color: white; 
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1); /* Compacting: Smaller shadow */
+        padding: 5px 0; /* Compacting: Reduced padding */
+        min-width: 200px; /* Compacting: Smaller minimum width */
+        z-index: 1000;
+        border-radius: 5px;
+    }
+
+    .dropdown-content a {
+        color: var(--ts-text);
+        padding: 8px 15px; /* Compacting: Reduced padding */
+        border-bottom: none;
+        font-weight: 500; /* CRITICAL: Ensures font weight matches main links */
+        font-size: 1rem; /* CRITICAL: Ensures font size matches main links */
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =================================================================
+/* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
+/* ================================================================= */
 @media (max-width: 768px) {
-    /* Show mobile toggle button */
-    #menu-toggle {
-        display: block; 
-        right: 20px; /* Adjusted to use a smaller, safe value for mobile */
-    }
-    
-    /* Center nav content at the bottom of the banner on mobile */
-    nav {
-        align-items: flex-end; 
-        justify-content: flex-start;
-        padding-right: 0; 
-        padding-bottom: 0; 
-    }
-
-    .nav-links {
-        /* Mobile menu sidebar style */
-        position: fixed;
-        flex-direction: column;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 80%; 
-        max-width: 300px;
-        background: var(--ts-navy); 
-        padding: 60px 20px 20px;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.4);
-        z-index: 999; 
-        transform: translateX(100%); 
-        gap: 1.5rem; 
-        
-        /* Reset positioning for mobile menu slide-out */
-        align-items: flex-start;
-        justify-content: flex-start;
-        padding-bottom: 0;
-    }
-
-    /* State when menu is open (triggered by JS) */
-    .nav-links.open {
-        transform: translateX(0); 
-    }
-    
-    .nav-links a {
-        color: white; 
-        padding: 0.8rem 0;
-    }
-
-    .dropdown-content {
-        position: static;
-        transform: none;
-        margin-top: 10px;
-        left: auto;
-        background: var(--ts-medium-blue);
-    }
-    
-    .dropdown-content a {
-        color: white;
-        padding: 8px 10px;
-    }
-
-    body {
-        /* 🔑 FIX: Added 20px buffer to the responsive header height */
-        margin-top: calc(100vw / 4 + 20px); 
-    }
-
-    header {
-        background-size: cover;
-        height: auto; 
-        aspect-ratio: 4 / 1;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .content-grid,
-    .features-grid,
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .article-content h1 {
-        font-size: 2rem;
-    }
+    /* Reverts back to mobile defaults but hides the menu */
+    .nav-links {
+        display: none; /* CRITICAL: Hides the menu completely on mobile */
+    }
+    
+    body {
+        margin-top: calc(100vw / 4 + 40px); 
+    }
+    #navigation-bar-wrapper {
+        top: calc(100vw / 4); 
+        padding: 5px 20px;
+    }
+    header {
+        background-size: cover;
+        height: auto; 
+        aspect-ratio: 4 / 1;
+    }
+    /* Hide all mobile-specific elements that are no longer needed */
+    .hero h1, .hero p, .content-grid, .features-grid, .services-grid, .article-content h1 {
+        /* You might want to remove these lines if you want the content to be responsive */
+    }
 }
-
 @media (max-width: 480px) {
-    .article-content {
-        padding: 1rem 0;
-    }
-
-    .article-content h1 {
-        font-size: 1.8rem;
-    }
-
-    body {
-        /* 🔑 FIX: Added 20px buffer to the responsive header height */
-        margin-top: calc(100vw / 4 + 20px); 
-    }
-
-    header {
-        aspect-ratio: 4 / 1;
-    }
+    .article-content {
+        padding: 1rem 0;
+    }
+    body {
+        margin-top: calc(100vw / 4 + 40px); 
+    }
 }
 
-/* -------------------- ANIMATIONS -------------------- */
+/* ANIMATIONS */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
 .animate-on-scroll {
-    animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUp 0.8s ease forwards;
 }
