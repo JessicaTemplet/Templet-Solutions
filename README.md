@@ -1,2 +1,2 @@
 # Templet-Solutions
-AI Serps, SEO, GEO
+AICO  SEO  AI Serps
