@@ -441,10 +441,11 @@ footer {
 /* =================================================================
 /* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
 /* ================================================================= */
-@media (min-width: 769px) {
-    /* 1. Hides the mobile toggle button on desktop */
-    #menu-toggle {
-        display: none;
+ @media (min-width: 769px) in style.css 
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
     }
     
     /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
