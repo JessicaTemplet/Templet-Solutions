@@ -480,20 +480,26 @@ footer {
     .dropdown-content {
         display: none; 
         position: absolute; 
-        left: 0;
-        text-align: left;
+        left: 0; /* Already there for left alignment */
         top: 100%; 
         background-color: white; 
-        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1); /* Compacting: Smaller shadow */
-        padding: 5px 0; /* Compacting: Reduced padding */
-        min-width: 200px; /* Compacting: Smaller minimum width */
+        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
+        padding: 5px 0;
+        min-width: 200px;
         z-index: 1000;
         border-radius: 5px;
+        /* Add scroll properties */
+        max-height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
     
     .dropdown.open .dropdown-content {
         display: block;
+        left: 0; /* Ensure left alignment when open */
+        text-align: left; /* Text alignment */
     }
+    
     
     .dropdown-content a {
         color: var(--ts-text);
