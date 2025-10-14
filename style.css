@@ -20,7 +20,6 @@ body {
     background: var(--ts-bg);
     margin-top: 240px; 
 }
-
 /* --- Core HTML Elements (Global) --- */
 .container {
     max-width: 1200px;
@@ -65,7 +64,6 @@ header {
     justify-content: center; 
     align-items: center;
 }
-
 /* --- Mobile Menu Elements (Now intentionally hidden) --- */
 #menu-toggle {
     display: none !important; /* Forces the hamburger icon to be hidden */
@@ -123,8 +121,6 @@ header {
     padding: 8px 5px; 
     font-weight: 500; /* Compacting: Ensures consistent font weight */
 }
-
-
 /* --- Content Section Styles (Rest of your styles) --- */
 .hero {
     background: var(--ts-navy);
@@ -437,17 +433,14 @@ footer {
 .back-to-top:hover {
     text-decoration: underline;
 }
-
 /* =================================================================
 /* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
 /* ================================================================= */
- @media (min-width: 769px) in style.css 
-
-.dropdown.open .dropdown-content {
-    display: block;
-}
+@media (min-width: 769px) {
+    /* 1. Hides the mobile toggle button on desktop */
+    #menu-toggle {
+        display: none;
     }
-    
     /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
         position: static; 
@@ -465,13 +458,11 @@ footer {
         justify-content: center; /* Aligns links to the center */
         gap: 0;
     }
-    
     .nav-links li {
         width: auto;
         margin-bottom: 0;
         padding: 0 5px; /* Compacting: Reduced horizontal space between main links */
     }
-
     /* 3. DESKTOP LINK STYLING (Compactness) */
     .nav-links a,
     .dropdown-toggle {
@@ -481,13 +472,11 @@ footer {
         display: inline-block;
         width: auto;
     }
-    
     /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
     .dropdown {
         position: relative; 
         display: inline-block; 
     }
-
     .dropdown-content {
         display: none; 
         position: absolute; 
@@ -500,7 +489,6 @@ footer {
         z-index: 1000;
         border-radius: 5px;
     }
-
     .dropdown-content a {
         color: var(--ts-text);
         padding: 8px 15px; /* Compacting: Reduced padding */
@@ -508,17 +496,13 @@ footer {
         font-weight: 500; /* CRITICAL: Ensures font weight matches main links */
         font-size: 1rem; /* CRITICAL: Ensures font size matches main links */
     }
-
     .dropdown-content a:hover {
         background-color: #f1f1f1;
     }
-    
     .content-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
-
-
 /* =================================================================
 /* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
 /* ================================================================= */
@@ -527,7 +511,6 @@ footer {
     .nav-links {
         display: none; /* CRITICAL: Hides the menu completely on mobile */
     }
-    
     body {
         margin-top: calc(100vw / 4 + 40px); 
     }
@@ -553,7 +536,6 @@ footer {
         margin-top: calc(100vw / 4 + 40px); 
     }
 }
-
 /* ANIMATIONS */
 @keyframes fadeInUp {
     from {
