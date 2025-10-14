@@ -489,6 +489,11 @@ footer {
         z-index: 1000;
         border-radius: 5px;
     }
+    
+    .dropdown.open .dropdown-content {
+        display: block;
+    }
+    
     .dropdown-content a {
         color: var(--ts-text);
         padding: 8px 15px; /* Compacting: Reduced padding */
