@@ -515,6 +515,72 @@ footer {
         grid-template-columns: 1fr 1fr;
     }
 }
+/* ------------------------------
+   Image Refinements - Global Control
+   ------------------------------ */
+
+/* General content image container refinement */
+.content-image {
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 700px; /* Prevents overly wide images */
+}
+
+/* Placeholder block inside content-image */
+.content-image > div[class*="images/"] { 
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    min-height: 250px; /* Optional: keep a nice placeholder height */
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ts-grey);
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    margin: 0 auto;
+}
+
+/* Regular article images (non-bio) */
+.content-image img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    margin: 0 auto;
+    display: block;
+}
+
+/* ------------------------------
+   Bio Image Styling Override
+   ------------------------------ */
+figure.bio-image {
+    max-width: 300px; /* Caps the width of the bio container */
+    margin: 0 auto 2.5rem auto;
+}
+
+figure.bio-image img {
+    max-width: 250px !important; 
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+figure.bio-image figcaption {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--ts-grey);
+    max-width: 80%;
+    margin: 0 auto;
+}
+
 /* =================================================================
 /* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
 /* ================================================================= */
