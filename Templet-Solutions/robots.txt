@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /nav-contents.html
-Allow: /
-
-Sitemap: https://templetsolutions.com/sitemap.xml
