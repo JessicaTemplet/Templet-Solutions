@@ -1,4 +1,4 @@
-/* style.css - FINAL DESKTOP OPTIMIZED VERSION (WITH STICKY FIXES) */
+/* style.css - FINAL CONFLICT-RESOLVED VERSION */
 :root {
     --ts-navy: #0A1931;
     --ts-medium-blue: #1E3F66;
@@ -21,6 +21,8 @@ body {
     color: var(--ts-text);
     background: var(--ts-bg);
     margin-top: 0; 
+    /* CRITICAL CHECK: Ensure no parent (like body) has 'height: 100%;' without corresponding html height set */
+    min-height: 100vh; 
 }
 
 /* --- Core HTML Elements (Global) --- */
@@ -41,9 +43,8 @@ body {
     border: 0;
 }
 
-/* 🚀 FIX 1: Header (Banner) - Removed conflicting top offset. */
-header {
-    /* Assuming #banner-wrapper is the <header> tag itself in your corrected HTML */
+/* 🚀 FIX 1: Banner (Header) Styles Consolidated onto the ID */
+#banner-wrapper { 
     background-image: url('logo.png');
     background-size: cover;
     background-position: center;
@@ -53,41 +54,38 @@ header {
     aspect-ratio: 4 / 1;
     max-height: 200px;
     
-    /* CRITICAL FIX: Ensure it starts at the top and is relative to the document flow */
-    position: relative;
+    position: relative; /* Allows it to scroll away normally */
     top: 0; 
     
-    z-index: 1; /* Keep it below the sticky nav (z-index 1000) */
+    z-index: 1; 
     box-shadow: none;
     transition: opacity 0.4s ease-in-out; 
 }
 
-/* 🚀 FIX 2: Navigation Wrapper - Set to sticky position. */
+/* 🚀 FIX 2: Navigation Wrapper - Set to sticky position and simplified display. */
 #navigation-bar-wrapper {
-    /* CRITICAL FIX: This makes the nav stick to the viewport */
     position: sticky; 
-    top: 0; /* Stays fixed when it reaches the top of the viewport */
+    top: 0; /* Sticks to the top of the viewport */
 
     left: 0;
     width: 100%;
     background: white;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-    z-index: 1000; /* Stays above the header and content */
+    z-index: 1000; /* Stays above everything */
     padding: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
+    /* Ensure block context for sticky behavior */
+    display: block; 
 }
 
 /* --- Mobile Menu Elements (Now intentionally hidden) --- */
 #menu-toggle {
-    display: none !important; /* Forces the hamburger icon to be hidden */
+    display: none !important; 
 }
 
 .nav-links {
-    /* Base styles, primarily for the links themselves */
     display: flex;
-    flex-direction: column; /* Mobile setting, will be reset on desktop */
+    flex-direction: column; 
     list-style: none;
     margin: 0;
     padding: 0;
@@ -121,7 +119,6 @@ header {
     display: block; 
 }
 
-/* The following mobile-specific styles are intentionally left for media query override */
 .dropdown-content {
     display: none;
     position: static; 
@@ -258,8 +255,6 @@ header {
     text-align: center;
 }
 
-/* Assuming the outer wrapper for footer injection is #footer-wrapper, 
-we keep the semantic <footer> tag styling intact. */
 footer {
     background: var(--ts-text);
     color: white;
@@ -303,15 +298,13 @@ footer {
 }
 
 /* =================================================================
-/* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
+/* DESKTOP MEDIA QUERIES
 /* ================================================================= */
 @media (min-width: 769px) {
-    /* 1. Hides the mobile toggle button on desktop */
     #menu-toggle {
         display: none;
     }
 
-    /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
         position: static; 
         transform: none; 
@@ -324,22 +317,20 @@ footer {
         padding: 0;
         box-shadow: none;
         list-style: none;
-        margin: 0 auto; /* CRITICAL: Centers the nav-links block within its wrapper */
-        justify-content: center; /* Aligns links to the center */
+        margin: 0 auto; 
+        justify-content: center; 
         gap: 0;
     }
 
-    /* 3. DESKTOP LINK STYLING (Compactness) */
     .nav-links a,
     .dropdown-toggle {
         color: var(--ts-text); 
-        padding: 0.5rem 10px; /* Compacting: Reduced vertical padding */
+        padding: 0.5rem 10px; 
         text-align: center;
         display: inline-block;
         width: auto;
     }
 
-    /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
     .dropdown {
         position: relative; 
         display: inline-block; 
@@ -356,7 +347,6 @@ footer {
         min-width: 200px;
         z-index: 1000;
         border-radius: 5px;
-        /* Add scroll properties */
         max-height: 400px;
         overflow-y: auto;
         overflow-x: hidden;
@@ -375,19 +365,17 @@ footer {
     Image Refinements - Global Control
     ------------------------------ */
 
-/* General content image container refinement */
 .content-image {
     text-align: center;
     margin: 2rem auto;
-    max-width: 700px; /* Prevents overly wide images */
+    max-width: 700px; 
 }
 
-/* Placeholder block inside content-image */
 .content-image > div[class*="images/"] { 
     width: 100%;
     max-width: 700px;
     height: auto;
-    min-height: 250px; /* Optional: keep a nice placeholder height */
+    min-height: 250px; 
     background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
     border-radius: 15px;
     display: flex;
@@ -399,7 +387,6 @@ footer {
     margin: 0 auto;
 }
 
-/* Regular article images (non-bio) */
 .content-image img {
     max-width: 700px;
     width: 100%;
@@ -410,11 +397,8 @@ footer {
     display: block;
 }
 
-/* ------------------------------
-    Bio Image Styling Override
-    ------------------------------ */
 figure.bio-image {
-    max-width: 500px; /* Caps the width of the bio container */
+    max-width: 500px; 
     margin: 0 auto 2.5rem auto;
 }
 
@@ -422,26 +406,25 @@ figure.bio-image {
 /* MOBILE MEDIA QUERIES (Cleaned up positioning)
 /* ================================================================= */
 @media (max-width: 768px) {
-    /* Reverts back to mobile defaults but hides the menu */
     .nav-links {
-        display: none; /* CRITICAL: Hides the menu completely on mobile */
+        display: none; 
     }
 
-    /* 🚀 FIX 3: Removed conflicting margin and top offsets on mobile */
+    /* 🚀 FIX 3: Ensure body doesn't have restrictive positioning */
     body {
         margin-top: 0; 
     }
 
     #navigation-bar-wrapper {
-        top: 0; /* Keep the sticky top at 0 */
+        top: 0; 
         padding: 5px 0px;
     }
 
-    header {
+    #banner-wrapper {
         background-size: cover;
         height: auto; 
         aspect-ratio: 4 / 1;
-        max-height: 150px; /* Adjust max height for smaller screens if needed */
+        max-height: 150px; 
     }
 }
 
@@ -450,7 +433,6 @@ figure.bio-image {
         padding: 1rem 0;
     }
     
-    /* 🚀 FIX 4: Removed conflicting margin on body again */
     body {
         margin-top: 0; 
     }
@@ -464,5 +446,5 @@ figure.bio-image {
     }
 }
 
-/* Wrapper targeting for injected structure (Kept as safety net, though main rules above are better) */
+/* Final safety measure: ensures these elements are full width */
 #banner-wrapper, #navigation-bar-wrapper, #footer-wrapper { width: 100%; }

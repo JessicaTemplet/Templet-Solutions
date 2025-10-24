@@ -1,4 +1,4 @@
-// scripts.js - FINAL CORRECTED VERSION (CLEANED)
+// scripts.js - FINAL CORRECTED VERSION (CLEANED AND CONSOLIDATED)
 
 // Define your mobile/desktop breakpoint (Must match CSS media query)
 const desktopBreakpoint = 769;
@@ -18,32 +18,25 @@ function setMobileState(navElement, menuButton, isOpen) {
 }
 
 function attachListeners() {
-    // Elements are guaranteed to exist here since they are injected or are static.
     const menuToggle = document.getElementById('menu-toggle');
-    const mobileNav = document.querySelector('.nav-links'); // Targets the main navigation list
-    
-    // Target the button element with the class .dropdown-toggle
+    const mobileNav = document.querySelector('.nav-links'); 
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
     /* ===== 1. MOBILE MENU FUNCTIONALITY ===== */
-
     if (menuToggle && mobileNav) {
         menuToggle.addEventListener('click', function() {
             const isOpen = mobileNav.classList.contains('open');
             setMobileState(mobileNav, menuToggle, !isOpen);
         });
 
-        // Close mobile menu when a link inside is clicked
         mobileNav.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
             link.addEventListener('click', () => {
-                // Only close if we are in mobile view
                 if (window.innerWidth < desktopBreakpoint) {
                     setMobileState(mobileNav, menuToggle, false);
                 }
             });
         });
 
-        // Close mobile menu on Escape key press
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
                 setMobileState(mobileNav, menuToggle, false);
@@ -52,14 +45,12 @@ function attachListeners() {
     }
 
     /* ===== 2. DESKTOP DROPDOWN FUNCTIONALITY (Controlled by JS) ===== */
-
     dropdownToggles.forEach(dropdownButton => {
-        
-        const dropdown = dropdownButton.closest('.dropdown'); // Find the parent <li> once
+        const dropdown = dropdownButton.closest('.dropdown'); 
 
         dropdownButton.addEventListener('click', function(e) {
             if (window.innerWidth >= desktopBreakpoint) {
-                e.preventDefault(); // Prevent default link behavior on desktop
+                e.preventDefault(); 
                 const isOpen = dropdown.classList.toggle('open');
                 this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                 
@@ -76,7 +67,6 @@ function attachListeners() {
             }
         });
 
-        // A11Y: Close on Escape key press when dropdown is open
         dropdownButton.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 dropdown.classList.remove('open');
@@ -84,7 +74,6 @@ function attachListeners() {
             }
         });
 
-        // 🟢 Close dropdown on mouse leave (Desktop only)
         dropdown.addEventListener('mouseleave', function() {
             if (window.innerWidth >= desktopBreakpoint) {
                 this.classList.remove('open'); 
@@ -96,7 +85,6 @@ function attachListeners() {
     // Close ALL desktop dropdowns when clicking outside
     document.addEventListener('click', (e) => {
         if (window.innerWidth >= desktopBreakpoint) {
-            // Checks if the click target is NOT a dropdown button AND NOT inside the dropdown content
             if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-content')) {
                 document.querySelectorAll('.dropdown.open').forEach(dropdown => {
                     dropdown.classList.remove('open');
@@ -112,7 +100,6 @@ function attachListeners() {
 
 
 /* ===== ANIMATION OBSERVER (Kept for completeness) ===== */
-
 function setupAnimationObserver() {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -142,6 +129,7 @@ function injectPartial(selector, file) {
     return fetch(file, {cache: 'no-cache'})
         .then(r => {
             if (!r.ok) {
+                // If fetching fails, log the error but allow Promise.all to continue
                 console.error(`Failed to fetch ${file}: ${r.statusText}`);
                 return '';
             }
@@ -152,14 +140,14 @@ function injectPartial(selector, file) {
 }
 
 
-/* ===== INITIALIZATION (Runs when scripts.js is loaded) ===== */
+/* ===== FINAL CONSOLIDATED INITIALIZATION BLOCK ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Inject all partials (Header, Nav, Footer) concurrently
     Promise.all([
-        injectPartial('#banner-wrapper', '/header.html'), // Assuming this contains your logo/banner content
-        injectPartial('#navigation-bar-wrapper', '/nav-contents.html'),
-        injectPartial('#footer-wrapper', '/footer-contents.html') // Assuming you have a separate file for the full footer content
+        injectPartial('#banner-wrapper', '/header.html'), // Ensure this path is correct
+        injectPartial('#navigation-bar-wrapper', '/nav-contents.html'), // Ensure this path is correct
+        injectPartial('#footer-wrapper', '/footer-contents.html') // Ensure this path is correct
     ]).then(() => {
         // 2. ONLY run listeners AFTER all content is injected
         if (typeof attachListeners === 'function') attachListeners();
@@ -169,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // 3. Setup the banner scroll/fade effect (Uses the #banner-wrapper ID)
+    // This logic must be outside the promise chain to ensure window.scrollY works immediately.
     const header = document.querySelector('#banner-wrapper');
     if (header) {
          window.addEventListener('scroll', () => {
