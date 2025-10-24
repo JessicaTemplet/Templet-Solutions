@@ -1,9 +1,9 @@
-// scripts.js - FINAL CORRECTED VERSION (CLEANED AND CONSOLIDATED)
+// scripts.js - FINAL VERSION (NO INJECTION LOGIC)
 
 // Define your mobile/desktop breakpoint (Must match CSS media query)
 const desktopBreakpoint = 769;
 
-/* ===== UTILITY FUNCTIONS (Defined for scope but used after content loads) ===== */
+/* ===== UTILITY FUNCTIONS ===== */
 
 function setMobileState(navElement, menuButton, isOpen) {
     if (isOpen) {
@@ -18,11 +18,12 @@ function setMobileState(navElement, menuButton, isOpen) {
 }
 
 function attachListeners() {
+    // Elements are now static, no need to wait for injection
     const menuToggle = document.getElementById('menu-toggle');
     const mobileNav = document.querySelector('.nav-links'); 
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
 
-    /* ===== 1. MOBILE MENU FUNCTIONALITY ===== */
+    /* ===== 1. MOBILE MENU FUNCTIONALITY (Requires the #menu-toggle button to be present) ===== */
     if (menuToggle && mobileNav) {
         menuToggle.addEventListener('click', function() {
             const isOpen = mobileNav.classList.contains('open');
@@ -44,7 +45,7 @@ function attachListeners() {
         });
     }
 
-    /* ===== 2. DESKTOP DROPDOWN FUNCTIONALITY (Controlled by JS) ===== */
+    /* ===== 2. DESKTOP DROPDOWN FUNCTIONALITY ===== */
     dropdownToggles.forEach(dropdownButton => {
         const dropdown = dropdownButton.closest('.dropdown'); 
 
@@ -54,7 +55,6 @@ function attachListeners() {
                 const isOpen = dropdown.classList.toggle('open');
                 this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                 
-                // Close other open dropdowns
                 document.querySelectorAll('.dropdown.open').forEach(otherDropdown => {
                     if (otherDropdown !== dropdown) {
                         otherDropdown.classList.remove('open');
@@ -64,13 +64,6 @@ function attachListeners() {
                         }
                     }
                 });
-            }
-        });
-
-        dropdownButton.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                dropdown.classList.remove('open');
-                this.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -99,7 +92,8 @@ function attachListeners() {
 }
 
 
-/* ===== ANIMATION OBSERVER (Kept for completeness) ===== */
+/* ===== ANIMATION OBSERVER ===== */
+
 function setupAnimationObserver() {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -119,45 +113,14 @@ function setupAnimationObserver() {
 }
 
 
-// Extended utility for injecting HTML partials
-function injectPartial(selector, file) {
-    const el = document.querySelector(selector);
-    if (!el) {
-        console.warn(`Injection target not found for selector: ${selector}`);
-        return Promise.resolve();
-    }
-    return fetch(file, {cache: 'no-cache'})
-        .then(r => {
-            if (!r.ok) {
-                // If fetching fails, log the error but allow Promise.all to continue
-                console.error(`Failed to fetch ${file}: ${r.statusText}`);
-                return '';
-            }
-            return r.text();
-        })
-        .then(html => { el.innerHTML = html; })
-        .catch(e => console.error('Injection error for', file, e));
-}
-
-
-/* ===== FINAL CONSOLIDATED INITIALIZATION BLOCK ===== */
+/* ===== INITIALIZATION BLOCK (Runs when content is loaded) ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inject all partials (Header, Nav, Footer) concurrently
-    Promise.all([
-        injectPartial('#banner-wrapper', '/header.html'), // Ensure this path is correct
-        injectPartial('#navigation-bar-wrapper', '/nav-contents.html'), // Ensure this path is correct
-        injectPartial('#footer-wrapper', '/footer-contents.html') // Ensure this path is correct
-    ]).then(() => {
-        // 2. ONLY run listeners AFTER all content is injected
-        if (typeof attachListeners === 'function') attachListeners();
-        if (typeof setupAnimationObserver === 'function') setupAnimationObserver();
-    }).catch(error => {
-        console.error("Critical error during content injection:", error);
-    });
+    // 1. Run the listeners and observer directly
+    if (typeof attachListeners === 'function') attachListeners();
+    if (typeof setupAnimationObserver === 'function') setupAnimationObserver();
     
-    // 3. Setup the banner scroll/fade effect (Uses the #banner-wrapper ID)
-    // This logic must be outside the promise chain to ensure window.scrollY works immediately.
+    // 2. Setup the banner scroll/fade effect (Uses the #banner-wrapper ID)
     const header = document.querySelector('#banner-wrapper');
     if (header) {
          window.addEventListener('scroll', () => {
