@@ -1,6 +1,4 @@
-// =================================================================
-// scripts.js - FINAL CORRECTED VERSION
-// =================================================================
+// scripts.js - FINAL CORRECTED VERSION (CLEANED)
 
 // Define your mobile/desktop breakpoint (Must match CSS media query)
 const desktopBreakpoint = 769;
@@ -86,10 +84,9 @@ function attachListeners() {
             }
         });
 
-        // 🟢 CRITICAL FIX: Close dropdown on mouse leave (Desktop only)
+        // 🟢 Close dropdown on mouse leave (Desktop only)
         dropdown.addEventListener('mouseleave', function() {
             if (window.innerWidth >= desktopBreakpoint) {
-                // 'this' inside this handler refers to the 'dropdown' element (the <li>)
                 this.classList.remove('open'); 
                 dropdownButton.setAttribute('aria-expanded', 'false');
             }
@@ -111,50 +108,6 @@ function attachListeners() {
             }
         }
     });
-}
-// ===== Header Fade Effect on Scroll =====
-document.addEventListener('DOMContentLoaded', () => {
-  const header = document.querySelector('header');
-  if (!header) return; // Safety: skip if page doesn't have a header
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const fadeStart = 0;    // start fading immediately
-    const fadeEnd = 200;    // fully faded after ~200px scroll
-    const opacity = Math.max(1 - (scrollY - fadeStart) / (fadeEnd - fadeStart), 0);
-    header.style.opacity = opacity;
-  });
-});
-
-
-/* ===== NAVIGATION CONTENT LOADING FIX (The batch fix for all pages) ===== */
-
-// NEW FUNCTION: Loads navigation content from the external HTML file
-function loadNavigationFromHTML() {
-    // CRITICAL CHANGE: Target the new dedicated wrapper ID
-    const navContainer = document.getElementById('navigation-bar-wrapper'); 
-    if (!navContainer) return; // Exit if the container isn't found
-
-    // The path must be correct for all your HTML pages
-    // PATH CORRECTION APPLIED: Using root-relative path for universal loading
-    fetch('/nav-contents.html') 
-        .then(response => {
-            if (!response.ok) {
-                console.error('Failed to load navigation content:', response.statusText);
-                return ''; 
-            }
-            return response.text();
-        })
-        .then(htmlContent => {
-            // Inject the fetched HTML (the <button> and <ul>) into the new wrapper div
-            navContainer.innerHTML = htmlContent;
-
-            // CRITICAL: Call attachListeners AFTER the content has been injected
-            attachListeners();
-        })
-        .catch(error => {
-            console.error('Error fetching navigation content:', error);
-        });
 }
 
 
@@ -179,35 +132,51 @@ function setupAnimationObserver() {
 }
 
 
+// Extended utility for injecting HTML partials
+function injectPartial(selector, file) {
+    const el = document.querySelector(selector);
+    if (!el) {
+        console.warn(`Injection target not found for selector: ${selector}`);
+        return Promise.resolve();
+    }
+    return fetch(file, {cache: 'no-cache'})
+        .then(r => {
+            if (!r.ok) {
+                console.error(`Failed to fetch ${file}: ${r.statusText}`);
+                return '';
+            }
+            return r.text();
+        })
+        .then(html => { el.innerHTML = html; })
+        .catch(e => console.error('Injection error for', file, e));
+}
+
+
 /* ===== INITIALIZATION (Runs when scripts.js is loaded) ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Load the Navigation content from the external file
-    loadNavigationFromHTML(); 
+    // 1. Inject all partials (Header, Nav, Footer) concurrently
+    Promise.all([
+        injectPartial('#banner-wrapper', '/header.html'), // Assuming this contains your logo/banner content
+        injectPartial('#navigation-bar-wrapper', '/nav-contents.html'),
+        injectPartial('#footer-wrapper', '/footer-contents.html') // Assuming you have a separate file for the full footer content
+    ]).then(() => {
+        // 2. ONLY run listeners AFTER all content is injected
+        if (typeof attachListeners === 'function') attachListeners();
+        if (typeof setupAnimationObserver === 'function') setupAnimationObserver();
+    }).catch(error => {
+        console.error("Critical error during content injection:", error);
+    });
     
-    // 2. Setup scroll animations for other page content
-    setupAnimationObserver();
-    
-    // The attachListeners() call is now managed inside loadNavigationFromHTML()
-});
-
-// Extended injection for header, nav, and footer
-function injectPartial(selector, file) {
-  const el = document.querySelector(selector);
-  if (!el) return Promise.resolve();
-  return fetch(file, {cache: 'no-cache'})
-    .then(r => r.ok ? r.text() : '')
-    .then(html => { el.innerHTML = html; })
-    .catch(e => console.error('Injection error for', file, e));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  Promise.all([
-    injectPartial('#header-wrapper', '/header.html'),
-    injectPartial('#navigation-bar-wrapper', '/nav-contents.html'),
-    injectPartial('#footer-wrapper', '/footer-contents.html')
-  ]).then(() => {
-    if (typeof attachListeners === 'function') attachListeners();
-    if (typeof setupAnimationObserver === 'function') setupAnimationObserver();
-  });
+    // 3. Setup the banner scroll/fade effect (Uses the #banner-wrapper ID)
+    const header = document.querySelector('#banner-wrapper');
+    if (header) {
+         window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const fadeStart = 0;    
+            const fadeEnd = 150;    // Banner fully fades out after 150px
+            const opacity = Math.max(1 - (scrollY - fadeStart) / (fadeEnd - fadeStart), 0);
+            header.style.opacity = opacity;
+         });
+    }
 });

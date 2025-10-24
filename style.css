@@ -1,4 +1,4 @@
-/* style.css - FINAL DESKTOP OPTIMIZED VERSION */
+/* style.css - FINAL DESKTOP OPTIMIZED VERSION (WITH STICKY FIXES) */
 :root {
     --ts-navy: #0A1931;
     --ts-medium-blue: #1E3F66;
@@ -9,22 +9,19 @@
     --ts-header-link-hover: #18A6A8;
 }
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    margin-top: 0; /* removed artificial offset */
+    margin-top: 0; 
 }
-
 
 /* --- Core HTML Elements (Global) --- */
 .container {
@@ -32,7 +29,6 @@ body {
     margin: 0 auto;
     padding: 0px;
 }
-
 
 .logo-h1 {
     position: absolute; 
@@ -45,8 +41,9 @@ body {
     border: 0;
 }
 
-
+/* 🚀 FIX 1: Header (Banner) - Removed conflicting top offset. */
 header {
+    /* Assuming #banner-wrapper is the <header> tag itself in your corrected HTML */
     background-image: url('logo.png');
     background-size: cover;
     background-position: center;
@@ -55,21 +52,27 @@ header {
     width: 100%;
     aspect-ratio: 4 / 1;
     max-height: 200px;
+    
+    /* CRITICAL FIX: Ensure it starts at the top and is relative to the document flow */
     position: relative;
-    top: 60px; /* perfectly touches nav */
-    z-index: 1;
+    top: 0; 
+    
+    z-index: 1; /* Keep it below the sticky nav (z-index 1000) */
     box-shadow: none;
-    transition: opacity 0.4s ease-in-out; /* smooth fade effect */
+    transition: opacity 0.4s ease-in-out; 
 }
 
+/* 🚀 FIX 2: Navigation Wrapper - Set to sticky position. */
 #navigation-bar-wrapper {
-    position: relative;
-    top: 0;
+    /* CRITICAL FIX: This makes the nav stick to the viewport */
+    position: sticky; 
+    top: 0; /* Stays fixed when it reaches the top of the viewport */
+
     left: 0;
     width: 100%;
     background: white;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
+    z-index: 1000; /* Stays above the header and content */
     padding: 10px 0;
     display: flex;
     justify-content: center;
@@ -81,7 +84,6 @@ header {
     display: none !important; /* Forces the hamburger icon to be hidden */
 }
 
-
 .nav-links {
     /* Base styles, primarily for the links themselves */
     display: flex;
@@ -90,7 +92,6 @@ header {
     margin: 0;
     padding: 0;
 }
-
 
 .nav-links a,
 .dropdown-toggle { 
@@ -109,19 +110,16 @@ header {
     width: 100%;
 }
 
-
 .nav-links a:hover,
 .dropdown-toggle:hover { 
     background-color: transparent;
     color: var(--ts-teal);
 }
 
-
 .dropdown {
     position: relative;
     display: block; 
 }
-
 
 /* The following mobile-specific styles are intentionally left for media query override */
 .dropdown-content {
@@ -134,7 +132,6 @@ header {
     padding: 5px 0 5px 15px; 
 }
 
-
 /* --- Content Section Styles (Rest of your styles) --- */
 .hero {
     background: var(--ts-navy);
@@ -142,7 +139,6 @@ header {
     padding: 80px 0 80px;  
     text-align: center;
 }
-
 
 .hero-cta {
     background: var(--ts-teal);
@@ -157,12 +153,10 @@ header {
     transition: all 0.3s ease;
 }
 
-
 .hero-cta:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
-
 
 .features {
     padding: 100px 0;
@@ -170,12 +164,10 @@ header {
     overflow: hidden; 
 }
 
-
 .section-header {
     text-align: center;
     margin-bottom: 80px;
 }
-
 
 .features-grid {
     display: grid;
@@ -183,7 +175,6 @@ header {
     gap: 3rem;
     margin-top: 60px;
 }
-
 
 .feature-card {
     background: white;
@@ -194,12 +185,10 @@ header {
     text-align: center;
 }
 
-
 .feature-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
-
 
 .feature-icon {
     width: 80px;
@@ -214,16 +203,13 @@ header {
     color: white;
 }
 
-
 .content-section {
     padding: 100px 0;
 }
 
-
 .content-section:nth-child(even) {
     background: #f8fafc;
 }
-
 
 .content-grid {
     display: grid;
@@ -232,11 +218,9 @@ header {
     align-items: center;
 }
 
-
 .content-image {
     text-align: center;
 }
-
 
 .content-image > div[class*="images/"] { 
     width: 100%;
@@ -251,7 +235,6 @@ header {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
 }
 
-
 .cta-button {
     background: var(--ts-teal);
     color: white;
@@ -263,12 +246,10 @@ header {
     transition: all 0.3s ease;
 }
 
-
 .cta-button:hover {
     background: var(--ts-navy);
     transform: translateY(-2px);
 }
-
 
 .lead-magnet {
     background: var(--ts-navy);
@@ -277,13 +258,13 @@ header {
     text-align: center;
 }
 
-
+/* Assuming the outer wrapper for footer injection is #footer-wrapper, 
+we keep the semantic <footer> tag styling intact. */
 footer {
     background: var(--ts-text);
     color: white;
     padding: 60px 0 30px;
 }
-
 
 .footer-content {
     display: grid;
@@ -292,11 +273,9 @@ footer {
     margin-bottom: 3rem;
 }
 
-
 .footer-section ul li a:hover {
     color: var(--ts-teal);
 }
-
 
 .footer-bottom {
     border-top: 1px solid var(--ts-grey);
@@ -305,13 +284,11 @@ footer {
     color: var(--ts-grey);
 }
 
-
 .article-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem 0;
 }
-
 
 .article-meta {
     color: var(--ts-grey);
@@ -321,11 +298,9 @@ footer {
     padding-bottom: 1rem;
 }
 
-
 .back-to-top:hover {
     text-decoration: underline;
 }
-
 
 /* =================================================================
 /* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
@@ -335,7 +310,6 @@ footer {
     #menu-toggle {
         display: none;
     }
-
 
     /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
@@ -355,7 +329,6 @@ footer {
         gap: 0;
     }
 
-
     /* 3. DESKTOP LINK STYLING (Compactness) */
     .nav-links a,
     .dropdown-toggle {
@@ -366,18 +339,16 @@ footer {
         width: auto;
     }
 
-
     /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
     .dropdown {
         position: relative; 
         display: inline-block; 
     }
 
-
     .dropdown-content {
         display: none; 
         position: absolute; 
-        left: 0; /* Already there for left alignment */
+        left: 0; 
         top: 100%; 
         background-color: white; 
         box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
@@ -391,21 +362,18 @@ footer {
         overflow-x: hidden;
     }
 
-
     .dropdown-content a:hover {
         background-color: #f1f1f1;
     }
 
-
     .content-grid {
         grid-template-columns: 1fr 1fr;
     }
-
-
 }
+
 /* ------------------------------
-   Image Refinements - Global Control
-   ------------------------------ */
+    Image Refinements - Global Control
+    ------------------------------ */
 
 /* General content image container refinement */
 .content-image {
@@ -413,8 +381,6 @@ footer {
     margin: 2rem auto;
     max-width: 700px; /* Prevents overly wide images */
 }
-
-
 
 /* Placeholder block inside content-image */
 .content-image > div[class*="images/"] { 
@@ -433,8 +399,6 @@ footer {
     margin: 0 auto;
 }
 
-
-
 /* Regular article images (non-bio) */
 .content-image img {
     max-width: 700px;
@@ -446,20 +410,16 @@ footer {
     display: block;
 }
 
-
-
 /* ------------------------------
-   Bio Image Styling Override
-   ------------------------------ */
+    Bio Image Styling Override
+    ------------------------------ */
 figure.bio-image {
     max-width: 500px; /* Caps the width of the bio container */
     margin: 0 auto 2.5rem auto;
 }
 
-
-
 /* =================================================================
-/* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
+/* MOBILE MEDIA QUERIES (Cleaned up positioning)
 /* ================================================================= */
 @media (max-width: 768px) {
     /* Reverts back to mobile defaults but hides the menu */
@@ -467,51 +427,42 @@ figure.bio-image {
         display: none; /* CRITICAL: Hides the menu completely on mobile */
     }
 
-
+    /* 🚀 FIX 3: Removed conflicting margin and top offsets on mobile */
     body {
-        margin-top: calc(100vw / 4 + 40px); 
+        margin-top: 0; 
     }
-
 
     #navigation-bar-wrapper {
-        top: calc(100vw / 4); 
+        top: 0; /* Keep the sticky top at 0 */
         padding: 5px 0px;
     }
-
 
     header {
         background-size: cover;
         height: auto; 
         aspect-ratio: 4 / 1;
+        max-height: 150px; /* Adjust max height for smaller screens if needed */
     }
-
-
-    /* Hide all mobile-specific elements that are no longer needed */
-     
-        /* You might want to remove these lines if you want the content to be responsive */
-    
-
-
 }
+
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
     }
-
-
+    
+    /* 🚀 FIX 4: Removed conflicting margin on body again */
     body {
-        margin-top: calc(100vw / 4 + 40px); 
+        margin-top: 0; 
     }
-
-
 }
+
 /* ANIMATIONS */
 @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
-    }}
+    }
+}
 
-/* Wrapper targeting for injected structure */
-#header-wrapper, #navigation-bar-wrapper, #footer-wrapper { width: 100%; }
-#navigation-bar-wrapper { position: sticky; top: 0; z-index: 1000; }
+/* Wrapper targeting for injected structure (Kept as safety net, though main rules above are better) */
+#banner-wrapper, #navigation-bar-wrapper, #footer-wrapper { width: 100%; }
