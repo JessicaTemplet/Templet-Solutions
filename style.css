@@ -1,4 +1,4 @@
-/* style.css - FINAL CONFLICT-RESOLVED VERSION */
+/* style.css - COMPLETE FINAL NUCLEAR FIX FOR STICKY */
 :root {
     --ts-navy: #0A1931;
     --ts-medium-blue: #1E3F66;
@@ -7,6 +7,15 @@
     --ts-bg: #f8fbfd;
     --ts-grey: #8592A0;
     --ts-header-link-hover: #18A6A8;
+}
+
+/* 🚀 NUCLEAR FIX 1: Force Root Scrolling Context */
+html {
+    height: 100%;
+    /* Ensure the HTML element allows scrolling */
+    overflow-y: scroll; 
+    /* Webkit-specific property for full viewport height */
+    height: -webkit-fill-available;
 }
 
 * {
@@ -20,10 +29,12 @@ body {
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    margin-top: 0; 
-    /* CRITICAL: Ensure body is the main scrolling container */
+    
+    /* CRITICAL FIX: Remove hard-coded top margin */
+    margin-top: 0 !important; 
+    padding-top: 0; 
     min-height: 100vh;
-    padding-top: 0; /* Ensures nothing pushes content down */
+    position: static; /* Must be static/unset to avoid conflicting with sticky children */
 }
 
 /* --- Core HTML Elements (Global) --- */
@@ -44,7 +55,7 @@ body {
     border: 0;
 }
 
-/* 🚀 FIX 1: Banner (Header) Styles Consolidated onto the ID. Removed all conflicting position/top properties. */
+/* 🚀 BANNER (HEADER) TARGET: Scrolls and fades normally */
 #banner-wrapper { 
     background-image: url('logo.png');
     background-size: cover;
@@ -55,18 +66,18 @@ body {
     aspect-ratio: 4 / 1;
     max-height: 200px;
     
-    position: relative; /* Must be position: relative or static to scroll normally */
+    position: relative; /* Set to relative so it flows and scrolls normally */
     top: 0; 
     
-    z-index: 1; /* Low z-index so nav can layer over it */
+    z-index: 1; 
     box-shadow: none;
     transition: opacity 0.4s ease-in-out; 
 }
 
-/* 🚀 FIX 2: Navigation Wrapper - Ensured sticky is correctly applied. */
+/* 🚀 NUCLEAR FIX 2: Navigation Wrapper - Force sticky at top (0px) */
 #navigation-bar-wrapper {
-    position: sticky; 
-    top: 0; /* The moment the top of this element hits the viewport top, it sticks. */
+    position: sticky !important; /* MUST be sticky */
+    top: 0 !important; /* MUST be 0 */
 
     left: 0;
     width: 100%;
@@ -75,18 +86,26 @@ body {
     z-index: 1000; /* Highest layer */
     padding: 10px 0;
     
-    display: flex; /* Restored flex to center the navigation content */
+    display: block; /* Use block to prevent potential flex conflicts */
+}
+
+/* Inner <nav> to handle centering */
+nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* --- Mobile Menu Elements (Now intentionally hidden) --- */
+/* --- Navigation & Menu Styling --- */
+
 #menu-toggle {
     display: none !important; 
 }
 
 .nav-links {
-    /* Base styles */
     display: flex;
     flex-direction: column; 
     list-style: none;
@@ -132,8 +151,11 @@ body {
     padding: 5px 0 5px 15px; 
 }
 
-/* --- Content Section Styles (Rest of your styles) --- */
+/* 🚀 CRITICAL FIX 3: Add margin to clear the initial header and nav */
 .hero {
+    /* Assume max banner height (200px) + nav height (approx 50px) = 250px */
+    margin-top: 250px; 
+    
     background: var(--ts-navy);
     color: white;
     padding: 80px 0 80px;  
@@ -301,8 +323,8 @@ footer {
 }
 
 /* =================================================================
-/* DESKTOP MEDIA QUERIES
-/* ================================================================= */
+| DESKTOP MEDIA QUERIES
+|=================================================================*/
 @media (min-width: 769px) {
     #menu-toggle {
         display: none;
@@ -365,8 +387,8 @@ footer {
 }
 
 /* ------------------------------
-    Image Refinements - Global Control
-    ------------------------------ */
+| Image Refinements - Global Control
+|------------------------------ */
 
 .content-image {
     text-align: center;
@@ -406,8 +428,8 @@ figure.bio-image {
 }
 
 /* =================================================================
-/* MOBILE MEDIA QUERIES (Cleaned up positioning)
-/* ================================================================= */
+| MOBILE MEDIA QUERIES (Cleaned up positioning)
+|=================================================================*/
 @media (max-width: 768px) {
     .nav-links {
         display: none; 
@@ -427,6 +449,11 @@ figure.bio-image {
         height: auto; 
         aspect-ratio: 4 / 1;
         max-height: 150px; 
+    }
+    
+    /* Adjust hero clearance for smaller screens */
+    .hero {
+        margin-top: 180px; /* Reduced margin for smaller mobile header/nav */
     }
 }
 
@@ -448,7 +475,7 @@ figure.bio-image {
     }
 }
 
-/* Final safety measure: ensures these elements are full width and don't interfere with scroll */
+/* Final safety measure: ensures these elements are full width */
 #banner-wrapper { width: 100%; } 
 #navigation-bar-wrapper { width: 100%; }
 #footer-wrapper { width: 100%; }
