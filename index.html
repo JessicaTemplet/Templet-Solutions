@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="./style.css" rel="stylesheet">
-
+    <link href="./style.css" rel="stylesheet"/>
 
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -21,35 +20,18 @@
             "telephone": "+1-601-522-2156",
             "contactType": "Sales"
         }
-    }</script>
+    }<./script>
 </head>
 <body>
-    
-    <header id="banner-wrapper">
-        <h1 class="logo-h1">Templet Solutions</h1>
-    </header>
-
-    <div id="navigation-bar-wrapper">
-        <nav>
-            <button id="menu-toggle" aria-expanded="false" aria-controls="main-nav-links">
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <ul class="nav-links" id="main-nav-links" aria-hidden="true">
-                <li><a href="#home">Home</a></li>
-                <li class="dropdown">
-                    <button class="dropdown-toggle" aria-expanded="false" aria-controls="dropdown-services">Services</button>
-                    <ul class="dropdown-content" id="dropdown-services">
-                        <li><a href="#services">Our Solutions</a></li>
-                        <li><a href="#services-deep-dive">Packages</a></li>
-                    </ul>
-                </li>
-                <li><a href="articles.html">Articles</a></li>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#application-section">Contact</a></li>
-            </ul>
-        </nav>
+<header>
+    <div class="header-content-wrapper">
+        <div class="logo-h1">
+        </div>
     </div>
+</header>
 
+<div id="navigation-bar-wrapper">
+    </div>
 
 <section class="hero" id="home">
     <div class="container">
@@ -134,41 +116,47 @@
     </div>
 </section>
 
-<div id="footer-wrapper">
-    <footer>
-        <div class="container footer-content">
+<footer>
+    <div class="container">
+        <div class="footer-content">
             <div class="footer-section">
-                <h3>About</h3>
-                <p>Leading the shift to AI Citation Optimization (AICO) to ensure your brand is the trusted source for generative search.</p>
+                <h3>Templet Solutions</h3>
+                <p>Building authority and organic growth for the age of AI search.</p>
+                <p>Ocean Springs, MS</p>
             </div>
             <div class="footer-section">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="#services">AICO Services</a></li>
-                    <li><a href="#services-deep-dive">Service Packages</a></li>
-                    <li><a href="articles.html">Case Studies</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="articles.html">Article Library</a></li>
-                    <li><a href="#resource-library">Free Checklist</a></li>
-                    <li><a href="#application-section">Consultation</a></li>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="https://templetsolutions.com/index.html">Home</a></li>
+                    <li><a href="https://templetsolutions.com/services-prices/services-prices.html">Services</a></li>
+                    <li><a href="https://templetsolutions.com/articles.html">Articles</a></li>
+                    <li><a href="#application-section">Apply</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p>Email: contact@templetsolutions.com</p>
-                <p>Phone: +1-601-522-2156</p>
+                <ul>
+                    <li><a href="tel:601-522-2156">Phone: 601-522-2156</a></li>
+                    <li><a href="mailto:info@templetsolutions.com">Email: info@templetsolutions.com</a></li>
+                </ul>
             </div>
         </div>
-        <div class="container footer-bottom">
-            <p>&copy; 2024 Templet Solutions. All rights reserved. | <a href="#banner-wrapper" class="back-to-top">Back to Top</a></p>
+        <div class="footer-bottom">
+            © 2025 Templet Solutions. All rights reserved.
         </div>
-    </footer>
-</div>
+    </div>
+</footer>
 
 <script src="./scripts.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof loadNavigationFromHTML === 'function') {
+            loadNavigationFromHTML();
+        }
+        if (typeof setupAnimationObserver === 'function') {
+            setupAnimationObserver();
+        }
+    });
+</script>
 </body>
 </html>
