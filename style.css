@@ -444,7 +444,7 @@ footer {
     }
     /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
-        position: static;    
+        position: sticky;    
         transform: none;    
         height: auto;
         width: auto;
