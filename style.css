@@ -53,63 +53,52 @@ header {
     aspect-ratio: 4 / 1;    
     max-height: 200px;
 }
+/* Navigation Fix */
 #navigation-bar-wrapper {
-    /* CHANGED: position: fixed -> position: sticky (Sticks when it hits top: 0) */
     position: sticky;
-    /* CHANGED: top: 200px -> top: 0 (Sticks to the top of the viewport) */
-    top: 0;    
+    top: 0;
     width: 100%;
     background: white;
-    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-    /* Adjusted z-index to be higher than the header */
     z-index: 1000;
-    padding: 10px 0; /* Reduced vertical padding for compactness */
-    /* REINSTATED LAYOUT PROPERTIES */
+
+    /* Size and spacing */
+    min-height: 60px;
+    padding: 0 20px;
+
+    /* Center layout */
     display: flex;
-    justify-content: center;    
+    justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
 }
 
-/* REMOVED: The unnecessary #navigation-bar-wrapper nav block */
-
-/* --- Mobile Menu Elements (Now intentionally hidden) --- */
-#menu-toggle {
-    display: none !important; /* Forces the hamburger icon to be hidden */
-}
 .nav-links {
-    /* Base styles, primarily for the links themselves */
     display: flex;
-    flex-direction: column; /* Mobile setting, will be reset on desktop */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     list-style: none;
+}
+
+.nav-links li {
     margin: 0;
     padding: 0;
 }
-.nav-links li {
-    padding: 0;
-    width: 100%;
-    margin-bottom: 0;
-}
-.nav-links a,
-.dropdown-toggle {    
-    display: block;    
+
+.nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: var(--ts-text);
     text-decoration: none;
-    color: var(--ts-text);    
-    background-color: transparent;
-    border: none;    
-    padding: 0.5rem 1rem;    
     font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-family: inherit;
-    line-height: 1.6;
-    text-align: left;
-    width: 100%;
+    transition: color 0.3s ease;
 }
-.nav-links a:hover,
-.dropdown-toggle:hover {    
-    background-color: transparent;
+
+.nav-links a:hover {
     color: var(--ts-teal);
 }
+
 .dropdown {
     position: relative;
     display: block;    
@@ -597,9 +586,7 @@ figure.bio-image figcaption {
     .nav-links {
         display: none; /* CRITICAL: Hides the menu completely on mobile */
     }
-    body {
-        /* REMOVED: margin-top was for fixed elements, no longer needed */
-    }
+   
     #navigation-bar-wrapper {
         /* ENSURE it sticks to the top of the viewport on all devices */
         top: 0;    
@@ -612,19 +599,12 @@ figure.bio-image figcaption {
         height: auto;    
         aspect-ratio: 4 / 1;
     }
-    /* Hide all mobile-specific elements that are no longer needed */
-    .hero h1, .hero p, .content-grid, .features-grid, .services-grid, .article-content h1 {
-        /* You might want to remove these lines if you want the content to be responsive */
-    }
+    
 }
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
-    }
-    body {
-        /* REMOVED: margin-top was for fixed elements, no longer needed */
-    }
-}
+
 /* ANIMATIONS */
 @keyframes fadeInUp {
     from {
@@ -637,5 +617,5 @@ figure.bio-image figcaption {
     }
 }
 .animate-on-scroll {
-    animation: fadeInUp 0.8s ease forwards;
-}
+    animation: fadeInUp 0.8s ease forwards;}
+}}
