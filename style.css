@@ -60,7 +60,7 @@ header {
     background: white;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
     z-index: 1000;
-    padding: 10px 0; 
+    padding: 0px 20px; 
     display: flex;
     justify-content: center;    
     align-items: center;
