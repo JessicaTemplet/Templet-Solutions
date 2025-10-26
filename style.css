@@ -54,17 +54,24 @@ header {
     max-height: 200px;
 }
 #navigation-bar-wrapper {
+    /* CHANGED: position: fixed -> position: sticky (Sticks when it hits top: 0) */
     position: sticky;
-    top: 200px;    
+    /* CHANGED: top: 200px -> top: 0 (Sticks to the top of the viewport) */
+    top: 0;    
     width: 100%;
     background: white;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+    /* Adjusted z-index to be higher than the header */
     z-index: 1000;
-    padding: 0px 20px; 
+    padding: 10px 0; /* Reduced vertical padding for compactness */
+    /* REINSTATED LAYOUT PROPERTIES */
     display: flex;
     justify-content: center;    
     align-items: center;
 }
+
+/* REMOVED: The unnecessary #navigation-bar-wrapper nav block */
+
 /* --- Mobile Menu Elements (Now intentionally hidden) --- */
 #menu-toggle {
     display: none !important; /* Forces the hamburger icon to be hidden */
@@ -444,7 +451,7 @@ footer {
     }
     /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
-        position: sticky;    
+        position: static;    
         transform: none;    
         height: auto;
         width: auto;
@@ -589,28 +596,34 @@ figure.bio-image figcaption {
     /* Reverts back to mobile defaults but hides the menu */
     .nav-links {
         display: none; /* CRITICAL: Hides the menu completely on mobile */
-    
     }
-    
-        @media (max-width: 768px) {
+    body {
+        /* REMOVED: margin-top was for fixed elements, no longer needed */
+    }
     #navigation-bar-wrapper {
-        top: calc(100vw / 4);
-        padding: 5px 20px;
+        /* ENSURE it sticks to the top of the viewport on all devices */
         top: 0;    
-        padding: 5px 20px;
+        padding: 5px 0; /* Reduced vertical padding for mobile compactness */
+        /* IMPORTANT: This ensures the menu is centered on mobile */
+        justify-content: center;
     }
     header {
         background-size: cover;
         height: auto;    
         aspect-ratio: 4 / 1;
-    
+    }
+    /* Hide all mobile-specific elements that are no longer needed */
+    .hero h1, .hero p, .content-grid, .features-grid, .services-grid, .article-content h1 {
+        /* You might want to remove these lines if you want the content to be responsive */
     }
 }
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
     }
-   
+    body {
+        /* REMOVED: margin-top was for fixed elements, no longer needed */
+    }
 }
 /* ANIMATIONS */
 @keyframes fadeInUp {
@@ -624,5 +637,5 @@ figure.bio-image figcaption {
     }
 }
 .animate-on-scroll {
-    animation: fadeInUp 0.8s ease forwards;}
+    animation: fadeInUp 0.8s ease forwards;
 }
