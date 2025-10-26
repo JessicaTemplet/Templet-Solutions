@@ -208,6 +208,14 @@ header {
     font-size: 2rem;
     color: white;
 }
+.feature-icon svg,
+.feature-icon img {
+    width: 50%;      /* fills half the circle’s diameter */
+    height: 50%;
+    fill: white;     /* makes line or shape white by default */
+    display: block;
+}
+
 .feature-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -605,6 +613,31 @@ figure.bio-image figcaption {
     font-size: 0.7em;
     vertical-align: middle;
     opacity: 0.6;
+}
+/* === Contact / Application Section === */
+.contact-us {
+    text-align: center;
+    background: var(--ts-bg);
+    padding: 100px 0;
+}
+
+.contact-us h2 {
+    font-size: 2.5rem;
+    color: var(--ts-text);
+    margin-bottom: 1.5rem;
+}
+
+.contact-us p {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.2rem;
+    color: var(--ts-grey);
+    line-height: 1.8;
+}
+
+.contact-us .hero-cta {
+    display: inline-block;
+    margin: 0 auto;
 }
 
 /* =================================================================
