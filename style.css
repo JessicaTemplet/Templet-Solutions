@@ -54,18 +54,14 @@ header {
     max-height: 200px;
 }
 #navigation-bar-wrapper {
-    /* CHANGED: position: fixed -> position: sticky (Sticks when it hits top: 0) */
     position: sticky;
-    /* CHANGED: top: 200px -> top: 0 (Sticks to the top of the viewport) */
-    top: 0;    
+    top: 200px;    
     width: 100%;
     background: white;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-    /* Adjusted z-index to be higher than the header */
     z-index: 1000;
-    padding: 10px 0; /* Reduced vertical padding for compactness */
+    padding: 10px 0; 
     display: flex;
-    /* CENTERING: Uses center to position content in the middle */
     justify-content: center;    
     align-items: center;
 }
