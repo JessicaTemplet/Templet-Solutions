@@ -577,6 +577,35 @@ figure.bio-image figcaption {
     max-width: 80%;
     margin: 0 auto;
 }
+/* Normalize dropdown buttons to match standard nav links */
+.nav-links a,
+.dropdown-toggle {
+    display: inline-block;
+    color: var(--ts-text);
+    background: transparent;
+    border: none;
+    font: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Match hover state with other links */
+.nav-links a:hover,
+.dropdown-toggle:hover {
+    color: var(--ts-teal);
+    background: transparent;
+}
+
+/* Optional: give the caret / dropdown indicator subtle spacing */
+.dropdown-toggle::after {
+    content: " ▼";
+    font-size: 0.7em;
+    vertical-align: middle;
+    opacity: 0.6;
+}
 
 /* =================================================================
 /* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
