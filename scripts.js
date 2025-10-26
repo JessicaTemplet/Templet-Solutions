@@ -1,142 +1,68 @@
-// Define your mobile/desktop breakpoint (Must match CSS media query)
-    const desktopBreakpoint = 769;
+/* =========================================================
+   Templet Solutions - scripts.js
+   Handles navigation injection and scroll animations
+   ========================================================= */
 
-    /* ===== UTILITY FUNCTIONS (Defined for scope but used after content loads) ===== */
-
-    function setMobileState(navElement, menuButton, isOpen) {
-        if (isOpen) {
-            navElement.classList.add('open');
-            navElement.setAttribute('aria-hidden', 'false');
-            menuButton.setAttribute('aria-expanded', 'true');
-        } else {
-            navElement.classList.remove('open');
-            navElement.setAttribute('aria-hidden', 'true');
-            menuButton.setAttribute('aria-expanded', 'false');
-        }
+/* ===== NAVIGATION LOADER ===== */
+function loadNavigationFromHTML() {
+    const navWrapper = document.getElementById('navigation-bar-wrapper');
+    if (!navWrapper) {
+        console.warn('Navigation wrapper not found.');
+        return;
     }
 
-    function attachListeners() {
-        // Elements are guaranteed to exist here since they are injected or are static.
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileNav = document.querySelector('.nav-links'); // Targets the main navigation list
-        
-        // Target the button element with the class .dropdown-toggle
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    fetch('/nav-contents.html')
+        .then(response => {
+            if (!response.ok) throw new Error(`Navigation fetch failed: ${response.status}`);
+            return response.text();
+        })
+        .then(html => {
+            navWrapper.innerHTML = html;
+            console.log('✅ Navigation loaded successfully.');
 
-        /* ===== 1. MOBILE MENU FUNCTIONALITY ===== */
-
-        if (menuToggle && mobileNav) {
-            menuToggle.addEventListener('click', function() {
-                const isOpen = mobileNav.classList.contains('open');
-                setMobileState(mobileNav, menuToggle, !isOpen);
+            // Highlight current page link
+            const currentPath = window.location.pathname.replace(/index\.html$/, '');
+            const links = navWrapper.querySelectorAll('a');
+            links.forEach(link => {
+                if (link.pathname === currentPath || link.pathname === window.location.pathname) {
+                    link.classList.add('active');
+                }
             });
 
-            // Close mobile menu when a link inside is clicked
-            mobileNav.querySelectorAll('a:not(.dropdown-toggle)').forEach(link => {
-                link.addEventListener('click', () => {
-                    // Only close if we are in mobile view
-                    if (window.innerWidth < desktopBreakpoint) {
-                        setMobileState(mobileNav, menuToggle, false);
-                    }
+            // Dropdown toggle setup
+            const dropdownToggles = navWrapper.querySelectorAll('.dropdown-toggle');
+            dropdownToggles.forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const dropdown = toggle.closest('.dropdown');
+                    dropdown.classList.toggle('open');
                 });
             });
+        })
+        .catch(error => console.error('❌ Navigation load failed:', error));
+}
 
-            // Close mobile menu on Escape key press
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
-                    setMobileState(mobileNav, menuToggle, false);
-                }
-            });
-        }
-
-        /* ===== 2. DESKTOP DROPDOWN FUNCTIONALITY (Controlled by JS) ===== */
-
-        dropdownToggles.forEach(dropdownButton => {
-            
-            const dropdown = dropdownButton.closest('.dropdown'); // Find the parent <li> once
-
-            dropdownButton.addEventListener('click', function(e) {
-                if (window.innerWidth >= desktopBreakpoint) {
-                    e.preventDefault(); // Prevent default link behavior on desktop
-                    const isOpen = dropdown.classList.toggle('open');
-                    this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                    
-                    // Close other open dropdowns
-                    document.querySelectorAll('.dropdown.open').forEach(otherDropdown => {
-                        if (otherDropdown !== dropdown) {
-                            otherDropdown.classList.remove('open');
-                            const otherToggle = otherDropdown.querySelector('.dropdown-toggle');
-                            if (otherToggle) {
-                                otherToggle.setAttribute('aria-expanded', 'false');
-                            }
-                        }
-                    });
-                }
-            });
-
-            // A11Y: Close on Escape key press when dropdown is open
-            dropdownButton.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    dropdown.classList.remove('open');
-                    this.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // 🟢 CRITICAL FIX: Close dropdown on mouse leave (Desktop only)
-            dropdown.addEventListener('mouseleave', function() {
-                if (window.innerWidth >= desktopBreakpoint) {
-                    // 'this' inside this handler refers to the 'dropdown' element (the <li>)
-                    this.classList.remove('open'); 
-                    dropdownButton.setAttribute('aria-expanded', 'false');
-                }
-            });
-        });
-
-        // Close ALL desktop dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth >= desktopBreakpoint) {
-                // Checks if the click target is NOT a dropdown button AND NOT inside the dropdown content
-                if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown-content')) {
-                    document.querySelectorAll('.dropdown.open').forEach(dropdown => {
-                        dropdown.classList.remove('open');
-                        const toggle = dropdown.querySelector('.dropdown-toggle');
-                        if (toggle) {
-                            toggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-                }
+/* ===== SCROLL ANIMATION OBSERVER ===== */
+function setupAnimationObserver() {
+    const observer = new IntersectionObserver((entries, observerInstance) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-on-scroll');
+                observerInstance.unobserve(entry.target);
             }
         });
-    }
+    }, {
+        rootMargin: '0px 0px -100px 0px',
+        threshold: 0.1
+    });
 
-    /* ===== ANIMATION OBSERVER ===== */
+    document.querySelectorAll('.feature-card, .content-text, .content-image').forEach(element => {
+        observer.observe(element);
+    });
+}
 
-    function setupAnimationObserver() {
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-on-scroll');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            rootMargin: '0px 0px -100px 0px',
-            threshold: 0.1
-        });
-
-        document.querySelectorAll('.feature-card, .content-text, .content-image').forEach(element => {
-            observer.observe(element);
-        });
-    }
-
-   /* ===== INITIALIZATION (Runs when scripts.js is loaded) ===== */
-
+/* ===== INITIALIZATION ===== */
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Load the Navigation content from the external file
-    loadNavigationFromHTML(); 
-    
-    // 2. Setup scroll animations for other page content
+    loadNavigationFromHTML();
     setupAnimationObserver();
-    
-    // The attachListeners() call is now managed inside loadNavigationFromHTML()
 });
