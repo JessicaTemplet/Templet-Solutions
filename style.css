@@ -212,7 +212,7 @@ header {
 .feature-icon svg {
     width: 100%;
     height: 100%;
-    padding: 18%;           /* gives breathing room so they don’t touch the edge */
+    padding: 5%;           /* gives breathing room so they don’t touch the edge */
     object-fit: contain;    /* scales within the circle without distortion */
     fill: white;
     display: block;
