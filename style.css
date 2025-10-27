@@ -5,7 +5,7 @@
     --ts-teal: #40B4D1;
     --ts-text: #0a202a;
     --ts-bg: #f8fbfd;
-    --ts-grey: #8592A0;
+    --ts-grey: #434b53;
     --ts-header-link-hover: #18A6A8;
 }
 * {
@@ -18,7 +18,7 @@ body {
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    margin-top: 240px; 
+    /* REMOVED: margin-top was for fixed elements, no longer needed */
 }
 /* --- Core HTML Elements (Global) --- */
 .container {
@@ -27,7 +27,7 @@ body {
     padding: 0 20px;
 }
 .logo-h1 {
-    position: absolute; 
+    position: absolute;    
     width: 1px;
     height: 1px;
     padding: 0;
@@ -38,94 +38,87 @@ body {
 }
 header {
     background-image: url('logo.png');
-    background-size: cover; 
+    background-size: cover;    
     background-position: center;
     background-repeat: no-repeat;
     background-color: var(--ts-navy);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
+    /* FIX 1: Allow header to scroll away */
+    position: relative;
     width: 100%;
     top: 0;
-    z-index: 1000; 
-    height: auto; 
-    aspect-ratio: 4 / 1; 
+    z-index: 1;
+    height: auto;    
+    aspect-ratio: 4 / 1;    
     max-height: 200px;
 }
+
+/* Navigation Fix */
 #navigation-bar-wrapper {
-    position: fixed;
-    top: 200px; 
+    position: sticky;
+    top: 0;
     width: 100%;
     background: white;
-    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-    z-index: 999;
-    padding: 10px 0; /* Reduced vertical padding for compactness */
+    z-index: 1000;
+    min-height: 60px;
+    padding: 0 20px;
     display: flex;
-    /* CENTERING: Uses center to position content in the middle */
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
 }
-/* --- Mobile Menu Elements (Now intentionally hidden) --- */
-#menu-toggle {
-    display: none !important; /* Forces the hamburger icon to be hidden */
-}
+
 .nav-links {
-    /* Base styles, primarily for the links themselves */
     display: flex;
-    flex-direction: column; /* Mobile setting, will be reset on desktop */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     list-style: none;
+}
+
+.nav-links li {
     margin: 0;
     padding: 0;
 }
-.nav-links li {
-    padding: 0;
-    width: 100%;
-    margin-bottom: 0;
-}
-.nav-links a,
-.dropdown-toggle { 
-    display: block; 
+
+.nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: var(--ts-text);
     text-decoration: none;
-    color: var(--ts-text); 
-    background-color: transparent;
-    border: none; 
-    padding: 0.5rem 1rem; 
     font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-family: inherit;
-    line-height: 1.6;
-    text-align: left;
-    width: 100%;
+    transition: color 0.3s ease;
 }
-.nav-links a:hover,
-.dropdown-toggle:hover { 
-    background-color: transparent;
+
+.nav-links a:hover {
     color: var(--ts-teal);
 }
+
 .dropdown {
     position: relative;
-    display: block; 
+    display: block;    
 }
 /* The following mobile-specific styles are intentionally left for media query override */
 .dropdown-content {
     display: none;
-    position: static; 
-    background-color: var(--ts-medium-blue); 
-    min-width: 100%; 
-    box-shadow: none; 
-    z-index: 1002; 
-    padding: 5px 0 5px 15px; 
+    position: static;    
+    background-color: var(--ts-medium-blue);    
+    min-width: 100%;    
+    box-shadow: none;    
+    z-index: 1002;    
+    padding: 5px 0 5px 15px;    
 }
 .dropdown-content a {
     color: white;
-    padding: 8px 5px; 
+    padding: 8px 5px;    
     font-weight: 500; /* Compacting: Ensures consistent font weight */
 }
 /* --- Content Section Styles (Rest of your styles) --- */
 .hero {
     background: var(--ts-navy);
     color: white;
-    padding: 80px 0 80px;  
+    padding: 80px 0 80px;      
     text-align: center;
 }
 .hero h1 {
@@ -164,7 +157,7 @@ header {
 .features {
     padding: 100px 0;
     background: var(--ts-bg);
-    overflow: hidden; 
+    overflow: hidden;    
 }
 .section-header {
     text-align: center;
@@ -211,6 +204,17 @@ header {
     font-size: 2rem;
     color: white;
 }
+.feature-icon img,
+.feature-icon svg {
+    width: 100%;
+    height: 100%;
+    padding: 0%;           /* gives breathing room so they don’t touch the edge */
+    object-fit: contain;    /* scales within the circle without distortion */
+    fill: white;
+    display: block;
+    border-radius: 50%;     /* keeps any background square transparent corners hidden */
+}
+
 .feature-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
@@ -267,7 +271,7 @@ header {
 .content-image {
     text-align: center;
 }
-.content-image > div[class*="images/"] { 
+.content-image > div[class*="images/"] {    
     width: 100%;
     height: 300px;
     background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
@@ -277,7 +281,7 @@ header {
     justify-content: center;
     color: var(--ts-grey);
     font-size: 1.2rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);    
 }
 .content-image img {
     max-width: 100%;
@@ -285,11 +289,11 @@ header {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 .bio-image img {
-    max-width: 250px; 
-    height: auto; 
+    max-width: 250px;    
+    height: auto;    
     display: block;
-    margin: 0 auto 25px auto; 
-    border-radius: 8px; 
+    margin: 0 auto 25px auto;    
+    border-radius: 8px;    
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .bio-image figcaption {
@@ -307,7 +311,7 @@ header {
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    display: inline-block; 
+    display: inline-block;    
     transition: all 0.3s ease;
 }
 .cta-button:hover {
@@ -388,7 +392,7 @@ footer {
     font-size: 0.9rem;
     margin-bottom: 2rem;
     border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 1rem;
+    padding-bottom: 80px;
 }
 .article-content h1 {
     font-size: 2.5rem;
@@ -408,7 +412,7 @@ footer {
     color: var(--ts-text);
 }
 .article-content p {
-    margin: 0 0 1.5rem 0;  
+    margin: 0 0 1.5rem 0;      
     line-height: 1.8;
 }
 .article-content ul,
@@ -443,8 +447,8 @@ footer {
     }
     /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
     .nav-links {
-        position: static; 
-        transform: none; 
+        position: static;    
+        transform: none;    
         height: auto;
         width: auto;
         display: flex;
@@ -466,7 +470,7 @@ footer {
     /* 3. DESKTOP LINK STYLING (Compactness) */
     .nav-links a,
     .dropdown-toggle {
-        color: var(--ts-text); 
+        color: var(--ts-text);    
         padding: 0.5rem 10px; /* Compacting: Reduced vertical padding */
         text-align: center;
         display: inline-block;
@@ -474,15 +478,15 @@ footer {
     }
     /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
     .dropdown {
-        position: relative; 
-        display: inline-block; 
+        position: relative;    
+        display: inline-block;    
     }
     .dropdown-content {
-        display: none; 
-        position: absolute; 
+        display: none;    
+        position: absolute;    
         left: 0; /* Already there for left alignment */
-        top: 100%; 
-        background-color: white; 
+        top: 100%;    
+        background-color: white;    
         box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
         padding: 5px 0;
         min-width: 200px;
@@ -516,8 +520,8 @@ footer {
     }
 }
 /* ------------------------------
-   Image Refinements - Global Control
-   ------------------------------ */
+    Image Refinements - Global Control
+    ------------------------------ */
 
 /* General content image container refinement */
 .content-image {
@@ -527,7 +531,7 @@ footer {
 }
 
 /* Placeholder block inside content-image */
-.content-image > div[class*="images/"] { 
+.content-image > div[class*="images/"] {    
     width: 100%;
     max-width: 700px;
     height: auto;
@@ -555,15 +559,15 @@ footer {
 }
 
 /* ------------------------------
-   Bio Image Styling Override
-   ------------------------------ */
+    Bio Image Styling Override
+    ------------------------------ */
 figure.bio-image {
     max-width: 300px; /* Caps the width of the bio container */
     margin: 0 auto 2.5rem auto;
 }
 
 figure.bio-image img {
-    max-width: 250px !important; 
+    max-width: 250px !important;    
     width: 100%;
     height: auto;
     display: block;
@@ -580,6 +584,60 @@ figure.bio-image figcaption {
     max-width: 80%;
     margin: 0 auto;
 }
+/* Normalize dropdown buttons to match standard nav links */
+.nav-links a,
+.dropdown-toggle {
+    display: inline-block;
+    color: var(--ts-text);
+    background: transparent;
+    border: none;
+    font: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Match hover state with other links */
+.nav-links a:hover,
+.dropdown-toggle:hover {
+    color: var(--ts-teal);
+    background: transparent;
+}
+
+/* Optional: give the caret / dropdown indicator subtle spacing */
+.dropdown-toggle::after {
+    content: " ▼";
+    font-size: 0.7em;
+    vertical-align: middle;
+    opacity: 0.6;
+}
+/* === Contact / Application Section === */
+.contact-us {
+    text-align: center;
+    background: var(--ts-bg);
+    padding: 100px 0;
+}
+
+.contact-us h2 {
+    font-size: 2.5rem;
+    color: var(--ts-text);
+    margin-bottom: 1.5rem;
+}
+
+.contact-us p {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.2rem;
+    color: var(--ts-grey);
+    line-height: 1.8;
+}
+
+.contact-us .hero-cta {
+    display: inline-block;
+    margin: 0 auto;
+}
 
 /* =================================================================
 /* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
@@ -589,31 +647,25 @@ figure.bio-image figcaption {
     .nav-links {
         display: none; /* CRITICAL: Hides the menu completely on mobile */
     }
-    body {
-        margin-top: calc(100vw / 4 + 40px); 
-    }
+   
     #navigation-bar-wrapper {
-        top: calc(100vw / 4); 
-        padding: 5px 20px;
+        /* ENSURE it sticks to the top of the viewport on all devices */
+        top: 0;    
+        padding: 5px 0; /* Reduced vertical padding for mobile compactness */
+        /* IMPORTANT: This ensures the menu is centered on mobile */
+        justify-content: center;
     }
     header {
         background-size: cover;
-        height: auto; 
+        height: auto;    
         aspect-ratio: 4 / 1;
     }
-    /* Hide all mobile-specific elements that are no longer needed */
-    .hero h1, .hero p, .content-grid, .features-grid, .services-grid, .article-content h1 {
-        /* You might want to remove these lines if you want the content to be responsive */
-    }
+    
 }
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
-    }
-    body {
-        margin-top: calc(100vw / 4 + 40px); 
-    }
-}
+
 /* ANIMATIONS */
 @keyframes fadeInUp {
     from {
@@ -626,5 +678,5 @@ figure.bio-image figcaption {
     }
 }
 .animate-on-scroll {
-    animation: fadeInUp 0.8s ease forwards;
-}
+    animation: fadeInUp 0.8s ease forwards;}
+}}
