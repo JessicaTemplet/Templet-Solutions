@@ -1,233 +1,132 @@
 #!/usr/bin/env python3
 """
 apply-internal-links.py
-------------------------------------------------------------
-Phase 1.6 – Smart internal linking for Templet Solutions
+Phase 1.6 – Contextual internal linking for Templet Solutions
 
-• Uses detailed semantic map of all articles
-• Links first natural occurrence of each keyword to its canonical URL
-• Skips linking an article to itself
-• Backs up originals to /backup-linking
-• Writes human-readable log to linking-report.txt
-
-Run:
-    python apply-internal-links.py
+Now skips <title> and all header tags (h1–h6).
+Only adds links inside paragraph, list, and span content nodes.
 """
 
 import os
 import re
-import shutil
-from datetime import datetime
 from bs4 import BeautifulSoup
 
-# ---------------------------------------------------------
-# Configuration
-# ---------------------------------------------------------
 ROOT = os.getcwd()
-BACKUP_DIR = os.path.join(ROOT, "backup-linking")
-LOG_FILE = os.path.join(ROOT, "linking-report.txt")
+ARTICLES_DIR = os.path.join(ROOT, "articles")
 ENC = "utf-8"
 
-TARGET_FOLDERS = ["articles", "articles-add-schema"]
-
-# =========================================================
-# SEMANTIC MAP
-# =========================================================
+# ==========================================================
+# Link targets (anchor text → relative URL)
+# ==========================================================
 LINK_MAP = {
-    "C⁴AT³ Framework: Next-Generation AI Citation Optimization": {
-        "url": "/articles/C4AT3-part-1.html",
-        "keywords": [
-            "AI Citation Optimization", "AICO", "C4AT3 Framework", "Next-Generation SEO",
-            "AI content evaluation", "content trust signals", "machine readability",
-            "systematic content quality", "authority building", "AI content standards"
-        ],
-    },
-    "The Complete Guide to Timeliness: Why AI Systems Cite Fresh Content": {
-        "url": "/articles/content-freshness.html",
-        "keywords": [
-            "Timeliness", "Fresh Content", "Content Decay Curve", "Content Recency",
-            "Content update frequency", "temporal signals", "September Cliff",
-            "content maintenance strategy", "dateModified", "recency bias", "evergreen content strategy"
-        ],
-    },
-    "The Complete Guide to Credibility: Why AI Systems Cite Verifiable Content": {
-        "url": "/articles/complete-guide-to-credibility.html",
-        "keywords": [
-            "Credibility", "Verifiable Content", "Trust Signals", "Authoritativeness",
-            "Author expertise", "E-E-A-T", "citation provenance", "source validation",
-            "author bio parsing", "institutional rigor"
-        ],
-    },
-    "The Complete Guide to Actionability: Why AI Systems Cite Practical Content": {
-        "url": "/articles/complete-guide-to-actionability.html",
-        "keywords": [
-            "Actionability", "Practical Content", "User Success", "Implementable Guidance",
-            "Step-by-step guidance", "troubleshooting", "measurable outcomes",
-            "task completion", "working examples", "utility optimization", "how-to content"
-        ],
-    },
-    "Technical Excellence: Maximizing Machine Readability for AI Citation": {
-        "url": "/articles/technical-excellence.html",
-        "keywords": [
-            "Technical Excellence", "Machine Readability", "AI Crawlability", "Structured Data",
-            "Semantic HTML5", "JSON-LD", "schema markup implementation",
-            "page load speed", "mobile responsiveness", "HTTPS/SSL",
-            "structured data parsing", "site performance"
-        ],
-    },
-    "Prompt Engineering for SEO: Getting ChatGPT, Claude, Perplexity, and Gemini to A+": {
-        "url": "/articles/prompt-engineering.html",
-        "keywords": [
-            "Prompt Engineering", "AI Search Optimization", "LLM SEO",
-            "Generative AI querying", "large language model", "AI output quality",
-            "synthetic content generation", "AI workflow optimization",
-            "ChatGPT", "Claude", "Gemini"
-        ],
-    },
-    "Complete Guide to SERPs and AI SERPs": {
-        "url": "/articles/complete-guide-to-serp.html",
-        "keywords": [
-            "AI SERP", "Search Engine Results Page", "Traditional SERP", "Google SGE",
-            "Generative Experience", "featured snippets", "People Also Ask", "PAA",
-            "organic results", "search result evolution", "zero-click search",
-            "search results page", "answer box optimization"
-        ],
-    },
-    "Writing Headlines and Headers That AI Systems Love to Cite": {
-        "url": "/articles/writing-headlines-and-headers.html",
-        "keywords": [
-            "AI-Citable Headlines", "Header Tag Strategy", "H1", "H2 Optimization",
-            "Content summary tags", "intent matching", "title tag best practices",
-            "click-through rate", "CTR", "semantic signaling", "topic definition",
-            "query-to-headline relevance"
-        ],
-    },
-    "Voice Search Optimization (VSO)": {
-        "url": "/articles/voice-search-optimization.html",
-        "keywords": [
-            "Voice Search Optimization", "VSO", "Voice Search Strategy",
-            "Conversational search", "natural language queries", "long-tail keywords",
-            "spoken language patterns", "mobile optimization", "Q&A format",
-            "featured snippet targeting"
-        ],
-    },
-    "The TEACH Framework: Building Authority Through Knowledge Sharing": {
-        "url": "/articles/authority-building-teach-framework.html",
-        "keywords": [
-            "Authority Building", "TEACH Framework", "Topical Authority",
-            "Content clusters", "knowledge hubs", "entity mapping",
-            "thought leadership", "internal linking structure",
-            "expert consensus", "site architecture"
-        ],
-    },
-    "AI Citation-Worthy Content: Assess & Fix Your Content Before You Optimize": {
-        "url": "/articles/ai-content-analysis.html",
-        "keywords": [
-            "Content Audit", "Content Assessment", "AI Quality Score",
-            "Content Gaps", "Editorial guidelines", "quality control",
-            "pre-optimization checklist", "trust signal evaluation",
-            "content gap analysis", "AI readiness assessment"
-        ],
-    },
-    "Complete Guide: Content Clusters (Hub and Spoke Strategy)": {
-        "url": "/articles/complete-guide-content-clusters.html",
-        "keywords": [
-            "Content Clusters", "Hub and Spoke", "Pillar Page Strategy",
-            "Knowledge graph architecture", "topical depth", "internal linking strategy",
-            "SEO siloing", "subject matter completeness", "content mapping"
-        ],
-    },
+    "AI Citation Optimization": "/articles/C4AT3-part-1.html",
+    "AICO": "/articles/C4AT3-part-1.html",
+    "C4AT3 Framework": "/articles/C4AT3-part-1.html",
+    "Timeliness": "/articles/content-freshness.html",
+    "Fresh Content": "/articles/content-freshness.html",
+    "Credibility": "/articles/complete-guide-to-credibility.html",
+    "Actionability": "/articles/complete-guide-to-actionability.html",
+    "Technical Excellence": "/articles/technical-excellence.html",
+    "structured data": "/articles/technical-excellence.html",
+    "ChatGPT": "/articles/prompt-engineering.html",
+    "Claude": "/articles/prompt-engineering.html",
+    "SERP": "/articles/complete-guide-to-serp.html",
+    "Featured snippets": "/articles/complete-guide-to-serp.html",
+    "CTR": "/articles/writing-headlines-and-headers.html",
+    "H1": "/articles/writing-headlines-and-headers.html",
+    "headlines": "/articles/writing-headlines-and-headers.html",
+    "Mobile Optimization": "/articles/voice-search-optimization.html",
+    "Voice Search": "/articles/voice-search-optimization.html",
+    "content audit": "/articles/ai-content-analysis.html",
+    "Editorial Guidelines": "/articles/ai-content-analysis.html",
+    "Content Clusters": "/articles/complete-guide-content-clusters.html",
+    "content clusters": "/articles/complete-guide-content-clusters.html",
+    "topical authority": "/articles/authority-building-teach-framework.html",
+    "thought leadership": "/articles/authority-building-teach-framework.html",
+    "TEACH Framework": "/articles/authority-building-teach-framework.html"
 }
 
-# ---------------------------------------------------------
+# ==========================================================
 # Helpers
-# ---------------------------------------------------------
-def ensure_backup(path):
-    dst = os.path.join(BACKUP_DIR, os.path.relpath(path, ROOT))
-    os.makedirs(os.path.dirname(dst), exist_ok=True)
-    shutil.copy2(path, dst)
+# ==========================================================
 
-def link_text_in_html(soup, keyword, target_url, log_lines):
-    text_blocks = soup.find_all(string=re.compile(keyword, re.I))
-    for t in text_blocks:
-        if t.parent.name == "a":
-            continue
-        m = re.search(keyword, t, re.I)
-        if not m:
-            continue
-        start, end = m.span()
-        new_text = t[:start] + f'<a href="{target_url}">{t[start:end]}</a>' + t[end:]
-        t.replace_with(BeautifulSoup(new_text, "html.parser"))
-        log_lines.append(f"    Linked '{m.group(0)}' → {target_url}")
-        return True
-    return False
-
-def process_file(filepath, log_lines):
-    with open(filepath, "r", encoding=ENC) as f:
-        html = f.read()
-    soup = BeautifulSoup(html, "html.parser")
-
-    main = soup.find("main") or soup.select_one(".article-content")
-    if not main:
+def should_skip_tag(tag):
+    """Skip linking inside titles or headings."""
+    if not tag.name:
         return False
+    return tag.name in ["title", "h1", "h2", "h3", "h4", "h5", "h6"]
 
-    rel_path = os.path.relpath(filepath, ROOT).replace("\\", "/")
-    changed = False
-
-    for article_title, data in LINK_MAP.items():
-        target_url = data["url"]
-        # --- Skip linking to itself ---
-        if rel_path.endswith(os.path.basename(target_url)):
+def apply_links_to_tag(tag, file_rel):
+    """Applies links to paragraphs, list items, etc., avoiding headings."""
+    updated = False
+    skip_self_links = [v for v in LINK_MAP.values() if file_rel.endswith(v)]
+    for child in tag.find_all(text=True):
+        parent = child.parent
+        if should_skip_tag(parent):
             continue
+        text = str(child)
+        new_text = text
+        for phrase, link in LINK_MAP.items():
+            if any(skip in file_rel for skip in [link]):
+                continue  # skip linking to itself
+            pattern = r"\b(" + re.escape(phrase) + r")\b"
+            new_text = re.sub(
+                pattern,
+                rf'<a href="{link}">\1</a>',
+                new_text,
+                flags=re.IGNORECASE
+            )
+        if new_text != text:
+            new_node = BeautifulSoup(new_text, "html.parser")
+            child.replace_with(new_node)
+            updated = True
+    return updated
 
-        for phrase in data["keywords"]:
-            if link_text_in_html(main, phrase, target_url, log_lines):
-                changed = True
-                break  # one link per target article per page
-
-    if changed:
-        ensure_backup(filepath)
-        with open(filepath, "w", encoding=ENC) as f:
-            f.write(str(soup))
-        return True
-    return False
-
-# ---------------------------------------------------------
-# Main execution
-# ---------------------------------------------------------
+# ==========================================================
+# Main process
+# ==========================================================
+report = []
 updated = 0
 skipped = 0
-start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-log_lines = [f"--- apply-internal-links.py started at {start_time} ---\n"]
 
-for folder in TARGET_FOLDERS:
-    base = os.path.join(ROOT, folder)
-    if not os.path.isdir(base):
-        continue
-    for root, _, files in os.walk(base):
-        for name in files:
-            if not name.lower().endswith(".html"):
-                continue
-            file_path = os.path.join(root, name)
-            rel_path = os.path.relpath(file_path, ROOT)
-            log_lines.append(f"\nFile: {rel_path}")
-            try:
-                if process_file(file_path, log_lines):
-                    log_lines.append("  → Updated")
-                    updated += 1
-                else:
-                    log_lines.append("  → No matches found")
-                    skipped += 1
-            except Exception as e:
-                log_lines.append(f"  ⚠️  Error: {e}")
+print(f"--- apply-internal-links.py started ---\n")
+
+for root, _, files in os.walk(ARTICLES_DIR):
+    for name in files:
+        if not name.lower().endswith(".html"):
+            continue
+
+        file_path = os.path.join(root, name)
+        rel_path = os.path.relpath(file_path, ROOT).replace("\\", "/")
+
+        try:
+            with open(file_path, "r", encoding=ENC) as f:
+                html = f.read()
+
+            soup = BeautifulSoup(html, "html.parser")
+            main = soup.find("main") or soup.body
+            if not main:
                 skipped += 1
+                report.append(f"File: {rel_path}\n  → No <main> or <body> found\n")
+                continue
 
-end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-log_lines.append(f"\n--- apply-internal-links.py complete at {end_time} ---")
-log_lines.append(f"Linked pages updated: {updated} | Skipped: {skipped}\n")
+            changed = apply_links_to_tag(main, rel_path)
 
-with open(LOG_FILE, "w", encoding=ENC) as f:
-    f.write("\n".join(log_lines))
+            if changed:
+                with open(file_path, "w", encoding=ENC) as f:
+                    f.write(str(soup))
+                updated += 1
+                report.append(f"File: {rel_path}\n  → Updated\n")
+            else:
+                skipped += 1
+                report.append(f"File: {rel_path}\n  → No matches found\n")
+
+        except Exception as e:
+            report.append(f"File: {rel_path}\n  → Error: {e}\n")
+            skipped += 1
 
 print(f"Script complete. Updated: {updated} | Skipped: {skipped}")
-print(f"Full report written to: {LOG_FILE}")
+report_path = os.path.join(ROOT, "linking-report.txt")
+with open(report_path, "w", encoding=ENC) as r:
+    r.write("\n".join(report))
+print(f"Full report written to: {report_path}")

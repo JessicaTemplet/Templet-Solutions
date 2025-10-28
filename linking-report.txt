@@ -1,0 +1,62 @@
+File: articles/voice-search-optimization.html
+  → Updated
+
+File: articles/ai-content-analysis.html
+  → Updated
+
+File: articles/index.html
+  → No matches found
+
+File: articles/schema-markup-2025.html
+  → Updated
+
+File: articles/complete-guide-to-serp.html
+  → Updated
+
+File: articles/AICO.html
+  → Updated
+
+File: articles/C4AT3-part-1.html
+  → Updated
+
+File: articles/the-complete-guide-to-actionability.html
+  → Updated
+
+File: articles/content-freshness.html
+  → Updated
+
+File: articles/schema-2026.html
+  → Updated
+
+File: articles/complete-guide-to-credibility.html
+  → Updated
+
+File: articles/prompt-engineering.html
+  → Updated
+
+File: articles/complete-guide-to-actionability.html
+  → Updated
+
+File: articles/technical-excellence.html
+  → Updated
+
+File: articles/how-to-assess-content.html
+  → Updated
+
+File: articles/authority-building-teach-framework.html
+  → Updated
+
+File: articles/complete-guide-content-clusters.html
+  → Updated
+
+File: articles/the-C3AT-framework-AICO.html
+  → Updated
+
+File: articles/complete-guide-to-seo-and-aico-ai-citation-optimization.html
+  → Updated
+
+File: articles/writing-headlines-and-headers.html
+  → Updated
+
+File: articles/vso.html
+  → Updated
