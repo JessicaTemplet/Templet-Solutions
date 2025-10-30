@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /automation/
+Disallow: /injection/
+Disallow: /scripts/
+Disallow: /drafts/
+Disallow: /nav-contents.html
+Sitemap: https://www.templetsolutions.com/sitemap.xml
