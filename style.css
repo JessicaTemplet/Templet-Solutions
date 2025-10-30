@@ -665,6 +665,61 @@ figure.bio-image figcaption {
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
+/* =================================================================
+   MOBILE RESPONSIVE FIXES - CONSISTENT NAV + HERO + LAYOUT STACK
+   ================================================================= */
+@media (max-width: 768px) {
+  /* === NAVIGATION === */
+  /* Show full nav links (no hamburger menu) */
+  #menu-toggle { display: none !important; }
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    background: white;
+    width: 100%;
+  }
+  .nav-links a,
+  .dropdown-toggle {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.6rem;
+    color: var(--ts-text);
+  }
+  .nav-links a:hover,
+  .dropdown-toggle:hover {
+    color: var(--ts-teal);
+  }
+
+  /* === HERO SECTION === */
+  .hero h1 {
+    font-size: 2rem;      /* smaller heading */
+    line-height: 1.3;
+  }
+  .hero p {
+    font-size: 1.1rem;    /* reduce paragraph size */
+    max-width: 90%;
+  }
+
+  /* === CONTENT SECTIONS (text + image side-by-side on desktop) === */
+  .content-grid {
+    grid-template-columns: 1fr;   /* stack vertically */
+    gap: 2rem;
+  }
+  .content-grid img,
+  .content-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .content-text {
+    text-align: center; /* optional: center text when stacked */
+  }
+}
 
 /* ANIMATIONS */
 @keyframes fadeInUp {
