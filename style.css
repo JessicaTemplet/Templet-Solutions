@@ -640,33 +640,55 @@ figure.bio-image figcaption {
 }
 
 /* =================================================================
-/* MOBILE MEDIA QUERIES (Header Height Adjustment Only)
+/* MOBILE MEDIA QUERIES — REPAIRED & EXPANDED
 /* ================================================================= */
 @media (max-width: 768px) {
-    /* Reverts back to mobile defaults but hides the menu */
+    /* Keep nav visible and responsive (FIXED) */
     .nav-links {
-        display: none; /* CRITICAL: Hides the menu completely on mobile */
+        display: flex;            /* was: none */
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        list-style: none;
+        width: 100%;
     }
    
     #navigation-bar-wrapper {
-        /* ENSURE it sticks to the top of the viewport on all devices */
         top: 0;    
-        padding: 5px 0; /* Reduced vertical padding for mobile compactness */
-        /* IMPORTANT: This ensures the menu is centered on mobile */
+        padding: 8px 10px;
         justify-content: center;
+        flex-wrap: wrap;
     }
+
+    .nav-links a,
+    .dropdown-toggle {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    /* Banner fix: taller, non-squished */
     header {
-        background-size: cover;
-        height: auto;    
-        aspect-ratio: 4 / 1;
+        aspect-ratio: unset;   /* disable forced 4:1 ratio on phones */
+        height: 180px;         /* visually balanced height */
+        max-height: none;
+        background-position: center;
+        background-size: contain; /* avoid cropping logo/banner */
+        background-repeat: no-repeat;
     }
-    
 }
+
+/* narrow screens: minor article padding fix */
 @media (max-width: 480px) {
     .article-content {
         padding: 1rem 0;
+    }
+}
 
-/* ANIMATIONS */
+/* ================================================================
+   ANIMATIONS (moved out of broken media block)
+   ================================================================ */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -678,5 +700,5 @@ figure.bio-image figcaption {
     }
 }
 .animate-on-scroll {
-    animation: fadeInUp 0.8s ease forwards;}
-}}
+    animation: fadeInUp 0.8s ease forwards;
+}
