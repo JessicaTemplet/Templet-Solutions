@@ -1,4 +1,4 @@
-/* style.css - FINAL DESKTOP OPTIMIZED VERSION */
+/* style.css - FINAL RESPONSIVE VERSION (Banner Fix Included) */
 :root {
     --ts-navy: #0A1931;
     --ts-medium-blue: #1E3F66;
@@ -18,7 +18,6 @@ body {
     line-height: 1.6;
     color: var(--ts-text);
     background: var(--ts-bg);
-    /* REMOVED: margin-top was for fixed elements, no longer needed */
 }
 /* --- Core HTML Elements (Global) --- */
 .container {
@@ -36,21 +35,25 @@ body {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+/* ===========================
+   HEADER & LOGO BANNER FIX
+   =========================== */
 header {
     background-image: url('logo.png');
-    background-size: cover;    
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     background-color: var(--ts-navy);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    /* FIX 1: Allow header to scroll away */
     position: relative;
     width: 100%;
     top: 0;
     z-index: 1;
-    height: auto;    
-    aspect-ratio: 4 / 1;    
-    max-height: 200px;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Navigation Fix */
@@ -99,7 +102,6 @@ header {
     position: relative;
     display: block;    
 }
-/* The following mobile-specific styles are intentionally left for media query override */
 .dropdown-content {
     display: none;
     position: static;    
@@ -112,13 +114,14 @@ header {
 .dropdown-content a {
     color: white;
     padding: 8px 5px;    
-    font-weight: 500; /* Compacting: Ensures consistent font weight */
+    font-weight: 500;
 }
-/* --- Content Section Styles (Rest of your styles) --- */
+
+/* --- Content Section Styles --- */
 .hero {
     background: var(--ts-navy);
     color: white;
-    padding: 80px 0 80px;      
+    padding: 80px 0;      
     text-align: center;
 }
 .hero h1 {
@@ -208,11 +211,11 @@ header {
 .feature-icon svg {
     width: 100%;
     height: 100%;
-    padding: 0%;           /* gives breathing room so they don’t touch the edge */
-    object-fit: contain;    /* scales within the circle without distortion */
+    padding: 0%;
+    object-fit: contain;
     fill: white;
     display: block;
-    border-radius: 50%;     /* keeps any background square transparent corners hidden */
+    border-radius: 50%;
 }
 
 .feature-card h3 {
@@ -438,17 +441,13 @@ footer {
     text-decoration: underline;
 }
 /* =================================================================
-/* DESKTOP (Fixes Centering, Compactness, and Dropdown Font)
-/* ================================================================= */
+   DESKTOP NAV & DROPDOWN REFINEMENTS
+   ================================================================= */
 @media (min-width: 769px) {
-    /* 1. Hides the mobile toggle button on desktop */
-    #menu-toggle {
-        display: none;
-    }
-    /* 2. CENTERS AND SETS UP HORIZONTAL LAYOUT */
+    #menu-toggle { display: none; }
     .nav-links {
-        position: static;    
-        transform: none;    
+        position: static;
+        transform: none;
         height: auto;
         width: auto;
         display: flex;
@@ -458,84 +457,62 @@ footer {
         padding: 0;
         box-shadow: none;
         list-style: none;
-        margin: 0 auto; /* CRITICAL: Centers the nav-links block within its wrapper */
-        justify-content: center; /* Aligns links to the center */
+        margin: 0 auto;
+        justify-content: center;
         gap: 0;
     }
-    .nav-links li {
-        width: auto;
-        margin-bottom: 0;
-        padding: 0 5px; /* Compacting: Reduced horizontal space between main links */
-    }
-    /* 3. DESKTOP LINK STYLING (Compactness) */
+    .nav-links li { width: auto; margin-bottom: 0; padding: 0 5px; }
     .nav-links a,
     .dropdown-toggle {
-        color: var(--ts-text);    
-        padding: 0.5rem 10px; /* Compacting: Reduced vertical padding */
+        color: var(--ts-text);
+        padding: 0.5rem 10px;
         text-align: center;
         display: inline-block;
         width: auto;
     }
-    /* 4. DESKTOP DROPDOWN STYLING (Font Fix & Compactness) */
     .dropdown {
-        position: relative;    
-        display: inline-block;    
+        position: relative;
+        display: inline-block;
     }
     .dropdown-content {
-        display: none;    
-        position: absolute;    
-        left: 0; /* Already there for left alignment */
-        top: 100%;    
-        background-color: white;    
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        background-color: white;
         box-shadow: 0 5px 10px 0 rgba(0,0,0,0.1);
         padding: 5px 0;
         min-width: 200px;
         z-index: 1000;
         border-radius: 5px;
-        /* Add scroll properties */
         max-height: 400px;
         overflow-y: auto;
         overflow-x: hidden;
     }
-    
     .dropdown.open .dropdown-content {
         display: block;
-        left: 0; /* Ensure left alignment when open */
-        text-align: left; /* Text alignment */
+        left: 0;
+        text-align: left;
     }
-    
-    
     .dropdown-content a {
         color: var(--ts-text);
-        padding: 8px 15px; /* Compacting: Reduced padding */
-        border-bottom: none;
-        font-weight: 500; /* CRITICAL: Ensures font weight matches main links */
-        font-size: 1rem; /* CRITICAL: Ensures font size matches main links */
+        padding: 8px 15px;
+        font-weight: 500;
+        font-size: 1rem;
     }
-    .dropdown-content a:hover {
-        background-color: #f1f1f1;
-    }
-    .content-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .dropdown-content a:hover { background-color: #f1f1f1; }
+    .content-grid { grid-template-columns: 1fr 1fr; }
 }
+
 /* ------------------------------
-    Image Refinements - Global Control
-    ------------------------------ */
-
-/* General content image container refinement */
-.content-image {
-    text-align: center;
-    margin: 2rem auto;
-    max-width: 700px; /* Prevents overly wide images */
-}
-
-/* Placeholder block inside content-image */
-.content-image > div[class*="images/"] {    
+   IMAGE & BIO REFINEMENTS
+   ------------------------------ */
+.content-image { text-align: center; margin: 2rem auto; max-width: 700px; }
+.content-image > div[class*="images/"] {
     width: 100%;
     max-width: 700px;
     height: auto;
-    min-height: 250px; /* Optional: keep a nice placeholder height */
+    min-height: 250px;
     background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
     border-radius: 15px;
     display: flex;
@@ -546,8 +523,6 @@ footer {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     margin: 0 auto;
 }
-
-/* Regular article images (non-bio) */
 .content-image img {
     max-width: 700px;
     width: 100%;
@@ -557,17 +532,12 @@ footer {
     margin: 0 auto;
     display: block;
 }
-
-/* ------------------------------
-    Bio Image Styling Override
-    ------------------------------ */
 figure.bio-image {
-    max-width: 300px; /* Caps the width of the bio container */
+    max-width: 300px;
     margin: 0 auto 2.5rem auto;
 }
-
 figure.bio-image img {
-    max-width: 250px !important;    
+    max-width: 250px !important;
     width: 100%;
     height: auto;
     display: block;
@@ -575,7 +545,6 @@ figure.bio-image img {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 figure.bio-image figcaption {
     text-align: center;
     font-style: italic;
@@ -584,7 +553,8 @@ figure.bio-image figcaption {
     max-width: 80%;
     margin: 0 auto;
 }
-/* Normalize dropdown buttons to match standard nav links */
+
+/* NAV BUTTON MATCH */
 .nav-links a,
 .dropdown-toggle {
     display: inline-block;
@@ -598,34 +568,29 @@ figure.bio-image figcaption {
     cursor: pointer;
     transition: color 0.3s ease;
 }
-
-/* Match hover state with other links */
 .nav-links a:hover,
 .dropdown-toggle:hover {
     color: var(--ts-teal);
     background: transparent;
 }
-
-/* Optional: give the caret / dropdown indicator subtle spacing */
 .dropdown-toggle::after {
     content: " ▼";
     font-size: 0.7em;
     vertical-align: middle;
     opacity: 0.6;
 }
+
 /* === Contact / Application Section === */
 .contact-us {
     text-align: center;
     background: var(--ts-bg);
     padding: 100px 0;
 }
-
 .contact-us h2 {
     font-size: 2.5rem;
     color: var(--ts-text);
     margin-bottom: 1.5rem;
 }
-
 .contact-us p {
     max-width: 700px;
     margin: 0 auto 2rem auto;
@@ -633,19 +598,14 @@ figure.bio-image figcaption {
     color: var(--ts-grey);
     line-height: 1.8;
 }
-
-.contact-us .hero-cta {
-    display: inline-block;
-    margin: 0 auto;
-}
+.contact-us .hero-cta { display: inline-block; margin: 0 auto; }
 
 /* =================================================================
-/* MOBILE MEDIA QUERIES — REPAIRED & EXPANDED
-/* ================================================================= */
+   MOBILE MEDIA QUERIES — FINAL FIX
+   ================================================================= */
 @media (max-width: 768px) {
-    /* Keep nav visible and responsive (FIXED) */
     .nav-links {
-        display: flex;            /* was: none */
+        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -654,50 +614,34 @@ figure.bio-image figcaption {
         list-style: none;
         width: 100%;
     }
-   
     #navigation-bar-wrapper {
-        top: 0;    
+        top: 0;
         padding: 8px 10px;
         justify-content: center;
         flex-wrap: wrap;
     }
-
     .nav-links a,
     .dropdown-toggle {
         font-size: 0.95rem;
         padding: 0.4rem 0.6rem;
     }
-
-    /* Banner fix: taller, non-squished */
     header {
-        aspect-ratio: unset;   /* disable forced 4:1 ratio on phones */
-        height: 180px;         /* visually balanced height */
-        max-height: none;
+        height: 140px;
+        background-size: contain;
         background-position: center;
-        background-size: contain; /* avoid cropping logo/banner */
         background-repeat: no-repeat;
     }
 }
-
-/* narrow screens: minor article padding fix */
 @media (max-width: 480px) {
-    .article-content {
-        padding: 1rem 0;
-    }
+    .article-content { padding: 1rem 0; }
 }
 
 /* ================================================================
-   ANIMATIONS (moved out of broken media block)
+   ANIMATIONS
    ================================================================ */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 .animate-on-scroll {
     animation: fadeInUp 0.8s ease forwards;
