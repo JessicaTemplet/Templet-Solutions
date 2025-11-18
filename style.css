@@ -116,7 +116,7 @@ body {
 .site-nav {
     padding: 0 var(--container-padding);
     max-width: 920px;
-    margin: 0.5rem 0 0; 
+    margin: 0.5rem 0 0 auto; 
 }
 }
 
