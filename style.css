@@ -12,15 +12,12 @@
     --ts-gray-700: #344055;
     --ts-gray-900: #1a1f28;
 
-    /* Typography */
     --font-sans: "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
     --font-serif: "Georgia", serif;
 
-    /* Sizing */
     --container-padding: 2rem;
     --transition-fast: 0.2s ease;
 }
-
 
 /* ============================================================
    GLOBAL RESET
@@ -45,9 +42,8 @@ body {
     font-size: 1rem;
 }
 
-
 /* ============================================================
-   CONTAINERS (NEW — CENTERED + WIDE MARGINS)
+   CONTAINERS (CENTERED + WIDE MARGINS)
    ============================================================ */
 .container {
     width: 100%;
@@ -70,9 +66,8 @@ body {
     padding: 0 var(--container-padding);
 }
 
-
 /* ============================================================
-   HEADER (STICKY, CENTERED, WITH SVG LOGO)
+   HEADER (STICKY)
    ============================================================ */
 .site-header {
     width: 100%;
@@ -114,7 +109,6 @@ body {
     font-size: 0.85rem;
     color: var(--ts-gray-700);
 }
-
 
 /* ============================================================
    NAVIGATION
@@ -186,7 +180,6 @@ body {
     display: block;
 }
 
-
 /* ============================================================
    MOBILE NAV
    ============================================================ */
@@ -214,11 +207,10 @@ body {
         cursor: pointer;
     }
 
-    .site-nav nav-open .nav-links {
+    .site-nav.nav-open .nav-links {
         display: flex;
     }
 }
-
 
 /* ============================================================
    MAIN CONTENT
@@ -254,12 +246,58 @@ p {
     color: var(--ts-gray-900);
 }
 
+/* ============================================================
+   IMAGE RULES (RESTORED)
+   ============================================================ */
+
+/* Default article image behavior */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
+/* Prevent icons from exploding */
+.icon,
+.icon img,
+.inline-icon,
+.inline-icon img,
+.badge img,
+.service-icon,
+.service-icon img {
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+/* Card/pricing icon constraints */
+.card img,
+.pricing-card img,
+.feature-box img {
+    width: 64px;
+    height: 64px;
+    max-width: 64px;
+    max-height: 64px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* Footer logos / partner logos */
+.footer-logo img,
+.brand-row img {
+    max-height: 40px;
+    width: auto;
+}
+
+/* Ensure article .context-image remains fluid */
+.context-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
 
 /* ============================================================
    FOOTER
@@ -300,7 +338,6 @@ footer {
     margin-top: 2rem;
     font-size: 0.85rem;
 }
-
 
 /* ============================================================
    BIO PAGE SPECIAL STYLES
