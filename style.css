@@ -114,10 +114,9 @@ body {
    NAVIGATION
    ============================================================ */
 .site-nav {
-    padding: 0 var(--container-padding);
-    max-width: 920px;
-    margin: 0.5rem 0 0 auto; 
-}
+padding: 1px var(--container-padding);
+max-width: 879px;
+margin: -3.5rem auto 0;
 }
 
 .nav-links {
