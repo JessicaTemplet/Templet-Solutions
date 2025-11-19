@@ -1,0 +1,351 @@
+/* ============================================================
+   GLOBAL VARIABLES & BASE DESIGN TOKENS
+   ============================================================ */
+:root {
+    --ts-navy: #0a1a2b;
+    --ts-navy-light: #143152;
+
+    --ts-gold: #f5c26b;    --ts-white: #ffffff;
+    --ts-gray-400: #98a1b3;
+    --ts-gray-700: #344055;
+    --ts-gray-900: #1a1f28;
+
+    /* Typography */
+    --font-sans: "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
+    --font-serif: "Georgia", serif;
+
+    /* Sizing */
+    --container-padding: 2rem;
+    --transition-fast: 0.2s ease;
+}
+
+
+/* ============================================================
+   GLOBAL RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    background: var(--ts-gray-100);
+    color: var(--ts-gray-900);
+    line-height: 1.65;
+    font-size: 1rem;
+}
+
+
+/* ============================================================
+   CONTAINERS (NEW — CENTERED + WIDE MARGINS)
+   ============================================================ */
+.container {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.container-narrow {
+    width: 100%;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.container-wide {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+
+/* ============================================================
+   HEADER (STICKY, CENTERED, WITH SVG LOGO)
+   ============================================================ */
+.site-header {
+    width: 100%;
+    background: var(--ts-navy);
+    border-bottom: 1px solid var(--ts-gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 0.75rem 0;
+}
+
+.site-branding {
+    display: flex;
+    align-items: left;
+    gap: 1rem;
+    padding: 0 var(--container-padding);
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.site-logo-img {
+    width: 100px;
+    height: auto;
+}
+
+.site-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.site-name {
+    font-weight: 700;
+    font-size: 1.2rem;
+   color: var(--ts-gold);
+}
+
+.site-tagline {
+    font-size: 0.85rem;
+    color: var(--ts-gold);
+}
+
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+#navigation-bar-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--ts-navy);
+    z-index: 1000;
+    min-height: 60px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+
+}
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: right;
+    gap: 1rem;
+    list-style: none;
+}
+
+@media (min-width: 769px) {
+    .nav-links {
+        position: static;
+        transform: none;
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        background: transparent;
+        align-items: right;
+        padding: 0;
+        box-shadow: none;
+        list-style: none;
+        margin: 0 auto; 
+        justify-content: right; 
+        gap: 0;
+    }
+    }
+
+.nav-links li {
+    margin: 0;
+    padding: 0;
+
+}
+
+
+
+.nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: var(--ts-gold);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+}
+
+.nav-links a:hover {
+    color: var(--ts-gold);
+
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--ts-navy);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: var(--ts-white);
+    top: 2.2rem;
+    left: 0;
+    min-width: 260px;
+    border: 1px solid var(--ts-gray-200);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    padding: 0.5rem 0;
+    z-index: 999;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--ts-gray-900);
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background: var(--ts-gray-100);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+#menu-toggle {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem;
+        border-top: 1px solid var(--ts-gray-200);
+    }
+
+    #menu-toggle {
+        display: inline-block;
+        background: var(--ts-navy);
+        color: var(--ts-white);
+        padding: 0.5rem 1rem;
+        border: none;
+        margin-left: auto;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .site-nav nav-open .nav-links {
+        display: flex;
+    }
+}
+
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+main.page,
+main.article {
+    background: var(--ts-white);
+    border-radius: 14px;
+    padding: 3rem 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 700;
+    color: var(--ts-navy);
+}
+
+h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+h2 {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+}
+
+p {
+    margin: 1rem 0;
+    line-height: 1.75;
+    color: var(--ts-gray-900);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+    background: var(--ts-navy);
+    color: var(--ts-white);
+    padding: 3rem 0;
+}
+
+.footer-content {
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-section h3 {
+    color: var(--ts-gold);
+}
+
+.footer-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-section ul li {
+    margin: 0.4rem 0;
+}
+
+.footer-section ul li a {
+    color: var(--ts-white);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+}
+
+
+/* ============================================================
+   BIO PAGE SPECIAL STYLES
+   ============================================================ */
+.context-image {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.bio-article p {    margin-bottom: 1.2rem;
+    }
