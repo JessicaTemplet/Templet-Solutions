@@ -5,7 +5,7 @@
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
 
-    --ts-gold: #f5c26b;    --ts-white: #ffffff;
+    --ts-gold: #edf0399c;    --ts-white: #ffffff;
     --ts-gray-400: #98a1b3;
     --ts-gray-700: #344055;
     --ts-gray-900: #1a1f28;
@@ -92,8 +92,8 @@ body {
 }
 
 .site-logo-img {
-    width: 100px;
-    height: auto;
+    width: 200px;
+    height: 200px;
 }
 
 .site-brand-text {
