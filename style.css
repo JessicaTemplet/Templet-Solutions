@@ -190,9 +190,9 @@ button {
      
    
     font-weight: 400;
-    font-size: .85rem;
+    font-size: 1rem;
     font-family: Baskerville;
-    font-size-adjust:.85rem ;
+    font-size-adjust: 1rem;
     color: buttontext; var(--ts-gold);
     letter-spacing: normal;
     word-spacing: 2px;
