@@ -190,15 +190,14 @@ button {
      
    
     font-weight: 400;
-    font-size: .75rem;
+    font-size: .85rem;
     font-family: Baskerville;
-    font-size-adjust:.75rem ;
+    font-size-adjust:.85rem ;
     color: buttontext; var(--ts-gold);
     letter-spacing: normal;
-    word-spacing: normal;
+    word-spacing: 2px;
     line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
+    text-indent: 4px;
     text-shadow: none;
     display: inline-block;
     text-align: center;
@@ -206,8 +205,8 @@ button {
     box-sizing: border-box;
     background-color: var(--ts-navy);
     margin: 0em 0em 0em 0em;
-    padding-block: 0px;
-    padding-inline: 0px;
+    padding-block: 1px;
+    padding-inline: 6px;
     border-width: 2px;
     border-style: outset;
     
