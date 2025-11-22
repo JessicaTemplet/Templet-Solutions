@@ -193,7 +193,7 @@ body {
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    color: var(--ts-navy);
+    color: var(--ts-gold);
 }
 
 .dropdown-content {
