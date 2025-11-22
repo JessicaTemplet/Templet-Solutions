@@ -4,20 +4,21 @@
 :root {
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
-    --ts-gold: #f5c26b;
-    --ts-white: #ffffff;
-    --ts-gray-100: #f7f8fa;
-    --ts-gray-200: #eaecf0;
+
+    --ts-gold: #f5c26b;    --ts-white: #ffffff;
     --ts-gray-400: #98a1b3;
     --ts-gray-700: #344055;
     --ts-gray-900: #1a1f28;
 
+    /* Typography */
     --font-sans: "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
     --font-serif: "Georgia", serif;
 
+    /* Sizing */
     --container-padding: 2rem;
     --transition-fast: 0.2s ease;
 }
+
 
 /* ============================================================
    GLOBAL RESET
@@ -42,8 +43,9 @@ body {
     font-size: 1rem;
 }
 
+
 /* ============================================================
-   CONTAINERS (CENTERED + WIDE MARGINS)
+   CONTAINERS (NEW — CENTERED + WIDE MARGINS)
    ============================================================ */
 .container {
     width: 100%;
@@ -66,12 +68,13 @@ body {
     padding: 0 var(--container-padding);
 }
 
+
 /* ============================================================
-   HEADER (STICKY)
+   HEADER (STICKY, CENTERED, WITH SVG LOGO)
    ============================================================ */
 .site-header {
     width: 100%;
-    background: var(--ts-white);
+    background: var(--ts-navy);
     border-bottom: 1px solid var(--ts-gray-200);
     position: sticky;
     top: 0;
@@ -81,7 +84,7 @@ body {
 
 .site-branding {
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 1rem;
     padding: 0 var(--container-padding);
     max-width: 920px;
@@ -89,7 +92,7 @@ body {
 }
 
 .site-logo-img {
-    width: 200px;
+    width: 100px;
     height: auto;
 }
 
@@ -102,41 +105,81 @@ body {
 .site-name {
     font-weight: 700;
     font-size: 1.2rem;
-    color: var(--ts-navy);
+   color: var(--ts-gold);
 }
 
 .site-tagline {
     font-size: 0.85rem;
-    color: var(--ts-gray-700);
+    color: var(--ts-gold);
 }
+
 
 /* ============================================================
    NAVIGATION
    ============================================================ */
-.site-nav {
-padding: 1px var(--container-padding);
-max-width: 879px;
-margin: -3.5rem auto 0;
+#navigation-bar-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--ts-navy);
+    z-index: 1000;
+    min-height: 60px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+
+}
+.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: right;
+    gap: 1rem;
+    list-style: none;
 }
 
-.nav-links {
-    list-style: none;
+@media (min-width: 769px) {
+    .nav-links {
+        position: static;
+        transform: none;
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        background: transparent;
+        align-items: right;
+        padding: 0;
+        box-shadow: none;
+        list-style: none;
+        margin: 0 auto; 
+        justify-content: right; 
+        gap: 0;
+    }
+    }
+
+.nav-links li {
     margin: 0;
     padding: 0;
-    display: flex;
-    gap: 1.5rem;
-    align-items: right;
+
 }
 
-.nav-links li a {
-    color: var(--ts-navy);
+
+
+.nav-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: var(--ts-gold);
     text-decoration: none;
     font-weight: 500;
-    transition: color var(--transition-fast);
+    transition: color 0.3s ease;
+
 }
 
-.nav-links li a:hover {
+.nav-links a:hover {
     color: var(--ts-gold);
+
 }
 
 .dropdown {
@@ -180,6 +223,7 @@ margin: -3.5rem auto 0;
     display: block;
 }
 
+
 /* ============================================================
    MOBILE NAV
    ============================================================ */
@@ -207,10 +251,11 @@ margin: -3.5rem auto 0;
         cursor: pointer;
     }
 
-    .site-nav.nav-open .nav-links {
+    .site-nav nav-open .nav-links {
         display: flex;
     }
 }
+
 
 /* ============================================================
    MAIN CONTENT
@@ -246,58 +291,12 @@ p {
     color: var(--ts-gray-900);
 }
 
-/* ============================================================
-   IMAGE RULES (RESTORED)
-   ============================================================ */
-
-/* Default article image behavior */
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* Prevent icons from exploding */
-.icon,
-.icon img,
-.inline-icon,
-.inline-icon img,
-.badge img,
-.service-icon,
-.service-icon img {
-    width: 32px;
-    height: 32px;
-    max-width: 32px;
-    max-height: 32px;
-    object-fit: contain;
-    display: inline-block;
-}
-
-/* Card/pricing icon constraints */
-.card img,
-.pricing-card img,
-.feature-box img {
-    width: 64px;
-    height: 64px;
-    max-width: 64px;
-    max-height: 64px;
-    object-fit: contain;
-    margin: 0 auto;
-}
-
-/* Footer logos / partner logos */
-.footer-logo img,
-.brand-row img {
-    max-height: 40px;
-    width: auto;
-}
-
-/* Ensure article .context-image remains fluid */
-.context-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-}
 
 /* ============================================================
    FOOTER
@@ -339,6 +338,7 @@ footer {
     font-size: 0.85rem;
 }
 
+
 /* ============================================================
    BIO PAGE SPECIAL STYLES
    ============================================================ */
@@ -347,6 +347,5 @@ footer {
     text-align: center;
 }
 
-.bio-article p {
-    margin-bottom: 1.2rem;
-}
+.bio-article p {    margin-bottom: 1.2rem;
+    }
