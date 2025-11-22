@@ -193,7 +193,6 @@ button {
     font-size: 1rem;
     font-family: Baskerville;
     font-size-adjust: 1rem;
-    color: buttontext; var(--ts-gold);
     letter-spacing: normal;
     word-spacing: 2px;
     line-height: normal;
