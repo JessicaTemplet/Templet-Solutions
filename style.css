@@ -183,6 +183,35 @@ body {
 
 }
 
+button {
+    appearance: auto;
+    --font-sans: "Baskerville", "Palatino", serif;
+    --font-serif: "Baskerville", "Palatino", serif;
+     
+   
+    font-weight: 400;
+    font-size: .75rem;
+    font-family: Baskerville;
+    font-size-adjust:.75rem ;
+    color: buttontext; var(--ts-gold);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: var(--ts-navy);
+    margin: 0em 0em 0em 0em;
+    padding-block: 0px;
+    padding-inline: 0px;
+    border-width: 2px;
+    border-style: outset;
+    
+}
 .dropdown {
     position: relative;
 }
@@ -190,8 +219,8 @@ body {
 .dropdown-toggle {
     background: none;
     border: none;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: .75rem;
+    font-weight: 400;
     cursor: pointer;
     color: var(--ts-gold);
 }
@@ -304,7 +333,7 @@ img {
    ============================================================ */
 footer {
     background: var(--ts-navy);
-    color: var(--ts-white);
+    color: var(--ts-gold);
     padding: 3rem 0;
 }
 
@@ -329,7 +358,7 @@ footer {
 }
 
 .footer-section ul li a {
-    color: var(--ts-white);
+    color: var(--ts-gold);
     text-decoration: none;
 }
 
