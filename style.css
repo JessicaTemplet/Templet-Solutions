@@ -5,14 +5,15 @@
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
 
-    --ts-gold: #edf0399c;    --ts-white: #ffffff;
+    --ts-gold: #f5db56;    
+    --ts-white: #ffffff;
     --ts-gray-400: #98a1b3;
     --ts-gray-700: #344055;
     --ts-gray-900: #1a1f28;
 
     /* Typography */
-    --font-sans: "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
-    --font-serif: "Georgia", serif;
+    --font-sans: "Baskerville", "Palatino", serif;
+    --font-serif: "Baskerville", "Palatino", serif;
 
     /* Sizing */
     --container-padding: 2rem;
