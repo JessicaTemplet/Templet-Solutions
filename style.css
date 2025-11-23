@@ -76,6 +76,7 @@ body {
    HEADER (STICKY, CENTERED, WITH SVG LOGO)
    ============================================================ */
 .site-header {
+    display: flex;
     width: 100%;
     background: var(--ts-navy);
     border-bottom: 1px solid var(--ts-gray-200);
