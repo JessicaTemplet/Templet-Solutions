@@ -94,10 +94,10 @@ body {
     margin: 0 auto;
 }
 
-.site-logo-img {
-    width: 350px;
-    height: 350px;
-    justify-content: left;
+site-logo-img {
+    width: 450px;
+    height: 250px;
+    justify-items: left;
     align-content: center;
 }
 
