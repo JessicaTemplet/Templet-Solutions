@@ -128,7 +128,7 @@ body {
     padding: 0 20px;
     display: flex;
     justify-content: right;
-    align-items: right;
+    align-items: flex-end;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
 
 }
@@ -136,7 +136,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: right;
-    align-items: right;
+    align-items: flex-end;
     gap: 1rem;
     list-style: none;
 }
@@ -184,30 +184,37 @@ body {
 }
 
 button {
-    appearance: auto;
-    --font-sans: "Baskerville", "Palatino", serif;
-    --font-serif: "Baskerville", "Palatino", serif;
-     
-   
-    font-weight: 400;
+    all: unset; 
+    
+  
+    font-family: inherit;
     font-size: 1rem;
-    font-family: Baskerville;
-    font-size-adjust: 1rem;
-    letter-spacing: normal;
-    word-spacing: 2px;
-    line-height: normal;
-    text-indent: 4px;
-    text-shadow: none;
+    font-weight: 500;
+    
+   
     display: inline-block;
+    cursor: pointer;
     text-align: center;
-    cursor: default;
-    box-sizing: border-box;
-    background-color: var(--ts-navy);
-    margin: 0em 0em 0em 0em;
-    padding-block: 1px;
-    padding-inline: 6px;
-    border-width: 2px;
-    border-style: outset;
+    line-height: normal;
+
+    
+    padding: 0.5rem 1rem; 
+    color: var(--ts-gold);
+    transition: color 0.3s ease;
+    text-decoration: none; 
+}
+
+button:hover {
+    
+    color: var(--ts-gold);
+    text-decoration: underline; 
+}
+
+
+.dropdown-toggle {
+    color: var(--ts-gold);
+    /* No other overrides needed! */
+}
     
 }
 .dropdown {
@@ -217,8 +224,8 @@ button {
 .dropdown-toggle {
     background: none;
     border: none;
-    font-size: .75rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     color: var(--ts-gold);
 }
