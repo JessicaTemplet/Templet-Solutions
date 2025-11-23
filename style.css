@@ -86,8 +86,8 @@ body {
 }
 
 .site-branding {
-    display: flex;
-    align-items: left;
+    display: unset;
+    align-items: center;
     gap: 1rem;
     padding: 0 var(--container-padding);
     max-width: 920px;
@@ -97,6 +97,8 @@ body {
 .site-logo-img {
     width: 350px;
     height: 350px;
+    justify-content: left;
+    align-content: center;
 }
 
 .site-brand-text {
@@ -107,13 +109,14 @@ body {
 
 .site-name {
     font-weight: 700;
-    font-size: 2.2rem;
+    font-size: 1.2rem;
    color: var(--ts-gold);
 }
 
 .site-tagline {
-    font-size: 1.85rem;
+    font-size: 1rem;
     color: var(--ts-gold);
+    align-content: flex-start;
 }
 
 
