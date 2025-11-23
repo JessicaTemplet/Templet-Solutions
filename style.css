@@ -5,8 +5,10 @@
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
 
-    --ts-gold: #f5db56;    
+    --ts-gold: #f5db56;      
     --ts-white: #ffffff;
+    --ts-gray-100: #f7f7f7; /* Assuming you need a light background grey for body/features */
+    --ts-gray-200: #e5e5e5; /* Assuming this is a border/divider color */
     --ts-gray-400: #98a1b3;
     --ts-gray-700: #344055;
     --ts-gray-900: #1a1f28;
@@ -116,7 +118,7 @@ body {
 
 
 /* ============================================================
-   NAVIGATION
+   NAVIGATION & BUTTONS
    ============================================================ */
 #navigation-bar-wrapper {
     position: sticky;
@@ -158,7 +160,7 @@ body {
         justify-content: right; 
         gap: 0;
     }
-    }
+}
 
 .nav-links li {
     margin: 0;
@@ -178,47 +180,43 @@ body {
     color: var(--ts-gold);
 }
 
+
+/* --- Button Base Style (Link-Like) --- */
 button {
+    /* Base reset */
     all: unset; 
+    
+    /* Inherit site typography */
     font-family: inherit;
     font-size: 1rem;
     font-weight: 500;
     
+    /* Link-Like appearance */
     display: inline-block;
     cursor: pointer;
     text-align: center;
     line-height: normal;
-
     padding: 0.5rem 1rem; 
     color: var(--ts-gold);
     transition: color 0.3s ease;
     text-decoration: none; 
 }
 
-button:hover {    
+button:hover { 
     color: var(--ts-gold);
     text-decoration: underline; 
 }
 
-
 .dropdown-toggle {
+    /* Ensures dropdown button uses link-like style and gold color */
     color: var(--ts-gold);
-    /* No other overrides needed! */
 }
     
-}
 .dropdown {
     position: relative;
 }
 
-.dropdown-toggle {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--ts-gold);
-}
+/* Original .dropdown-toggle overrides removed, handled by global button style */
 
 .dropdown-content {
     display: none;
@@ -320,6 +318,167 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+
+/* ============================================================
+   PAGE SECTIONS (HERO, FEATURES)
+   ============================================================ */
+/* --- Image Styles --- */
+.content-image {
+    text-align: center;
+}
+/* Placeholder for images with specific background gradient */
+.content-image > div[class*="images/"] { 
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, var(--ts-gray-400) 0%, var(--ts-gray-700) 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ts-white);
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+}
+.content-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.bio-image img {
+    max-width: 250px; 
+    height: auto; 
+    display: block;
+    margin: 0 auto 25px auto; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.bio-image figcaption {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--ts-gray-700); 
+    max-width: 80%;
+    margin: 0 auto 40px auto;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: var(--ts-navy);
+    color: var(--ts-white);
+    padding: 80px 0 80px; 
+    text-align: center;
+}
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ts-gold); 
+}
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero p strong {
+    color: var(--ts-gold); 
+}
+
+/* --- Call To Action (CTA) Button Style (Traditional Look: Navy Fill, Gold Text) --- */
+/* Apply this class: <button class="cta-primary">Click Me</button> */
+.cta-primary, .hero-cta {
+    /* Overrides the link-like button base style */
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    text-decoration: none; 
+    display: inline-block;
+    margin-top: 1rem;
+
+    /* The Prominent Button Appearance */
+    color: var(--ts-gold); 
+    background-color: var(--ts-navy); 
+    border: 2px solid var(--ts-navy); 
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(10, 26, 43, 0.4); 
+    transition: all 0.2s ease;
+}
+
+.cta-primary:hover, .hero-cta:hover {
+    background-color: var(--ts-navy-light); 
+    color: var(--ts-gold);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+
+/* --- Features Section --- */
+.features {
+    padding: 100px 0;
+    background: var(--ts-gray-100); 
+    overflow: hidden; 
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-navy); 
+}
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--ts-gray-700); 
+    max-width: 600px;
+    margin: 0 auto;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 60px;
+}
+.feature-card {
+    background: var(--ts-white);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--ts-gold); 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: var(--ts-navy); 
+}
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-navy); 
+}
+.feature-card p {
+    color: var(--ts-gray-700); 
+    line-height: 1.7;
+}
+.feature-card p strong {
+    color: var(--ts-navy); 
 }
 
 
