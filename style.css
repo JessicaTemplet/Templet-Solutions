@@ -99,18 +99,18 @@ body {
 
 .site-brand-text {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     line-height: 1.1;
 }
 
 .site-name {
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 2.2rem;
    color: var(--ts-gold);
 }
 
 .site-tagline {
-    font-size: 0.85rem;
+    font-size: 1.85rem;
     color: var(--ts-gold);
 }
 
