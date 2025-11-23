@@ -150,7 +150,7 @@ body {
         display: flex;
         flex-direction: row;
         background: transparent;
-        align-items: right;
+        align-items: flex-end;
         padding: 0;
         box-shadow: none;
         list-style: none;
@@ -163,10 +163,7 @@ body {
 .nav-links li {
     margin: 0;
     padding: 0;
-
 }
-
-
 
 .nav-links a {
     display: inline-block;
@@ -175,37 +172,30 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
-
 }
 
 .nav-links a:hover {
     color: var(--ts-gold);
-
 }
 
 button {
     all: unset; 
-    
-  
     font-family: inherit;
     font-size: 1rem;
     font-weight: 500;
     
-   
     display: inline-block;
     cursor: pointer;
     text-align: center;
     line-height: normal;
 
-    
     padding: 0.5rem 1rem; 
     color: var(--ts-gold);
     transition: color 0.3s ease;
     text-decoration: none; 
 }
 
-button:hover {
-    
+button:hover {    
     color: var(--ts-gold);
     text-decoration: underline; 
 }
