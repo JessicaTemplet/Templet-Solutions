@@ -116,7 +116,9 @@ body {
 .site-tagline {
     font-size: 1rem;
     color: var(--ts-gold);
+    justify-content: right;
     align-content: flex-start;
+   
 }
 
 
