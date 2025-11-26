@@ -137,7 +137,7 @@ site-logo-img {
     background: var(--ts-navy);
     z-index: 1000;
     min-height: 60px;
-    padding: 0 20px;
+    padding: 0
     display: flex;
     justify-content: right;
     align-items: flex-end;
