@@ -468,8 +468,8 @@ img {
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 .feature-icon {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     background: var(--ts-gold); 
     border-radius: 50%;
     display: flex;
