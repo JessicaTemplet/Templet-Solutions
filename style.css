@@ -341,7 +341,7 @@ img {
 }
 /* Placeholder for images with specific background gradient */
 .content-image > div[class*="images/"] { 
-    width: 50%;
+    width: 60%;
     height: auto;
     background: linear-gradient(135deg, var(--ts-gray-400) 0%, var(--ts-gray-700) 100%);
     border-radius: 15px;
@@ -353,7 +353,7 @@ img {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
 }
 .content-image img {
-    max-width: 100%;
+    max-width: 60%;
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
