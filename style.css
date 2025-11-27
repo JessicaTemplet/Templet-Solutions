@@ -5,7 +5,7 @@
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
 
-    --ts-gold: #f5db56;    
+    --ts-gold: #f5db56;      
     --ts-white: #ffffff;
     --ts-gray-100: #f7f7f7; /* Assuming you need a light background grey for body/features */
     --ts-gray-200: #e5e5e5; /* Assuming this is a border/divider color */
@@ -113,7 +113,7 @@ site-logo-img {
 .site-name {
     font-weight: 700;
     font-size: 1.2rem;
-   color: var(--ts-gold);
+    color: var(--ts-gold);
     justify-content: right;
     align-content: flex-start;
 }
@@ -331,6 +331,26 @@ img {
     display: block;
 }
 
+/* --- NEW: Side-by-Side Image/Text Layout --- */
+.content-side-by-side {
+    display: flex;
+    gap: 2rem; /* Spacing between the image and the text */
+    align-items: flex-start; /* Aligns content to the top */
+    margin: 2rem 0; /* Add some vertical spacing around the layout */
+}
+
+/* Override the global img style for this specific layout */
+.content-side-by-side img {
+    flex-basis: 50%; /* Image takes up exactly 50% */
+    max-width: 50%; 
+    height: auto;
+}
+
+.content-side-by-side > div {
+    flex-grow: 1; /* Text container takes the remaining space */
+}
+/* ------------------------------------------- */
+
 
 /* ============================================================
    PAGE SECTIONS (HERO, FEATURES)
@@ -480,7 +500,7 @@ img {
     color: var(--ts-navy); 
 }
 
-/* FIX: Controls the size of the image inside the 80x80 container */
+/* FIX: Controls the size of the image inside the 90x90 container */
 .feature-icon img {
     max-width: 90px; /* Limits the icon image size */
     height: auto;    /* CRUCIAL: ensures the icon scales proportionally and is not stretched */
