@@ -410,7 +410,7 @@ img {
     margin-top: 1rem;
 
     /* The Prominent Button Appearance */
-    color: var(--ts-gold); 
+    text-color: var(--ts-navy); 
     background-color: var(--ts-gold); 
     border: 2px solid var(--ts-gray-700); 
     border-radius: 6px;
