@@ -340,8 +340,8 @@ img {
 }
 /* Placeholder for images with specific background gradient */
 .content-image > div[class*="images/"] { 
-    width: 250px;
-    height: auto;
+    width: auto;
+    height: 250;
     background: linear-gradient(135deg, var(--ts-gray-400) 0%, var(--ts-gray-700) 100%);
     border-radius: 15px;
     display: flex;
