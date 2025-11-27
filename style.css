@@ -4,15 +4,18 @@
 :root {
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
-    --ts-gold: #f5c26b;    
+
+    --ts-gold: #f5db56;      
     --ts-white: #ffffff;
+    --ts-gray-100: #f7f7f7; /* Assuming you need a light background grey for body/features */
+    --ts-gray-200: #e5e5e5; /* Assuming this is a border/divider color */
     --ts-gray-400: #98a1b3;
     --ts-gray-700: #344055;
     --ts-gray-900: #1a1f28;
 
     /* Typography */
-    --font-sans: "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
-    --font-serif: "Georgia", serif;
+    --font-sans: "Baskerville", "Palatino", serif;
+    --font-serif: "Baskerville", "Palatino", serif;
 
     /* Sizing */
     --container-padding: 2rem;
@@ -37,7 +40,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-sans);
-    background: var(--ts-gray-100);
+    background: #98a1b3;
     color: var(--ts-gray-900);
     line-height: 1.65;
     font-size: 1rem;
@@ -51,12 +54,12 @@ body {
     width: 100%;
     max-width: 920px;
     margin: 0 auto;
-    padding: 0 var(--container-padding);
+    /* padding: 0 var(--container-padding); */
 }
 
 .container-narrow {
-    width: 75%;
-    max-width: 920px;
+    width: 100%;
+    max-width: 740px;
     margin: 0 auto;
     padding: 0 var(--container-padding);
 }
@@ -73,6 +76,7 @@ body {
    HEADER (STICKY, CENTERED, WITH SVG LOGO)
    ============================================================ */
 .site-header {
+    display: flex;
     width: 100%;
     background: var(--ts-navy);
     border-bottom: 1px solid var(--ts-gray-200);
@@ -84,38 +88,47 @@ body {
 
 .site-branding {
     display: flex;
-    align-items: left;
+    align-items: flex-start;
     gap: 1rem;
     padding: 0 var(--container-padding);
     max-width: 920px;
     margin: 0 auto;
 }
 
-.site-logo-img {
+site-logo-img {
     width: 250px;
-    height: auto;
+    height: 250px;
+    justify-items: left;
+    align-content: center;
 }
 
 .site-brand-text {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     line-height: 1.1;
+    justify-content: right;
+    align-content: flex-start;
 }
 
 .site-name {
     font-weight: 700;
     font-size: 1.2rem;
    color: var(--ts-gold);
+    justify-content: right;
+    align-content: flex-start;
 }
 
 .site-tagline {
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--ts-gold);
+    justify-content: right;
+    align-content: flex-start;
+   
 }
 
 
 /* ============================================================
-   NAVIGATION
+   NAVIGATION & BUTTONS
    ============================================================ */
 #navigation-bar-wrapper {
     position: sticky;
@@ -124,10 +137,10 @@ body {
     background: var(--ts-navy);
     z-index: 1000;
     min-height: 60px;
-    padding: 0 20px;
+    padding: 0
     display: flex;
     justify-content: right;
-    align-items: right;
+    align-items: flex-end;
     box-shadow: 0 4px 5px rgba(0,0,0,0.1);
 
 }
@@ -135,7 +148,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: right;
-    align-items: right;
+    align-items: flex-end;
     gap: 1rem;
     list-style: none;
 }
@@ -149,7 +162,7 @@ body {
         display: flex;
         flex-direction: row;
         background: transparent;
-        align-items: right;
+        align-items: flex-end;
         padding: 0;
         box-shadow: none;
         list-style: none;
@@ -157,15 +170,12 @@ body {
         justify-content: right; 
         gap: 0;
     }
-    }
+}
 
 .nav-links li {
     margin: 0;
     padding: 0;
-
 }
-
-
 
 .nav-links a {
     display: inline-block;
@@ -174,26 +184,49 @@ body {
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
-
 }
 
 .nav-links a:hover {
     color: var(--ts-gold);
-
 }
 
+
+/* --- Button Base Style (Link-Like) --- */
+button {
+    /* Base reset */
+    all: unset; 
+    
+    /* Inherit site typography */
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    
+    /* Link-Like appearance */
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    line-height: normal;
+    padding: 0.5rem 1rem; 
+    color: var(--ts-gold);
+    transition: color 0.3s ease;
+    text-decoration: none; 
+}
+
+button:hover { 
+    color: var(--ts-gold);
+    text-decoration: underline; 
+}
+
+.dropdown-toggle {
+    /* Ensures dropdown button uses link-like style and gold color */
+    color: var(--ts-gold);
+}
+    
 .dropdown {
     position: relative;
 }
 
-.dropdown-toggle {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--ts-navy);
-}
+/* Original .dropdown-toggle overrides removed, handled by global button style */
 
 .dropdown-content {
     display: none;
@@ -291,59 +324,171 @@ p {
     color: var(--ts-gray-900);
 }
 
-/* ============================================================
-    FEATURE CARD STYLING (New Section)
-    ============================================================ */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
-/* Targets the container for the grid layout */
+
+/* ============================================================
+   PAGE SECTIONS (HERO, FEATURES)
+   ============================================================ */
+/* --- Image Styles --- */
+.content-image {
+    text-align: center;
+}
+/* Placeholder for images with specific background gradient */
+.content-image > div[class*="images/"] { 
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, var(--ts-gray-400) 0%, var(--ts-gray-700) 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ts-white);
+    font-size: 1.2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+}
+.content-image img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.bio-image img {
+    max-width: 250px; 
+    height: auto; 
+    display: block;
+    margin: 0 auto 25px auto; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.bio-image figcaption {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--ts-gray-700); 
+    max-width: 80%;
+    margin: 0 auto 40px auto;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: var(--ts-navy);
+    color: var(--ts-gold);
+    padding: 80px 0 80px; 
+    text-align: center;
+}
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ts-gold); 
+}
+.hero p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.hero p strong {
+    color: var(--ts-gold); 
+}
+
+/* --- Call To Action (CTA) Button Style (Traditional Look: Navy Fill, Gold Text) --- */
+/* Apply this class: <button class="cta-primary">Click Me</button> */
+.cta-primary, .hero-cta {
+    /* Overrides the link-like button base style */
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    text-decoration: none; 
+    display: inline-block;
+    margin-top: 1rem;
+
+    /* The Prominent Button Appearance */
+    color: var(--ts-gold); 
+    background-color: var(--ts-gold); 
+    border: 2px solid var(--ts-gray-700); 
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(10, 26, 43, 0.4); 
+    transition: all 0.2s ease;
+}
+
+.cta-primary:hover, .hero-cta:hover {
+    background-color: var(--ts-navy-light); 
+    color: var(--ts-gold);
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+
+/* --- Features Section --- */
+.features {
+    /* padding: 100px 0; */
+    /* background: var(--ts-gray-700); */
+    /* overflow: hidden; */
+}
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--ts-navy); 
+}
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--ts-gray-700); 
+    max-width: 600px;
+    margin: 0 auto;
+}
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-top: 60px;
 }
-
-/* Targets the individual card elements */
 .feature-card {
-    background: var(--ts-navy-light);
-    color: var(--ts-white);
+    background: var(--ts-white);
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    text-align: center;
 }
-
 .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
-
-/* Fix for paragraph styles inside the feature card */
-.feature-card p {
-    line-height: 1.5; 
-    color: var(--ts-gray-700); 
-    /* margin: 1rem 0 is inherited from the global 'p' rule */
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--ts-gold); 
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: var(--ts-navy); 
 }
-
-/* Style for the heading inside the feature card */
 .feature-card h3 {
-    color: var(--ts-gold);
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-}
-
-/* Fix for the image/icon size inside the card */
-.feature-card .feature-icon img {
-    max-width: 50px;
-    height: auto;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: var(--ts-navy); 
 }
-
-img {
-    max-width: 50%;
-    height: auto;
-    display: block;
+.feature-card p {
+    color: var(--ts-gray-700); 
+    line-height: 1.7;
+}
+.feature-card p strong {
+    color: var(--ts-navy); 
 }
 
 
@@ -352,7 +497,7 @@ img {
    ============================================================ */
 footer {
     background: var(--ts-navy);
-    color: var(--ts-white);
+    color: var(--ts-gold);
     padding: 3rem 0;
 }
 
@@ -377,7 +522,7 @@ footer {
 }
 
 .footer-section ul li a {
-    color: var(--ts-white);
+    color: var(--ts-gold);
     text-decoration: none;
 }
 
