@@ -341,8 +341,8 @@ img {
 }
 /* Placeholder for images with specific background gradient */
 .content-image > div[class*="images/"] { 
-    width: auto;
-    height: 250;
+    width: 50%;
+    height: auto;
     background: linear-gradient(135deg, var(--ts-gray-400) 0%, var(--ts-gray-700) 100%);
     border-radius: 15px;
     display: flex;
@@ -353,7 +353,7 @@ img {
     box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
 }
 .content-image img {
-    max-width: 250px;
+    max-width: 100%;
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
@@ -482,7 +482,7 @@ img {
 
 /* FIX: Controls the size of the image inside the 80x80 container */
 .feature-icon img {
-    max-width: 50px; /* Limits the icon image size */
+    max-width: 90px; /* Limits the icon image size */
     height: auto;    /* CRUCIAL: ensures the icon scales proportionally and is not stretched */
     display: block; 
 }
