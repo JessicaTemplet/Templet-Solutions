@@ -64,5 +64,16 @@ function setupAnimationObserver() {
 /* ===== INITIALIZATION ===== */
 document.addEventListener('DOMContentLoaded', () => {
     loadNavigationFromHTML();
+       // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('#navigation-bar-wrapper .nav-links');  // Targets the loaded nav
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+            const expanded = navLinks.classList.contains('open');
+            menuToggle.setAttribute('aria-expanded', expanded);
+        });
+    }
     setupAnimationObserver();
 });
