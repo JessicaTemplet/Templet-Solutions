@@ -73,123 +73,90 @@ body {
 
 
 /* ============================================================
-   HEADER (STICKY, CENTERED, WITH SVG LOGO)
+   HEADER – Unified Layout: Logo Left | Text Center | Nav Right
    ============================================================ */
 .site-header {
-    display: flex;
-    width: 100%;
     background: var(--ts-navy);
     border-bottom: 1px solid var(--ts-gray-200);
     position: sticky;
     top: 0;
     z-index: 999;
-    padding: 0.75rem 0;
+    padding: 1rem 0;  /* Increased for better vertical breathing */
 }
 
 .site-branding {
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 0 var(--container-padding);
-    max-width: 920px;
-    margin: 0 auto;
+    align-items: center;       /* Vertically center all items */
+    justify-content: space-between;  /* Pushes nav to right */
+    gap: 2rem;                 /* Space between logo, text, nav */
 }
 
-site-logo-img {
-    width: 250px;
-    height: 250px;
-    justify-items: left;
-    align-content: center;
+/* Logo: Fixed Size Left */
+.site-logo-img {
+    width: 150px;              /* Your exact desired size */
+    height: 150px;
+    object-fit: contain;       /* Keeps SVG proportions crisp */
 }
 
+/* Center Text: Name on top, tagline below, truly centered */
 .site-brand-text {
+    flex: 1;                   /* Takes middle space to center itself */
     display: flex;
-    flex-direction: row;
-    line-height: 1.1;
-    justify-content: right;
-    align-content: flex-start;
+    flex-direction: column;
+    align-items: center;       /* Horizontal center */
+    justify-content: center;   /* Vertical center */
+    text-align: center;
+    color: var(--ts-gold);
 }
 
 .site-name {
     font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--ts-gold);
-    justify-content: right;
-    align-content: flex-start;
+    font-size: 1.8rem;         /* Bigger for prominence */
+    margin-bottom: 0.3rem;
 }
 
 .site-tagline {
-    font-size: 1rem;
-    color: var(--ts-gold);
-    justify-content: right;
-    align-content: flex-start;
-    
+    font-size: 1.1rem;
+    opacity: 0.95;
 }
 
-
-/* ============================================================
-   NAVIGATION & BUTTONS
-   ============================================================ */
+/* Nav Wrapper Reset – No more separate sticky bar */
 #navigation-bar-wrapper {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: var(--ts-navy);
-    z-index: 1000;
-    min-height: 60px;
-    padding: 0
-    display: flex;
-    justify-content: right;
-    align-items: flex-end;
-    box-shadow: 0 4px 5px rgba(0,0,0,0.1);
-
+    all: unset;                /* Removes old conflicting styles */
+    display: contents;         /* Lets nav flow naturally */
 }
+
+/* Nav Links: Horizontal, Right-Aligned */
 .nav-links {
     display: flex;
     flex-direction: row;
-    justify-content: right;
-    align-items: flex-end;
-    gap: 1rem;
+    gap: 2.5rem;               /* Nice spacing between main items */
     list-style: none;
-}
-
-@media (min-width: 769px) {
-    .nav-links {
-        position: static;
-        transform: none;
-        height: auto;
-        width: auto;
-        display: flex;
-        flex-direction: row;
-        background: transparent;
-        align-items: flex-end;
-        padding: 0;
-        box-shadow: none;
-        list-style: none;
-        margin: 0 auto; 
-        justify-content: right; 
-        gap: 0;
-    }
-}
-
-.nav-links li {
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
-.nav-links a {
-    display: inline-block;
-    padding: 0.5rem 1rem;
+.nav-links a,
+.dropdown-toggle {
     color: var(--ts-gold);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
 }
 
-.nav-links a:hover {
-    color: var(--ts-gold);
+.nav-links a:hover,
+.dropdown-toggle:hover {
+    text-decoration: underline;
 }
 
+/* Desktop Media Query Cleanup */
+@media (min-width: 769px) {
+    .nav-links {
+        gap: 2.5rem;           /* Override any old 0 gap */
+    }
+}
 
 /* --- Button Base Style (Link-Like) --- */
 button {
