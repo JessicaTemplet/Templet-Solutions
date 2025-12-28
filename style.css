@@ -93,8 +93,8 @@ body {
 
 /* Logo: Fixed Size Left */
 .site-logo-img {
-    width: 150px;              /* Your exact desired size */
-    height: 150px;
+    width: 250px;              /* Your exact desired size */
+    height: 250px;
     object-fit: contain;       /* Keeps SVG proportions crisp */
 }
 
@@ -111,7 +111,7 @@ body {
 
 .site-name {
     font-weight: 700;
-    font-size: 1.8rem;         /* Bigger for prominence */
+    font-size: 1.5rem;         /* Bigger for prominence */
     margin-bottom: 0.3rem;
 }
 
@@ -130,11 +130,12 @@ body {
 .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 2.5rem;               /* Nice spacing between main items */
+    gap: 1.5rem;               /* Nice spacing between main items */
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: center;
+    align-items: right;
+   color: var(--ts-gold);
 }
 
 .nav-links a,
@@ -154,7 +155,7 @@ body {
 /* Desktop Media Query Cleanup */
 @media (min-width: 769px) {
     .nav-links {
-        gap: 2.5rem;           /* Override any old 0 gap */
+        gap: 1.5rem;           /* Override any old 0 gap */
     }
 }
 
@@ -365,7 +366,7 @@ img {
 .hero {
     background: var(--ts-navy);
     color: var(--ts-gold);
-    padding: 80px 0 80px; 
+    padding: 50px 0 50px; 
     text-align: center;
 }
 .hero h1 {
