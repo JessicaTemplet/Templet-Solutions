@@ -293,7 +293,7 @@ p {
 }
 
 /* FIX: Changed max-width to 50% to make main content images smaller */
-img {
+img:not(.site-logo-img){
     max-width: 50%; /* FIXED: Main images now take up half the width */
     height: auto; 
     display: block;
