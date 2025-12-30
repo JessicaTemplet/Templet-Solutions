@@ -563,19 +563,47 @@ img:not(.site-logo-img){
 footer {
     background: var(--ts-navy);
     color: var(--ts-gold);
-    padding: 3rem 0;
+    padding: 3.5rem 0; /* a little taller, feels richer */
+    font-size: 1.05rem; /* bigger text overall */
 }
 
 .footer-content {
     display: flex;
-    gap: 3rem;
-    justify-content: space-between;
+    gap: 2rem;                 /* less empty air */
+    justify-content: flex-start; /* stop space-between stretching */
+    align-items: flex-start;
     flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1 1 240px;          /* columns grow to fill space, wrap nicely */
+    min-width: 240px;
 }
 
 .footer-section h3 {
     color: var(--ts-gold);
+    font-size: 1.2rem;
+    margin: 0 0 0.75rem;
 }
+
+.footer-section p,
+.footer-section li,
+.footer-section a {
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.footer-section ul li {
+    margin: 0.5rem 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.95rem; /* slightly larger than before */
+    opacity: 0.95;
+}
+
 
 .footer-section ul {
     list-style: none;
