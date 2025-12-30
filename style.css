@@ -297,8 +297,7 @@ main.page {
 main.page .hero {
     margin: -3rem -2rem 2rem; /* matches main.page padding: 3rem 2rem */
     border-radius: 14px 14px 0 0;
-    padding-top: calc(50px + 1.5rem);
-}
+    padding-top: 1.25rem;
 
 main.article {
     background: var(--ts-white);
