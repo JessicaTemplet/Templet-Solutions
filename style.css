@@ -605,25 +605,6 @@ footer {
 }
 
 
-.footer-section ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.footer-section ul li {
-    margin: 0.4rem 0;
-}
-
-.footer-section ul li a {
-    color: var(--ts-gold);
-    text-decoration: none;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 0.85rem;
-}
 
 
 /* ============================================================
