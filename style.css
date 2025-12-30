@@ -122,9 +122,9 @@ body {
 
 
 .site-logo-img {
-    width: 250px;
+    width: 200px;
     height: auto;
-    max-height: 250px;
+    max-height: 200px;
     object-fit: contain;
     display: block;
 }
