@@ -122,9 +122,9 @@ body {
 
 
 .site-logo-img {
-    width: 150px;
+    width: 250px;
     height: auto;
-    max-height: 150px;
+    max-height: 250px;
     object-fit: contain;
     display: block;
 }
@@ -297,6 +297,7 @@ main.page {
 main.page .hero {
     margin: -3rem -2rem 2rem; /* matches main.page padding: 3rem 2rem */
     border-radius: 14px 14px 0 0;
+    padding-top: calc(50px + 1.5rem);
 }
 
 main.article {
