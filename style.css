@@ -1,14 +1,9 @@
-can I give you two different css and you tell me what the differences are this is the first on:
-
-his is my css currently can you make those changes Im getting tired and K dont want to mess anything up
-
 /* ============================================================
    GLOBAL VARIABLES & BASE DESIGN TOKENS
    ============================================================ */
 :root {
     --ts-navy: #0a1a2b;
     --ts-navy-light: #143152;
-
     --ts-gold: #f5db56;      
     --ts-white: #ffffff;
     --ts-gray-100: #f7f7f7; /* Assuming you need a light background grey for body/features */
