@@ -50,11 +50,12 @@ body {
 /* ============================================================
    CONTAINERS (NEW — CENTERED + WIDE MARGINS)
    ============================================================ */
-.container {
+/* Header should span full width, not the 920px container */
+.site-header .container {
+    max-width: none;
     width: 100%;
-    max-width: 920px;
-    margin: 0 auto;
-    /* padding: 0 var(--container-padding); */
+    margin: 0;
+    padding: 0 2rem; /* keeps nice breathing room at the edges */
 }
 
 .container-narrow {
@@ -84,11 +85,33 @@ body {
     padding: 1rem 0;  /* Increased for better vertical breathing */
 }
 
+/* Header layout: logo left (spans rows), brand centered top, nav bottom-right */
 .site-branding {
-    display: flex;
-    align-items: center;       /* Vertically center all items */
-    justify-content: space-between;  /* Pushes nav to right */
-    gap: 2rem;                 /* Space between logo, text, nav */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "logo brand ."
+        "logo .     nav";
+    align-items: center;
+    gap: 0.75rem 2rem;
+}
+
+/* Map existing elements into the grid */
+.site-logo-link { grid-area: logo; }
+
+.site-brand-text { 
+    grid-area: brand; 
+    align-self: start; 
+    justify-self: center; 
+    text-align: center;
+}
+.header-nav {
+    grid-area: nav;
+    justify-self: end;
+    align-self: end;
+}
+
 }
 
 /* Logo: Fixed Size Left */
@@ -98,16 +121,16 @@ body {
     object-fit: contain;       /* Keeps SVG proportions crisp */
 }
 
-/* Center Text: Name on top, tagline below, truly centered */
+/* Center Text: Name on top, tagline below, centered horizontally, aligned to top */
 .site-brand-text {
-    flex: 1;                   /* Takes middle space to center itself */
     display: flex;
     flex-direction: column;
-    align-items: center;       /* Horizontal center */
-    justify-content: center;   /* Vertical center */
+    align-items: center;      /* horizontal centering */
+    justify-content: flex-start; /* top-align inside grid cell */
     text-align: center;
     color: var(--ts-gold);
 }
+
 
 .site-name {
     font-weight: 700;
@@ -146,6 +169,10 @@ body {
     padding: 0.5rem 0.75rem;
     white-space: nowrap;
 }
+
+.dropdown.open 
+.dropdown-content { display: block; }
+
 
 .nav-links a:hover,
 .dropdown-toggle:hover {
@@ -226,42 +253,18 @@ button:hover {
 
 
 /* ============================================================
-   MOBILE NAV
-   ============================================================ */
-#menu-toggle {
-    display: none;
-}
-
-@media (max-width: 860px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 0;
-        padding: 1rem;
-        border-top: 1px solid var(--ts-gray-200);
-    }
-
-    #menu-toggle {
-        display: inline-block;
-        background: var(--ts-navy);
-        color: var(--ts-white);
-        padding: 0.5rem 1rem;
-        border: none;
-        margin-left: auto;
-        border-radius: 6px;
-        cursor: pointer;
-    }
-
-    .site-nav nav-open .nav-links {
-        display: flex;
-    }
-}
-
-
-/* ============================================================
    MAIN CONTENT
    ============================================================ */
-main.page,
+/* Make hero full-bleed inside the main card (removes white frame) */
+main.page {
+    overflow: hidden; /* ensures rounded corners clip the hero */
+}
+
+main.page .hero {
+    margin: -3rem -2rem 2rem; /* matches main.page padding: 3rem 2rem */
+    border-radius: 14px 14px 0 0;
+}
+
 main.article {
     background: var(--ts-white);
     border-radius: 14px;
@@ -366,9 +369,11 @@ img:not(.site-logo-img){
 .hero {
     background: var(--ts-navy);
     color: var(--ts-gold);
-    padding: 50px 0 50px; 
+    padding: 50px 0;
     text-align: center;
+    box-sizing: border-box;
 }
+
 .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -399,7 +404,7 @@ img:not(.site-logo-img){
     margin-top: 1rem;
 
     /* The Prominent Button Appearance */
-    text-color: var(--ts-navy); 
+    color: var(--ts-navy); 
     background-color: var(--ts-gold); 
     border: 2px solid var(--ts-gray-700); 
     border-radius: 6px;
