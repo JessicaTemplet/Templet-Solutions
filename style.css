@@ -36,6 +36,17 @@ html {
     scroll-behavior: smooth;
 }
 
+/* GLOBAL LINK RESET — removes default blue/purple/underlines everywhere */
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -119,16 +130,13 @@ body {
     align-self: end;
 }
 
-
-
 .site-logo-img {
-    width: 200px;
+    width: 200px;     /* change to 250px if you want it bigger */
     height: auto;
-    max-height: 200px;
+    max-height: 200px; /* change to 250px to match */
     object-fit: contain;
     display: block;
 }
-
 
 /* Center Text: Name on top, tagline below, centered horizontally, aligned to top */
 .site-brand-text {
@@ -139,7 +147,6 @@ body {
     text-align: center;
     color: var(--ts-gold);
 }
-
 
 .site-name {
     font-weight: 700;
@@ -174,19 +181,18 @@ body {
 .nav-links a,
 .dropdown-toggle {
     color: var(--ts-gold);
-    text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 0.75rem;
     white-space: nowrap;
 }
 
-.dropdown.open .dropdown-content { display: block; }
-
-
+/* Intentional hover (not browser default) */
 .nav-links a:hover,
 .dropdown-toggle:hover {
     text-decoration: underline;
 }
+
+.dropdown.open .dropdown-content { display: block; }
 
 /* Desktop Media Query Cleanup */
 @media (min-width: 769px) {
@@ -213,7 +219,6 @@ button {
     padding: 0.5rem 1rem; 
     color: var(--ts-gold);
     transition: color 0.3s ease;
-    text-decoration: none; 
 }
 
 button:hover { 
@@ -222,15 +227,12 @@ button:hover {
 }
 
 .dropdown-toggle {
-    /* Ensures dropdown button uses link-like style and gold color */
     color: var(--ts-gold);
 }
     
 .dropdown {
     position: relative;
 }
-
-/* Original .dropdown-toggle overrides removed, handled by global button style */
 
 .dropdown-content {
     display: none;
@@ -249,7 +251,6 @@ button:hover {
     display: block;
     padding: 0.5rem 1rem;
     color: var(--ts-gray-900);
-    text-decoration: none;
 }
 
 .dropdown-content a:hover {
@@ -329,9 +330,9 @@ p {
     color: var(--ts-gray-900);
 }
 
-/* FIX: Changed max-width to 50% to make main content images smaller */
+/* Global image constraint (kept as requested) */
 img:not(.site-logo-img){
-    max-width: 50%; /* FIXED: Main images now take up half the width */
+    max-width: 50%;
     height: auto; 
     display: block;
 }
@@ -353,6 +354,7 @@ img:not(.site-logo-img){
 
 .content-side-by-side > div {
     flex: 1 1 60%;
+    min-width: 0; /* prevents flex text from disappearing/collapsing */
 }
 
 .content-side-by-side.reverse {
@@ -379,7 +381,7 @@ img:not(.site-logo-img){
 .content-image {
     text-align: center;
 }
-/* Placeholder for images with specific background gradient */
+
 .content-image > div[class*="images/"] { 
     width: 60%;
     height: auto;
@@ -392,11 +394,13 @@ img:not(.site-logo-img){
     font-size: 1.2rem;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
 }
+
 .content-image img {
     max-width: 60%;
     border-radius: 15px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
+
 .bio-image img {
     max-width: 250px; 
     height: auto; 
@@ -405,6 +409,7 @@ img:not(.site-logo-img){
     border-radius: 8px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .bio-image figcaption {
     text-align: center;
     font-style: italic;
@@ -430,6 +435,7 @@ img:not(.site-logo-img){
     line-height: 1.2;
     color: var(--ts-gold); 
 }
+
 .hero p {
     font-size: 1rem;
     margin-bottom: 2rem;
@@ -438,21 +444,18 @@ img:not(.site-logo-img){
     margin-left: auto;
     margin-right: auto;
 }
+
 .hero p strong {
     color: var(--ts-gold); 
 }
 
-/* --- Call To Action (CTA) Button Style (Traditional Look: Navy Fill, Gold Text) --- */
-/* Apply this class: <button class="cta-primary">Click Me</button> */
+/* --- CTA Button Style --- */
 .cta-primary, .hero-cta {
-    /* Overrides the link-like button base style */
     padding: 0.75rem 1.5rem;
     font-weight: 700;
-    text-decoration: none; 
     display: inline-block;
     margin-top: 1rem;
 
-    /* The Prominent Button Appearance */
     color: var(--ts-navy); 
     background-color: var(--ts-gold); 
     border: 2px solid var(--ts-gray-700); 
@@ -464,33 +467,30 @@ img:not(.site-logo-img){
 .cta-primary:hover, .hero-cta:hover {
     background-color: var(--ts-navy-light); 
     color: var(--ts-gold);
-    text-decoration: none;
     transform: translateY(-1px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
 
 /* --- Features Section --- */
-.features {
-    /* padding: 100px 0; */
-    /* background: var(--ts-gray-700); */
-    /* overflow: hidden; */
-}
 .section-header {
     text-align: center;
     margin-bottom: 80px;
 }
+
 .section-header h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: var(--ts-navy); 
 }
+
 .section-header p {
     font-size: 1.2rem;
     color: var(--ts-gray-700); 
     max-width: 600px;
     margin: 0 auto;
 }
+
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr)); /* force 3-up on desktop */
@@ -518,10 +518,12 @@ img:not(.site-logo-img){
     transition: all 0.3s ease;
     text-align: center;
 }
+
 .feature-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
+
 .feature-icon {
     width: 90px;
     height: 90px;
@@ -535,23 +537,23 @@ img:not(.site-logo-img){
     color: var(--ts-navy); 
 }
 
-/* FIX: Controls the size of the image inside the 90x90 container */
 .feature-icon img {
-    max-width: 90px; /* Limits the icon image size */
-    height: auto;    /* CRUCIAL: ensures the icon scales proportionally and is not stretched */
+    max-width: 90px;
+    height: auto;
     display: block; 
 }
-
 
 .feature-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--ts-navy); 
 }
+
 .feature-card p {
     color: var(--ts-gray-700); 
     line-height: 1.7;
 }
+
 .feature-card p strong {
     color: var(--ts-navy); 
 }
@@ -563,20 +565,32 @@ img:not(.site-logo-img){
 footer {
     background: var(--ts-navy);
     color: var(--ts-gold);
-    padding: 3.5rem 0; /* a little taller, feels richer */
-    font-size: 1.05rem; /* bigger text overall */
+    padding: 3.5rem 0;
+    font-size: 1.05rem;
+}
+
+/* Force footer text/link color to gold everywhere inside footer */
+footer,
+footer p,
+footer li,
+footer a,
+.footer-section,
+.footer-section p,
+.footer-section li,
+.footer-section a {
+    color: var(--ts-gold);
 }
 
 .footer-content {
     display: flex;
-    gap: 2rem;                 /* less empty air */
-    justify-content: flex-start; /* stop space-between stretching */
+    gap: 2rem;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
 }
 
 .footer-section {
-    flex: 1 1 240px;          /* columns grow to fill space, wrap nicely */
+    flex: 1 1 240px;
     min-width: 240px;
 }
 
@@ -593,6 +607,12 @@ footer {
     line-height: 1.6;
 }
 
+.footer-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
 .footer-section ul li {
     margin: 0.5rem 0;
 }
@@ -600,11 +620,9 @@ footer {
 .footer-bottom {
     text-align: center;
     margin-top: 2.5rem;
-    font-size: 0.95rem; /* slightly larger than before */
+    font-size: 0.95rem;
     opacity: 0.95;
 }
-
-
 
 
 /* ============================================================
@@ -615,5 +633,6 @@ footer {
     text-align: center;
 }
 
-.bio-article p {    margin-bottom: 1.2rem;
-    }
+.bio-article p {
+    margin-bottom: 1.2rem;
+}
