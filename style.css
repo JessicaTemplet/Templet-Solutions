@@ -40,7 +40,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-sans);
-    background: #98a1b3;
+    background: var(--ts-white);
     color: var(--ts-gray-900);
     line-height: 1.65;
     font-size: 1rem;
@@ -180,8 +180,7 @@ body {
     white-space: nowrap;
 }
 
-.dropdown.open 
-.dropdown-content { display: block; }
+.dropdown.open .dropdown-content { display: block; }
 
 
 .nav-links a:hover,
@@ -337,25 +336,40 @@ img:not(.site-logo-img){
     display: block;
 }
 
-/* --- NEW: Side-by-Side Image/Text Layout --- */
 .content-side-by-side {
     display: flex;
-    gap: 2rem; /* Spacing between the image and the text */
-    align-items: flex-start; /* Aligns content to the top */
-    margin: 2rem 0; /* Add some vertical spacing around the layout */
+    gap: 2rem;
+    align-items: flex-start;
+    margin: 2rem 0;
 }
 
-/* Override the global img style for this specific layout */
 .content-side-by-side img {
-    flex-basis: 50%; /* Image takes up exactly 50% */
-    max-width: 50%; 
+    flex: 0 0 40%;
+    max-width: 40%;
     height: auto;
+    border-radius: 14px;
+    display: block;
 }
 
 .content-side-by-side > div {
-    flex-grow: 1; /* Text container takes the remaining space */
+    flex: 1 1 60%;
 }
-/* ------------------------------------------- */
+
+.content-side-by-side.reverse {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 860px) {
+    .content-side-by-side,
+    .content-side-by-side.reverse {
+        flex-direction: column;
+    }
+
+    .content-side-by-side img {
+        max-width: 100%;
+        flex-basis: auto;
+    }
+}
 
 
 /* ============================================================
@@ -479,10 +493,23 @@ img:not(.site-logo-img){
 }
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* force 3-up on desktop */
+    gap: 1.5rem; /* slightly tighter so it fits 920px */
     margin-top: 60px;
 }
+
+@media (max-width: 860px) {
+    .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .feature-card {
     background: var(--ts-white);
     padding: 1.5rem;
