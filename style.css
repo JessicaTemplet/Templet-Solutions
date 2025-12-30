@@ -132,9 +132,9 @@ a:hover {
 }
 
 .site-logo-img {
-    width: 250px;          /* keep it readable */
+    width: 200px;          /* keep it readable */
     height: auto;
-    max-height: 250px;
+    max-height: 200px;
     object-fit: contain;
     display: block;
 }
@@ -344,8 +344,8 @@ img:not(.site-logo-img) {
 }
 
 .content-side-by-side img {
-    flex: 0 0 40%;
-    max-width: 40%;
+    flex: 0 0 60%;
+    max-width: 60%;
     height: auto;
     border-radius: 14px;
     display: block;
