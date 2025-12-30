@@ -116,8 +116,8 @@ body {
 
 /* Logo: Fixed Size Left */
 .site-logo-img {
-    width: 250px;              /* Your exact desired size */
-    height: 250px;
+    width: 150px;              /* Your exact desired size */
+    height: 150px;
     object-fit: contain;       /* Keeps SVG proportions crisp */
 }
 
