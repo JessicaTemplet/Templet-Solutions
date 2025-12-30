@@ -83,6 +83,8 @@ body {
     top: 0;
     z-index: 999;
     padding: 1rem 0;  /* Increased for better vertical breathing */
+   .site-header { padding: 0.5rem 0; }
+
 }
 
 /* Header layout: logo left (spans rows), brand centered top, nav bottom-right */
@@ -114,12 +116,14 @@ body {
 
 }
 
-/* Logo: Fixed Size Left */
 .site-logo-img {
-    width: 150px;              /* Your exact desired size */
-    height: 150px;
-    object-fit: contain;       /* Keeps SVG proportions crisp */
+    width: 150px;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    display: block;
 }
+
 
 /* Center Text: Name on top, tagline below, centered horizontally, aligned to top */
 .site-brand-text {
