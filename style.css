@@ -301,11 +301,10 @@ img:not(.site-logo-img) {
    ============================================================ */
 .content-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr; /* text gets more room than the image */
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
     align-items: center;
 }
-
 .content-text { max-width: 100%; }
 
 .content-image {
@@ -313,10 +312,11 @@ img:not(.site-logo-img) {
 }
 
 .content-image img {
-    max-width: 100%;       /* override the 50% global rule inside this block */
+    max-width: 90%;            /* visually matches the side-by-side image */
     border-radius: 14px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    margin-left: auto;
+    margin: 0 auto;            /* true centering, no side bias */
+    display: block;
 }
 
 /* stack on mobile */
@@ -363,8 +363,11 @@ img:not(.site-logo-img) {
         max-width: 100%;
         flex-basis: auto;
     }
+   .content-side-by-side + section,
+   .content-side-by-side + div {
+    text-align: center;
+   }
 }
-
 /* ============================================================
    HERO
    ============================================================ */
