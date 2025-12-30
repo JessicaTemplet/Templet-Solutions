@@ -58,6 +58,13 @@ body {
     padding: 0 2rem; /* keeps nice breathing room at the edges */
 }
 
+.container {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
 .container-narrow {
     width: 100%;
     max-width: 740px;
@@ -82,9 +89,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 999;
-    padding: 1rem 0;  /* Increased for better vertical breathing */
-   .site-header { padding: 0.5rem 0; }
-
+    padding: 0.5rem 0;
 }
 
 /* Header layout: logo left (spans rows), brand centered top, nav bottom-right */
@@ -114,7 +119,7 @@ body {
     align-self: end;
 }
 
-}
+
 
 .site-logo-img {
     width: 150px;
@@ -149,20 +154,21 @@ body {
 
 /* Nav Wrapper Reset – No more separate sticky bar */
 #navigation-bar-wrapper {
-    all: unset;                /* Removes old conflicting styles */
-    display: contents;         /* Lets nav flow naturally */
+    display: block;
 }
 
 /* Nav Links: Horizontal, Right-Aligned */
 .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;               /* Nice spacing between main items */
+    gap: 1.5rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    align-items: right;
-   color: var(--ts-gold);
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--ts-gold);
+    flex-wrap: wrap;
 }
 
 .nav-links a,
