@@ -253,6 +253,30 @@ button:hover {
 
 
 /* ============================================================
+   NAV – No hamburger / no toggle menu
+   ============================================================ */
+#menu-toggle { display: none !important; }
+
+@media (max-width: 860px) {
+    .nav-links {
+        display: flex !important;      /* never hide */
+        flex-direction: row;           /* stay desktop-style */
+        flex-wrap: wrap;               /* wrap instead of collapse */
+        justify-content: flex-end;     /* keep right aligned */
+        gap: 0.75rem;                  /* tighter spacing on small screens */
+        padding: 0;
+        border-top: 0;
+    }
+
+    .nav-links a,
+    .dropdown-toggle {
+        padding: 0.4rem 0.6rem;
+        white-space: nowrap;
+    }
+}
+
+
+/* ============================================================
    MAIN CONTENT
    ============================================================ */
 /* Make hero full-bleed inside the main card (removes white frame) */
