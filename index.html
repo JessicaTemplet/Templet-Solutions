@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jessica Templet | AI Memory Governance & Architecture | Templet Solutions</title>
+    <meta name="description" content="Jessica Templet helps teams add auditability, access controls, and tamper-evident governance to AI agent memory systems—without rebuilding their stack. Based in Ocean Springs, Mississippi." />
+
+    <meta property="og:title" content="Jessica Templet | AI Memory Governance & Architecture" />
+    <meta property="og:description" content="Auditability, enforcement, and retention controls for AI agent memory systems already in production. Fixed-scope audit & retrofit." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.templetsolutions.com/" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style type="text/tailwindcss">
+        @layer base {
+            :root {
+                --color-bg: #0a0a0f;
+                --color-surface: #12121a;
+                --color-primary: #00d4aa;
+                --color-secondary: #6366f1;
+                --color-accent: #f59e0b;
+                --color-text: #e2e8f0;
+                --color-muted: #64748b;
+            }
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: var(--color-bg);
+                color: var(--color-text);
+            }
+            .font-mono { font-family: 'JetBrains Mono', monospace; }
+        }
+        @layer utilities {
+            .gradient-text {
+                background: linear-gradient(135deg, #00d4aa 0%, #6366f1 50%, #f59e0b 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            .glow { box-shadow: 0 0 20px rgba(0, 212, 170, 0.15); }
+            .glow-hover:hover { box-shadow: 0 0 30px rgba(0, 212, 170, 0.3); }
+            .grid-pattern {
+                background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+                background-size: 40px 40px;
+            }
+            .terminal { background: rgba(18, 18, 26, 0.95); border: 1px solid rgba(0, 212, 170, 0.2); }
+            .skill-bar { background: linear-gradient(90deg, #00d4aa 0%, #6366f1 100%); }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-indigo-600 flex items-center justify-center">
+                    <i data-lucide="database" class="w-5 h-5 text-white"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-bold text-lg tracking-tight leading-none">Templet<span class="text-emerald-400">Solutions</span></span>
+                    <span class="text-[10px] text-slate-500 font-mono uppercase tracking-wider">Jessica Templet</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#services" class="hover:text-emerald-400 transition-colors">Services</a>
+                <a href="#solutions" class="hover:text-emerald-400 transition-colors">Solutions</a>
+                <a href="#architecture" class="hover:text-emerald-400 transition-colors">Architecture</a>
+                <a href="#expertise" class="hover:text-emerald-400 transition-colors">Expertise</a>
+                <a href="#contact" class="px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20 hover:bg-emerald-500/20 transition-all">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center pt-20 grid-pattern overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent"></div>
+
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Agent Memory Audit & Retrofit (Fixed Scope)
+                    </div>
+
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                        Make AI Agents <span class="gradient-text">Auditable</span><br>
+                        Without Rebuilding Your Stack
+                    </h1>
+
+                    <p class="text-xl text-slate-400 leading-relaxed max-w-xl">
+                        I help teams retrofit audit logs, access controls, tamper evidence, and retention rules into AI agent memory systems already in production—so security, compliance, and leadership get real answers instead of vibes.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"
+                            class="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold rounded-lg transition-all glow-hover flex items-center gap-2">
+                            <span>See Services</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+
+                        <button onclick="document.getElementById('architecture').scrollIntoView({behavior: 'smooth'})"
+                            class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-lg border border-white/10 transition-all">
+                            View Capabilities
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-6 text-sm text-slate-500 font-mono">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Evidence Artifacts</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="shield" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Enforced Controls</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Local/VPC Deployable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal Visualization -->
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-indigo-500/20 rounded-2xl blur-2xl"></div>
+                    <div class="terminal rounded-xl p-6 font-mono text-sm relative glow">
+                        <div class="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            <span class="ml-4 text-slate-500 text-xs">templet_solutions@audit:~$</span>
+                        </div>
+
+                        <div class="space-y-2 text-slate-300">
+                            <div class="text-slate-500">$ write_memory --actor=jessica --roles=writer</div>
+                            <div><span class="text-emerald-400">✓</span> Audit entry appended (hash-chained)</div>
+                            <div><span class="text-emerald-400">✓</span> Record signed (tamper-evident)</div>
+
+                            <div class="text-slate-500 mt-4">$ recall --query="escalation policy" --actor=guest --roles=none</div>
+                            <div><span class="text-amber-400">⟂</span> Policy denied (strict mode enabled)</div>
+
+                            <div class="text-slate-500 mt-4">$ integrity_check --enforce</div>
+                            <div><span class="text-emerald-400">✓</span> Valid signatures returned</div>
+                            <div><span class="text-emerald-400">✓</span> Tampered records quarantined</div>
+                            <div class="text-emerald-300 mt-2">→ Result: audit-ready memory controls</div>
+
+                            <div class="text-slate-500 mt-4 text-xs leading-relaxed">
+                                <span class="text-slate-400">Plain English:</span> every memory write and recall becomes traceable,
+                                enforceable, and reviewable—without leaking internal reasoning.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24 bg-[#12121a]/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Agent Memory <span class="text-emerald-400">Audit & Retrofit</span></h2>
+                <p class="text-slate-400 text-lg">
+                    A fixed-scope engagement that adds auditability, enforcement, and retention controls to agent memory—without a platform rebuild.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="clipboard-check" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Memory Audit</h3>
+                    <p class="text-slate-400 text-sm">
+                        Identify where memory is stored, how recall happens, and what would fail an audit review (provenance, retention, access, integrity).
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-indigo-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Enforced Controls</h3>
+                    <p class="text-slate-400 text-sm">
+                        Append-only audit logs, tamper-evident signing, role-based enforcement, retention rules, and quarantine/kill-switch modes.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center mb-4">
+                        <i data-lucide="package" class="w-6 h-6 text-amber-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2">Deployment + Handoff</h3>
+                    <p class="text-slate-400 text-sm">
+                        SQLite or Postgres. Local or VPC-contained. Includes operator walkthrough and an executive-friendly security posture summary.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-10 flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-slate-400">
+                <div class="px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                    Typical engagements: <span class="text-white font-semibold">$25k–$50k</span> • fixed scope
+                </div>
+                <div class="px-4 py-2 rounded-full bg-white/5 border border-white/10">
+                    Delivery is typically measured in weeks, not quarters
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points (all 6 restored) -->
+    <section id="solutions" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Solving Critical AI Memory <span class="text-emerald-400">Pain Points</span></h2>
+                <p class="text-slate-400 text-lg">Most production AI systems fail not on inference quality, but on memory architecture. Here’s how I fix that.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1 -->
+                <div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="alert-triangle" class="w-6 h-6 text-red-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-red-200">The "Goldfish" Problem</h3>
+                    <p class="text-slate-400 text-sm mb-4">Stateless LLMs lose context between sessions. Users repeat themselves. Context windows overflow.</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-emerald-400 text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            Persistent memory with cross-session continuity
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="search-x" class="w-6 h-6 text-orange-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-orange-200">Semantic Retrieval Failure</h3>
+                    <p class="text-slate-400 text-sm mb-4">Basic vector search misses exact matches. Keyword search misses conceptual similarity. Both are too slow.</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-emerald-400 text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            4-strategy hybrid retrieval (hash + graph + semantic + hierarchy)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-yellow-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-alert" class="w-6 h-6 text-yellow-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-yellow-200">Audit & Compliance Gaps</h3>
+                    <p class="text-slate-400 text-sm mb-4">No traceability on AI decisions. Can't prove data integrity. Regulatory scrutiny reveals black boxes.</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-emerald-400 text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            Tamper-evident signatures + hash-chained audit logs
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="database-backup" class="w-6 h-6 text-purple-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-purple-200">Storage Chaos at Scale</h3>
+                    <p class="text-slate-400 text-sm mb-4">JSON files break at 10k memories. No migration path. Backups are manual. Degradation is catastrophic.</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-emerald-400 text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            SQLite/PostgreSQL + graceful degradation tiers
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-blue-200">Multi-Agent Amnesia</h3>
+                    <p class="text-slate-400 text-sm mb-4">AI agents can't share insights. Each instance relearns. No collaborative memory or cross-platform learning.</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-emerald-400 text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            Shared learning pools + cross-platform coordination
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="group p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all hover:bg-white/10">
+                    <div class="w-12 h-12 rounded-lg bg-pink-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" class="w-6 h-6 text-pink-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg mb-2 text-pink-200">Static Self-Model</h3>
+                    <p class="text-slate-400 text-sm mb-4">AI has no evolving identity. Can't reflect on its own growth. Values are hardcoded, not learned.</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <p class="text-emerald-400 text-sm font-medium flex items-center gap-2">
+                            <i data-lucide="check" class="w-4 h-4"></i>
+                            Narrative self-model + reflection engine
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture (unchanged from prior merged version, trimmed for brevity) -->
+    <section id="architecture" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold mb-6">Architecture <span class="text-indigo-400">Capabilities</span></h2>
+                    <p class="text-slate-400 mb-8 text-lg">I don't just store memories—I architect cognitive infrastructure with enterprise-grade reliability, security, and introspection.</p>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="layers" class="w-6 h-6 text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Multi-Modal Storage Layer</h4>
+                                <p class="text-slate-400 text-sm">SQLite (embedded), PostgreSQL (enterprise), JSON (legacy) with automatic migration paths.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="git-merge" class="w-6 h-6 text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Hybrid Retrieval Engine</h4>
+                                <p class="text-slate-400 text-sm">Hash (exact), Graph (relational), Semantic (conceptual), Hierarchical (filtered).</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="lock" class="w-6 h-6 text-amber-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Cryptographic Integrity</h4>
+                                <p class="text-slate-400 text-sm">HMAC record signing, hash-chained audit logs, RBAC policy engine, optional PII scrubbing.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                                <i data-lucide="sparkles" class="w-6 h-6 text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Cognitive Metastructure</h4>
+                                <p class="text-slate-400 text-sm">Narrative identity persistence, reflection engines, epoch-based timekeeping, confidence scoring.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagram kept -->
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500/10 to-emerald-500/10 rounded-2xl blur-3xl"></div>
+                    <div class="relative bg-[#12121a] rounded-2xl p-8 border border-white/10">
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Retrieval Layer</span>
+                                    <i data-lucide="search" class="w-4 h-4 text-slate-500"></i>
+                                </div>
+                                <div class="grid grid-cols-4 gap-2 text-xs">
+                                    <div class="p-2 rounded bg-emerald-500/10 text-center text-emerald-300">Hash</div>
+                                    <div class="p-2 rounded bg-indigo-500/10 text-center text-indigo-300">Graph</div>
+                                    <div class="p-2 rounded bg-amber-500/10 text-center text-amber-300">Semantic</div>
+                                    <div class="p-2 rounded bg-purple-500/10 text-center text-purple-300">Hierarchy</div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-center">
+                                <i data-lucide="arrow-down" class="w-5 h-5 text-slate-600"></i>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs font-mono text-indigo-400 uppercase tracking-wider">Enhancement Layer</span>
+                                    <i data-lucide="cpu" class="w-4 h-4 text-slate-500"></i>
+                                </div>
+                                <div class="flex gap-2 text-xs flex-wrap">
+                                    <span class="px-2 py-1 rounded bg-white/5 text-slate-300">Curator</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-slate-300">Indexer</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-slate-300">Gatekeeper</span>
+                                    <span class="px-2 py-1 rounded bg-white/5 text-slate-300">Historian</span>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-center">
+                                <i data-lucide="arrow-down" class="w-5 h-5 text-slate-600"></i>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">Security & Identity</span>
+                                    <i data-lucide="shield" class="w-4 h-4 text-slate-500"></i>
+                                </div>
+                                <div class="flex gap-2 text-xs">
+                                    <span class="px-2 py-1 rounded bg-amber-500/10 text-amber-300">Signer</span>
+                                    <span class="px-2 py-1 rounded bg-amber-500/10 text-amber-300">Policy</span>
+                                    <span class="px-2 py-1 rounded bg-amber-500/10 text-amber-300">Audit</span>
+                                    <span class="px-2 py-1 rounded bg-purple-500/10 text-purple-300">Self-Model</span>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-center">
+                                <i data-lucide="arrow-down" class="w-5 h-5 text-slate-600"></i>
+                            </div>
+
+                            <div class="p-4 rounded-lg bg-gradient-to-r from-emerald-500/10 to-indigo-500/10 border border-emerald-500/20">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Storage Backend</span>
+                                    <i data-lucide="database" class="w-4 h-4 text-slate-500"></i>
+                                </div>
+                                <div class="flex gap-2 text-xs">
+                                    <span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 font-medium">SQLite</span>
+                                    <span class="px-2 py-1 rounded bg-indigo-500/20 text-indigo-300">PostgreSQL</span>
+                                    <span class="px-2 py-1 rounded bg-white/10 text-slate-400">JSON</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise (RESTORED – this is your original block, reinserted) -->
+    <section id="expertise" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">Technical <span class="text-emerald-400">Specializations</span></h2>
+                <p class="text-slate-400">Deep expertise in the intersection of cognitive architecture, distributed systems, and AI safety.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <i data-lucide="network" class="w-8 h-8 text-emerald-400"></i>
+                        <span class="text-xs font-mono text-slate-500">01</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 group-hover:text-emerald-400 transition-colors">Vector + Symbolic Hybridization</h3>
+                    <p class="text-slate-400 text-sm">Bridging neural embeddings with discrete symbolic representations. Jaccard similarity for exact matches, cosine for conceptual, graph for relational.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <i data-lucide="file-check" class="w-8 h-8 text-indigo-400"></i>
+                        <span class="text-xs font-mono text-slate-500">02</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 group-hover:text-indigo-400 transition-colors">Tamper-Evident Audit Systems</h3>
+                    <p class="text-slate-400 text-sm">Cryptographic hash chains for audit logs, HMAC record signing, and bounded reasoning traces for regulatory compliance without exposing internal CoT.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <i data-lucide="scale" class="w-8 h-8 text-amber-400"></i>
+                        <span class="text-xs font-mono text-slate-500">03</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 group-hover:text-amber-400 transition-colors">Graceful Degradation Engineering</h3>
+                    <p class="text-slate-400 text-sm">5-tier degradation system (Normal → Optimization → Selective → Critical → Emergency) with automatic archiving and importance-weighted retention.</p>
+                </div>
+
+                <div class="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-all group">
+                    <div class="flex items-start justify-between mb-4">
+                        <i data-lucide="user-circle" class="w-8 h-8 text-purple-400"></i>
+                        <span class="text-xs font-mono text-slate-500">04</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 group-hover:text-purple-400 transition-colors">Autonomous Self-Modeling</h3>
+                    <p class="text-slate-400 text-sm">Narrative identity persistence, reflection engines for pattern extraction, epoch-based developmental timekeeping, and confidence-calibrated memory decay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact (INVITE-ONLY, no intake form) -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-emerald-500/10 to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Engagements are <span class="gradient-text">invitation-only</span></h2>
+            <p class="text-xl text-slate-400 mb-8">
+                I keep bandwidth intentionally limited. If you're running agent memory in production and need auditability, enforcement, or retention controls, email me with a short scope note.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+                <a href="mailto:jessica@templetsolutions.com?subject=Scope%20Request%20—%20Agent%20Memory%20Audit%20%26%20Retrofit"
+                    class="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold rounded-lg transition-all glow-hover flex items-center justify-center gap-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span>Email a Scope Note</span>
+                </a>
+
+                <!-- Keep Calendly but visually secondary; you can also remove if you want -->
+                <a href="https://calendly.com/templetsolutions" target="_blank" rel="noopener noreferrer"
+                    class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-semibold rounded-lg border border-white/10 transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                    <span>Request a Slot</span>
+                </a>
+            </div>
+
+            <div class="p-6 rounded-xl bg-white/5 border border-white/10 text-left max-w-2xl mx-auto">
+                <h4 class="font-semibold mb-4 text-emerald-400 flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-5 h-5"></i>
+                    Include this in your email:
+                </h4>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"></i>
+                        <span>Current stack (LLM provider, vector DB, orchestration framework, memory approach)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"></i>
+                        <span>Scale constraints (memory count, QPS, latency targets)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"></i>
+                        <span>Governance needs (SOC2, GDPR, tenant boundaries, audit requirements)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0"></i>
+                        <span>Your top failure mode (retrieval quality, policy-free recall, integrity, retention)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mt-10 p-4 rounded-lg bg-white/5 border border-white/10 inline-block">
+                <p class="text-slate-400 text-sm flex items-center gap-2">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400"></i>
+                    Based in <span class="text-white">Ocean Springs, Mississippi</span> • Available for remote & on-site consulting
+                </p>
+            </div>
+
+            <div class="mt-8 flex justify-center">
+                <a aria-label="Jessica on LinkedIn" href="https://www.linkedin.com/in/jessica-templet"
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-all">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500 to-indigo-600 flex items-center justify-center">
+                    <i data-lucide="database" class="w-4 h-4 text-white"></i>
+                </div>
+                <span class="font-bold text-lg">Templet<span class="text-emerald-400">Solutions</span></span>
+            </div>
+
+            <div class="text-slate-500 text-sm">
+                © 2026 Jessica Templet. Governance for agent memory systems.
+            </div>
+
+            <div class="flex items-center gap-6 text-sm text-slate-500">
+                <a href="mailto:jessica@templetsolutions.com" class="hover:text-emerald-400 transition-colors">jessica@templetsolutions.com</a>
+                <a href="https://www.linkedin.com/in/jessica-templet" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Smooth scroll for internal navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Nav background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) nav.classList.add('bg-[#0a0a0f]/95');
+            else nav.classList.remove('bg-[#0a0a0f]/95');
+        });
+    </script>
+</body>
+</html>
