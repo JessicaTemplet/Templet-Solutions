@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lore — The Writer's Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Design tokens ──────────────────────────────────────── */
+    :root {
+      --cream:       #f5f1ea;
+      --cream-mid:   #ece6d8;
+      --ink:         #110f0c;
+      --ink-mid:     #2e2924;
+      --ink-faint:   #5c5248;
+      --accent:      #3d6653;
+      --accent-glow: #5a7a6a;
+      --border:      rgba(60,50,40,0.2);
+      --fairy-blue:  #4a90d9;
+      --fairy-red:   #c0392b;
+      --fairy-green: #27ae60;
+      --fairy-purple:#8e44ad;
+
+      /* dark tokens */
+      --night:       #050810;
+      --night-mid:   #0d1220;
+      --night-lift:  #141c30;
+      --moonlight:   #c8d8f0;
+      --moon-glow:   rgba(200,216,240,0.08);
+      --demon-green: #00ff9d;
+      --star:        rgba(200,220,255,0.7);
+    }
+
+    /* ── Base ───────────────────────────────────────────────── */
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.6s ease, color 0.6s ease;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    [data-mode="dark"] body,
+    body.dark {
+      background: var(--night);
+      color: var(--moonlight);
+    }
+
+    /* ── Mode toggle ────────────────────────────────────────── */
+    .mode-toggle {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(250,247,242,0.85);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+    .mode-toggle:hover { transform: scale(1.1); }
+    .dark .mode-toggle {
+      background: rgba(13,18,32,0.85);
+      border-color: rgba(200,216,240,0.15);
+      box-shadow: 0 2px 16px rgba(0,255,157,0.1);
+    }
+    .mode-toggle .icon-light { display: inline; }
+    .mode-toggle .icon-dark  { display: none; }
+    .dark .mode-toggle .icon-light { display: none; }
+    .dark .mode-toggle .icon-dark  { display: inline; }
+
+    /* ── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 3rem;
+      background: rgba(250,247,242,0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.6s ease, border-color 0.6s ease;
+    }
+    .dark nav {
+      background: rgba(5,8,16,0.85);
+      border-bottom-color: rgba(200,216,240,0.08);
+    }
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .dark .nav-logo { color: var(--moonlight); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .dark .nav-links a { color: rgba(200,216,240,0.5); }
+    .dark .nav-links a:hover { color: var(--demon-green); }
+
+    /* ── Hero ───────────────────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Full-width banner image */
+    .hero-image-banner {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      /* push down below fixed nav */
+      margin-top: 68px;
+      /* constrain height so it reads as a wide cinematic banner */
+      max-height: 520px;
+      background: var(--cream-mid);
+      transition: background 0.6s ease;
+    }
+    .dark .hero-image-banner { background: var(--night-mid); }
+
+    .hero-image-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* keep the composition's focal point — woman left, creatures right */
+      object-position: center 30%;
+      display: block;
+      transition: opacity 0.6s ease;
+    }
+
+    /* mode swap */
+    .hero-image-banner .img-light { opacity: 1; position: relative; }
+    .hero-image-banner .img-dark  { opacity: 0; position: absolute; inset: 0; width: 100%; height: 100%; }
+    .dark .hero-image-banner .img-light { opacity: 0; }
+    .dark .hero-image-banner .img-dark  { opacity: 1; }
+
+    /* soft fade at the bottom edge into the text section */
+    .hero-image-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+      pointer-events: none;
+      transition: background 0.6s ease;
+    }
+    .dark .hero-image-banner::after {
+      background: linear-gradient(to bottom, transparent, var(--night));
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 3.5rem 8rem 6rem;
+      position: relative;
+      z-index: 2;
+      /* pull up slightly to overlap the fade */
+      margin-top: -2rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .dark .hero-eyebrow { color: var(--demon-green); }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+    .dark .hero-title { color: var(--moonlight); }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .dark .hero-title em { color: var(--demon-green); }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      font-weight: 500;
+      font-style: italic;
+      color: var(--ink-faint);
+      line-height: 1.6;
+      max-width: 38ch;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+    .dark .hero-subtitle { color: rgba(200,216,240,0.55); }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.65s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: #2d5a3d;
+      color: #f0ebe0;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid #2d5a3d;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+    /* Shimmer — a band of light drifting slowly and continuously */
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: 0;
+      width: 60%;
+      height: 120%;
+      background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255,255,255,0.06) 30%,
+        rgba(255,255,255,0.22) 45%,
+        rgba(255,255,255,0.28) 50%,
+        rgba(255,255,255,0.22) 55%,
+        rgba(255,255,255,0.06) 70%,
+        transparent 100%
+      );
+      transform: skewX(-12deg);
+      pointer-events: none;
+      animation: shimmer-drift 3.6s linear infinite;
+    }
+    @keyframes shimmer-drift {
+      0%   { left: -70%; }
+      100% { left: 130%; }
+    }
+    .btn-primary:hover {
+      background: #224832;
+      border-color: #224832;
+    }
+    .dark .btn-primary {
+      background: var(--demon-green);
+      color: var(--night);
+      border-color: var(--demon-green);
+    }
+    .dark .btn-primary::after {
+      background: linear-gradient(
+        110deg,
+        transparent 0%,
+        rgba(255,255,255,0.03) 30%,
+        rgba(255,255,255,0.13) 45%,
+        rgba(255,255,255,0.18) 50%,
+        rgba(255,255,255,0.13) 55%,
+        rgba(255,255,255,0.03) 70%,
+        transparent 100%
+      );
+    }
+    .dark .btn-primary:hover {
+      background: #00e08a;
+      border-color: #00e08a;
+    }
+
+    .btn-ghost {
+      font-size: 0.8rem;
+      color: var(--ink-faint);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--accent); }
+    .dark .btn-ghost { color: rgba(200,216,240,0.4); }
+    .dark .btn-ghost:hover { color: var(--moonlight); }
+
+    /* ── Beta request form ──────────────────────────────────── */
+    .beta-form {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+    .beta-form label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.4rem;
+      transition: color 0.6s ease;
+    }
+    .dark .beta-form label { color: rgba(200,216,240,0.5); }
+    .beta-form input,
+    .beta-form textarea {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: rgba(255,255,255,0.5);
+      border: 1px solid var(--border);
+      transition: background 0.6s ease, border-color 0.3s ease, color 0.6s ease;
+    }
+    .beta-form input:focus,
+    .beta-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .dark .beta-form input,
+    .dark .beta-form textarea {
+      color: var(--moonlight);
+      background: rgba(200,216,240,0.05);
+      border-color: rgba(200,216,240,0.15);
+    }
+    .dark .beta-form input:focus,
+    .dark .beta-form textarea:focus { border-color: var(--demon-green); }
+    .beta-form textarea { resize: vertical; }
+    .beta-form button.btn-primary {
+      justify-content: center;
+      cursor: pointer;
+    }
+    .beta-status {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      min-height: 1.2em;
+      text-align: center;
+    }
+    .dark .beta-status { color: rgba(200,216,240,0.4); }
+
+    /* hero image handled by .hero-image-banner above */
+
+    /* ── Decorative rule ────────────────────────────────────── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 4rem 0 2.5rem;
+    }
+    .ornament-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .ornament-diamond {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .dark .ornament-diamond { background: var(--demon-green); }
+
+    /* ── Features ───────────────────────────────────────────── */
+    .features {
+      padding: 8rem 8rem;
+      background: var(--cream);
+      transition: background 0.6s ease;
+    }
+    .dark .features { background: var(--night-mid); }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .dark .section-label { color: var(--demon-green); }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+      max-width: 30ch;
+      margin-bottom: 5rem;
+    }
+    .dark .section-title { color: var(--moonlight); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem 4rem;
+    }
+
+    .feature-card {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .feature-card.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .feature-icon {
+      display: block;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      transition: color 0.3s;
+    }
+    .dark .feature-icon { color: var(--demon-green); }
+
+    .feature-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .dark .feature-name { color: var(--moonlight); }
+
+    .feature-desc {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: var(--ink-faint);
+      -webkit-font-smoothing: antialiased;
+    }
+    .dark .feature-desc { color: rgba(200,216,240,0.45); }
+
+    /* ── Manifesto strip ────────────────────────────────────── */
+    .manifesto {
+      padding: 7rem 8rem;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.6s ease;
+    }
+    .dark .manifesto {
+      background: var(--night-lift);
+      border-top: 1px solid rgba(200,216,240,0.06);
+      border-bottom: 1px solid rgba(200,216,240,0.06);
+    }
+
+    /* Subtle grain on manifesto */
+    .manifesto::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .manifesto-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--cream);
+      max-width: 60ch;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .dark .manifesto-quote { color: var(--moonlight); }
+
+    .manifesto-quote span {
+      color: var(--accent-glow);
+      font-style: normal;
+    }
+    .dark .manifesto-quote span { color: var(--demon-green); }
+
+    .manifesto-attr {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .dark .manifesto-attr { color: rgba(200,216,240,0.25); }
+
+    /* ── How it works ───────────────────────────────────────── */
+    .how {
+      padding: 8rem 8rem;
+      background: var(--cream-mid);
+      transition: background 0.6s ease;
+    }
+    .dark .how { background: var(--night); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding-top: 3rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .step.visible { opacity: 1; transform: none; }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+    }
+    .dark .step::before { color: var(--demon-green); }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .dark .step-title { color: var(--moonlight); }
+
+    .step-desc {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--ink-faint);
+    }
+    .dark .step-desc { color: rgba(200,216,240,0.45); }
+
+    /* ── CTA strip ──────────────────────────────────────────── */
+    .cta-strip {
+      padding: 8rem 8rem;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: background 0.6s ease;
+    }
+    .dark .cta-strip { background: var(--night-mid); }
+
+    .cta-strip .section-title {
+      max-width: 24ch;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      padding: 2.5rem 8rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--cream);
+      transition: background 0.6s ease, border-color 0.6s ease;
+    }
+    .dark footer {
+      background: var(--night);
+      border-top-color: rgba(200,216,240,0.06);
+    }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      color: var(--ink-faint);
+    }
+    .dark .footer-logo { color: rgba(200,216,240,0.3); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      opacity: 0.5;
+    }
+
+    /* ── Animations ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-image-banner { max-height: 55vw; margin-top: 60px; }
+      .hero-text { padding: 2rem 2.5rem 4rem; margin-top: -1rem; }
+      .features, .how, .cta-strip, footer { padding: 5rem 2.5rem; }
+      .features-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .manifesto { padding: 5rem 2.5rem; }
+    }
+
+    @media (max-width: 540px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mode toggle -->
+  <button class="mode-toggle" aria-label="Toggle dark mode" onclick="toggleMode()">
+    <span class="icon-light"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+    <span class="icon-dark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg></span>
+  </button>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#" class="nav-logo">Lore</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#start">Get started</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+
+    <!-- Full-width cinematic banner -->
+    <div class="hero-image-banner">
+      <img src="Lore-light.png" alt="A writer blowing a dandelion — colorful fairies scatter into the world of story" class="img-light" />
+      <img src="Lore-dark.png"  alt="A writer blowing a dandelion — glowing night creatures carry her story into the dark" class="img-dark" />
+    </div>
+
+    <!-- Text below the banner -->
+    <div class="hero-text">
+      <p class="hero-eyebrow">The writer's intelligence</p>
+      <h1 class="hero-title">
+        Your story,<br>
+        finally <em>understood</em>
+      </h1>
+      <p class="hero-subtitle">
+        A complete project manager for fiction writers — story bible, manuscript structure, continuity checking, character arcs, and world-building intelligence in one place.
+      </p>
+      <div class="hero-cta">
+        <a href="#start" class="btn-primary">Request Access &nbsp;→</a>
+        <a href="#features" class="btn-ghost">See what it does ↓</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <p class="section-label">What Lore does</p>
+    <h2 class="section-title">
+      Every tool a writer wishes existed, in one place.
+    </h2>
+
+    <div class="features-grid">
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+        <h3 class="feature-name">Self-Populating Story Bible</h3>
+        <p class="feature-desc">Import your manuscript and Lore reads it. Characters, locations, world rules, and lore facts populate automatically — confirmed by you, never imposed.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3 class="feature-name">Character Intelligence</h3>
+        <p class="feature-desc">Track appearance, personality, wounds, arcs, and relationships. Know what every character knows at every point in the story — and what they don't.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4"/><path d="M9 21H5a2 2 0 0 1-2-2v-4"/><path d="M15 3h4a2 2 0 0 1 2 2v4"/><path d="M15 21h4a2 2 0 0 0 2-2v-4"/><line x1="2" y1="12" x2="22" y2="12"/></svg></span>
+        <h3 class="feature-name">Plot & Subplot Tracking</h3>
+        <p class="feature-desc">Open threads, quiet threads, and paid-off threads. Lore flags when a subplot you opened in chapter 2 hasn't moved by chapter 8.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
+        <h3 class="feature-name">Corkboard View</h3>
+        <p class="feature-desc">See your entire story spatially. Drag scenes, rearrange structure, spot pacing gaps before you feel them on the page.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3a7.5 7.5 0 1 0 4.55 13.44l4.7 4.7a1 1 0 0 0 1.42-1.42l-4.7-4.7A7.5 7.5 0 0 0 10.5 3z"/></svg></span>
+        <h3 class="feature-name">Continuity Checking</h3>
+        <p class="feature-desc">Lore knows when a character acts on knowledge they shouldn't have yet — and when a veil you set in act one is accidentally pierced in act two.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 8 3 10"/><polyline points="21 6 19 8 21 10"/><polyline points="9 3 9 21"/><polyline points="15 3 15 21"/><line x1="3" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21" y2="12"/><rect x="5" y="6" width="14" height="12" rx="2"/></svg></span>
+        <h3 class="feature-name">Killed Darlings Vault</h3>
+        <p class="feature-desc">Cut scenes, abandoned arcs, renamed characters — nothing is truly deleted. The vault keeps everything searchable, restorable, and connected to what it once touched.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-6 9 6"/><path d="M3 15l6 3"/><path d="M21 15l-6 3"/><line x1="3" y1="18" x2="9" y2="21"/><line x1="15" y1="21" x2="21" y2="18"/></svg></span>
+        <h3 class="feature-name">Knowledge Asymmetry Tracking</h3>
+        <p class="feature-desc">Track what the reader knows versus what each character knows. The gap between them is where tension lives — Lore maps it precisely.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <h3 class="feature-name">Character Wound & Arc Mechanics</h3>
+        <p class="feature-desc">Trauma, flaws, and healing aren't a straight line. Track the state of each wound at each story beat — too perfect loses the audience, too broken loses their affection.</p>
+      </div>
+
+      <div class="feature-card" data-reveal>
+        <span class="feature-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <h3 class="feature-name">Series Management</h3>
+        <p class="feature-desc">One shelf for every book. Characters, lore, and continuity accumulate across the entire series so Book 3 inherits everything Book 1 established.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Manifesto -->
+  <div class="manifesto">
+    <p class="manifesto-quote">
+      "The story you're writing is already <span>more complex than you can hold in your head.</span> That's not a failure of imagination. It's a sign the story is alive."
+    </p>
+    <p class="manifesto-attr">— Lore</p>
+  </div>
+
+  <!-- How it works -->
+  <section class="how" id="how">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">From manuscript to intelligence in minutes.</h2>
+
+    <div class="steps">
+      <div class="step" data-reveal>
+        <h3 class="step-title">Import your manuscript</h3>
+        <p class="step-desc">Upload any .docx, .txt, .epub, or .pdf. Lore detects chapters, strips editor notes, and structures your manuscript automatically.</p>
+      </div>
+
+      <div class="step" data-reveal>
+        <h3 class="step-title">The bible populates</h3>
+        <p class="step-desc">Characters, locations, and world rules are extracted in the background. You confirm what's right, correct what's wrong. Each confirmation improves future imports.</p>
+      </div>
+
+      <div class="step" data-reveal>
+        <h3 class="step-title">The graph builds</h3>
+        <p class="step-desc">Every entity connects to every other entity. Lore builds a belief graph of your world — coherent, queryable, and contradiction-aware.</p>
+      </div>
+
+      <div class="step" data-reveal>
+        <h3 class="step-title">Write with clarity</h3>
+        <p class="step-desc">Query your own story. Find every scene Soren appears in. Check what Faye knew before the revelation. Trace the arc of a wound across the whole series.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-strip" id="start">
+    <p class="section-label">Begin</p>
+    <h2 class="section-title">
+      The story you're writing deserves a system as ambitious as it is.
+    </h2>
+
+    <p style="font-size:0.85rem;color:var(--ink-faint);max-width:38ch;margin:-1.5rem auto 2rem;">
+      Lore is currently in private beta. Request access below and we'll follow up by email.
+    </p>
+
+    <form class="beta-form" id="betaForm">
+      <div>
+        <label for="betaName">Name</label>
+        <input type="text" id="betaName" required>
+      </div>
+      <div>
+        <label for="betaEmail">Your email</label>
+        <input type="email" id="betaEmail" required>
+      </div>
+      <div>
+        <label for="betaUseCase">What are you writing? (optional)</label>
+        <textarea id="betaUseCase" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Request Access &nbsp;→</button>
+      <p class="beta-status" id="betaStatus"></p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span class="footer-logo">Lore</span>
+    <span class="footer-copy">Your story. Understood.</span>
+  </footer>
+
+  <script>
+    // ── Dark mode toggle ──────────────────────────────────────
+    function toggleMode() {
+      const html = document.documentElement
+      const body = document.body
+      const isDark = body.classList.contains('dark')
+      body.classList.toggle('dark', !isDark)
+      html.setAttribute('data-mode', isDark ? 'light' : 'dark')
+      localStorage.setItem('lore-mode', isDark ? 'light' : 'dark')
+    }
+
+    // Restore saved preference
+    const saved = localStorage.getItem('lore-mode')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    if (saved === 'dark' || (!saved && prefersDark)) {
+      document.body.classList.add('dark')
+      document.documentElement.setAttribute('data-mode', 'dark')
+    }
+
+    // ── Scroll reveal ─────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger siblings
+          const siblings = entry.target.parentElement?.querySelectorAll('[data-reveal]')
+          const idx = siblings ? Array.from(siblings).indexOf(entry.target) : 0
+          setTimeout(() => {
+            entry.target.classList.add('visible')
+          }, idx * 80)
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.15 })
+
+    document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el))
+
+    // ── Beta access request form ───────────────────────────────
+    const betaForm = document.getElementById('betaForm')
+    const betaStatus = document.getElementById('betaStatus')
+    if (betaForm) {
+      betaForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        const name = document.getElementById('betaName').value.trim()
+        const email = document.getElementById('betaEmail').value.trim()
+        const useCase = document.getElementById('betaUseCase').value.trim()
+
+        const subject = 'Lore Beta Access Request'
+        const body = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          '',
+          'What they\'re writing:',
+          useCase || '(not provided)'
+        ].join('\n')
+
+        const mailto = `mailto:jessica@templetsolutions.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+        window.location.href = mailto
+
+        betaStatus.textContent = 'Opening your email app to send the request…'
+      })
+    }
+  </script>
+</body>
+</html>
