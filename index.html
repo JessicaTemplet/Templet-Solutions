@@ -241,6 +241,29 @@
 
         .site-footer { border-top: 1px solid var(--border); background: var(--bg); }
 
+        /* ── Shared page container — guarantees identical width/padding
+               across nav, hero, and every section, regardless of position/context ── */
+        .container-x {
+            width: 100%;
+            max-width: 80rem; /* matches max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;   /* 24px */
+            padding-right: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .container-x { padding-left: 2.5rem; padding-right: 2.5rem; } /* 40px */
+        }
+        @media (min-width: 768px) {
+            .container-x { padding-left: 4rem; padding-right: 4rem; } /* 64px */
+        }
+        @media (min-width: 1024px) {
+            .container-x { padding-left: 6rem; padding-right: 6rem; } /* 96px */
+        }
+        @media (min-width: 1280px) {
+            .container-x { padding-left: 8rem; padding-right: 8rem; } /* 128px */
+        }
+
         .skip-link {
             position: absolute; top: -40px; left: 0; background: var(--navy); color: #fff;
             padding: 8px 16px; text-decoration: none; z-index: 10000; font-weight: 600;
@@ -259,7 +282,7 @@
 
     <!-- Navigation -->
     <nav class="site-nav fixed top-0 w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="container-x py-4 flex justify-between items-center">
 
             <!-- Logo -->
             <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:0.75rem">
@@ -329,40 +352,88 @@
     <section class="relative min-h-[70vh] flex items-center pt-20 grid-pattern overflow-hidden">
         <div class="absolute inset-0" style="background:linear-gradient(to bottom, var(--navy-bg) 0%, transparent 60%)"></div>
 
-        <div class="max-w-4xl mx-auto px-6 py-28 relative z-10">
-            <div class="space-y-8 max-w-2xl mx-auto text-center">
+        <div class="container-x py-28 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-                <div class="pill" style="display:inline-flex;">
-                    <span class="status-dot live"></span>
-                    Software & Research
+                <div class="space-y-8 max-w-2xl">
+
+                    <div class="pill">
+                        <span class="status-dot live"></span>
+                        Software & Research
+                    </div>
+
+                    <h1 class="font-serif text-5xl lg:text-6xl leading-tight" style="letter-spacing:-0.01em">
+                        Production software. Original research.<br><span class="gradient-text">Same rigor.</span>
+                    </h1>
+
+                    <p class="text-lg leading-relaxed" style="color:var(--text-2);max-width:36rem;">
+                        Templet Solutions builds production software — distributed systems, infrastructure, and full applications — alongside original research in geometric deep learning. Different problems, same standard: built right, not just shipped.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#research" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
+                           style="background:var(--navy);color:#fff">
+                            Research
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://veritasmemoria.com" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
+                           style="background:var(--surface);border:1px solid var(--border);color:var(--text-1)">
+                            VeritasMemoria
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://www.templetsolutions.com/LoreCapsa.html"
+                           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
+                           style="background:var(--surface);border:1px solid var(--border);color:var(--text-1)">
+                            LoreCapsa
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+
                 </div>
 
-                <h1 class="font-serif text-5xl lg:text-6xl leading-tight" style="letter-spacing:-0.01em">
-                    Production software. Original research.<br><span class="gradient-text">Same rigor.</span>
-                </h1>
+                <!-- Hyperbolic belief-manifold graphic -->
+                <div class="hidden lg:flex items-center justify-center">
+                    <div style="background:var(--surface);border:1px solid var(--border);border-radius:9999px;box-shadow:var(--card-shadow-lg);padding:2rem;">
+                        <svg viewBox="0 0 480 480" width="420" height="420" style="max-width:100%;display:block">
+                            <defs>
+                                <radialGradient id="diskGlow" cx="50%" cy="42%" r="65%">
+                                    <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.16"/>
+                                    <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
 
-                <p class="text-lg leading-relaxed" style="color:var(--text-2);max-width:36rem;margin-left:auto;margin-right:auto;">
-                    Templet Solutions builds production software — distributed systems, infrastructure, and full applications — alongside original research in geometric deep learning. Different problems, same standard: built right, not just shipped.
-                </p>
+                            <circle cx="240" cy="240" r="210" fill="url(#diskGlow)"/>
 
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <a href="#research" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
-                       style="background:var(--navy);color:#fff">
-                        Research
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                    <a href="https://veritasmemoria.com" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
-                       style="background:var(--surface);border:1px solid var(--border);color:var(--text-1)">
-                        VeritasMemoria
-                        <i data-lucide="external-link" class="w-4 h-4"></i>
-                    </a>
-                    <a href="https://www.templetsolutions.com/LoreCapsa.html"
-                       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
-                       style="background:var(--surface);border:1px solid var(--border);color:var(--text-1)">
-                        LoreCapsa
-                        <i data-lucide="external-link" class="w-4 h-4"></i>
-                    </a>
+                            <!-- Poincaré disk boundary -->
+                            <circle cx="240" cy="240" r="188" fill="none" stroke="var(--navy)" stroke-width="2.5"/>
+
+                            <!-- Geodesic arcs -->
+                            <path d="M 70 140 Q 240 240 130 380" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+                            <path d="M 90 370 Q 240 240 400 320" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+                            <path d="M 380 110 Q 240 240 95 195"  fill="none" stroke="var(--gold)" stroke-width="2.25" opacity="0.85"/>
+                            <path d="M 300 75  Q 240 240 340 400" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+                            <path d="M 150 90  Q 240 240 405 260" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+
+                            <!-- Belief nodes -->
+                            <circle cx="70"  cy="140" r="6" fill="var(--navy)"/>
+                            <circle cx="130" cy="380" r="6" fill="var(--navy)"/>
+                            <circle cx="90"  cy="370" r="6" fill="var(--navy)"/>
+                            <circle cx="400" cy="320" r="6" fill="var(--navy)"/>
+                            <circle cx="380" cy="110" r="6" fill="var(--gold)"/>
+                            <circle cx="95"  cy="195" r="6" fill="var(--gold)"/>
+                            <circle cx="300" cy="75"  r="6" fill="var(--navy)"/>
+                            <circle cx="340" cy="400" r="6" fill="var(--navy)"/>
+                            <circle cx="150" cy="90"  r="6" fill="var(--navy)"/>
+                            <circle cx="405" cy="260" r="6" fill="var(--navy)"/>
+
+                            <!-- Coherence center -->
+                            <circle cx="240" cy="240" r="12" fill="var(--surface)" stroke="var(--gold)" stroke-width="3"/>
+                            <circle cx="240" cy="240" r="4"  fill="var(--gold)"/>
+
+                            <text x="240" y="455" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" letter-spacing="0.08em" fill="var(--text-2)">HYPERBOLIC BELIEF MANIFOLD</text>
+                        </svg>
+                    </div>
                 </div>
 
             </div>
@@ -371,12 +442,12 @@
 
     <!-- Research Papers -->
     <section id="research" class="py-24 section-alt">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="container-x">
 
-            <div class="mb-12 text-center">
-                <div class="pill mb-4" style="display:inline-flex;">Publications</div>
+            <div class="mb-12">
+                <div class="pill mb-4">Publications</div>
                 <h2 class="font-serif text-4xl mb-3">Research</h2>
-                <p style="color:var(--text-2);max-width:42rem;margin-left:auto;margin-right:auto;">
+                <p style="color:var(--text-2);max-width:42rem;">
                     A sequence of papers developing a geometric and field-theoretic framework for AI memory architecture — from discrete graph theory through scalar-tensor gravity on hyperbolic belief manifolds.
                 </p>
             </div>
@@ -471,12 +542,12 @@
 
     <!-- Projects -->
     <section id="projects" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="container-x">
 
-            <div class="mb-12 text-center">
-                <div class="pill mb-4" style="display:inline-flex;">Systems</div>
+            <div class="mb-12">
+                <div class="pill mb-4">Systems</div>
                 <h2 class="font-serif text-4xl mb-3">Projects</h2>
-                <p style="color:var(--text-2);max-width:42rem;margin-left:auto;margin-right:auto;">
+                <p style="color:var(--text-2);max-width:42rem;">
                     Production systems built to solve specific problems in high-stakes domains.
                 </p>
             </div>
@@ -572,12 +643,12 @@
 
     <!-- Open Source / GitHub -->
     <section id="oss" class="py-24 section-alt">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="container-x">
 
-            <div class="mb-12 text-center">
-                <div class="pill mb-4" style="display:inline-flex;">Open Source</div>
+            <div class="mb-12">
+                <div class="pill mb-4">Open Source</div>
                 <h2 class="font-serif text-4xl mb-3">GitHub</h2>
-                <p style="color:var(--text-2);max-width:42rem;margin-left:auto;margin-right:auto;">
+                <p style="color:var(--text-2);max-width:42rem;">
                     Code that exists to be useful, not to be impressive.
                 </p>
             </div>
@@ -693,7 +764,7 @@
 
     <!-- Footer -->
     <footer class="site-footer py-10">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="container-x flex flex-col md:flex-row justify-between items-center gap-6">
             <div>
                 <span class="font-serif text-lg" style="color:var(--text-1)">Templet<span style="color:var(--gold)">Solutions</span></span>
             </div>
