@@ -1,11 +1,965 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en" class="light"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8" /&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-    &lt;title&gt;Templet Solutions — AI Memory Architecture &amp; Research&lt;/title&gt;
-    &lt;meta name="description" content="Research and systems at the intersection of AI memory architecture, geometric field theory, and high-stakes compliance infrastructure." /&gt;
-    &lt;meta property="og:title" content="Templet Solutions — AI Memory Architecture &amp; Research" /&gt;
-    &lt;meta property="og:description" content="VeritasMemoria, geometric belief manifolds, and compliance-ready AI memory infrastructure." /&gt;
-    &lt;meta property="og:type" content="website" /&gt;
-    &lt;meta property="og:url" content="https://www.templetsolutions.com/" /&gt;
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Templet Solutions — AI Memory Architecture & Research</title>
+    <meta name="description" content="Research and systems at the intersection of AI memory architecture, geometric field theory, and high-stakes compliance infrastructure." />
+    <meta property="og:title" content="Templet Solutions — AI Memory Architecture & Research" />
+    <meta property="og:description" content="VeritasMemoria, geometric belief manifolds, and compliance-ready AI memory infrastructure." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.templetsolutions.com/" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ── Light mode — navy/gold palette ───────────────── */
+        html.light {
+            --bg:            #F7F8FC;
+            --bg-alt:        #EEF1F8;
+            --surface:       #FFFFFF;
+            --surface-hover: #F7F8FC;
+            --border:        #DDE2EF;
+            --border-faint:  #EEF1F8;
+            --text-1:        #1B2A4A;
+            --text-2:        #4B5563;
+            --text-3:        #7B8FA6;
+            --text-muted:    #4B5563;
+            --text-subtle:   #7B8FA6;
+
+            --navy:          #1B2A4A;
+            --navy-mid:      #2D4070;
+            --navy-bg:       rgba(27,42,74,0.07);
+            --navy-bg-hi:    rgba(27,42,74,0.12);
+            --navy-border:   rgba(27,42,74,0.18);
+
+            --gold:          #B8952A;
+            --gold-light:    #C9A84C;
+            --gold-bg:       rgba(184,149,42,0.08);
+            --gold-bg-hi:    rgba(184,149,42,0.16);
+            --gold-border:   rgba(184,149,42,0.24);
+            --gold-text:     #7A6219;
+
+            --nav-bg:        rgba(247,248,252,0.96);
+            --nav-border:    #DDE2EF;
+            --card-shadow:   0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+            --card-shadow-lg:0 4px 16px rgba(0,0,0,0.09);
+            --grid-dot:      rgba(27,42,74,0.055);
+            --glow-hover:    0 4px 20px rgba(184,149,42,0.22);
+            --terminal-bg:   rgba(10,10,15,0.97);
+        }
+
+        /* ── Dark mode ────────────────────────────────────── */
+        html.dark {
+            --bg:            #0a0a0f;
+            --bg-alt:        rgba(18,18,26,0.5);
+            --surface:       rgba(255,255,255,0.04);
+            --surface-hover: rgba(255,255,255,0.08);
+            --border:        rgba(255,255,255,0.1);
+            --border-faint:  rgba(255,255,255,0.05);
+            --text-1:        #E2E8F0;
+            --text-2:        #94A3B8;
+            --text-3:        #475569;
+            --text-muted:    #94A3B8;
+            --text-subtle:   #475569;
+
+            --navy:          #818CF8;
+            --navy-mid:      #6366F1;
+            --navy-bg:       rgba(99,102,241,0.1);
+            --navy-bg-hi:    rgba(99,102,241,0.18);
+            --navy-border:   rgba(99,102,241,0.2);
+
+            --gold:          #FCD34D;
+            --gold-light:    #FDE68A;
+            --gold-bg:       rgba(245,158,11,0.1);
+            --gold-bg-hi:    rgba(245,158,11,0.18);
+            --gold-border:   rgba(245,158,11,0.2);
+            --gold-text:     #FCD34D;
+
+            --nav-bg:        rgba(10,10,15,0.85);
+            --nav-border:    rgba(255,255,255,0.05);
+            --card-shadow:   none;
+            --card-shadow-lg:none;
+            --grid-dot:      rgba(255,255,255,0.05);
+            --glow-hover:    0 0 30px rgba(99,102,241,0.25);
+            --terminal-bg:   rgba(18,18,26,0.97);
+        }
+
+        /* ── Reset & base ─────────────────────────────────── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-1);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            transition: background 0.2s, color 0.2s;
+        }
+        .font-mono  { font-family: 'DM Mono', monospace; }
+        .font-serif { font-family: 'DM Serif Display', serif; }
+
+        /* ── Nav ──────────────────────────────────────────── */
+        .site-nav {
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--nav-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-link {
+            color: var(--text-muted); text-decoration: none;
+            transition: color 0.15s; font-size: 0.875rem; font-weight: 500;
+        }
+        .nav-link:hover { color: var(--navy); }
+        html.dark .nav-link:hover { color: var(--gold); }
+
+        /* ── Gold shimmer ─────────────────────────────────── */
+        @keyframes gold-shimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -100% center; }
+        }
+
+        /* ── Research dropdown ────────────────────────────── */
+        .research-trigger { position: relative; }
+        .research-btn {
+            display: flex; align-items: center; gap: 4px;
+            color: var(--text-muted); background: none; border: none;
+            font-size: 0.875rem; font-weight: 500; cursor: pointer; padding: 0;
+            transition: color 0.15s;
+        }
+        .research-btn:hover { color: var(--navy); }
+        html.dark .research-btn:hover { color: var(--gold); }
+        .research-btn svg { transition: transform 0.2s; }
+        .research-trigger.open .research-btn svg { transform: rotate(180deg); }
+        .research-dropdown {
+            position: absolute; top: calc(100% + 10px); right: 0;
+            min-width: 360px; background: var(--surface);
+            border: 1px solid var(--border);
+            box-shadow: var(--card-shadow-lg), 0 12px 40px rgba(0,0,0,0.1);
+            border-radius: 12px; padding: 6px;
+            opacity: 0; visibility: hidden; transform: translateY(-4px);
+            transition: opacity 0.15s, visibility 0.15s, transform 0.15s; z-index: 200;
+        }
+        .research-trigger.open .research-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .research-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 10px 12px; border-radius: 8px; text-decoration: none;
+            color: var(--text-1); transition: background 0.12s;
+        }
+        .research-item:hover { background: var(--surface-hover); }
+        .research-item-icon {
+            width: 30px; height: 30px; border-radius: 6px;
+            background: var(--navy-bg); border: 1px solid var(--navy-border);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 1px;
+        }
+        .research-item-title { font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--text-1); }
+        .research-item-meta  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+        .research-item-desc  { font-size: 11px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+        .research-divider { height: 1px; background: var(--border-faint); margin: 4px 8px; }
+
+        /* ── Cards ────────────────────────────────────────── */
+        .site-card {
+            background: var(--surface); border: 1px solid var(--border);
+            box-shadow: var(--card-shadow); border-radius: 0.75rem;
+        }
+        .paper-card {
+            padding: 1.75rem; border-radius: 0.75rem;
+            background: var(--surface); border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            text-decoration: none; display: block; color: inherit;
+        }
+        .paper-card:hover { border-color: var(--navy-border); box-shadow: var(--card-shadow-lg); }
+        html.dark .paper-card:hover { border-color: var(--gold-border); }
+
+        .project-card {
+            padding: 1.5rem; border-radius: 0.75rem;
+            background: var(--surface); border: 1px solid var(--border);
+            box-shadow: var(--card-shadow);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover { border-color: var(--gold-border); box-shadow: var(--card-shadow-lg); }
+
+        /* ── Grid dots ────────────────────────────────────── */
+        .grid-pattern {
+            background-image: radial-gradient(circle at 1px 1px, var(--grid-dot) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        /* ── Gradient text ────────────────────────────────── */
+        .gradient-text { -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        html.light .gradient-text { background-image: linear-gradient(135deg, #1B2A4A 0%, #8A6E18 45%, #C9A84C 100%); }
+        html.dark  .gradient-text { background-image: linear-gradient(135deg, #818CF8 0%, #FCD34D 100%); }
+
+        /* ── Misc ─────────────────────────────────────────── */
+        .section-alt { background: var(--bg-alt); }
+        .theme-toggle {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: var(--surface); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text-muted); transition: background 0.15s, color 0.15s;
+        }
+        .theme-toggle:hover { background: var(--surface-hover); color: var(--navy); }
+        html.dark .theme-toggle:hover { color: var(--gold); }
+
+        .pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 14px; border-radius: 9999px; font-size: 0.7rem;
+            font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em;
+            background: var(--navy-bg); border: 1px solid var(--navy-border); color: var(--navy);
+        }
+        html.dark .pill { background: var(--gold-bg); border-color: var(--gold-border); color: var(--gold); }
+
+        .tag {
+            display: inline-flex; align-items: center;
+            padding: 3px 10px; border-radius: 9999px; font-size: 0.7rem;
+            font-family: 'DM Mono', monospace;
+            background: var(--navy-bg); border: 1px solid var(--navy-border); color: var(--navy);
+        }
+        html.dark .tag { background: var(--navy-bg); border-color: var(--navy-border); color: var(--navy); }
+        .tag-gold {
+            background: var(--gold-bg); border: 1px solid var(--gold-border); color: var(--gold-text);
+        }
+        html.dark .tag-gold { color: var(--gold); }
+
+        .status-dot {
+            display: inline-block; width: 7px; height: 7px;
+            border-radius: 50%; background: var(--gold);
+        }
+        .status-dot.live { background: #22c55e; }
+
+        .icon-box {
+            width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
+            background: var(--navy-bg); border: 1px solid var(--navy-border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--navy);
+        }
+        html.dark .icon-box { color: var(--gold); border-color: var(--gold-border); background: var(--gold-bg); }
+
+        .site-footer { border-top: 1px solid var(--border); background: var(--bg); }
+
+        /* ── Shared page container — guarantees identical width/padding
+               across nav, hero, and every section, regardless of position/context ── */
+        .container-x {
+            width: 100%;
+            max-width: 80rem; /* matches max-w-7xl */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;   /* 24px */
+            padding-right: 1.5rem;
+        }
+        @media (min-width: 640px) {
+            .container-x { padding-left: 2.5rem; padding-right: 2.5rem; } /* 40px */
+        }
+        @media (min-width: 768px) {
+            .container-x { padding-left: 4rem; padding-right: 4rem; } /* 64px */
+        }
+        @media (min-width: 1024px) {
+            .container-x { padding-left: 6rem; padding-right: 6rem; } /* 96px */
+        }
+        @media (min-width: 1280px) {
+            .container-x { padding-left: 8rem; padding-right: 8rem; } /* 128px */
+        }
+
+        .skip-link {
+            position: absolute; top: -40px; left: 0; background: var(--navy); color: #fff;
+            padding: 8px 16px; text-decoration: none; z-index: 10000; font-weight: 600;
+        }
+        .skip-link:focus { top: 0; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <a href="#research" class="skip-link">Skip to content</a>
+
+    <!-- Navigation -->
+    <nav class="site-nav fixed top-0 w-full z-50">
+        <div class="container-x py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <a href="/" style="text-decoration:none;display:flex;align-items:center;gap:0.75rem">
+                <div style="display:flex;flex-direction:column">
+                    <span class="font-serif text-xl leading-none" style="color:var(--text-1)">Templet<span style="color:var(--gold)">Solutions</span></span>
+                    <span class="font-mono text-[9px] uppercase tracking-widest mt-0.5" style="color:var(--text-3)">AI Memory & Research</span>
+                </div>
+            </a>
+
+            <!-- Desktop nav -->
+            <div class="hidden md:flex items-center gap-7">
+                <a href="#research"  class="nav-link">Research</a>
+                <a href="#projects"  class="nav-link">Projects</a>
+                <a href="#oss"       class="nav-link">Open Source</a>
+
+                <!-- Papers dropdown -->
+                <div class="research-trigger" id="researchTrigger">
+                    <button class="research-btn" id="researchBtn" aria-haspopup="true" aria-expanded="false">
+                        Papers
+                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                    </button>
+                    <div class="research-dropdown" id="researchDropdown" role="menu">
+
+                        <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" class="research-item" role="menuitem">
+                            <div class="research-item-icon"><i data-lucide="git-branch" class="w-3.5 h-3.5" style="color:var(--navy)"></i></div>
+                            <div>
+                                <div class="research-item-title">The Riemannian Belief Manifold</div>
+                                <div class="research-item-meta">arXiv · cs.AI</div>
+                                <div class="research-item-desc">Discrete geometric field theory of information homeostasis on knowledge graphs.</div>
+                            </div>
+                        </a>
+
+                        <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" class="research-item" role="menuitem">
+                            <div class="research-item-icon"><i data-lucide="shield" class="w-3.5 h-3.5" style="color:var(--navy)"></i></div>
+                            <div>
+                                <div class="research-item-title">Geometric Validation for AI Agent Memory</div>
+                                <div class="research-item-meta">arXiv · cs.AI</div>
+                                <div class="research-item-desc">Structural prevention of prompt injection and goal hijacking via hyperbolic geometry.</div>
+                            </div>
+                        </a>
+
+                        <div class="research-divider"></div>
+
+                        <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" class="research-item" role="menuitem">
+                            <div class="research-item-icon"><i data-lucide="atom" class="w-3.5 h-3.5" style="color:var(--navy)"></i></div>
+                            <div>
+                                <div class="research-item-title">Epistemic Scalar-Tensor Gravity</div>
+                                <div class="research-item-meta">arXiv · cs.AI · math-ph</div>
+                                <div class="research-item-desc">Field theory of contradiction dynamics with empirical verification.</div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <a href="mailto:jessica@templetsolutions.com" class="nav-link">Contact</a>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i data-lucide="sun"  class="w-4 h-4" id="themeIconSun"  style="display:none"></i>
+                    <i data-lucide="moon" class="w-4 h-4" id="themeIconMoon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-[70vh] flex items-center pt-20 grid-pattern overflow-hidden">
+        <div class="absolute inset-0" style="background:linear-gradient(to bottom, var(--navy-bg) 0%, transparent 60%)"></div>
+
+        <div class="container-x py-28 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <div class="space-y-8 max-w-2xl">
+
+                    <div class="pill">
+                        <span class="status-dot live"></span>
+                        Software & Research
+                    </div>
+
+                    <h1 class="font-serif text-5xl lg:text-6xl leading-tight" style="letter-spacing:-0.01em">
+                        Production software. Original research.<br><span class="gradient-text">Same rigor.</span>
+                    </h1>
+
+                    <p class="text-lg leading-relaxed" style="color:var(--text-2);max-width:36rem;">
+                        Templet Solutions builds production software — distributed systems, infrastructure, and full applications — alongside original research in geometric deep learning. Different problems, same standard: built right, not just shipped.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3">
+                        <a href="#research" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
+                           style="background:var(--navy);color:#fff">
+                            Research
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://veritasmemoria.com" target="_blank" rel="noopener noreferrer"
+                           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
+                           style="background:var(--surface);border:1px solid var(--border);color:var(--text-1)">
+                            VeritasMemoria
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://www.templetsolutions.com/LoreCapsa.html"
+                           class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
+                           style="background:var(--surface);border:1px solid var(--border);color:var(--text-1)">
+                            LoreCapsa
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Hyperbolic belief-manifold graphic -->
+                <div class="hidden lg:flex items-center justify-center">
+                    <div style="background:var(--surface);border:1px solid var(--border);border-radius:9999px;box-shadow:var(--card-shadow-lg);padding:2rem;">
+                        <svg viewBox="0 0 480 480" width="420" height="420" style="max-width:100%;display:block">
+                            <defs>
+                                <radialGradient id="diskGlow" cx="50%" cy="42%" r="65%">
+                                    <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.16"/>
+                                    <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+
+                            <circle cx="240" cy="240" r="210" fill="url(#diskGlow)"/>
+
+                            <!-- Poincaré disk boundary -->
+                            <circle cx="240" cy="240" r="188" fill="none" stroke="var(--navy)" stroke-width="2.5"/>
+
+                            <!-- Geodesic arcs -->
+                            <path d="M 70 140 Q 240 240 130 380" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+                            <path d="M 90 370 Q 240 240 400 320" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+                            <path d="M 380 110 Q 240 240 95 195"  fill="none" stroke="var(--gold)" stroke-width="2.25" opacity="0.85"/>
+                            <path d="M 300 75  Q 240 240 340 400" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+                            <path d="M 150 90  Q 240 240 405 260" fill="none" stroke="var(--navy)" stroke-width="2" opacity="0.55"/>
+
+                            <!-- Belief nodes -->
+                            <circle cx="70"  cy="140" r="6" fill="var(--navy)"/>
+                            <circle cx="130" cy="380" r="6" fill="var(--navy)"/>
+                            <circle cx="90"  cy="370" r="6" fill="var(--navy)"/>
+                            <circle cx="400" cy="320" r="6" fill="var(--navy)"/>
+                            <circle cx="380" cy="110" r="6" fill="var(--gold)"/>
+                            <circle cx="95"  cy="195" r="6" fill="var(--gold)"/>
+                            <circle cx="300" cy="75"  r="6" fill="var(--navy)"/>
+                            <circle cx="340" cy="400" r="6" fill="var(--navy)"/>
+                            <circle cx="150" cy="90"  r="6" fill="var(--navy)"/>
+                            <circle cx="405" cy="260" r="6" fill="var(--navy)"/>
+
+                            <!-- Coherence center -->
+                            <circle cx="240" cy="240" r="12" fill="var(--surface)" stroke="var(--gold)" stroke-width="3"/>
+                            <circle cx="240" cy="240" r="4"  fill="var(--gold)"/>
+
+                            <text x="240" y="455" text-anchor="middle" font-family="DM Mono, monospace" font-size="12" letter-spacing="0.08em" fill="var(--text-2)">HYPERBOLIC BELIEF MANIFOLD</text>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Papers -->
+    <section id="research" class="py-24 section-alt">
+        <div class="container-x">
+
+            <div class="mb-12 text-center">
+                <div class="pill mb-4" style="display:inline-flex;">Publications</div>
+                <h2 class="font-serif text-4xl mb-3">Research</h2>
+                <p style="color:var(--text-2);max-width:42rem;margin-left:auto;margin-right:auto;">
+                    A sequence of papers developing a geometric and field-theoretic framework for AI memory architecture — from discrete graph theory through scalar-tensor gravity on hyperbolic belief manifolds.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+
+                <!-- Paper 1 -->
+                <a href="https://doi.org/10.5281/zenodo.19622271" target="_blank" rel="noopener noreferrer" class="paper-card">
+                    <div class="flex items-start justify-between gap-4 flex-wrap">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                <span class="tag">cs.AI</span>
+                                <span class="tag">math-ph</span>
+                                <span class="tag-gold tag">Paper I</span>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-1">Belief Manifold: A Discrete Geometric Field Theory of Information Homeostasis</h3>
+                            <p class="text-sm" style="color:var(--text-2);max-width:56rem">
+                                Introduces a discrete geometric framework for knowledge graphs in which beliefs carry a local metric tensor, contradictions manifest as negative Ollivier–Ricci curvature, and information homeostasis emerges from the balance of a curvature-smoothing flow and epistatic regulation.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <span class="font-mono text-xs" style="color:var(--text-3)">2025</span>
+                            <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Paper 2 -->
+                <a href="https://doi.org/10.5281/zenodo.19970338" target="_blank" rel="noopener noreferrer" class="paper-card">
+                    <div class="flex items-start justify-between gap-4 flex-wrap">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                <span class="tag">cs.AI</span>
+                                <span class="tag-gold tag">Paper II</span>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-1">Hyperbolic Spectral Homeostasis: The Geometric Foundation of Professional AI Memory</h3>
+                            <p class="text-sm" style="color:var(--text-2);max-width:56rem">
+                                Instantiates the RBM framework in the Poincaré disk with zone-specific inertia values encoding epistemic authority. Develops the HSH metric, the curvature-adaptive signed Laplacian, and the coherence field as a memory commit criterion.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <span class="font-mono text-xs" style="color:var(--text-3)">2025</span>
+                            <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Paper 3 -->
+                <a href="https://doi.org/10.5281/zenodo.19975263" target="_blank" rel="noopener noreferrer" class="paper-card">
+                    <div class="flex items-start justify-between gap-4 flex-wrap">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                <span class="tag">cs.AI</span>
+                                <span class="tag-gold tag">Paper III</span>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-1">Geometric Validation for AI Agent Memory: Structural Prevention of Prompt Injection and Goal Hijacking</h3>
+                            <p class="text-sm" style="color:var(--text-2);max-width:56rem">
+                                Presents VeritasMemoria's three-layer defense architecture: immutable Task Registry, three-gate memory validation with hyperbolic quarantine, and a five-domain goal stability invariant. Empirical evaluation across 3000+ simulated attacks demonstrates 98–100% detection for overt attacks and zero successful hijacking.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <span class="font-mono text-xs" style="color:var(--text-3)">2026</span>
+                            <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Paper 4 -->
+                <a href="https://doi.org/10.5281/zenodo.19990204" target="_blank" rel="noopener noreferrer" class="paper-card">
+                    <div class="flex items-start justify-between gap-4 flex-wrap">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2 flex-wrap">
+                                <span class="tag">cs.AI</span>
+                                <span class="tag">math-ph</span>
+                                <span class="tag-gold tag">Paper IV</span>
+                            </div>
+                            <h3 class="font-semibold text-lg mb-1">Epistemic Scalar-Tensor Gravity on Belief Manifolds</h3>
+                            <p class="text-sm" style="color:var(--text-2);max-width:56rem">
+                                Derives a closed-form scalar-tensor field theory from the HSH architecture. Proves via the Bianchi identity that contradiction stress is conserved and can only be removed by human intervention — a field-theoretic derivation of the system's architectural human-oversight requirement.
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-shrink-0">
+                            <span class="font-mono text-xs" style="color:var(--text-3)">2026</span>
+                            <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-24">
+        <div class="container-x">
+
+            <div class="mb-12 text-center">
+                <div class="pill mb-4" style="display:inline-flex;">Systems</div>
+                <h2 class="font-serif text-4xl mb-3">Projects</h2>
+                <p style="color:var(--text-2);max-width:42rem;margin-left:auto;margin-right:auto;">
+                    Production systems built to solve specific problems in high-stakes domains.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+
+                <!-- VeritasMemoria -->
+                <div class="project-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="icon-box">
+                            <i data-lucide="database" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="status-dot live"></span>
+                            <span class="font-mono text-xs" style="color:var(--text-3)">Active</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">VeritasMemoria</h3>
+                    <p class="text-sm mb-4" style="color:var(--text-2)">
+                        Local-first AI memory architecture for legal practices, healthcare providers, and independent professionals. Four-zone belief graph with cryptographic audit trails, human-gated contradiction resolution, and the geometric validation layer developed in the research program.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="tag">Python</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">SQLite / PostgreSQL</span>
+                        <span class="tag">Local-first</span>
+                    </div>
+                    <a href="https://veritasmemoria.com" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 text-sm font-medium" style="color:var(--navy)">
+                        veritasmemoria.com
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- LoreCapsa -->
+                <div class="project-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="icon-box">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="status-dot"></span>
+                            <span class="font-mono text-xs" style="color:var(--text-3)">Private Beta</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">LoreCapsa</h3>
+                    <p class="text-sm mb-4" style="color:var(--text-2)">
+                        A project manager and story bible for fiction writers. Reads a manuscript and builds a belief graph of its world — characters, continuity, plot threads, and knowledge asymmetry — so writers can query their own story instead of re-reading it.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="tag">Story Bible</span>
+                        <span class="tag">Continuity Engine</span>
+                        <span class="tag">Belief Graph</span>
+                    </div>
+                    <a href="https://www.templetsolutions.com/LoreCapsa.html"
+                       class="inline-flex items-center gap-2 text-sm font-medium" style="color:var(--navy)">
+                        Request beta access
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- Waterfall Enrichment -->
+                <div class="project-card">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="icon-box">
+                            <i data-lucide="layers" class="w-5 h-5"></i>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="status-dot"></span>
+                            <span class="font-mono text-xs" style="color:var(--text-3)">Open Source</span>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">Waterfall Enrichment Pipeline</h3>
+                    <p class="text-sm mb-4" style="color:var(--text-2)">
+                        Lead intelligence pipeline with waterfall-style source prioritization — cheapest/fastest sources first, escalating to richer sources only when needed. Includes idempotency layer, rate limiter, execution engine with producer/worker separation, and doubt-scored signal quality assessment.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">Async</span>
+                        <span class="tag">Doubt scoring</span>
+                    </div>
+                    <a href="https://github.com/JessicaTemplet" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-2 text-sm font-medium" style="color:var(--navy)">
+                        GitHub
+                        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Source / GitHub -->
+    <section id="oss" class="py-24 section-alt">
+        <div class="container-x">
+
+            <div class="mb-12 text-center">
+                <div class="pill mb-4" style="display:inline-flex;">Open Source</div>
+                <h2 class="font-serif text-4xl mb-3">GitHub</h2>
+                <p style="color:var(--text-2);max-width:42rem;margin-left:auto;margin-right:auto;">
+                    Code that exists to be useful, not to be impressive.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5">
+
+                <a href="https://github.com/JessicaTemplet/Atomic-Rate-Limiter" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="gauge" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Atomic-Rate-Limiter</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Distributed rate limiting service implementing a Sliding Window Log algorithm via Lua scripting for strict atomicity.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Python</span>
+                        <span class="tag">Redis</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/Background-Job-Processor" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="layers" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Background-Job-Processor</h4>
+                    <p class="text-sm" style="color:var(--text-2)">High-reliability asynchronous task queue built with Python and Redis.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Python</span>
+                        <span class="tag">Redis</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/Idempotent-API-Layer" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="shield" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Idempotent-API-Layer</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Redis-backed idempotency implementation that prevents duplicate processing in distributed systems.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Python</span>
+                        <span class="tag">Redis</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/Immutable-Audit-Log" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Immutable-Audit-Log</h4>
+                    <p class="text-sm" style="color:var(--text-2)">High-integrity activity tracking system for compliance and observability, capturing a complete history of system changes using PostgreSQL.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Python</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/Waterfall-Enrichment" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="layers" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Waterfall-Enrichment</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Doubt-score-gated lead enrichment pipeline. Built in both Rust and Python.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/Owner_Finance_App" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="home" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">Owner_Finance_App</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Owner finance property finder.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/rust_internals" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="cpu" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">rust_internals</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Reference implementations of fundamental systems programming building blocks, written from scratch against the standard library with no external dependencies. Built in both Rust and Python.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/resp_kv_store" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="server" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">resp_kv_store</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Minimal Redis-compatible in-memory key-value store speaking RESP over TCP. Built in both Rust and Python.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/zero_copy_json" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="braces" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">zero_copy_json</h4>
+                    <p class="text-sm" style="color:var(--text-2)">A JSON parser written from scratch, without serde_json. Built in both Rust and Python.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/turbogrep" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="terminal" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">turbogrep</h4>
+                    <p class="text-sm" style="color:var(--text-2)">A multi-threaded, memory-mapped grep clone. Built in both Rust and Python.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/binsg" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="search" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">binsg</h4>
+                    <p class="text-sm" style="color:var(--text-2)">A hyper-fast binary semantic grep command-line search utility. Built in both Rust and Python.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Rust</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/kvstore" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="database" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">kvstore</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Lightweight, network-accessible, in-memory key-value store speaking a Redis-compatible subset of RESP over TCP. Standard library only.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Go</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/linkcheck" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="link" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">linkcheck</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Concurrent CLI link checker and asset crawler — worker pool, context-based cancellation, token-bucket rate limiting, robots.txt support. Standard library only.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Go</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/AgentJournalClaw" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="notebook-pen" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">AgentJournalClaw</h4>
+                    <p class="text-sm" style="color:var(--text-2)">Agent that writes journal entries reliably.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">Python</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/JessicaTemplet/github-mcp" target="_blank" rel="noopener noreferrer"
+                   class="paper-card group">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="icon-box">
+                            <i data-lucide="plug" class="w-4 h-4"></i>
+                        </div>
+                        <i data-lucide="external-link" class="w-4 h-4" style="color:var(--text-3)"></i>
+                    </div>
+                    <h4 class="font-semibold mb-1">github-mcp</h4>
+                    <p class="text-sm" style="color:var(--text-2)">MCP server giving Claude direct access to GitHub — repos, files, issues, PRs, and Actions — via a personal access token.</p>
+                    <div class="flex gap-2 mt-3">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">MCP</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="mt-8">
+                <a href="https://github.com/JessicaTemplet" target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-2 text-sm font-medium" style="color:var(--text-2)">
+                    <i data-lucide="github" class="w-4 h-4"></i>
+                    github.com/JessicaTemplet
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer py-10">
+        <div class="container-x flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <span class="font-serif text-lg" style="color:var(--text-1)">Templet<span style="color:var(--gold)">Solutions</span></span>
+            </div>
+            <div class="text-sm text-center" style="color:var(--text-3)">
+                © 2026 Templet Solutions
+            </div>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="mailto:jessica@templetsolutions.com" style="color:var(--text-2)" class="hover:underline">jessica@templetsolutions.com</a>
+                <a href="https://www.linkedin.com/in/jessica-templet" target="_blank" rel="noopener noreferrer" style="color:var(--text-2)" class="hover:underline flex items-center gap-1">
+                    <i data-lucide="linkedin" class="w-3.5 h-3.5"></i>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        if (window.lucide) lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+
+        const html      = document.documentElement;
+        const toggleBtn = document.getElementById('themeToggle');
+        const iconSun   = document.getElementById('themeIconSun');
+        const iconMoon  = document.getElementById('themeIconMoon');
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                html.classList.remove('light'); html.classList.add('dark');
+                iconSun.style.display = 'block'; iconMoon.style.display = 'none';
+            } else {
+                html.classList.remove('dark'); html.classList.add('light');
+                iconSun.style.display = 'none'; iconMoon.style.display = 'block';
+            }
+            localStorage.setItem('ts-theme', theme);
+        }
+
+        applyTheme(localStorage.getItem('ts-theme') === 'dark' ? 'dark' : 'light');
+        toggleBtn.addEventListener('click', () => applyTheme(html.classList.contains('dark') ? 'light' : 'dark'));
+
+        const trigger     = document.getElementById('researchTrigger');
+        const researchBtn = document.getElementById('researchBtn');
+
+        researchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const open = trigger.classList.toggle('open');
+            researchBtn.setAttribute('aria-expanded', open);
+        });
+        document.addEventListener('click', (e) => {
+            if (!trigger.contains(e.target)) {
+                trigger.classList.remove('open');
+                researchBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    </script>
+</body>
+</html>
