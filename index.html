@@ -189,6 +189,30 @@
             border-bottom: 3px solid var(--gold); padding-bottom: 0.04em;
         }
 
+        /* ── Hero background image ───────────────────────── */
+        .hero-bg {
+            background-image: linear-gradient(115deg, rgba(7,12,9,0.94) 0%, rgba(7,12,9,0.82) 42%, rgba(7,12,9,0.55) 72%, rgba(7,12,9,0.38) 100%), url('math.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--text-1);
+            --text-1:        #F4F7F2;
+            --text-2:        #C7D2C4;
+            --text-3:        #93A594;
+            --text-muted:    #C7D2C4;
+            --text-subtle:   #93A594;
+            --surface:       rgba(255,255,255,0.08);
+            --surface-hover: rgba(255,255,255,0.14);
+            --border:        rgba(255,255,255,0.22);
+            --navy:          #8FC29E;
+            --navy-bg:       rgba(143,194,158,0.16);
+            --navy-border:   rgba(143,194,158,0.34);
+            --gold:          #E7C98C;
+            --gold-light:    #EFDBAC;
+            --gold-text:     #E7C98C;
+            --gold-border:   rgba(231,201,140,0.4);
+        }
+
         /* ── Misc ─────────────────────────────────────────── */
         .section-alt { background: var(--bg-alt); }
         .theme-toggle {
@@ -344,8 +368,7 @@
     </nav>
 
     <!-- Hero -->
-    <section class="relative min-h-[70vh] flex items-center pt-20 grid-pattern overflow-hidden">
-        <div class="absolute inset-0" style="background:linear-gradient(to bottom, var(--navy-bg) 0%, transparent 60%)"></div>
+    <section class="relative min-h-[70vh] flex items-center pt-20 overflow-hidden hero-bg">
 
         <div class="container-x py-28 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -367,7 +390,7 @@
 
                     <div class="flex flex-wrap gap-3">
                         <a href="#research" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all"
-                           style="background:var(--navy);color:#fff">
+                           style="background:var(--gold);color:#16261C">
                             Research
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
